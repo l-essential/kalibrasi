@@ -1,0 +1,34 @@
+{
+  "name": "jquery-dateformat",
+  "version": "1.0.4",
+  "homepage": "https://github.com/phstc/jquery-dateFormat",
+  "description": "It's a jQuery Plugin to format Date outputs using JavaScript.",
+  "author": "Pablo Cantero <pablo@pablocantero.com>",
+  "license": "MIT License",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "grunt-cli": "~1.3.2",
+    "grunt": "~0.4.2",
+    "grunt-contrib-concat": "~0.1",
+    "grunt-contrib-jasmine": "~1.0.3",
+    "grunt-contrib-jshint": "~0.7",
+    "grunt-contrib-watch": "~0.2",
+    "grunt-exec": "~0.4",
+    "grunt-template-jasmine-istanbul": "~0.4.0",
+    "hoek": "~> 5.0.3"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "test:browser": "grunt test:browser",
+    "compile": "grunt compile"
+  },
+  "dependencies": {
+    "grunt-contrib-uglify": "^3.3.0"
+  }
+}

@@ -1,0 +1,37 @@
+
+
+
+    public function generateqrcode() {
+        $this->load->library('barcode/barcode_generator');
+        /* Output directly to standard output. */
+        //$this->barcode_generator->output_image($format, $symbology, $data, $options);
+        $this->barcode_generator->output_image('png', 'qr', 'test123','');
+
+        /* Create bitmap image. */
+        //$image = $this->barcode_generator->render_image($symbology, $data, $options);
+        $image = $this->barcode_generator->render_image('png', 'qr', 'test123','');
+        imagepng($image);
+        imagedestroy($image);
+        /* Generate SVG markup. */
+        //$svg = $this->barcode_generator->render_svg($symbology, $data, $options);
+        $output = $this->barcode_generator->render_svg('qr', 'test123','');
+        echo $output;
+    }
+    
+    public function generatebarcode() {
+        $this->load->library('barcode/barcode_generator');
+        /* Output directly to standard output. */
+        //$this->barcode_generator->output_image($format, $symbology, $data, $options);
+        $this->barcode_generator->output_image('png', 'code-39', 'test123','');
+        /* Create bitmap image. */
+        //$image = $this->barcode_generator->render_image($symbology, $data, $options);
+        $image = $this->barcode_generator->render_image('png', 'code-39', 'test123','');
+        imagepng($image);
+        imagedestroy($image);
+        /* Generate SVG markup. */
+        //$svg = $this->barcode_generator->render_svg($symbology, $data, $options);
+        $output = $this->barcode_generator->render_svg('code-39', 'test123','');
+        echo $output;
+    }
+
+}
