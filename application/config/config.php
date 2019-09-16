@@ -26,7 +26,7 @@ date_default_timezone_set("Asia/Jakarta");
  */
 $serverakses = 'localhost';
 $serverport = $_SERVER['SERVER_PORT'];
-$config['base_url'] = "http://$serverakses" . ":" . $serverport . '/sh1apps/core/apps';
+$config['base_url'] = "http://$serverakses" . ":" . $serverport . '/pu/';
 
 /*
   |--------------------------------------------------------------------------
