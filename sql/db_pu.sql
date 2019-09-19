@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 15, 2019 at 01:09 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Host: localhost
+-- Generation Time: Sep 20, 2019 at 06:25 AM
+-- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.0.33-0ubuntu0.16.04.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -441,6 +439,26 @@ CREATE TABLE `m_bataspengasilan` (
 INSERT INTO `m_bataspengasilan` (`id_m_bataspengasilan`, `id_provinsi`, `tanggal_tmt`, `batasnilai_rumahtapak`, `batasnilai_rumahsusun`, `statusdata`, `createby`, `createtime`, `updateby`, `updatetime`, `deleteby`, `deletetime`) VALUES
 (1, 3, '2019-09-11', 1000000, 2000000, 'nonactive', 1, '2019-09-11 05:38:08', 1, '2019-09-11 05:43:29', 1, '2019-09-11 05:43:47'),
 (2, 3, '2019-09-27', 10000000, 10000000, 'nonactive', 1, '2019-09-11 05:38:51', 1, '2019-09-11 05:43:38', 1, '2019-09-11 05:43:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_sukubungabirate`
+--
+
+DROP TABLE IF EXISTS `m_sukubungabirate`;
+CREATE TABLE `m_sukubungabirate` (
+  `id_m_sukubungabirate` int(11) NOT NULL,
+  `tanggal_terbit` date NOT NULL,
+  `tahun` int(4) NOT NULL DEFAULT '0',
+  `bulan` int(2) NOT NULL DEFAULT '0',
+  `bi_rate` decimal(8,6) NOT NULL DEFAULT '0.000000',
+  `jumlahhari_efektif` int(2) NOT NULL DEFAULT '0',
+  `sisa_hari` int(2) NOT NULL DEFAULT '0',
+  `totalharidalambulan` int(2) NOT NULL DEFAULT '0',
+  `sukubunga_kpr` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `sukubunga_kprbi` decimal(5,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1793,6 +1811,12 @@ ALTER TABLE `m_bataspengasilan`
   ADD KEY `id_provinsi` (`id_provinsi`);
 
 --
+-- Indexes for table `m_sukubungabirate`
+--
+ALTER TABLE `m_sukubungabirate`
+  ADD PRIMARY KEY (`id_m_sukubungabirate`);
+
+--
 -- Indexes for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
@@ -1884,146 +1908,126 @@ ALTER TABLE `useraccess`
 --
 ALTER TABLE `badanhukum`
   MODIFY `id_badanhukum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
   MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `bankbunga`
 --
 ALTER TABLE `bankbunga`
   MODIFY `id_bankbunga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `bankcabang`
 --
 ALTER TABLE `bankcabang`
   MODIFY `id_bankcabang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `bankquotatahunan`
 --
 ALTER TABLE `bankquotatahunan`
   MODIFY `id_bankquotatahunan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `desa`
 --
 ALTER TABLE `desa`
   MODIFY `id_desa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `jeniskpr`
 --
 ALTER TABLE `jeniskpr`
   MODIFY `id_jeniskpr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `jenisrumah`
 --
 ALTER TABLE `jenisrumah`
   MODIFY `id_jenisrumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `kotakabupaten`
 --
 ALTER TABLE `kotakabupaten`
   MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT for table `m_batashargarumah`
 --
 ALTER TABLE `m_batashargarumah`
   MODIFY `id_m_batashargarumah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `m_batashargarumahpengecualian`
 --
 ALTER TABLE `m_batashargarumahpengecualian`
   MODIFY `id_m_batashargarumahpengecualian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `m_bataspengasilan`
 --
 ALTER TABLE `m_bataspengasilan`
   MODIFY `id_m_bataspengasilan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+--
+-- AUTO_INCREMENT for table `m_sukubungabirate`
+--
+ALTER TABLE `m_sukubungabirate`
+  MODIFY `id_m_sukubungabirate` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
   MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `penandatangan`
 --
 ALTER TABLE `penandatangan`
   MODIFY `id_penandatangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `perumahan`
 --
 ALTER TABLE `perumahan`
   MODIFY `id_perumahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `perumahanharga`
 --
 ALTER TABLE `perumahanharga`
   MODIFY `id_perumahanharga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `peserta`
 --
 ALTER TABLE `peserta`
   MODIFY `id_peserta` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `pesertaangsuran`
 --
 ALTER TABLE `pesertaangsuran`
   MODIFY `id_pesertaangsuran` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=901;
-
 --
 -- AUTO_INCREMENT for table `provinsi`
 --
 ALTER TABLE `provinsi`
   MODIFY `id_provinsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `roleapps`
 --
 ALTER TABLE `roleapps`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `t_pengajuanbankdetail`
 --
 ALTER TABLE `t_pengajuanbankdetail`
   MODIFY `id_t_pengajuanbankdetail` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_pengajuanbankheader`
 --
 ALTER TABLE `t_pengajuanbankheader`
   MODIFY `id_t_pengajuanbankheader` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `useraccess`
 --
 ALTER TABLE `useraccess`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
