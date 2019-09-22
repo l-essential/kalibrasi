@@ -1,4 +1,5 @@
 
+
 <div class="col-md-12">
     <div class="card card-outline-success">
         <div class="card-header">
@@ -11,14 +12,18 @@
                 <button type="button" id="btncreate" class="btn btn-info btn-circle" onclick="adddata()"><i class="fa fa-plus"></i> </button>
                 <table id="dataintable" class="table table-bordered color-table muted-table" width="100%">
                     <thead>
-                        <tr>
-                            <th class="text-center" width="10px">Action</th>
-                            <th  width="120px">Tahun</th>
+                        <tr align="center" valign="top">
+                            <th valign="top" width="10px">Action</th>
+                            <th>Tahun</th>
                             <th>Bulan</th>
                             <th>Terbit Tanggal</th>
-                            <th>Terbit Tanggal</th>
                             <th>BI Rate</th>
-                        </tr>
+                            <th>Hari aktif</th>
+                            <th>Hari Off</th>
+                            <th>Total Hari</th>
+                            <th>KPR</th>
+                            <th>BI</th>
+                        </tr>                       
                     </thead>                 
                 </table>
             </div>
@@ -51,7 +56,7 @@
 
     datacolumn = [
         {
-            "data": "id_satuan", "width": "10px", "sClass": "text-center",
+            "data": "id_m_sukubungabirate", "width": "10px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {
                 var btn = "";
@@ -67,8 +72,15 @@
                 return btn;
             }
         },
-        {"data": "kode_jenisrumah", },
-        {"data": "nama_jenisrumah", },
+        {"data": "bulan", },
+        {"data": "tahun", },
+        {"data": "tanggal_terbit", },
+        {"data": "bi_rate", },
+        {"data": "hari_efektif", },
+        {"data": "hari_off", },
+        {"data": "total_hari", },
+        {"data": "sukubunga_kpr", },
+        {"data": "sukubunga_kprbi", },
     ];
     setdatagrid();
 

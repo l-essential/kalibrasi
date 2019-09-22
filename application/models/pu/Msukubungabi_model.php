@@ -7,6 +7,8 @@ class Msukubungabi_model extends MY_Model {
         parent::__construct();
         $this->pathclass = basename(dirname(__FILE__));
         $this->db = $this->load->database($this->pathclass, true);
+        $this->table ='m_sukubungabirate';
+        $this->prefix_id='id_'.$this->table;
     }
 
 }

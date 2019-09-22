@@ -10,6 +10,11 @@ class Tools extends MY_Controller {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
     }
+    
+    public function cekpersen() {
+        $percentage = 7.5/100;
+        echo $percentage;
+    }
 
     public function index() {
         echo 'General tools';
