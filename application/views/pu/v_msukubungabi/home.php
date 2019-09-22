@@ -72,15 +72,15 @@
                 return btn;
             }
         },
-        {"data": "bulan", },
         {"data": "tahun", },
+        {"data": "bulan", },
         {"data": "tanggal_terbit", },
-        {"data": "bi_rate", },
+        {"data": "persen_bi_rate", },
         {"data": "hari_efektif", },
         {"data": "hari_off", },
         {"data": "total_hari", },
-        {"data": "sukubunga_kpr", },
-        {"data": "sukubunga_kprbi", },
+        {"data": "persen_kpr", },
+        {"data": "persen_bi", },
     ];
     setdatagrid();
 

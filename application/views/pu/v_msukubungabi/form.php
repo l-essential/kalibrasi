@@ -28,22 +28,26 @@
                                >
                     </div> 
                     <label for="bi_rate" class="col-sm-2 text-right control-label col-form-label">BI Rate</label><span style="color:red">*</span>
-                    <div class="col-sm-3">
-                        <input name="bi_rate" id="bi_rate" type="text" minlength="5" maxlength="50" required="" parsley-type="text" placeholder="Masukan nilai BI Rate" class="form-control"
+                    <div class="col-sm-2">
+                        <input name="bi_rate" id="bi_rate" onkeyup="validasiangka(this,'numbers')" type="text" minlength="1" maxlength="8" required="" parsley-type="text" placeholder="Masukan nilai BI Rate" class="form-control"
                                value="<?php echo (isset($default['bi_rate'])) ? $default['bi_rate'] : ''; ?>"
                                <?php echo (isset($default['readonly_bi_rate'])) ? $default['readonly_bi_rate'] : ''; ?>
                                >
+                              
                     </div> 
+                    %
                 </div> 
-                
+
                 <div class="form-group row">
                     <label for="hari_efektif" class="col-sm-2 text-right control-label col-form-label">Total hari efektif</label><span style="color:red">*</span>
-                    <div class="col-sm-3">
-                        <input name="hari_efektif" id="hari_efektif" type="text" minlength="3" maxlength="50" required="" parsley-type="text" placeholder="Masukan jumlah hari efektif" class="form-control"
+                    <div class="col-sm-2">
+                        <input name="hari_efektif" id="hari_efektif" onkeyup="validasiangka(this,'numbers')" type="text" minlength="1" maxlength="2" required="" parsley-type="text" placeholder="Masukan jumlah hari efektif" class="form-control"
                                value="<?php echo (isset($default['hari_efektif'])) ? $default['hari_efektif'] : ''; ?>"
                                <?php echo (isset($default['readonly_hari_efektif'])) ? $default['readonly_hari_efektif'] : ''; ?>
                                >
-                    </div>                        
+                              
+                    </div> 
+                    Hari                       
                 </div> 
 
 
@@ -60,6 +64,11 @@
     url_index = '<?php echo $url_index; ?>';
     id = $("#id").val();
     actiondata = (id == 0) ? 'create' : 'update';
+    $('#tanggal_terbit').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yy',
+    });
     infoshorcutform();
 </script>
 

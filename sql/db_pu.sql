@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 20, 2019 at 06:25 AM
+-- Generation Time: Sep 22, 2019 at 04:07 PM
 -- Server version: 10.0.38-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.0.33-0ubuntu0.16.04.6
+-- PHP Version: 7.3.9-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -452,13 +452,30 @@ CREATE TABLE `m_sukubungabirate` (
   `tanggal_terbit` date NOT NULL,
   `tahun` int(4) NOT NULL DEFAULT '0',
   `bulan` int(2) NOT NULL DEFAULT '0',
-  `bi_rate` decimal(8,6) NOT NULL DEFAULT '0.000000',
-  `jumlahhari_efektif` int(2) NOT NULL DEFAULT '0',
-  `sisa_hari` int(2) NOT NULL DEFAULT '0',
-  `totalharidalambulan` int(2) NOT NULL DEFAULT '0',
-  `sukubunga_kpr` decimal(5,2) NOT NULL DEFAULT '0.00',
-  `sukubunga_kprbi` decimal(5,2) NOT NULL DEFAULT '0.00'
+  `bi_rate` decimal(6,4) NOT NULL DEFAULT '0.0000',
+  `hari_efektif` int(2) NOT NULL DEFAULT '0',
+  `hari_off` int(2) NOT NULL DEFAULT '0',
+  `total_hari` int(2) NOT NULL DEFAULT '0',
+  `sukubunga_kpr` decimal(6,4) NOT NULL DEFAULT '0.0000',
+  `sukubunga_kprbi` decimal(6,4) NOT NULL DEFAULT '0.0000',
+  `statusdata` enum('active','nonactive') DEFAULT 'active',
+  `createby` int(11) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `updateby` int(11) DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `deleteby` int(11) DEFAULT NULL,
+  `deletetime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_sukubungabirate`
+--
+
+INSERT INTO `m_sukubungabirate` (`id_m_sukubungabirate`, `tanggal_terbit`, `tahun`, `bulan`, `bi_rate`, `hari_efektif`, `hari_off`, `total_hari`, `sukubunga_kpr`, `sukubunga_kprbi`, `statusdata`, `createby`, `createtime`, `updateby`, `updatetime`, `deleteby`, `deletetime`) VALUES
+(1, '2015-01-15', 2015, 1, '0.0775', 14, 17, 31, '0.0775', '0.1550', 'nonactive', NULL, NULL, 1, '2019-09-22 15:18:47', 1, '2019-09-22 15:21:34'),
+(2, '2015-01-15', 2015, 1, '0.0775', 14, 17, 31, '0.0775', '0.1550', 'nonactive', 1, '2019-09-22 15:21:49', 1, '2019-09-22 15:31:45', 1, '2019-09-22 15:31:54'),
+(3, '2015-01-15', 2015, 1, '0.0775', 14, 17, 31, '0.0775', '0.1275', 'active', 1, '2019-09-22 15:32:04', 1, '2019-09-22 15:34:30', NULL, NULL),
+(6, '2015-02-17', 2015, 2, '0.0750', 16, 12, 28, '0.0764', '0.1264', 'active', 1, '2019-09-22 15:42:21', 1, '2019-09-22 15:56:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1972,7 +1989,7 @@ ALTER TABLE `m_bataspengasilan`
 -- AUTO_INCREMENT for table `m_sukubungabirate`
 --
 ALTER TABLE `m_sukubungabirate`
-  MODIFY `id_m_sukubungabirate` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_m_sukubungabirate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pekerjaan`
 --
