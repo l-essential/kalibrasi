@@ -1,6 +1,6 @@
-/application/config/*
-/system/*
-/vendor/*
+/application/config/
+/system/
+/vendor/
 index.php
 
 /application/logs/
