@@ -1,16 +1,16 @@
 <?php
 
-class Combobox extends MY_Controller {
+class Combobox extends MY_Controller
+{
 
-    public function getdynamic_bankquota() {
+    public function getdynamic_bankquota()
+    {
         $param = $_REQUEST;
         $this->setmodel("pu/Bank_model#modeldata");
         $valid = false;
         $msg = "No data found";
         $data = "";
-        $daritanggal = $this->totime($param['daritanggal']);
-        $sampaitanggal = $this->totime($param['sampaitanggal']);
-        $result = $this->modeldata->getbankquotafromperiode($daritanggal,$sampaitanggal);
+        $result = $this->modeldata->getbankquota();
         if ($result) {
             $valid = true;
             $msg = "Result data founds";
@@ -22,7 +22,8 @@ class Combobox extends MY_Controller {
             'data' => $data,
         ));
     }
-    public function getdynamic_desa() {
+    public function getdynamic_desa()
+    {
         $param = $_REQUEST;
         $this->setmodel("pu/Provinsi_model#modeldata");
         $valid = false;
@@ -41,7 +42,8 @@ class Combobox extends MY_Controller {
         ));
     }
 
-    public function getdynamic_kecamatan() {
+    public function getdynamic_kecamatan()
+    {
         $param = $_REQUEST;
         $this->setmodel("pu/Provinsi_model#modeldata");
         $valid = false;
@@ -60,7 +62,8 @@ class Combobox extends MY_Controller {
         ));
     }
 
-    public function getdynamic_kotakabupaten() {
+    public function getdynamic_kotakabupaten()
+    {
         $param = $_REQUEST;
         $this->setmodel("pu/Provinsi_model#modeldata");
         $valid = false;
@@ -78,5 +81,4 @@ class Combobox extends MY_Controller {
             'data' => $data,
         ));
     }
-
 }

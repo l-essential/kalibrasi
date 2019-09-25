@@ -68,5 +68,20 @@ class Pengajuanbank_model extends MY_Model {
                  ";
         return $this->db->query($query);
     }
+    function getdatadetail($idheader) {
+        $query = "
+                 SELECT 
+                    a.*,
+                    C.jeniskpr
+                 FROM $this->table_detail a   
+                 INNER JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id                  
+                 LEFT JOIN $this->tbl_jeniskpr c on c.$this->prefix_jeniskpr= a.$this->prefix_jeniskpr                  
+                 WHERE 
+                 a.$this->prefix_id='$idheader'
+                 and a.statusdata='active'    
+                 ";
+        $result = $this->db->query($query);
+        return $this->returndata($result,'array');
+    }
 
 }

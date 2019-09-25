@@ -40,7 +40,7 @@ class Msukubungabi extends MY_Controller {
             $first_birate = 0;
             $sukubunga_birate = 0;
             if ($checkdata) {
-                $resultlastbi = $this->modeldata->last_birate($tanggal_terbit);
+                $resultlastbi = $this->modeldata->last_birate($tanggal_terbit);               
                 $first_birate = $this->first_birate;
                 if($resultlastbi){
                     $sukubunga_birate = $resultlastbi->bi_rate;

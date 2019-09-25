@@ -34,7 +34,7 @@ class Msukubungabi_model extends MY_Model {
 
     public function last_birate($tanggal_terbit) {
         $this->db->where('statusdata','active');
-        $this->db->where('tanggal_terbit >=',$tanggal_terbit);
+        $this->db->where('tanggal_terbit <=',$tanggal_terbit);
         $this->db->order_by('tahun','desc');
         $this->db->order_by('bulan','desc');
         $this->db->order_by('tanggal_terbit','desc');

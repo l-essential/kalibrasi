@@ -74,7 +74,6 @@
                     if (resultdata.valid == true && actiondata == 'create') {
                         var getdata = postaction('<?php echo $url_getdata; ?>', {'nama_bank': resultdata.postdata.nama_bank});
                         homedetail(getdata);
-
                     }
                 }
             });

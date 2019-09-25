@@ -2,14 +2,16 @@
 
 //create by : ahmad riadi, ahmadriadi.ti@gmail.com, dilarang mengcopy tanpa ijin,akan dikenakan denda bagi yang melanggar
 
-class Bank_model extends MY_Model {
+class Bank_model extends MY_Model
+{
 
     public $tbl_bunga;
     public $prefix_bunga;
     public $tbl_bankquota;
     public $prefix_bankquota;
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->pathclass = basename(dirname(__FILE__));
         $this->db = $this->load->database($this->pathclass, true);
@@ -21,7 +23,8 @@ class Bank_model extends MY_Model {
         $this->prefix_bankquota = 'id_bankquotatahunan';
     }
 
-    public function getbankquotafromperiode($daritanggal,$sampaitanggal) {
+    public function getbankquotafromperiode($daritanggal, $sampaitanggal)
+    {
         $sql = "
                 SELECT
                     a.id_bankquotatahunan,
@@ -41,13 +44,15 @@ class Bank_model extends MY_Model {
                     a.statusdata='active'
                     AND a.tanggal_pko >='$daritanggal' and a.tanggal_pko <='$sampaitanggal'
                 ORDER BY   
-                    a.tipe,a.tanggal_pko,a.tahun ASC
+                    b.nama_bank ASC,
+                    a.tipe,a.tanggal_pko,a.tahun DESC
                ";
         $result = $this->db->query($sql);
         return $this->returndata($result, 'array');
     }
-    
-    public function getbankquota() {
+
+    public function getbankquota()
+    {
         $sql = "
                 SELECT
                     a.id_bankquotatahunan,
@@ -66,13 +71,15 @@ class Bank_model extends MY_Model {
                 WHERE
                     a.statusdata='active'
                 ORDER BY   
-                    a.tipe,a.tanggal_pko,a.tahun ASC
+                    b.nama_bank ASC,
+                    a.tipe,a.tanggal_pko,a.tahun DESC
                ";
         $result = $this->db->query($sql);
         return $this->returndata($result, 'array');
     }
 
-    public function getbankkantorcabang() {
+    public function getbankkantorcabang()
+    {
         $sql = "
                 SELECT
                     b.id_bank,
@@ -92,7 +99,8 @@ class Bank_model extends MY_Model {
         return $this->returndata($result, 'array');
     }
 
-    function getGridDatadetail($idheader) {
+    function getGridDatadetail($idheader)
+    {
         $query = "
                  SELECT 
                     a.*,
@@ -106,7 +114,8 @@ class Bank_model extends MY_Model {
         return $this->db->query($query);
     }
 
-    function GridDatabunga($idheader) {
+    function GridDatabunga($idheader)
+    {
         $query = "
                  SELECT 
                     a.*,
@@ -120,7 +129,8 @@ class Bank_model extends MY_Model {
         return $this->db->query($query);
     }
 
-    function GridDataQuota($idheader) {
+    function GridDataQuota($idheader)
+    {
         $query = "
                 SELECT
                     a.id_bankquotatahunan,
@@ -139,28 +149,32 @@ class Bank_model extends MY_Model {
         return $this->db->query($query);
     }
 
-    public function getby_id_bunga($id_bankbunga) {
+    public function getby_id_bunga($id_bankbunga)
+    {
         $this->db->where("$this->prefix_bunga", $id_bankbunga);
         $this->db->where("statusdata", 'active');
         $result = $this->db->get($this->tbl_bunga);
         return $this->returndata($result, 'row');
     }
 
-    public function getby_id_bankquota($id) {
+    public function getby_id_bankquota($id)
+    {
         $this->db->where("$this->prefix_bankquota", $id);
         $this->db->where("statusdata", 'active');
         $result = $this->db->get($this->tbl_bankquota);
         return $this->returndata($result, 'row');
     }
 
-    public function getbungainbank($id_bank, $periode) {
+    public function getbungainbank($id_bank, $periode)
+    {
         $this->db->where("$this->prefix_id", $id_bank);
         $this->db->where("periode", $periode);
         $this->db->where("statusdata", 'active');
         $result = $this->db->get($this->tbl_bunga);
         return $this->returndata($result, 'row');
     }
-    public function getdatabankquota($id_bank, $tipe,$tahun) {
+    public function getdatabankquota($id_bank, $tipe, $tahun)
+    {
         $this->db->where("$this->prefix_id", $id_bank);
         $this->db->where("tipe", $tipe);
         $this->db->where("tahun", $tahun);
@@ -169,33 +183,38 @@ class Bank_model extends MY_Model {
         return $this->returndata($result, 'row');
     }
 
-    function insertbunga($record) {
+    function insertbunga($record)
+    {
         $record['createby'] = $this->session->userdata('ses_id_user');
         $record['createtime'] = date('Y-m-d H:i:s');
         return $this->db->insert($this->tbl_bunga, $record);
     }
 
-    function insertbankquota($record) {
+    function insertbankquota($record)
+    {
         $record['createby'] = $this->session->userdata('ses_id_user');
         $record['createtime'] = date('Y-m-d H:i:s');
         return $this->db->insert($this->tbl_bankquota, $record);
     }
 
-    function updatebunga($id, $record) {
+    function updatebunga($id, $record)
+    {
         $record['updateby'] = $this->session->userdata('ses_id_user');
         $record['updatetime'] = date('Y-m-d H:i:s');
         $this->db->where($this->prefix_bunga, $id);
         return $this->db->update($this->tbl_bunga, $record);
     }
 
-    function updatebankquota($id, $record) {
+    function updatebankquota($id, $record)
+    {
         $record['updateby'] = $this->session->userdata('ses_id_user');
         $record['updatetime'] = date('Y-m-d H:i:s');
         $this->db->where($this->prefix_bankquota, $id);
         return $this->db->update($this->tbl_bankquota, $record);
     }
 
-    function deletebunga($id, $record = array()) {
+    function deletebunga($id, $record = array())
+    {
         $record['deleteby'] = $this->session->userdata('ses_id_user');
         $record['deletetime'] = date('Y-m-d H:i:s');
         $record['statusdata'] = 'nonactive';
@@ -204,7 +223,8 @@ class Bank_model extends MY_Model {
         return $this->db->update($this->tbl_bunga, $record);
     }
 
-    function deletebankquota($id, $record = array()) {
+    function deletebankquota($id, $record = array())
+    {
         $record['deleteby'] = $this->session->userdata('ses_id_user');
         $record['deletetime'] = date('Y-m-d H:i:s');
         $record['statusdata'] = 'nonactive';
@@ -212,5 +232,4 @@ class Bank_model extends MY_Model {
         $this->db->where($this->prefix_bankquota, $id);
         return $this->db->update($this->tbl_bankquota, $record);
     }
-
 }

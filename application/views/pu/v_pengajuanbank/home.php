@@ -1,4 +1,3 @@
-
 <div class="col-md-12">
     <div class="card card-outline-success">
         <div class="card-header">
@@ -13,6 +12,7 @@
                     <thead>
                         <tr>
                             <th class="text-center" width="10px">Action</th>
+                            <th class="text-center" width="100px">Status</th>
                             <th class="text-center" width="100px">Bank</th>
                             <th class="text-center" width="100px">No SK</th>
                             <th class="text-center" width="100px">Tanggal Surat</th>
@@ -20,7 +20,7 @@
                             <th class="text-center">Sampai Tanggal</th>
                             <th class="text-center">Prihal</th>
                         </tr>
-                    </thead>                 
+                    </thead>
                 </table>
             </div>
         </div>
@@ -50,7 +50,7 @@
     }
 
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#dataintable').DataTable({
             responsive: true,
             "ajax": {
@@ -58,7 +58,9 @@
                 "type": 'POST',
             },
             dom: 'lfrtip',
-            'order': [[0, 'desc']],
+            'order': [
+                [0, 'desc']
+            ],
             scrollY: 380,
             scrollX: true,
             scrollCollapse: true,
@@ -69,37 +71,69 @@
                 [10, 25, 50, 100, 200, 500, 1000],
                 [10, 25, 50, 100, 200, 500, 1000]
             ],
-            "columns": [
-                {
-                    "data": "id_t_pengajuanbankheader", "width": "10px", "sClass": "text-center",
+            "columns": [{
+                    "data": "id_t_pengajuanbankheader",
+                    "width": "10px",
+                    "sClass": "text-center",
                     "bSortable": false,
-                    "mRender": function (data, type, row) {
+                    "mRender": function(data, type, row) {
                         var btn = "";
                         var idtr = row["<?php echo $prefix_id; ?>"];
 
                         if (accessedit == true) {
                             btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
                         }
-                        if (accessdelete == true) {
+                        if (accessdelete == true && row.statuspengajuan == '1') {
                             btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='fas fa-trash'></i></a>";
                         }
 
                         return btn;
                     }
                 },
-                {"data": "labelbank", },
-                {"data": "no_sk", },
-                {"data": "tanggal_surat", },
-                {"data": "daritanggal", },
-                {"data": "sampaitanggal", },
-                {"data": "prihal", },
+                {
+                    "data": "statuspengajuan",
+                    "width": "10px",
+                    "sClass": "text-center",
+                    "mRender": function(data, type, row) {
+                        var statuspengajuan = "";
+
+                        if (row.statuspengajuan == '1') {
+                            statuspengajuan = 'Draft';
+                        } else if (row.statuspengajuan == '2') {
+                            statuspengajuan = 'Sudah diproses';
+                        } else if (row.statuspengajuan == '3') {
+                            statuspengajuan = 'Sudah selesai';
+                        }
+
+
+                        return statuspengajuan;
+                    }
+                },
+                {
+                    "data": "labelbank",
+                },
+                {
+                    "data": "no_sk",
+                },
+                {
+                    "data": "tanggal_surat",
+                },
+                {
+                    "data": "daritanggal",
+                },
+                {
+                    "data": "sampaitanggal",
+                },
+                {
+                    "data": "prihal",
+                },
             ],
-            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 $(nRow).attr("id", aData[prefix_id]);
                 return nRow;
             },
-            "initComplete": function (settings, json) {
-                $('#dataintable tbody tr').click(function (e) {
+            "initComplete": function(settings, json) {
+                $('#dataintable tbody tr').click(function(e) {
                     var clickedtd = $(e.target).closest('td');
                     $(this).closest('table').find('td').not(this).removeClass('selectedtr');
                     clickedtd.addClass('selectedtr');
@@ -107,14 +141,14 @@
                     accessdelete = checkaccess("delete");
                     if (accessdelete == true) {
                         //delete data
-                        $(document).bind('keydown', 'shift+d', function () {
+                        $(document).bind('keydown', 'shift+d', function() {
                             deletedata($(this)[0].id);
                         });
                     }
 
 
                 });
-                $('#dataintable tbody tr').dblclick(function (e) {
+                $('#dataintable tbody tr').dblclick(function(e) {
 
                     accessedit = checkaccess("edit");
                     if (accessedit == true) {
@@ -140,7 +174,7 @@
                 actiondata: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val()
             },
-            success: function (data) {
+            success: function(data) {
                 $('#DialogConfirm').modal('hide');
                 if (data.valid == true) {
                     $('#dataintable').dataTable().fnReloadAjax();
@@ -151,7 +185,4 @@
         });
         return false;
     }
-
-
-
 </script>
