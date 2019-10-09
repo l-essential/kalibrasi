@@ -40,16 +40,28 @@
                         <input name="sampaitanggal" id="sampaitanggal" minlength="10" maxlength="10" type="text" required="" parsley-type="text" placeholder="Masukan tanggal sampai periode, format dd-mm-yyyy" class="form-control" value="<?php echo (isset($default['sampaitanggal'])) ? $default['sampaitanggal'] : ''; ?>" <?php echo (isset($default['readonly_sampaitanggal'])) ? $default['readonly_sampaitanggal'] : ''; ?>>
                     </div>
                 </div>
-                <div class="form-group row" id="div_id_bankquotatahunan">
-                    <label for="id_bankquotatahunan" class="col-sm-2 text-right control-label col-form-label">Bank</label>
+                 <div class="form-group row" id="div_id_bank">
+                    <label for="id_bank" class="col-sm-2 text-right control-label col-form-label">Bank</label><span style="color:red">*</span>
                     <div class="col-sm-9">
-                        <select id="id_bankquotatahunan" required="" name="id_bankquotatahunan" class="form-control chosen-select" tabindex="1"></select>
+                        <select id="id_bank" name="id_bank" required="" class="form-control chosen-select" tabindex="1">
+                            <?php foreach ($default['id_bank'] as $row) { ?>
+
+                                <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?>>
+                                    <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="prihal" class="col-sm-2 text-right control-label col-form-label">Prihal pengajuan</label><span style="color:red">*</span>
-                    <div class="col-sm-9">
-                        <input name="prihal" required="" id="prihal" type="text" minlength="5" maxlength="255" parsley-type="text" placeholder="Masukan prihal pengajuan" class="form-control" value="<?php echo (isset($default['prihal'])) ? $default['prihal'] : ''; ?>" <?php echo (isset($default['readonly_prihal'])) ? $default['readonly_prihal'] : ''; ?>>
+                <div class="form-group row" id="div_prihal">
+                    <label for="prihal" class="col-sm-2 text-right control-label col-form-label">Prihal</label><span style="color:red">*</span>
+                    <div class="col-sm-5">
+                        <select id="prihal" name="prihal" required="" class="form-control chosen-select" tabindex="1">
+                            <?php foreach ($default['prihal'] as $row) { ?>
+
+                                <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?>>
+                                    <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -131,13 +143,11 @@
 
 
     actiondata = (id == 0) ? 'create' : 'update';
-    if (actiondata == 'create') {
-        getbankquota();
-    } else {
-        getbankquota('<?php echo $id_bankquotatahunan; ?>');
+    if (actiondata == 'update') 
+      {
         if (statuspengajuan != '1') {
-            $("#no_sk,#tanggal_surat,#id_bankquotatahunan,#jenisperhitungan,#cek_dukcapil,#lampiran_spv,#lampiran_drkas,#lampiran_form1,#lampiran_lainnya").removeAttr("required");
-            $("#div_no_sk,#div_tanggal_surat,#div_id_bankquotatahunan,#div_jenisperhitungan,#div_cek_dukcapil,#div_lampiran_spv,#div_lampiran_drkas,#div_lampiran_form1,#div_lampiran_lainnya").hide();
+            $("#no_sk,#tanggal_surat,#id_bank,#prihal,#jenisperhitungan,#cek_dukcapil,#lampiran_spv,#lampiran_drkas,#lampiran_form1,#lampiran_lainnya").removeAttr("required");
+            $("#div_prihal,#div_no_sk,#div_tanggal_surat,#div_id_bank,#div_jenisperhitungan,#div_cek_dukcapil,#div_lampiran_spv,#div_lampiran_drkas,#div_lampiran_form1,#div_lampiran_lainnya").hide();
         }
         var getdata = postaction('<?php echo $url_getdata; ?>', {
             'no_sk': $("#no_sk").val(),
@@ -145,6 +155,9 @@
         });
         homedetail(getdata.result.id_t_pengajuanbankheader);
     }
+    
+     $("#id_bank").trigger("chosen:updated");
+     $("#id_bank").chosen();
 
 
 
@@ -175,33 +188,11 @@
         }
     });
 
-    function getbankquota(result_id) {
-        var resultkec = postaction('<?php echo site_url('pu/Combobox/getdynamic_bankquota'); ?>', '');
-
-        $("#id_bankquotatahunan option").remove();
-        $("#id_bankquotatahunan").empty();
-
-        if (resultkec.valid == true) {
-            $("#id_bankquotatahunan").append($("<option></option>").attr("value", "").text(" -Please Select- "));
-            $.each(resultkec.data, function (key, value) {
-                $("#id_bankquotatahunan")
-                        .append($("<option></option>")
-                                .attr("value", value.id_bankquotatahunan)
-                                .text(value.labelbank + ', Tanggal PKO : ' + value.tanggal_pko));
-            });
-            $("#id_bankquotatahunan").val(result_id);
-            //getdynamic_kecamatan();
-        }
-
-        $("#id_bankquotatahunan").trigger("chosen:updated");
-        $("#id_bankquotatahunan").chosen();
-    }
-
-
+   
     infoshorcutform();
 
     function submitdata() {
-        if ($("#id_bankquotatahunan").val() !== '' && statuspengajuan == '1') {
+        if ($("#id_bank").val() !== '' && statuspengajuan == '1') {
             prosesdata();
         } else if (statuspengajuan != '1') {
             prosesdata();

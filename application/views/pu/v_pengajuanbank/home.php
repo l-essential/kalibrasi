@@ -110,7 +110,7 @@
                     }
                 },
                 {
-                    "data": "labelbank",
+                    "data": "nama_bank",
                 },
                 {
                     "data": "no_sk",
@@ -125,7 +125,7 @@
                     "data": "sampaitanggal",
                 },
                 {
-                    "data": "prihal",
+                    "data": "labelprihal",
                 },
             ],
             "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {

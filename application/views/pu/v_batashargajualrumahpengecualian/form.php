@@ -70,21 +70,52 @@
             </div> 
             <div class="form-group row">
                 <label for="batasnilai_rumahtapak" class="col-sm-2 text-right control-label col-form-label">Batas rumah tapak</label><span style="color:red">*</span>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <input name="batasnilai_rumahtapak" id="batasnilai_rumahtapak"  minlength="7" maxlength="18" type="text" required="" parsley-type="text" placeholder="Masukan batas nilai" class="form-control money"
                            value="<?php echo (isset($default['batasnilai_rumahtapak'])) ? $default['batasnilai_rumahtapak'] : ''; ?>"
                            <?php echo (isset($default['readonly_batasnilai_rumahtapak'])) ? $default['readonly_batasnilai_rumahtapak'] : ''; ?>
                            >
-                </div>                        
-            </div> 
-            <div class="form-group row">
+                </div>
                 <label for="batasnilai_rumahsusun" class="col-sm-2 text-right control-label col-form-label">Batas rumah susun</label><span style="color:red">*</span>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <input name="batasnilai_rumahsusun" id="batasnilai_rumahsusun" minlength="7" maxlength="18" type="text" required="" parsley-type="text" placeholder="Masukan batas nilai" class="form-control money"
                            value="<?php echo (isset($default['batasnilai_rumahsusun'])) ? $default['batasnilai_rumahsusun'] : ''; ?>"
                            <?php echo (isset($default['readonly_batasnilai_rumahsusun'])) ? $default['readonly_batasnilai_rumahsusun'] : ''; ?>
                            >
-                </div>                        
+                </div>  
+            </div> 
+            <div class="form-group row">
+                <label for="batasnilai_penghasilantapak" class="col-sm-2 text-right control-label col-form-label">Batas pengahasilan tapak</label><span style="color:red">*</span>
+                <div class="col-sm-3">
+                    <input name="batasnilai_penghasilantapak" id="batasnilai_penghasilantapak"  minlength="7" maxlength="11" type="text" required="" parsley-type="text" placeholder="Masukan batas penghasilan" class="form-control money"
+                           value="<?php echo (isset($default['batasnilai_penghasilantapak'])) ? $default['batasnilai_penghasilantapak'] : ''; ?>"
+                           <?php echo (isset($default['readonly_batasnilai_penghasilantapak'])) ? $default['readonly_batasnilai_penghasilantapak'] : ''; ?>
+                           >
+                </div> 
+                <label for="batasnilai_penghasilansusun" class="col-sm-2 text-right control-label col-form-label">Batas penghasilan susun</label><span style="color:red">*</span>
+                <div class="col-sm-3">
+                    <input name="batasnilai_penghasilansusun" id="batasnilai_penghasilansusun" minlength="7" maxlength="11" type="text" required="" parsley-type="text" placeholder="Masukan batas penghasilan" class="form-control money"
+                           value="<?php echo (isset($default['batasnilai_penghasilansusun'])) ? $default['batasnilai_penghasilansusun'] : ''; ?>"
+                           <?php echo (isset($default['readonly_batasnilai_penghasilansusun'])) ? $default['readonly_batasnilai_penghasilansusun'] : ''; ?>
+                           >
+                </div> 
+            </div>
+
+            <div class="form-group row">
+                <label for="batasnilai_penghasilantapak_suamiistri" class="col-sm-2 text-right control-label col-form-label">Batas penghasilan tapak suami istri</label>
+                <div class="col-sm-3">
+                    <input name="batasnilai_penghasilantapak_suamiistri" id="batasnilai_penghasilantapak_suamiistri"  maxlength="11" type="text" parsley-type="text" placeholder="Masukan batas penghasilan suami istri" class="form-control money"
+                           value="<?php echo (isset($default['batasnilai_penghasilantapak_suamiistri'])) ? $default['batasnilai_penghasilantapak_suamiistri'] : ''; ?>"
+                           <?php echo (isset($default['readonly_batasnilai_penghasilantapak_suamiistri'])) ? $default['readonly_batasnilai_penghasilantapak_suamiistri'] : ''; ?>
+                           >
+                </div> 
+                <label for="batasnilai_penghasilansusun_suamiistri" class="col-sm-2 text-right control-label col-form-label">Batas penghasilan susun suami istri</label>
+                <div class="col-sm-3">
+                    <input name="batasnilai_penghasilansusun_suamiistri" id="batasnilai_penghasilansusun_suamiistri" maxlength="11" type="text" parsley-type="text" placeholder="Masukan batas penghasilan suami istri" class="form-control money"
+                           value="<?php echo (isset($default['batasnilai_penghasilansusun_suamiistri'])) ? $default['batasnilai_penghasilansusun_suamiistri'] : ''; ?>"
+                           <?php echo (isset($default['readonly_batasnilai_penghasilansusun_suamiistri'])) ? $default['readonly_batasnilai_penghasilansusun_suamiistri'] : ''; ?>
+                           >
+                </div>
             </div> 
 
             <div class="text-center">
@@ -101,13 +132,13 @@
     actiondata = (id == 0) ? 'create' : 'update';
     if (actiondata == 'update') {
         $("#id_provinsi").prop("disabled", true);
-        getdynamic_kotakabupaten('<?php echo $id_kota;  ?>');
-        getdynamic_kecamatan('<?php echo $id_kecamatan;  ?>');
-        getdynamic_desa('<?php echo $id_desa;  ?>');
+        getdynamic_kotakabupaten('<?php echo $id_kota; ?>');
+        getdynamic_kecamatan('<?php echo $id_kecamatan; ?>');
+        getdynamic_desa('<?php echo $id_desa; ?>');
     } else {
         $("#id_provinsi").trigger("chosen:updated");
         $("#id_provinsi").chosen();
-        
+
         $('#tanggal_tmt').datepicker({
             changeMonth: true,
             changeYear: true,
@@ -123,12 +154,12 @@
         getdynamic_kecamatan();
         getdynamic_desa();
     });
-    
+
     $("#id_kota").change(function () {
         getdynamic_kecamatan();
         getdynamic_desa();
     });
-    
+
     $("#id_kecamatan").change(function () {
         getdynamic_desa();
     });
@@ -157,8 +188,8 @@
         $("#id_kota").chosen();
     }
 
-    
-    
+
+
     function getdynamic_kecamatan(result_id) {
         var resultkec = postaction('<?php echo site_url('pu/Combobox/getdynamic_kecamatan'); ?>', {
             'id_kota': $("#id_kota").val(),
@@ -182,8 +213,8 @@
         $("#id_kecamatan").trigger("chosen:updated");
         $("#id_kecamatan").chosen();
     }
-    
-     function getdynamic_desa(result_id) {
+
+    function getdynamic_desa(result_id) {
         var resultdesa = postaction('<?php echo site_url('pu/Combobox/getdynamic_desa'); ?>', {
             'id_kecamatan': $("#id_kecamatan").val(),
         });
@@ -197,7 +228,7 @@
                 $("#id_desa")
                         .append($("<option></option>")
                                 .attr("value", value.id_desa)
-                                .text(value.nama_desa+' ( '+value.kodepos+' )'));
+                                .text(value.nama_desa + ' ( ' + value.kodepos + ' )'));
             });
             $("#id_desa").val(result_id);
             //getdynamic_kecamatan();

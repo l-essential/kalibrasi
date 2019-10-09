@@ -39,10 +39,9 @@ class Pengajuanbank_model extends MY_Model {
         $query = "
                  SELECT 
                         a.id_t_pengajuanbankheader,
-                        concat('No Surat : ',a.no_sk,' ,Tanggal Surat : ',a.tanggal_surat,' ,Bank : ',nama_bank) as labeldata
+                        concat('No Surat : ',a.no_sk,' ,Tanggal Surat : ',a.tanggal_surat,' ,Bank : ',b.nama_bank) as labeldata
                       FROM $this->table a   
-                 INNER JOIN $this->tbl_bankquotatahunan b on a.$this->prefix_bankquotatahunan = b.$this->prefix_bankquotatahunan
-                 INNER JOIN $this->tbl_bank c on c.$this->prefix_bank = b.$this->prefix_bank
+                 INNER JOIN $this->tbl_bank b on b.$this->prefix_bank = a.$this->prefix_bank
                  WHERE
                     a.statusdata='active'
                  ";
@@ -190,17 +189,11 @@ class Pengajuanbank_model extends MY_Model {
     public function getGridData() {
         $query = "
                  SELECT 
-                        a.*,
-                        c.kode_bank,
-                        c.nama_bank,
-                        b.quota,
-                        b.tanggal_pko,                        
-                        IF(b.tipe=1,'SBUM',IF(b.tipe=2,'SSB',IF(b.tipe=3,'FLPP','-'))) as tipesubsidi,
-                        concat(IF(b.tipe=1,'SBUM',IF(b.tipe=2,'SSB',IF(b.tipe=3,'FLPP','-'))),' - ',c.nama_bank) as labelbank
-
+                        a.*,                                               
+                        b.nama_bank,
+                        concat('Permohonan pembayaran ',a.prihal) as labelprihal
                  FROM $this->table a   
-                 INNER JOIN $this->tbl_bankquotatahunan b on a.$this->prefix_bankquotatahunan = b.$this->prefix_bankquotatahunan
-                 INNER JOIN $this->tbl_bank c on c.$this->prefix_bank = b.$this->prefix_bank
+                 INNER JOIN $this->tbl_bank b on a.$this->prefix_bank = b.$this->prefix_bank
                  WHERE
                     a.statusdata='active'
                  ";

@@ -18,6 +18,10 @@
                             <th class="text-center">Harga per m2</th>
                             <th class="text-center">Batas harga rumah tapak</th>
                             <th class="text-center">Batas harga rumah susun</th>
+                            <th class="text-center">Batas penghasilan rumah tapak</th>
+                            <th class="text-center">Batas penghasilan rumah susun</th>
+                            <th class="text-center">Batas penghasilan rumah tapak suami istri</th>
+                            <th class="text-center">Batas penghasilan rumah susun suami istri</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -91,6 +95,10 @@
                 {"data": "harga_perm2", },
                 {"data": "batasnilai_rumahtapak", },
                 {"data": "batasnilai_rumahsusun", },
+                {"data": "batasnilai_penghasilantapak", },
+                {"data": "batasnilai_penghasilansusun", },
+                {"data": "batasnilai_penghasilantapak_suamiistri", },
+                {"data": "batasnilai_penghasilansusun_suamiistri", },
             ],
             "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 $(nRow).attr("id", aData[prefix_id]);

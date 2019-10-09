@@ -97,6 +97,10 @@ class Batashargajualrumahpengecualian extends MY_Controller {
                         "harga_perm2" => $param['harga_perm2'],
                         "batasnilai_rumahtapak" => $param['batasnilai_rumahtapak'],
                         "batasnilai_rumahsusun" => $param['batasnilai_rumahsusun'],
+                        "batasnilai_penghasilantapak" => $param['batasnilai_penghasilantapak'],
+                        "batasnilai_penghasilansusun" => $param['batasnilai_penghasilansusun'],
+                        "batasnilai_penghasilantapak_suamiistri" => $param['batasnilai_penghasilantapak_suamiistri'],
+                        "batasnilai_penghasilansusun_suamiistri" => $param['batasnilai_penghasilansusun_suamiistri'],
                     );
                     $this->modeldata->insertdata($record);
                     $valid = true;

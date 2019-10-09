@@ -13,10 +13,11 @@
                     <thead>
                         <tr>
                             <th class="text-center" width="10px">Action</th>
-                            <th class="text-center" width="100px">Provinsi</th>
                             <th class="text-center" width="100px">Terhitung sejak tanggal</th>
                             <th class="text-center">Batas penghasilan rumah tapak</th>
                             <th class="text-center">Batas penghasilan rumah susun</th>
+                            <th class="text-center">Batas penghasilan rumah tapak suami istri</th>
+                            <th class="text-center">Batas penghasilan rumah susun suami istri</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -85,10 +86,11 @@
                         return btn;
                     }
                 },
-                {"data": "provinsi", },
                 {"data": "tanggal_tmt", },
                 {"data": "batasnilai_rumahtapak", },
                 {"data": "batasnilai_rumahsusun", },
+                {"data": "batasnilai_rumahtapak_suamiistri", },
+                {"data": "batasnilai_rumahrusun_suamiistri", },
             ],
             "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 $(nRow).attr("id", aData[prefix_id]);

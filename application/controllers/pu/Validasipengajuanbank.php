@@ -7,7 +7,7 @@ class Validasipengajuanbank extends MY_Controller {
     function __construct() {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
-        $this->title = 'Proses Validasi Pengajuan Bank';
+        $this->title = 'Proses Validasi / Pengujuan Data Pengajuan Bank';
         $this->setmodel($this->pathclass . "/Pengajuanbank_model#modeldata");
     }
 
@@ -139,10 +139,13 @@ class Validasipengajuanbank extends MY_Controller {
             ini_set("memory_limit", "-1");
             ini_set('max_execution_time', 0);
             foreach ($loadedSheetNames as $sheetIndex => $loadedSheetName) {
-                $objWriter->setSheetIndex($sheetIndex);
-                $filecsv = $pathcsv . "_" . $id_t_pengajuanbankheader . '.csv';
-                $objWriter->save($filecsv);
+                if ($sheetIndex == 0) {
+                    $objWriter->setSheetIndex($sheetIndex);
+                    $filecsv = $pathcsv . "_" . $id_t_pengajuanbankheader . '.csv';
+                    $objWriter->save($filecsv);
+                }
             }
+
             $endtime = date('d-m-Y H:i:s');
             $diff = date_diff(date_create(date('Y-m-d H:i:s', strtotime($starttime))), date_create(date('Y-m-d H:i:s', strtotime($endtime))));
             $jam = $diff->h;
@@ -231,8 +234,8 @@ class Validasipengajuanbank extends MY_Controller {
                 $luastanah = $row['luastanah'];
                 $luasbangunan = $row['luasbangunan'];
 
-                $checkdata = $this->perumahan->getdataperumanahan($nama_perumahan,$kotakab,$kodepos,$luastanah,$luasbangunan);
-              
+                $checkdata = $this->perumahan->getdataperumanahan($nama_perumahan, $kotakab, $kodepos, $luastanah, $luasbangunan);
+
                 if (empty($checkdata)) {
                     $arraydata[] = array(
                         "nama_perumahan" => $nama_perumahan,

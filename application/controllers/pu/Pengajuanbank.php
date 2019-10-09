@@ -10,7 +10,7 @@ class Pengajuanbank extends MY_Controller {
         $this->title = "Pengajuan Bank";
         $this->setmodel($this->pathclass . "/Bank_model#bank");
         $this->setmodel($this->pathclass . "/Jeniskpr_model#jeniskpr");
-        $this->fieldnotgenerate = array("jenisperhitungan", "cek_dukcapil", "tanggal_surat", "daritanggal", "sampaitanggal", "id_bankquotatahunan");
+        $this->fieldnotgenerate = array("id_bank","prihal","jenisperhitungan", "cek_dukcapil", "tanggal_surat", "daritanggal", "sampaitanggal");
         $this->prefix_id_detail = $this->modeldata->prefix_id_detail;
         $this->infoheader = 'no_sk'; //field header yang akan menjadi info di form atau panel detail
         $this->idheader = $this->modeldata->prefix_id; //field id headernya
@@ -60,9 +60,15 @@ class Pengajuanbank extends MY_Controller {
     }
 
     public function add() {
+        $this->buildcombobox('id_bank', 'kode_bank~nama_bank', $this->bank->getAll());
+        $this->buildcomboboxstatic(array(
+                                    "SSB#Permohonan Pembayaran Pilihan SSB (Subsidi Selilih Bunga)",
+                                    "SSM#Permohonan Pembayaran SSM (Subsidi Selisih Margin)",
+                                    "SSA#Permohonan Pembayaran SSA (Subsidi Selisih Angsuran)",
+                                    "SBUM#Permohonan Pembayaran SBUM (Subsidi Bantuan Uang Muka)",            
+                                ), 'prihal');
         $this->buildcomboboxstatic(array("1#Anuitas", "2#Efektivitas"), 'jenisperhitungan');
         $this->buildcomboboxstatic(array("1#Ya", "0#Tidak"), 'cek_dukcapil');
-        $this->data['id_bankquotatahunan'] = 0;
         $this->data['statuspengajuan'] = 1;
         $this->data['labelstatus'] = 'Draft';
         $this->extenddata();
@@ -71,9 +77,15 @@ class Pengajuanbank extends MY_Controller {
 
     public function edit($id) {
         $row = $this->modeldata->getby_id_array($id);
-        $this->data['id_bankquotatahunan'] = $row['id_bankquotatahunan'];
+        $this->buildcombobox('id_bank', 'kode_bank~nama_bank', $this->bank->getAll(),'edit',$row['id_bank']);
+        $this->buildcomboboxstatic(array(
+                                    "SSB#Permohonan Pembayaran Pilihan SSB (Subsidi Selilih Bunga)",
+                                    "SSM#Permohonan Pembayaran SSM (Subsidi Selisih Margin)",
+                                    "SSA#Permohonan Pembayaran SSA (Subsidi Selisih Angsuran)",
+                                    "SBUM#Permohonan Pembayaran SBUM (Subsidi Bantuan Uang Muka)",            
+                                ), 'prihal','edit',$row['prihal']);
         $this->buildcomboboxstatic(array("1#Anuitas", "2#Efektivitas"), 'jenisperhitungan', 'edit', $row['jenisperhitungan']);
-        $this->buildcomboboxstatic(array("1#Ya", "0#Tidak"), 'cek_dukcapil', 'edit', $row['jenisperhitungan']);
+        $this->buildcomboboxstatic(array("1#Ya", "0#Tidak"), 'cek_dukcapil', 'edit', $row['cek_dukcapil']);
         $this->data['default']['tanggal_surat'] = $this->totimeindo($row['tanggal_surat']);
         $this->data['default']['daritanggal'] = $this->totimeindo($row['daritanggal']);
         $this->data['default']['sampaitanggal'] = $this->totimeindo($row['sampaitanggal']);
@@ -125,9 +137,9 @@ class Pengajuanbank extends MY_Controller {
                         "tanggal_surat" => $param['tanggal_surat'],
                         "daritanggal" => $param['daritanggal'],
                         "sampaitanggal" => $param['sampaitanggal'],
-                        "id_bankquotatahunan" => $param['id_bankquotatahunan'],
                         "prihal" => $param['prihal'],
                         "penagihanke" => $param['penagihanke'],
+                        "id_bank" => $param['id_bank'],
                         "jenisperhitungan" => $param['jenisperhitungan'],
                         "cek_dukcapil" => $param['cek_dukcapil'],
                     );
@@ -154,10 +166,10 @@ class Pengajuanbank extends MY_Controller {
                         "tanggal_surat" => $param['tanggal_surat'],
                         "daritanggal" => $param['daritanggal'],
                         "sampaitanggal" => $param['sampaitanggal'],
-                        "id_bankquotatahunan" => $param['id_bankquotatahunan'],
                         "prihal" => $param['prihal'],
                         "penagihanke" => $param['penagihanke'],
                         "jenisperhitungan" => $param['jenisperhitungan'],
+                         "id_bank" => $param['id_bank'],
                         "cek_dukcapil" => $param['cek_dukcapil'],
                     );
                 } else {
@@ -165,7 +177,6 @@ class Pengajuanbank extends MY_Controller {
                         "daritanggal" => $param['daritanggal'],
                         "sampaitanggal" => $param['sampaitanggal'],
                         "cek_dukcapil" => $param['cek_dukcapil'],
-                        "prihal" => $param['prihal'],
                         "penagihanke" => $param['penagihanke'],
                     );
                 }
@@ -211,6 +222,8 @@ class Pengajuanbank extends MY_Controller {
                 $post['nama_lampiran_lainnya'] = $namafile;
                 if ($id_t_pengajuanbankheader > 0) {
                     $this->modeldata->updatedata($id_t_pengajuanbankheader, $post);
+                }else{
+                     unlink($path . "/" . $data['upload_data']['file_name']);
                 }
             } else {
                 $error = $this->upload->display_errors();
@@ -241,6 +254,8 @@ class Pengajuanbank extends MY_Controller {
                 $post['nama_lampiran_form1'] = $namafile;
                 if ($id_t_pengajuanbankheader > 0) {
                     $this->modeldata->updatedata($id_t_pengajuanbankheader, $post);
+                }else{
+                     unlink($path . "/" . $data['upload_data']['file_name']);
                 }
             } else {
                 $error = $this->upload->display_errors();
@@ -271,6 +286,8 @@ class Pengajuanbank extends MY_Controller {
                 $post['nama_lampiran_drkas'] = $namafile;
                 if ($id_t_pengajuanbankheader > 0) {
                     $this->modeldata->updatedata($id_t_pengajuanbankheader, $post);
+                }else{
+                     unlink($path . "/" . $data['upload_data']['file_name']);
                 }
             } else {
                 $error = $this->upload->display_errors();
@@ -301,6 +318,8 @@ class Pengajuanbank extends MY_Controller {
                 $post['nama_lampiran_spv'] = $namafile;
                 if ($id_t_pengajuanbankheader > 0) {
                     $this->modeldata->updatedata($id_t_pengajuanbankheader, $post);
+                }else{
+                     unlink($path . "/" . $data['upload_data']['file_name']);
                 }
             } else {
                 $error = $this->upload->display_errors();

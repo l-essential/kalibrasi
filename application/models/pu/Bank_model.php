@@ -22,6 +22,11 @@ class Bank_model extends MY_Model
         $this->tbl_bankquota = 'bankquotatahunan';
         $this->prefix_bankquota = 'id_bankquotatahunan';
     }
+    
+    public function getAll() {
+        $this->db->order_by('kode_bank','asc');
+        return parent::getAll();
+    }
 
     public function getbankquotafromperiode($daritanggal, $sampaitanggal)
     {

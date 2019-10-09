@@ -8,18 +8,13 @@ class Bataspenghasilan extends MY_Controller {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
         $this->title = "Batasan penghasilan";
-        $this->setmodel($this->pathclass . "/Provinsi_model#provinsi");
-        $this->fieldnotgenerate = array("id_provinsi", "tanggal_tmt");
+        $this->fieldnotgenerate = array("tanggal_tmt");
     }
 
-    public function add() {
-        $this->buildcombobox('id_provinsi', 'provinsi', $this->provinsi->getAll());
-        parent::add();
-    }
+   
 
     public function edit($id) {
         $row = $this->modeldata->getby_id_array($id);
-        $this->buildcombobox('id_provinsi', 'provinsi', $this->provinsi->getAll(), 'edit', $row['id_provinsi']);
         $this->data['default']['tanggal_tmt'] = $this->totimeindo($row['tanggal_tmt']);
         $this->data['default']['readonly_tanggal_tmt'] = 'readonly';
         parent::edit($id);
