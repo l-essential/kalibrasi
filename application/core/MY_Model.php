@@ -428,6 +428,9 @@ class MY_Model extends CI_Model {
         $insert_id = $this->db->insert_id();
         return $insert_id;
     }
+    public function insertdata_batch($record) {
+        $this->db->insert_batch($this->table, $record);
+    }
 
     function getby_id($id) {
 

@@ -1,0 +1,5 @@
+* error : Fatal error: Allowed memory size of
+solusinya edit php.ini dan rubah memory_limit menjadi 2048 MB atau lebih besar
+namun mengikuti spesifikasi komputer yang dipakai.
+
+

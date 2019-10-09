@@ -22,7 +22,7 @@ class Pengajuanbank extends MY_Controller {
     }
 
     public function edit_detail($id) {
-        $row = $this->modeldata->getby_id_detail_array();
+        $row = $this->modeldata->getby_id_detail_array($id);
         $this->buildcombobox('id_jeniskpr', 'jeniskpr', $this->jeniskpr->getAll(), 'edit', $row['id_jeniskpr']);
         parent::edit_detail($id);
     }
