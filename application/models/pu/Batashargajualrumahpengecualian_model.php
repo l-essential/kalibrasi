@@ -30,6 +30,63 @@ class Batashargajualrumahpengecualian_model extends MY_Model {
         $this->prefix_desa = $this->provinsi->prefix_desa;
     }
 
+    public function getdatapengecualian($id_provinsi, $id_kota, $id_kecamatan, $id_desa) {
+        $this->db->where("statusdata", "active");
+        $this->db->where("id_desa", $id_desa);
+        $this->db->where("id_kecamatan", $id_kecamatan);
+        $this->db->where("id_kota", $id_kota);
+        $this->db->where("id_provinsi", $id_provinsi);
+        $this->db->order_by("tanggal_tmt","desc");
+        $this->db->limit(1);
+        $result1 = $this->db->get($this->table . ' use index (GETBYFILTER) ');    
+        
+        $return1 = $this->returndata($result1, 'row');
+        if ($return1) {
+            return $return1;
+        } else {          
+            $this->db->where("statusdata", "active");
+            $this->db->where("id_desa", '0');
+            $this->db->where("id_kecamatan", $id_kecamatan);
+            $this->db->where("id_kota", $id_kota);
+            $this->db->where("id_provinsi", $id_provinsi);
+            $this->db->order_by("tanggal_tmt","desc");
+            $this->db->limit(1);
+            $result2 = $this->db->get($this->table . ' use index (GETBYFILTER) ');
+            $return2 = $this->returndata($result2, 'row');
+            if ($return2) {
+                return $return2;
+            } else {
+                $this->db->where("statusdata", "active");
+                $this->db->where("id_desa", '0');
+                $this->db->where("id_kecamatan", '0');
+                $this->db->where("id_kota", $id_kota);
+                $this->db->where("id_provinsi", $id_provinsi);
+                $this->db->order_by("tanggal_tmt","desc");
+                $this->db->limit(1);
+                $result3 = $this->db->get($this->table . ' use index (GETBYFILTER) ');
+                $return3 = $this->returndata($result3, 'row');
+                if ($return3) {
+                    return $return3;
+                } else {
+                    $this->db->where("statusdata", "active");
+                    $this->db->where("id_desa", '0');
+                    $this->db->where("id_kecamatan", '0');
+                    $this->db->where("id_kota", '0');
+                    $this->db->order_by("tanggal_tmt","desc");
+                    $this->db->limit(1);
+                    $this->db->where("id_provinsi", $id_provinsi);
+                    $result4 = $this->db->get($this->table . ' use index (GETBYFILTER) ');
+                    $return4 = $this->returndata($result4, 'row');
+                    if ($return4) {
+                        return $return4;
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+    }
+
     public function getGridData() {
         $query = "
                  SELECT a.*,

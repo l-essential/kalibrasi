@@ -57,6 +57,40 @@ class Pengajuanbank_model extends MY_Model {
         }
     }
     
+    public function geterrorlog($id_t_pengajuanbank_header) {
+        $tablename = $this->error_validasi . $id_t_pengajuanbank_header;
+        $result = $this->db->get($tablename);
+        return $this->returndata($result,'array');
+    }
+    public function clearlogerror($id_t_pengajuanbank_header) {
+        $tablename = $this->error_validasi . $id_t_pengajuanbank_header;
+        $this->db->truncate($tablename);
+    }
+    
+    public function createlogerror($id_t_pengajuanbank_header, $record) {
+        $tablename = $this->error_validasi . $id_t_pengajuanbank_header;
+        $this->db->insert_batch($tablename, $record);
+    }
+
+    public function gettmpdata($id_t_pengajuanbank_header) {
+        $tablename = $this->tmp_upload_form1 . $id_t_pengajuanbank_header;
+        $checktable = $this->checktable($tablename);
+        if ($checktable) {
+            $sql = "
+                    SELECT 
+                       *
+                     FROM $tablename                    
+                     ORDER BY 
+                        nama,tanggal_akad
+
+                   ";
+            $result = $this->db->query($sql);
+            return $this->returndata($result, 'array');
+        } else {
+            echo 'Temporary table belum tergenerate...!';
+            exit;
+        }
+    }
     public function getperumahan_tmp_upload_form1($id_t_pengajuanbank_header) {
         $tablename = $this->tmp_upload_form1 . $id_t_pengajuanbank_header;
         $checktable = $this->checktable($tablename);

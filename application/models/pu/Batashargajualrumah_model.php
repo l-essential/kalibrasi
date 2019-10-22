@@ -17,6 +17,28 @@ class Batashargajualrumah_model extends MY_Model {
         $this->tbl_provinsi = $this->provinsi->table;
         $this->prefix_provinsi = $this->provinsi->prefix_id;
     }
+    
+     public function getdata_byidprovinsi($id_provinsi) {
+        $this->db->where("statusdata", "active");
+        $this->db->where("id_provinsi", $id_provinsi);       
+        $this->db->select("
+                        id_m_batashargarumah,
+                        id_provinsi,
+                        tanggal_tmt,
+                        batasnilai_rumahtapak,
+                        batasnilai_rumahsusun,
+                        harga_perm2,
+                        batasnilai_penghasilantapak,
+                        batasnilai_penghasilansusun,
+                        batasnilai_penghasilantapak_suamiistri,
+                        batasnilai_penghasilansusun_suamiistri
+                ");
+        $this->db->from($this->table . ' use index (GEYBYIDPROVINSI) ');
+        $this->db->order_by("tanggal_tmt","desc");
+        $this->db->limit(1);
+        $result = $this->db->get();
+        return $this->returndata($result, 'row');
+    }
 
     public function getGridData() {
         $query = "

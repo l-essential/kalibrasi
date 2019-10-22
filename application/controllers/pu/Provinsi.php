@@ -13,6 +13,240 @@ class Provinsi extends MY_Controller {
         $this->idheader = $this->modeldata->prefix_id; //field id headernya
     }
 
+    public function generatedatafromtmp() {
+        $resultprovinsi = $this->modeldata->gettmp_provinsi();
+        if ($resultprovinsi) {
+            $array_provinsi = array();
+            foreach ($resultprovinsi as $rowprovinsi) {
+                $kode_provinsi = $rowprovinsi['kode_provinsi'];
+                $nama_provinsi = $rowprovinsi['nama_provinsi'];
+                $rowdata_provinsi = $this->modeldata->getdata_bykode_provinsi($kode_provinsi);
+                if (empty($rowdata_provinsi)) {
+                    $array_provinsi[] = array(
+                        "kode_provinsi" => $kode_provinsi,
+                        "provinsi" => $nama_provinsi,
+                        "createby" => $this->userid,
+                        "createtime" => $this->curdatetime,
+                    );
+                }
+            }
+
+            if (!empty($array_provinsi)) {
+                $this->modeldata->insertdata_batch_provinsi($array_provinsi);
+            }
+
+            $resultkabkota = $this->modeldata->gettmp_kabkota();
+            if ($resultkabkota) {
+                $array_kabkota = array();
+                foreach ($resultkabkota as $rowkabkota) {
+                    $kode_provinsi = $rowkabkota['kode_provinsi'];
+                    $kode_kabkota = $rowkabkota['kode_kabkota'];
+                    $nama_kabkota = $rowkabkota['nama_kabkota'];
+                    $rowdata_kabkota = $this->modeldata->getdata_bykode_kabkota($kode_kabkota);
+                    if (empty($rowdata_kabkota)) {
+                        $dataprovinsi = $this->modeldata->getdata_bykode_provinsi($kode_provinsi);
+                        if ($dataprovinsi) {
+                            $id_provinsi = $dataprovinsi->id_provinsi;
+                            $array_kabkota[] = array(
+                                "id_provinsi" => $id_provinsi,
+                                "kode_kota" => $kode_kabkota,
+                                "kota" => $nama_kabkota,
+                                "createby" => $this->userid,
+                                "createtime" => $this->curdatetime,
+                            );
+                        }
+                    }
+                }
+                if (!empty($array_kabkota)) {
+                    $this->modeldata->insertdata_batch_kabkota($array_kabkota);
+                }
+
+                $resultkecamatan = $this->modeldata->gettmp_kacamatan();
+                if ($resultkecamatan) {
+                    $array_kecamatan = array();
+                    foreach ($resultkecamatan as $rowkecamatan) {
+                        $kode_provinsi = $rowkecamatan['kode_provinsi'];
+                        $kode_kabkota = $rowkecamatan['kode_kabkota'];
+                        $kode_kecamatan = $rowkecamatan['kode_kecamatan'];
+                        $nama_kecamatan = $rowkecamatan['nama_kecamatan'];
+
+                        $dataprovinsi = $this->modeldata->getdata_bykode_provinsi($kode_provinsi);
+                        $id_provinsi = $dataprovinsi->id_provinsi;
+                        $datakabkota = $this->modeldata->getdata_byprovinsikode_kabkota($id_provinsi, $kode_kabkota);
+                        if ($datakabkota) {
+                            $rowdata_kecamatan = $this->modeldata->getdata_bykode_kecamatan($kode_kecamatan);
+                            if (empty($rowdata_kecamatan)) {
+                                $id_kota = $datakabkota->id_kota;
+                                $array_kecamatan[] = array(
+                                    "id_kota" => $id_kota,
+                                    "kode_kecamatan" => $kode_kecamatan,
+                                    "nama_kecamatan" => $nama_kecamatan,
+                                    "createby" => $this->userid,
+                                    "createtime" => $this->curdatetime,
+                                );
+                            }
+                        }
+                    }
+
+                    if (!empty($array_kecamatan)) {
+                        $this->modeldata->insertdata_batch_kecamatan($array_kecamatan);
+                    }
+                }
+
+                $resultdesa = $this->modeldata->gettmp_desa();
+                if ($resultdesa) {
+                    $array_desa = array();
+                    foreach ($resultdesa as $rowdesa) {
+                        $kode_provinsi = $rowdesa['kode_provinsi'];
+                        $kode_kabkota = $rowdesa['kode_kabkota'];
+                        $kode_kecamatan = $rowdesa['kode_kecamatan'];
+                        $kode_desa = $rowdesa['kode_desa'];
+                        $nama_desa = $rowdesa['nama_desa'];
+                        $kodepos = $rowdesa['kodepos'];
+
+                        $dataprovinsi = $this->modeldata->getdata_bykode_provinsi($kode_provinsi);
+                        $id_provinsi = $dataprovinsi->id_provinsi;
+                        $datakabkota = $this->modeldata->getdata_byprovinsikode_kabkota($id_provinsi, $kode_kabkota);
+                        $id_kota = $datakabkota->id_kota;
+                        $datakecamatan = $this->modeldata->getdata_bykabkotakode_kecamatan($id_kota, $kode_kecamatan);
+                        if ($datakecamatan) {
+                            $id_kecamatan = $datakecamatan->id_kecamatan;
+                            $rowdata_desa1 = $this->modeldata->getdata_bykode_desa($kode_desa);
+                            $rowdata_desa2 = $this->modeldata->getdata_bykode_kodepos($kodepos);
+                            if(empty($rowdata_desa1) && empty($rowdata_desa2)){
+                                $array_desa[] = array(
+                                    "id_kecamatan"=>$id_kecamatan,
+                                    "kode_desa"=>$kode_desa,
+                                    "nama_desa"=>$nama_desa,
+                                    "kodepos"=>$kodepos,
+                                    "createby" => $this->userid,
+                                    "createtime" => $this->curdatetime,
+                                );
+                                
+                            }
+                        }
+                    }
+                    if (!empty($array_desa)) {
+                        $this->modeldata->insertdata_batch_desa($array_desa);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public function importdata() {
+        $param = $this->input->post();
+        if (isset($param['formdata'])) {
+            $path = "public/uploads/" . strtolower($this->controller);
+            $config['upload_path'] = "./" . $path;
+            $config['allowed_types'] = 'xlsx|xls';
+            $config['encrypt_name'] = FALSE;
+            $config['overwrite'] = TRUE;
+            $this->load->library('upload', $config);
+            $starttime = date('d-m-Y H:i:s');
+            if ($this->upload->do_upload("uploadfile")) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $file_ext = $data['upload_data']['file_ext'];
+                $full_path = $data['upload_data']['full_path'];
+                ini_set("memory_limit", "-1");
+                ini_set('max_execution_time', 0);
+
+                $pathcsv = getcwd() . '/public/csv/' . strtolower($this->controller);
+
+                include APPPATH . 'third_party/PHPExcel.php';
+                include APPPATH . 'third_party/PHPExcel/IOFactory.php';
+                if ($file_ext == '.xls') {
+                    $objReader = new PHPExcel_Reader_Excel5();
+                    $msg = "file excel 2003 berhasil di import";
+                } else {
+                    $objReader = new PHPExcel_Reader_Excel2007();
+                    $msg = "file excel 2007 berhasil di import";
+                }
+
+                $objReader->setReadDataOnly(true);
+                $objPHPExcel = $objReader->load($full_path);
+                $loadedSheetNames = $objPHPExcel->getSheetNames();
+                $sheetCount = $objPHPExcel->getSheetCount();
+                $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
+                $objWriter->setDelimiter('~');
+                ini_set("memory_limit", "-1");
+                ini_set('max_execution_time', 0);
+                foreach ($loadedSheetNames as $sheetIndex => $loadedSheetName) {
+                    if ($sheetIndex == 0) {
+                        $objWriter->setSheetIndex($sheetIndex);
+                        $filecsv = $pathcsv . '/' . $loadedSheetName . '.csv';
+                        $objWriter->save($filecsv);
+                    }
+                }
+
+                $startfrom = 1;
+                $counter = 0;
+                $this->modeldata->truncate_tmp();
+                $file_linescsv = file($filecsv);
+                $arraydata = array();
+                foreach ($file_linescsv as $line_csv) {
+                    if ($counter >= $startfrom) {
+                        $listkolom = explode("~", $line_csv);
+                        $kode_provinsi = ltrim(rtrim(trim(str_replace('"', "", $listkolom[0]))));
+                        $nama_provinsi = ltrim(rtrim(trim(str_replace('"', "", $listkolom[1]))));
+                        $kode_kabkota = ltrim(rtrim(trim(str_replace('"', "", $listkolom[2]))));
+                        $nama_kabkota = ltrim(rtrim(trim(str_replace('"', "", $listkolom[3]))));
+                        $kode_kecamatan = ltrim(rtrim(trim(str_replace('"', "", $listkolom[4]))));
+                        $nama_kecamatan = ltrim(rtrim(trim(str_replace('"', "", $listkolom[5]))));
+                        $kode_desa = ltrim(rtrim(trim(str_replace('"', "", $listkolom[6]))));
+                        $nama_desa = ltrim(rtrim(trim(str_replace('"', "", $listkolom[7]))));
+                        $kodepos = ltrim(rtrim(trim(str_replace('"', "", $listkolom[8]))));
+                        $arraydata[] = array(
+                            "kode_provinsi" => $kode_provinsi,
+                            "nama_provinsi" => $nama_provinsi,
+                            "kode_kabkota" => $kode_kabkota,
+                            "nama_kabkota" => $nama_kabkota,
+                            "kode_kecamatan" => $kode_kecamatan,
+                            "nama_kecamatan" => $nama_kecamatan,
+                            "kode_desa" => $kode_desa,
+                            "nama_desa" => $nama_desa,
+                            "kodepos" => $kodepos,
+                            "createby" => $this->userid,
+                            "createtime" => $this->curdatetime,
+                        );
+                    }
+                    $counter++;
+                }
+
+                if (!empty($arraydata)) {
+                    $this->modeldata->insert_tmp($arraydata);
+                    $this->generatedatafromtmp();
+                }
+
+
+                $endtime = date('d-m-Y H:i:s');
+                $diff = date_diff(date_create(date('Y-m-d H:i:s', strtotime($starttime))), date_create(date('Y-m-d H:i:s', strtotime($endtime))));
+                $jam = $diff->h;
+                $menit = $diff->i;
+                $detik = $diff->s;
+                $lamaproses = " Mulai :" . $starttime . ', Selesai : ' . $endtime . ' ,Lama Proses : ' . $jam . ' Jam ' . $menit . ' Menit ' . $detik . ' Detik';
+                $valid = true;
+                $message = "Generate data kodepos selesai, " . $lamaproses;
+            } else {
+                $error = $this->upload->display_errors();
+                $endtime = date('d-m-Y H:i:s');
+                $diff = date_diff(date_create(date('Y-m-d H:i:s', strtotime($starttime))), date_create(date('Y-m-d H:i:s', strtotime($endtime))));
+                $jam = $diff->h;
+                $menit = $diff->i;
+                $detik = $diff->s;
+                $lamaproses = " Mulai :" . $starttime . ', Selesai : ' . $endtime . ' ,Lama Proses : ' . $jam . ' Jam ' . $menit . ' Menit ' . $detik . ' Detik';
+                $valid = false;
+                $message = "Generate data kodepos gagal,pesan error " . $error . ' , ' . $lamaproses;
+            }
+            $this->dj(array(
+                "valid" => $valid,
+                "message" => $message
+            ));
+        }
+    }
+
     public function add() {
         $this->extenddata();
         parent::add();
@@ -56,6 +290,7 @@ class Provinsi extends MY_Controller {
         }
         $this->dj(array("valid" => $valid, "msg" => $message, "result" => $result));
     }
+
     public function getdatadesa() {
         $param = $this->input->post();
         $id_kecamatan = $param["id_kecamatan"];
@@ -129,11 +364,11 @@ class Provinsi extends MY_Controller {
                         "kode_kecamatan" => $param['kode_kecamatan'],
                         "nama_kecamatan" => $param['nama_kecamatan']
                     );
-                   $id_kecamatan= $this->modeldata->insertkecamatan($record);
+                    $id_kecamatan = $this->modeldata->insertkecamatan($record);
                     $valid = true;
                     $message = "Data success created";
                 } else {
-                    $id_kecamatan =0;
+                    $id_kecamatan = 0;
                     $valid = false;
                     $message = "Data already exist";
                 }
@@ -155,7 +390,7 @@ class Provinsi extends MY_Controller {
                 $message = "Data success deleted";
                 break;
             default:
-                $id_kecamatan =0;
+                $id_kecamatan = 0;
                 $valid = false;
                 $message = "No action";
                 break;
@@ -283,12 +518,12 @@ class Provinsi extends MY_Controller {
                     } else {
                         $v = false;
                         $m = "Data sudah ada";
-                    }                    
+                    }
                     $valid = $v;
                     $message = $m;
-                }else{
-                    $valid=false;
-                    $message="Kodepos sudah ada";
+                } else {
+                    $valid = false;
+                    $message = "Kodepos sudah ada";
                 }
                 break;
             case "update":

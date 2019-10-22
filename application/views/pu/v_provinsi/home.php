@@ -100,8 +100,8 @@
     }
 
     function process_import() {
-        var form, formdata, url_index, url_post, id, actiondata;
-        url_post = '<?php echo $url_import; ?>';
+        var form, formdata, url_index, url_import, id, actiondata;
+        url_import = '<?php echo $url_import; ?>';
         url_index = '<?php echo $url_index; ?>';
 
         var formdata = new FormData();
@@ -112,7 +112,7 @@
 
         $.ajax({
             type: 'POST',
-            url: url_post,
+            url: url_import,
             data: formdata,
             cache: false,
             contentType: false,
@@ -137,10 +137,12 @@
                 return xhr;
             },
             success: function (returndata) {
+                 _alert(returndata.message,returndata.valid);
                 $("#infoproses").html("");
                 $("#btnprocess").show();
                 $('#DialogImportdata').modal('hide');
                 $('#dataintable').dataTable().fnReloadAjax();
+               
             },
             error: function (xhr, status, error) {
                 var err = eval("(" + xhr.responseText + ")");

@@ -14,6 +14,28 @@ class Bataspenghasilan_model extends MY_Model {
       
     }
 
+    public function getbatasan() {
+        $query = "
+                 SELECT 
+                        a.id_m_bataspengasilan,                    
+                        a.tanggal_tmt,                    
+                        a.batasnilai_rumahtapak,                    
+                        a.batasnilai_rumahsusun,                    
+                        a.batasnilai_rumahtapak_suamiistri,                    
+                        a.batasnilai_rumahrusun_suamiistri                    
+                 FROM $this->table a   
+                 WHERE
+                    a.statusdata='active'
+                 ORDER BY a.tanggal_tmt desc
+                 LIMIT 1
+                 ";
+        $result = $this->db->query($query);
+        if ($result->num_rows() > 0) {
+            return $this->returndata($result,'row');
+        } else {
+            return null;
+        }
+    }
     public function getGridData() {
         $query = "
                  SELECT a.*                    

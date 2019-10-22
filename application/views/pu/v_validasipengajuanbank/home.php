@@ -24,7 +24,7 @@
                         <button type="button" id="btnsubmitform" onclick="submitform()" class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Process</button>
 
                     </div> 
-                    
+
                 </div>
 
                 <div class="text-center">
@@ -99,7 +99,7 @@
                     if (resultdata.valid == true) {
                         $("#divfinfoproses").show();
                         $("#infosetup").html("");
-                        $("#step_1").html("<div class='alert alert-success'>"+resultdata.message+'</div>');
+                        $("#step_1").html("<div class='alert alert-success'>" + resultdata.message + '</div>');
                         generate_tmpdata(resultdata.filecsv);
                     } else {
                         _alert(resultdata.message);
@@ -124,7 +124,7 @@
             },
             cache: false,
             beforeSend: function () {
-                 $("#btnsubmitform").hide();
+                $("#btnsubmitform").hide();
             },
             xhr: function () {
                 $("#infosetup").html('<div class="alert alert-primary" role="alert"><img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="45" height="45"/>&nbsp;&nbsp;Please wait...</div>');
@@ -141,9 +141,9 @@
             },
             success: function (resultdata) {
                 if (resultdata.valid == true) {
-                   $("#step_2").html("<div class='alert alert-success'>"+resultdata.message+'</div>');
-                   $("#infosetup").html("");
-                   generate_badanhukum($("#id_t_pengajuanbankheader").val());
+                    $("#step_2").html("<div class='alert alert-success'>" + resultdata.message + '</div>');
+                    $("#infosetup").html("");
+                    generate_badanhukum($("#id_t_pengajuanbankheader").val());
                 } else {
                     _alert(resultdata.message);
                 }
@@ -154,15 +154,15 @@
         });
 
     }
-    
+
     function generate_badanhukum(id_t_pengajuanbankheader) {
         $.ajax({
             type: 'POST',
-            url: '<?php echo $url_generate_badanhukum; ?>'+'/'+id_t_pengajuanbankheader,
-            data: {},                
+            url: '<?php echo $url_generate_badanhukum; ?>' + '/' + id_t_pengajuanbankheader,
+            data: {},
             cache: false,
             beforeSend: function () {
-                 $("#btnsubmitform").hide();
+                $("#btnsubmitform").hide();
             },
             xhr: function () {
                 $("#infosetup").html('<div class="alert alert-primary" role="alert"><img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="45" height="45"/>&nbsp;&nbsp;Please wait...</div>');
@@ -179,9 +179,9 @@
             },
             success: function (resultdata) {
                 if (resultdata.valid == true) {
-                   $("#step_3").html("<div class='alert alert-success'>"+resultdata.message+'</div>');
-                   $("#infosetup").html("");
-                   $("#btnsubmitform").show();
+                    $("#step_3").html("<div class='alert alert-success'>" + resultdata.message + '</div>');
+                    $("#infosetup").html("");
+                    $("#btnsubmitform").show();
                     generate_perumahan(id_t_pengajuanbankheader);
                 } else {
                     _alert(resultdata.message);
@@ -196,11 +196,11 @@
     function generate_perumahan(id_t_pengajuanbankheader) {
         $.ajax({
             type: 'POST',
-            url: '<?php echo $url_generate_perumahan; ?>'+'/'+id_t_pengajuanbankheader,
-            data: {},                
+            url: '<?php echo $url_generate_perumahan; ?>' + '/' + id_t_pengajuanbankheader,
+            data: {},
             cache: false,
             beforeSend: function () {
-                 $("#btnsubmitform").hide();
+                $("#btnsubmitform").hide();
             },
             xhr: function () {
                 $("#infosetup").html('<div class="alert alert-primary" role="alert"><img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="45" height="45"/>&nbsp;&nbsp;Please wait...</div>');
@@ -217,10 +217,51 @@
             },
             success: function (resultdata) {
                 if (resultdata.valid == true) {
-                   $("#step_4").html("<div class='alert alert-success'>"+resultdata.message+'</div>');
-                   $("#infosetup").html("");
-                   $("#btnsubmitform").show();
-                  
+                    $("#step_4").html("<div class='alert alert-success'>" + resultdata.message + '</div>');
+                    $("#infosetup").html("");
+                    $("#btnsubmitform").show();
+                    generate_validasi(id_t_pengajuanbankheader);
+
+                } else {
+                    _alert(resultdata.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+            }
+        });
+
+    }
+
+    function generate_validasi(id_t_pengajuanbankheader) {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo $url_generate_validasi; ?>' + '/' + id_t_pengajuanbankheader,
+            data: {},
+            cache: false,
+            beforeSend: function () {
+                $("#btnsubmitform").hide();
+            },
+            xhr: function () {
+                $("#infosetup").html('<div class="alert alert-primary" role="alert"><img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="45" height="45"/>&nbsp;&nbsp;Please wait...</div>');
+                var xhr = new XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (event) {
+                    if (event.lengthComputable) {
+                        var percentComplete = Math.round((event.loaded / event.total) * 100);
+                    }
+                    ;
+
+                }, false);
+
+                return xhr;
+            },
+            success: function (resultdata) {
+                if (resultdata.valid == true) {
+                    $("#step_5").html("<div class='alert alert-success'>" + resultdata.message + '</div>');
+                    $("#infosetup").html("");
+                    $("#btnsubmitform").show();
+                    window.open('<?php echo $url_reportnotvalid ?>'+'/'+id_t_pengajuanbankheader);
+
                 } else {
                     _alert(resultdata.message);
                 }
