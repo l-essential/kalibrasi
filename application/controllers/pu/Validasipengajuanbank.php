@@ -8,7 +8,7 @@ class Validasipengajuanbank extends MY_Controller {
         $this->noaut = 1;
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
-        $this->title = 'Proses Validasi / Pengujuan Data Pengajuan Bank';
+        $this->title = 'Proses Validasi / Pengujian Data Pengajuan Bank';
         $this->setmodel($this->pathclass . "/Pengajuanbank_model#modeldata");
         $this->setmodel($this->pathclass . "/Provinsi_model#provinsi");
         $this->setmodel($this->pathclass . "/Batashargajualrumah_model#batashargarumah");
@@ -26,10 +26,10 @@ class Validasipengajuanbank extends MY_Controller {
         $this->data['url_reportnotvalid'] = site_url($this->controller . '/reportnotvalid');
         parent::index();
     }
-    
-    public function reportnotvalid($id_pengajuanheader) {      
+
+    public function reportnotvalid($id_pengajuanheader) {
         $result = $this->modeldata->geterrorlog($id_pengajuanheader);
-        $data['result']=$result;
+        $data['result'] = $result;
         $message = $this->load->view($this->view . '/reportnotvalid', $data, true);
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=datapengajuanditolak_$id_pengajuanheader.xls");
@@ -70,12 +70,11 @@ class Validasipengajuanbank extends MY_Controller {
                 return array("valid" => 'notvalid', "message" => "Nomor KTP $no_ktp   $statuskepunyaan bukan angka" . ', ');
             }
         } else {
-            if($statuskepunyaan=='istri'){
+            if ($statuskepunyaan == 'pasangan') {
                 return array("valid" => 'valid', "message" => "");
-            }else{
+            } else {
                 return array("valid" => 'notvalid', "message" => "KTP $statuskepunyaan kosong" . ', ');
             }
-            
         }
     }
 
@@ -195,7 +194,7 @@ class Validasipengajuanbank extends MY_Controller {
             return array("valid" => 'notvalid', "message" => "Tidak terdapat info harga rumah kosong" . ', ');
         }
     }
-    
+
     public function checknilaikpr($arraydata) {
         if (!empty($arraydata['nilai_kpr'])) {
             $nilai_kpr = $arraydata['nilai_kpr'];
@@ -209,7 +208,7 @@ class Validasipengajuanbank extends MY_Controller {
             return array("valid" => 'notvalid', "message" => "Tidak nilai kpr kosong" . ', ');
         }
     }
-    
+
     public function checklamatenor($arraydata) {
         if (!empty($arraydata['tenor'])) {
             $tenor = $arraydata['tenor'];
@@ -223,13 +222,13 @@ class Validasipengajuanbank extends MY_Controller {
             return array("valid" => 'notvalid', "message" => "Tidak ada nilai tenor" . ', ');
         }
     }
-    
+
     public function checkpenghasilan($arraydata) {
         if (!empty($arraydata['gaji_pokok'])) {
             $gaji_pokok = $arraydata['gaji_pokok'];
             $rowpenghasilan = $this->bataspenghasilan->getbatasan();
             $luastanah = $arraydata['luastanah'];
-            if ($luastanah == '0' || $luastanah == '1') {            
+            if ($luastanah == '0' || $luastanah == '1') {
                 $batasanpenghasilan = $rowpenghasilan->batasnilai_rumahsusun;
                 $batasanpenghasilansuamisitri = $rowpenghasilan->batasnilai_rumahrusun_suamiistri;
                 $statusbatasan = "susun";
@@ -238,13 +237,12 @@ class Validasipengajuanbank extends MY_Controller {
                 $batasanpenghasilansuamisitri = $rowpenghasilan->batasnilai_rumahtapak_suamiistri;
                 $statusbatasan = "tapak";
             }
-                        
+
             if ($gaji_pokok > $batasanpenghasilan) {
                 return array("valid" => 'notvalid', "message" => "gaji pokok melebihi dari batas penghasilan, batas penghasilan $batasanpenghasilan , gaji pokok $gaji_pokok" . ', ');
             } else {
                 return array("valid" => 'valid', "message" => "");
             }
-            
         } else {
             return array("valid" => 'notvalid', "message" => "Gaji pokok tidak ada nilainya" . ', ');
         }
@@ -260,7 +258,7 @@ class Validasipengajuanbank extends MY_Controller {
             $resultpekerjaan = $this->pekerjaan->getAll();
             if ($resultpekerjaan) {
                 ini_set("memory_limit", "-1");
-                ini_set('max_execution_time', 0);               
+                ini_set('max_execution_time', 0);
                 $array_kodepekerjaan = array();
                 foreach ($resultpekerjaan as $masterpekerjaan) {
                     $array_kodepekerjaan[] = $masterpekerjaan['kode'];
@@ -271,8 +269,8 @@ class Validasipengajuanbank extends MY_Controller {
             }
             $datapengajuanbank = $this->modeldata->getby_id_array($id_t_pengajuanbankheader);
             $databank = $this->bank->getby_id_array($datapengajuanbank['id_bank']);
-          
-            
+
+
             $arrayvalid = array();
             $arraynotvalid = array();
             $arrayalldata = array();
@@ -289,7 +287,7 @@ class Validasipengajuanbank extends MY_Controller {
                 $valid = $checkpekerjaan['valid'];
                 $message .= $checkpekerjaan['message'];
 
-                $checktpsuami = $this->checkktp($row['no_ktp'], 'suami');
+                $checktpsuami = $this->checkktp($row['no_ktp'], 'pengaju');
                 $valid = $checktpsuami['valid'];
                 $message .= $checktpsuami['message'];
 
@@ -300,51 +298,44 @@ class Validasipengajuanbank extends MY_Controller {
                 $checkhargarumah = $this->checkharga($row);
                 $valid = $checkhargarumah['valid'];
                 $message .= $checkhargarumah['message'];
-                
+
                 $checknilaikpr = $this->checknilaikpr($row);
                 $valid = $checknilaikpr['valid'];
                 $message .= $checknilaikpr['message'];
-                
+
                 $checklamatenor = $this->checklamatenor($row);
                 $valid = $checklamatenor['valid'];
                 $message .= $checklamatenor['message'];
-                
-                $checktpistri = $this->checkktp($row['no_ktp'], 'istri');
+
+                $checktpistri = $this->checkktp($row['no_ktp'], 'pasangan');
                 $valid = $checktpistri['valid'];
                 $message .= $checktpistri['message'];
-                
-                
+
+
                 $checkpenghasilan = $this->checkpenghasilan($row);
                 $valid = $checkpenghasilan['valid'];
                 $message .= $checkpenghasilan['message'];
-                
+
+                $checkdukcapil = $this->checkdukcapil($row['no_ktp']);
+                $valid = $checkdukcapil['valid'];
+                $datadukcapil = $checkdukcapil['data'];
+                $message .= "Info dari server dukcapil : " . $checkdukcapil['message'];
+
                 $msgreplace = str_replace(",", "", $message);
-                
+
                 if (!empty($msgreplace)) {
                     $arraynotvalid[] = array(
                         "id_t_pengajuanbank_header" => $id_t_pengajuanbankheader,
-                        /*
-                        "bank" => $databank['nama_bank'],
-                        "nomorsurat" => $datapengajuanbank['no_sk'],
-                        "tanggal_surat" => $datapengajuanbank['tanggal_surat'],
-                         * 
-                         */
                         "nama" => $row['nama'],
-                        /*
-                        "pekerjaan" => $row['pekerjaan'],
-                        "jeniskelamin" => $row['jeniskelamin'],
-                         * 
-                         */
                         "ktp" => $row['no_ktp'],
-                     //   "no_npwp" => $row['no_npwp'],
                         "pesan_error" => $message,
                     );
                 }
             }
-            
-            if(!empty($arraynotvalid)){
+
+            if (!empty($arraynotvalid)) {
                 $this->modeldata->clearlogerror($id_t_pengajuanbankheader);
-                $this->modeldata->createlogerror($id_t_pengajuanbankheader,$arraynotvalid);
+                $this->modeldata->createlogerror($id_t_pengajuanbankheader, $arraynotvalid);
             }
         }
         $endtime = date('d-m-Y H:i:s');
@@ -354,10 +345,10 @@ class Validasipengajuanbank extends MY_Controller {
         $detik = $diff->s;
         $lamaproses = " Mulai :" . $starttime . ', Selesai : ' . $endtime . ' ,Lama Proses : ' . $jam . ' Jam ' . $menit . ' Menit ' . $detik . ' Detik';
         $messageselesai = "Validasi temporary data, finish " . $lamaproses;
-        
+
         $this->dj(array(
-            "valid"=>true,
-            "message"=>$messageselesai,
+            "valid" => true,
+            "message" => $messageselesai,
         ));
     }
 

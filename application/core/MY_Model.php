@@ -6,12 +6,23 @@ class MY_Model extends CI_Model {
     public $table_detail;
     public $prefix_id;
     public $prefix_id_detail;
+    public $dateserver;
+    public $datetimeserver;
 
     public function __construct() {
         parent::__construct();
         $tmpfile = explode("_", $this->whoAmI());
+        $this->gettimeserver();
         $this->table = strtolower($tmpfile[0]);
         $this->prefix_id = "id_" . $this->table;
+    }
+    
+     public function gettimeserver() {
+        $sql = "SELECT NOW() as syntime,CURDATE() as syndate ";
+        $result = $this->db->query($sql);
+        $row=$this->returndata($result, 'row');
+        $this->dateserver = $row->syndate;
+        $this->datetimeserver = $row->syntime;
     }
     
     public function getlastincrement() {
@@ -410,7 +421,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("createby");
         if ($checkfiield > 0) {
             $record['createby'] = $this->session->userdata('ses_id_user');
-            $record['createtime'] = date('Y-m-d H:i:s');
+            $record['createtime'] = $this->datetimeserver;
         }
 
         $this->db->insert($this->table, $record);
@@ -422,7 +433,7 @@ class MY_Model extends CI_Model {
        $checkfiield = $this->checkfield("createby");
         if ($checkfiield > 0) {
             $record['createby'] = $this->session->userdata('ses_id_user');
-            $record['createtime'] = date('Y-m-d H:i:s');
+            $record['createtime'] = $this->datetimeserver;
         }
         $this->db->insert($this->table_detail, $record);
         $insert_id = $this->db->insert_id();
@@ -592,7 +603,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("updateby");
         if ($checkfiield > 0) {
             $record['updateby'] = $this->session->userdata('ses_id_user');
-            $record['updatetime'] = date('Y-m-d H:i:s');
+            $record['updatetime'] = $this->datetimeserver;
         }
         $this->db->where($this->prefix_id, $id);
         return $this->db->update($this->table, $record);
@@ -602,7 +613,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("updateby");
         if ($checkfiield > 0) {
             $record['updateby'] = $this->session->userdata('ses_id_user');
-            $record['updatetime'] = date('Y-m-d H:i:s');
+            $record['updatetime'] = $this->datetimeserver;
         }
         $this->db->where($this->prefix_id_detail, $id);
         return $this->db->update($this->table_detail, $record);
@@ -612,7 +623,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
-            $record['deletetime'] = date('Y-m-d H:i:s');
+            $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
 
             $this->db->where($this->prefix_id, $id);
@@ -626,7 +637,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
-            $record['deletetime'] = date('Y-m-d H:i:s');
+            $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
             $this->db->where($this->prefix_id_detail, $id);
             return $this->db->update($this->table_detail, $record);
@@ -640,7 +651,7 @@ class MY_Model extends CI_Model {
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
-            $record['deletetime'] = date('Y-m-d H:i:s');
+            $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
             $this->db->where('statusdata', 'active');
         }
