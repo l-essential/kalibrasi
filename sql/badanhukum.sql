@@ -1,1 +1,0 @@
-ALTER TABLE `db_pu`.`badanhukum` DROP INDEX `INDEX_GETBADANHUKUM`, ADD INDEX `INDEX_GETBADANHUKUM` (`badanhukum`, `statusdata`) USING BTREE;

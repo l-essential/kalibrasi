@@ -141,8 +141,7 @@ class Pengajuanbank_model extends MY_Model {
         $dbname = $this->db->database;
         $tablename = $this->tmp_upload_form1 . $id_t_pengajuanbank_header;
         $this->db->query("DROP TABLE IF EXISTS `$tablename`;");
-        $query = "          
-                    
+        $query = "                              
                     CREATE TABLE `$tablename` (
                     `id` bigint(25) NOT NULL,
                     `id_t_pengajuanbankheader` int(11) NOT NULL,
@@ -188,7 +187,6 @@ class Pengajuanbank_model extends MY_Model {
              ";
         $result = $this->db->query($query);
         if ($result) {
-
             $this->db->query("ALTER TABLE $tablename ADD PRIMARY KEY (id);");
             $this->db->query("ALTER TABLE `$tablename` MODIFY `id` bigint(25) NOT NULL AUTO_INCREMENT;");
 

@@ -2,9 +2,11 @@
 
 //create by : ahmad riadi, ahmadriadi.ti@gmail.com, dilarang mengcopy tanpa ijin,akan dikenakan denda bagi yang melanggar
 
-class Validasipengajuanbank extends MY_Controller {
+class Validasipengajuanbank extends MY_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         $this->noaut = 1;
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
@@ -15,9 +17,12 @@ class Validasipengajuanbank extends MY_Controller {
         $this->setmodel($this->pathclass . "/Batashargajualrumahpengecualian_model#batashargarumahpengecualian");
         $this->setmodel($this->pathclass . "/Bataspenghasilan_model#bataspenghasilan");
         $this->setmodel($this->pathclass . "/Bank_model#bank");
+        $this->setmodel($this->pathclass . '/Perumahan_model#perumahan');
+        $this->setmodel($this->pathclass . '/Peserta_model#peserta');
     }
 
-    public function index() {
+    public function index()
+    {
         $this->buildcombobox('id_t_pengajuanbankheader', 'labeldata', $this->modeldata->getlabelpengajuanbank());
         $this->data['url_generate_tmpdata'] = site_url($this->controller . '/generate_tmpdata');
         $this->data['url_generate_badanhukum'] = site_url($this->controller . '/generate_badanhukum');
@@ -27,7 +32,8 @@ class Validasipengajuanbank extends MY_Controller {
         parent::index();
     }
 
-    public function reportnotvalid($id_pengajuanheader) {
+    public function reportnotvalid($id_pengajuanheader)
+    {
         $result = $this->modeldata->geterrorlog($id_pengajuanheader);
         $data['result'] = $result;
         $message = $this->load->view($this->view . '/reportnotvalid', $data, true);
@@ -37,7 +43,8 @@ class Validasipengajuanbank extends MY_Controller {
         exit;
     }
 
-    public function checkjeniskelamin($arraydata) {
+    public function checkjeniskelamin($arraydata)
+    {
         if (!empty($arraydata['jeniskelamin'])) {
             if (is_string($arraydata['jeniskelamin'])) {
                 if ($arraydata['jeniskelamin'] == 'L' || $arraydata['jeniskelamin'] == 'P') {
@@ -53,7 +60,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checkktp($no_ktp, $statuskepunyaan = '') {
+    public function checkktp($no_ktp, $statuskepunyaan = '')
+    {
         $no_ktp = trim(ltrim(rtrim($no_ktp)));
         if (!empty($no_ktp)) {
             if (is_numeric($no_ktp)) {
@@ -78,7 +86,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checknpwp($npwp) {
+    public function checknpwp($npwp)
+    {
         $npwp = trim(ltrim(rtrim($npwp)));
         if (!empty($npwp)) {
             if (is_numeric($npwp)) {
@@ -95,7 +104,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checkpekerjaan($array_kodepekerjaan, $arraydata) {
+    public function checkpekerjaan($array_kodepekerjaan, $arraydata)
+    {
         if (!empty($arraydata['pekerjaan'])) {
             if (in_array($arraydata['pekerjaan'], $array_kodepekerjaan, true)) {
                 return array("valid" => 'valid', "message" => "");
@@ -107,7 +117,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checkharga($arraydata) {
+    public function checkharga($arraydata)
+    {
         if (!empty($arraydata['harga_rumah'])) {
             if (!empty($arraydata['kodepos'])) {
                 $kodepos = $arraydata['kodepos'];
@@ -195,7 +206,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checknilaikpr($arraydata) {
+    public function checknilaikpr($arraydata)
+    {
         if (!empty($arraydata['nilai_kpr'])) {
             $nilai_kpr = $arraydata['nilai_kpr'];
             $harga_rumah = $arraydata['harga_rumah'];
@@ -209,7 +221,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checklamatenor($arraydata) {
+    public function checklamatenor($arraydata)
+    {
         if (!empty($arraydata['tenor'])) {
             $tenor = $arraydata['tenor'];
             $batasmaxtenor = 240;
@@ -223,7 +236,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checkpenghasilan($arraydata) {
+    public function checkpenghasilan($arraydata)
+    {
         if (!empty($arraydata['gaji_pokok'])) {
             $gaji_pokok = $arraydata['gaji_pokok'];
             $rowpenghasilan = $this->bataspenghasilan->getbatasan();
@@ -248,7 +262,8 @@ class Validasipengajuanbank extends MY_Controller {
         }
     }
 
-    public function checkvalidasi($id_t_pengajuanbankheader) {
+    public function checkvalidasi($id_t_pengajuanbankheader)
+    {
         //$param = $this->input->post();
         // $id_t_pengajuanbankheader = $param['id_t_pengajuanbankheader'];
         $result = $this->modeldata->gettmpdata($id_t_pengajuanbankheader);
@@ -268,9 +283,8 @@ class Validasipengajuanbank extends MY_Controller {
                 exit;
             }
             $datapengajuanbank = $this->modeldata->getby_id_array($id_t_pengajuanbankheader);
-            $databank = $this->bank->getby_id_array($datapengajuanbank['id_bank']);
-
-
+            $id_bank = $datapengajuanbank['id_bank'];
+            $databank = $this->bank->getby_id_array($id_bank);
             $arrayvalid = array();
             $arraynotvalid = array();
             $arrayalldata = array();
@@ -316,13 +330,18 @@ class Validasipengajuanbank extends MY_Controller {
                 $valid = $checkpenghasilan['valid'];
                 $message .= $checkpenghasilan['message'];
 
+
+                /*
                 $checkdukcapil = $this->checkdukcapil($row['no_ktp']);
                 $valid = $checkdukcapil['valid'];
                 $datadukcapil = $checkdukcapil['data'];
                 $message .= "Info dari server dukcapil : " . $checkdukcapil['message'];
+                 * 
+                 */
+
+
 
                 $msgreplace = str_replace(",", "", $message);
-
                 if (!empty($msgreplace)) {
                     $arraynotvalid[] = array(
                         "id_t_pengajuanbank_header" => $id_t_pengajuanbankheader,
@@ -331,11 +350,49 @@ class Validasipengajuanbank extends MY_Controller {
                         "pesan_error" => $message,
                     );
                 }
+
+
+                if (empty($msgreplace)) {
+                    $dataperumahan = $this->perumahan->getdataperumanahan($row['nama_perumahan'], $row['kotakab'], $row['kodepos'], $row['luastanah'], $row['luasbangunan']);
+                    $id_perumahan = $dataperumahan->id_perumahan;
+
+                    $recordpeserta = array(
+                        "id_t_pengajuanbankheader" => $id_t_pengajuanbankheader,
+                        "id_bank" => $id_bank,
+                        "id_perumahan" => $id_perumahan,
+                        "nama" => $id_perumahan,
+                        "no_ktp" => $row['no_ktp'],
+                        "no_npwp" => $row['no_npwp'],
+                        "no_ktp_pasangan" => $row['no_ktp_pasangan'],
+                        "no_rekening" => $row['no_rekening'],
+                        "nama" => $row['nama'],
+                        "nama_pasangan" => $row['nama_pasangan'],
+                        "jeniskelamin" => $row['jeniskelamin'],
+                        "tanggal_akad" => $row['tanggal_akad'],
+                        "harga_rumah" => $row['harga_rumah'],
+                        "tenor" => $row['tenor'],
+                        "uang_muka" => $row['uang_muka'],
+                        "nilai_kpr" => $row['nilai_kpr'],
+                        "sukubunga" => $row['bunga'],
+                        "angsuran" => $row['angsuran'],
+                        "createby" => $this->userid,
+                        "createtime" => $this->curdatetime,
+                    );
+                    
+                    $resultcheckprosespeserta = $this->peserta->getdataprosespeserta($id_t_pengajuanbankheader,$id_perumahan,$id_bank,$row['no_ktp']);
+                    if(empty($resultcheckprosespeserta)){
+                        $arrayvalid[]=$recordpeserta;
+                    }
+                }
             }
 
             if (!empty($arraynotvalid)) {
                 $this->modeldata->clearlogerror($id_t_pengajuanbankheader);
                 $this->modeldata->createlogerror($id_t_pengajuanbankheader, $arraynotvalid);
+            }
+            
+            if (!empty($arrayvalid)) {
+                $this->peserta->insertdata_batch_peserta($arrayvalid);
             }
         }
         $endtime = date('d-m-Y H:i:s');
@@ -352,7 +409,8 @@ class Validasipengajuanbank extends MY_Controller {
         ));
     }
 
-    public function generate_tmpdata() {
+    public function generate_tmpdata()
+    {
         $param = $this->input->post();
         $filecsv = $param['filecsv'];
         $id_t_pengajuanbankheader = $param['id_t_pengajuanbankheader'];
@@ -453,7 +511,8 @@ class Validasipengajuanbank extends MY_Controller {
         ));
     }
 
-    public function postdata() {
+    public function postdata()
+    {
         $param = $this->input->post();
         $id_t_pengajuanbankheader = $param['id_t_pengajuanbankheader'];
         $row = $this->modeldata->getby_id_array($id_t_pengajuanbankheader);
@@ -502,7 +561,8 @@ class Validasipengajuanbank extends MY_Controller {
         ));
     }
 
-    public function generate_badanhukum($id_t_pengajuanbankheader) {
+    public function generate_badanhukum($id_t_pengajuanbankheader)
+    {
         $result = $this->modeldata->getbadanhukum_tmp_upload_form1($id_t_pengajuanbankheader);
         $valid = false;
         $message = "";
@@ -551,12 +611,12 @@ class Validasipengajuanbank extends MY_Controller {
         ));
     }
 
-    public function generate_perumahan($id_t_pengajuanbankheader) {
+    public function generate_perumahan($id_t_pengajuanbankheader)
+    {
         $result = $this->modeldata->getperumahan_tmp_upload_form1($id_t_pengajuanbankheader);
         $valid = false;
         $message = "";
         if ($result) {
-            $this->setmodel($this->pathclass . '/Perumahan_model#perumahan');
             $arraydata = array();
             $starttime = date('d-m-Y H:i:s');
             $counter = 0;
@@ -610,5 +670,4 @@ class Validasipengajuanbank extends MY_Controller {
             "message" => $message
         ));
     }
-
 }
