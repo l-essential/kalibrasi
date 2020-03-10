@@ -1,6 +1,5 @@
 <?php
 
-//create by : ahmad riadi, ahmadriadi.ti@gmail.com, dilarang mengcopy tanpa ijin
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller {
@@ -854,6 +853,7 @@ class MY_Controller extends CI_Controller {
         $this->data['controller'] = $this->controller;
         $this->data['url_post'] = site_url($this->controller . '/postdata');
         $this->data['url_index'] = site_url($this->controller . '/index');
+        $this->data['url_cekdatalog'] = site_url($this->controller . '/cekdatalog');
         $this->load->view($this->view . '/form', $this->data);
     }
 
@@ -865,6 +865,7 @@ class MY_Controller extends CI_Controller {
         $this->data['controller'] = $this->controller;
         $this->data['url_post'] = site_url($this->controller . '/postdata');
         $this->data['url_index'] = site_url($this->controller . '/index');
+        $this->data['url_cekdatalog'] = site_url($this->controller . '/cekdatalog');
         $this->load->view($this->view . '/form', $this->data);
     }
 
@@ -1306,8 +1307,78 @@ class MY_Controller extends CI_Controller {
         $post = $param;
         $path = "public/images/" . strtolower($this->controller);
         $config['upload_path'] = "./" . $path;
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['encrypt_name'] = TRUE;
+        $config['allowed_types'] = 'jpg|png|pdf|xls|xlsx|doc|docx|csv';
+        $config['encrypt_name'] = False;
+        $this->load->library('upload', $config);
+
+
+        if ($post['actiondata'] == 'create') {
+            $checkata = $this->modeldata->checkData($checkfield, $post["$checkfield"]);
+            if ($checkata == 0) {
+
+                if (!empty($_FILES['file']['name'])) {
+                    if ($this->upload->do_upload("file")) {
+                        $data = array('upload_data' => $this->upload->data());
+                        $namagambar = $data['upload_data']['file_name'];
+                        $post['lokasi_gambar'] = $path . "/" . $namagambar;
+                        $post['nama_gambar'] = $namagambar;
+
+                        $this->access_postdatabyparam($post);
+                    } else {
+                        $error = $this->upload->display_errors();
+                        $jsonmsg = array(
+                            "msg" => $error,
+                            "valid" => false,
+                            "postdata" => '',
+                        );
+
+                        $this->dj($jsonmsg);
+                    }
+                } else {
+                    $this->access_postdatabyparam($post);
+                }
+            } else {
+                $jsonmsg = array(
+                    "msg" => 'Data already exist',
+                    "valid" => false,
+                    "postdata" => '',
+                );
+
+                $this->dj($jsonmsg);
+            }
+        } else if ($post['actiondata'] == 'update') {
+            if (!empty($_FILES['file']['name'])) {
+                if ($this->upload->do_upload("file")) {
+                    $data = array('upload_data' => $this->upload->data());
+                    $namagambar = $data['upload_data']['file_name'];
+                    $post['lokasi_gambar'] = $path . "/" . $namagambar;
+                    $post['nama_gambar'] = $namagambar;
+
+                    $this->access_postdatabyparam($post);
+                } else {
+                    $error = $this->upload->display_errors();
+                    $jsonmsg = array(
+                        "msg" => $error,
+                        "valid" => false,
+                        "postdata" => '',
+                    );
+
+                    $this->dj($jsonmsg);
+                }
+            } else {
+                $this->access_postdatabyparam($post);
+            }
+        } else if ($post['actiondata'] == 'delete') {
+            $this->access_postdatabyparam($post);
+        }
+    }
+
+    public function postdatadetail_byparam_with_images($param, $checkfield) {
+        $post = $param;
+        $path = "public/images/" . strtolower($this->controller);
+        $config['upload_path'] = "./" . $path;
+        $config['allowed_types'] = 'jpg|png|pdf|xls|xlsx|doc|docx|csv';
+        $config['encrypt_name'] = False;
         $this->load->library('upload', $config);
 
 
@@ -1376,7 +1447,7 @@ class MY_Controller extends CI_Controller {
         $post = $param;
         $path = "public/images/" . strtolower($this->controller);
         $config['upload_path'] = "./" . $path;
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'jpg|png|pdf|xls|xlsx|doc|docx|csv';
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
 
@@ -1446,7 +1517,7 @@ class MY_Controller extends CI_Controller {
         $post = $param;
         $path = "public/images/" . strtolower($this->controller);
         $config['upload_path'] = "./" . $path;
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'jpg|png|pdf|xls|xlsx|doc|docx|csv';
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
 
@@ -1516,7 +1587,7 @@ class MY_Controller extends CI_Controller {
         $post = $param;
         $path = "public/images/" . strtolower($this->controller);
         $config['upload_path'] = "./" . $path;
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'jpg|png|pdf|xls|xlsx|doc|docx|csv';
         $config['encrypt_name'] = TRUE;
         $this->load->library('upload', $config);
 
@@ -1777,5 +1848,38 @@ class MY_Controller extends CI_Controller {
         echo 'SELECT ' . print_r($this->_select, TRUE) . "\n";
         echo 'WHERE ' . print_r($this->_where, TRUE) . "\n";
     }
+    public function cekdatalog() {
+         $this->load->model('Formulir_model', 'frm');
+                $getruang = $this->input->post('getruang'); 
+                $h_th = $this->input->post('h_th'); 
+                $h_bln = $this->input->post('h_bln');  
+                    
+                 $tahun = date('Y'); 
+                 $dd = date('d'); 
+                 $bln = date('m');
+                 $lastno1=1; 
 
+                     $recordlog = array(
+                                            "program" => $getruang,
+                                            "periode" => $tahun, 
+                                            "bln" => $bln,    
+                                            // "lastno" =>$lastno1         
+                                        );
+                $check = $this->frm->checkdataurut($getruang,$h_th,$h_bln);
+                
+                if ( $check > 0) {
+                    $row = $this->frm->getby_urut($getruang,$h_th,$h_bln)->row();  
+                    $nourutlog= $row->lastno;
+                    $nodaftar=$nourutlog+1;  
+                } else {
+                    $nodaftar=$lastno1;
+                }
+                /* membuat array, yang akan dikonversi menjadi json untuk kebutuhan ajax */
+                $jsonmsg = array(  
+                    "nourut" => $nodaftar
+                );
+
+            /* konversi array json, yang akan terkirim ke form.php */
+            echo json_encode($jsonmsg);
+        }
 }

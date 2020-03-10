@@ -15,7 +15,7 @@ class Maplikasigroupuser_model extends MY_Model {
 
     public function GridData($id_maplikasigroup) {
         $query = "
-                 SELECT a.*,b.username,b.fullname                        
+                 SELECT a.*,b.username,b.namaKaryawan, b.department_name                     
                  FROM $this->table a 
                  LEFT JOIN  $this->tbl_user b on a.id_user = b.id_user    
                  WHERE

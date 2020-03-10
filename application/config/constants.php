@@ -85,7 +85,7 @@ defined('EXIT_DATABASE') OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 //FOR USER IN HERE
-defined('judul_apps') OR define('judul_apps', 'My Apps');
+defined('judul_apps') OR define('judul_apps', 'Apps');
 defined('tahundibuat') OR define('tahundibuat', '2019 - ISIB'); //Integritas Solusi Informasi Berkah
 //Account Dukcapil
 defined('dukcapil_username') OR define('dukcapil_username', 'devel_ssb');

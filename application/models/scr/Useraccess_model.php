@@ -12,6 +12,12 @@ class Useraccess_model extends MY_Model {
         $this->prefix_id = "id_user";
     }
 
+    public function total_user() {
+      $this->db->where('statusdata','active');
+		$data = $this->db->get( $this->table);
+		return $data->num_rows();
+    }
+
     function getGridData() {
         $query = "
                  SELECT 
@@ -19,10 +25,18 @@ class Useraccess_model extends MY_Model {
                     b.roleapps                     
                  FROM $this->table a   
                  LEFT JOIN $this->table_role b on a.id_role = b.id_role
-                 WHERE
-                 a.statusdata='active'
-                 ";
+                 ORDER BY status_login ASC ";
         return $this->db->query($query);
+    }
+
+     function getby_id($id) {
+        $this->db->where($this->prefix_id, $id);
+        $result = $this->db->get($this->table);
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return null;
+        }
     }
 
 }

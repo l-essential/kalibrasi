@@ -1,30 +1,44 @@
-<?php
-$baseurlindex = base_url('public') . '/';
-$baseurl = base_url('public/template/login') . '/';
+<?php 
+      $templates = base_url() . 'allassets/';
+      $customes = base_url() . 'public/';
+      $basedata = base_url() . 'public/';
+      $baseurl = base_url('public/template/login') . '/';
+      $baseurlindex = base_url('public') . '/';
+ ?>
 
-//print_r($_SESSION);
-?>
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-    <head>
-        <meta charset="utf-8" />
-        <link rel="shortcut icon" href="<?php echo $baseurlindex; ?>images/favicon.png" type="image/x-icon" />
-        <link rel="icon" href="<?php echo $baseurlindex; ?>images/favicon.png" type="image/x-icon" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>
-            <?php echo judul_apps; ?>
-        </title>
-        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-        <link href="<?php echo $baseurlindex; ?>css/materialicon/materialicon.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo $baseurlindex; ?>css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>    
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PT. L`Essential | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link href="<?php echo $baseurl ?>assets/css/material-dashboard.min40a0.css?v=2.0.2" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link href="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo $baseurlindex; ?>css/materialicon/materialicon.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo $baseurlindex; ?>css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/> 
+   
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/toastr/toastr.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo $templates ?>dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-        <!-- CSS Just for demo purpose, don't include it in your project -->
-        <link href="<?php echo $baseurl ?>assets/demo/demo.css" rel="stylesheet" />
-
-        <style>
+  <style>
 
             .card .card-header-rose .card-icon, .card .card-header-rose .card-text, .card .card-header-rose:not(.card-header-icon):not(.card-header-text), .card.bg-rose, .card.card-rotate.bg-rose .back, .card.card-rotate.bg-rose .front {
                 background: linear-gradient(60deg,#28bea9,#2e6e6e);
@@ -34,72 +48,89 @@ $baseurl = base_url('public/template/login') . '/';
                 color: #1d654e;
             }
         </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>PT. L'Essential </b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
 
-    </head>
-
-    <body class="off-canvas-sidebar">
-
-
-        <div class="wrapper wrapper-full-page">
-
-
-
-            <div class="page-header lock-page header-filter" style="background-image: url('<?php echo $baseurl ?>assets/img/lock.jpg')">
-                <!--   you can change the color of the filter page using: data-color="blue | green | orange | red | purple" -->
-                <div class="container">
-                    <div class="col-md-4 ml-auto mr-auto">
-                        <form class="form" method="" action="#">
-                            <div class="card card-login card-hidden">
-                                <div class="card-header card-header-rose text-center">
-                                    <h4 class="card-title">Login <?php echo judul_apps; ?></h4>
-                                    <div class="social-line">
-                                        <i class="material-icons">lock_outline</i>
-                                    </div>
-                                </div>
-                                <div class="card-body ">
-                                    <p class="card-description text-center"></p>
-                                    <span class="bmd-form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="material-icons">face</i>
-                                                </span>
-                                            </div>
-                                            <input type="text" name="username" id="username" class="form-control" placeholder="Username...">
-                                        </div>
-                                    </span>                                   
-                                    <span class="bmd-form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="material-icons">lock_outline</i>
-                                                </span>
-                                            </div>
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password...">
-                                        </div>
-                                    </span>
-                                </div>
-                                <div class="card-footer justify-content-center">
-                                    <a href="#" id="login-button" class="btn btn-rose btn-link btn-lg">Submit</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+      <form action="<?php echo $templates ?>index3.html" method="post">
+        <div class="input-group mb-3">
+          <input type="text" name="username" id="username" class="form-control" placeholder="Username...">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
+          </div>
         </div>
+        <div class="input-group mb-3">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password...">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <!-- <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label> -->
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+              <a href="#" id="login-button" class="btn btn-sm btn-success btn-block">Submit</a>
+            <!-- <button type="submit" class="btn btn-primary btn-block">Sign In</button> -->
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
-        <!--   Core JS Files   -->
-        <script src="<?php echo $baseurl ?>assets/js/core/jquery.min.js" type="text/javascript"></script>
-        <script src="<?php echo $baseurl ?>assets/js/core/popper.min.js" type="text/javascript"></script>
-        <script src="<?php echo $baseurl ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-        <!--  Notifications Plugin    -->
-        <script src="<?php echo $baseurl; ?>assets/js/bootstrap-notify.js"></script>
+      <!-- <div class="social-auth-links text-center mb-3">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        </a>
+      </div> -->
+      <!-- /.social-auth-links -->
 
+      <!-- <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="register.html" class="text-center">Register a new membership</a>
+      </p> -->
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
 
+<!-- jQuery -->
+<script src="<?php echo $templates ?>plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo $templates ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo $templates ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo $templates ?>plugins/toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/js/jquery.toast.js" type="text/javascript"></script>
+<script src="<?php echo $baseurl; ?>assets/js/bootstrap-notify.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo $templates ?>dist/js/adminlte.min.js"></script>
+<script src="<?php echo $templates ?>dist/js/demo.js"></script>
 
-
-        <script type="text/javascript">
+  <script type="text/javascript">
             var url_post;
             url_post = '<?php echo $url_post; ?>'; //setting url post, variable di dapat dari controller
 
@@ -190,6 +221,9 @@ $baseurl = base_url('public/template/login') . '/';
             }
 
 
-        </script>    
-    </body>
+        </script>  
+
+</body>
 </html>
+
+      

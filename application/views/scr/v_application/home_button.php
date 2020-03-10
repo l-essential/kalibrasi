@@ -2,13 +2,17 @@
 <br/>
 <div class="col-md-12">
     <div class="card card-outline-success">
-        <div class="card-header">
-            <h4 class="m-b-0 text-white"><i class="fas fa-list-alt"></i> <?php echo $title; ?>
-            </h4>
-        </div>
+         <div class="card-header">
+              <button type="button" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
+                      <i class="fas fa-file-signature"></i> Add Data</button>
+              <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                   
+                  </div>
+            </div>
         <div class="card-body">
-            <table id="dataintablebutton" class="table table-bordered color-table muted-table" width="100%">
-                <button type="button" id="btncreate" class="btn btn-info btn-circle" onclick="adddata()"><i class="fa fa-plus"></i> </button>
+            <table id="dataintablebutton" class="table table-striped" width="100%">
                 <thead>
                     <tr>
                         <th class="text-center" width="10px">Action</th>
@@ -37,7 +41,7 @@
                 var btn = "";
                 var idtr = row["<?php echo $prefix_id; ?>"];
                 btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
-                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='fas fa-trash'></i></a>";
+                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='far fa-trash-alt'></i></a>";
 
                 return btn;
             }
@@ -55,7 +59,6 @@
                 "url": url_grid,
                 "type": 'POST',
             },
-            dom: 'Blfrtip',
             'order': [[0, 'desc']],
             scrollY: 380,
             scrollX: true,
@@ -66,18 +69,6 @@
             lengthMenu: [
                 [10, 25, 50, 100, 200, 500, 1000],
                 [10, 25, 50, 100, 200, 500, 1000]
-            ],
-            buttons: [
-                {
-                    extend: "copy",
-                    key: '2',
-                    className: "btn-sm glyphicon glyphicon-copy"
-                },
-                {
-                    extend: "csv",
-                    key: '3',
-                    className: "btn-sm glyphicon glyphicon-file "
-                },
             ],
             "columns": datacolumn,
             "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {

@@ -67,6 +67,8 @@ class Login extends MY_Controller {
                     'ses_username' => $username,
                     'ses_id_user' => $rowlogin->id_user,
                     'ses_fullname' => $rowlogin->fullname,
+                    'ses_department_name' => $rowlogin->department_name,
+                    'ses_namaKaryawan' => $rowlogin->namaKaryawan,
                     'ses_email' => $rowlogin->email,
                     'ses_id_role' => $rowlogin->id_role,
                     'ses_base_url' => site_url()

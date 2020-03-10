@@ -1,6 +1,5 @@
 <?php
 
-//create by : ahmad riadi, ahmadriadi.ti@gmail.com, dilarang mengcopy tanpa ijin
 class MY_Model extends CI_Model {
     public $table;
     public $table_detail;

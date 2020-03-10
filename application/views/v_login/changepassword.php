@@ -1,12 +1,37 @@
-
-<div class="card card-outline-success">
-    <div class="card-header">
-        <h3 class="box-title m-b-0"><font color="white"><i class="fab fa-wpforms"></i> <?php echo $title; ?></font>
-            <div style="float:right"><button class="btn btn-secondary btn-sm" onclick="refreshtemplate()"><i class="mdi mdi-refresh">&nbsp;Refresh</i></button></div>
-        </h3>
-
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"><?php echo $title; ?></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><?php echo $title; ?></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
-    <div class="card card-body">
+
+ <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">    
+            <div class="card-header">
+                <?php echo $title; ?>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" onclick="refreshtemplate()" data-toggle="tooltip" title="Reload">
+                      <i class="fas fa-redo-alt"></i></button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
         <form id="formdata" class="form-horizontal" data-parsley-validate="" novalidate="">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
@@ -19,6 +44,7 @@
 
             <div class="main-content container-fluid">
             </div>
+
             <div class="form-group row">
                 <label for="username" class="col-sm-2 text-right control-label col-form-label">Username</label><span style="color:red">*</span>
                 <div class="col-sm-7">
@@ -40,20 +66,31 @@
             <div class="form-group row">
                 <label for="newpassword" class="col-sm-2 text-right control-label col-form-label">New Password</label><span style="color:red">*</span>
                 <div class="col-sm-7">
-                    <input name="newpassword" id="newpassword" type="text" required="" parsley-type="text" placeholder="Fill new password" class="form-control"
+                    <input name="newpassword" id="newpassword" type="text" minlength="6" maxlength="8" required="" parsley-type="text" placeholder="Fill new password" class="form-control"
                            value="<?php echo (isset($default['newpassword'])) ? $default['newpassword'] : ''; ?>"
                            <?php echo (isset($default['readonly_newpassword'])) ? $default['readonly_newpassword'] : ''; ?>
                            >
                 </div>                        
             </div> 
 
-            <div class="text-center">
-                <button type="submit" id="btnsubmitform"  class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="reset" id="btncancelform"  class="btn btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
+            <div style="padding-left:185px;">
+                <button type="submit" id="btnsubmitform" class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
             </div>
     </div>
 </form>
-</div>
+ </div>
+                <!-- /.table-responsive -->
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+
+          </div>
+        </div>
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
 <script type="text/javascript">
     $(document).ready(function () {
         var form, formdata, url_index, url_post, id, actiondata;

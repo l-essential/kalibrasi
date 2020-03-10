@@ -6,17 +6,38 @@ class Useraccess extends MY_Controller {
         parent::__construct();
         $this->setmodel($this->pathclass."/Useraccess_model#modeldata");
         $this->setmodel($this->pathclass."/Role_model#role");
+        $this->load->model('e/Department_model', 'dpt');
+        $this->load->model('e01/Karyawan_model', 'kyw');
+    }
+
+    public function index() {
+        $this->data['url_preview'] = site_url($this->controller . '/Preview');
+        parent::index();
+        
     }
     
     public function add() {
         $this->buildcombobox('id_role', 'roleapps', $this->role->getAll());
+        $this->buildcombobox('department_name', 'department_name', $this->dpt->getAll());
+        $this->buildcombobox('namaKaryawan', 'namaKaryawan', $this->kyw->getAll());
+        $this->data['default']['status_login'] = "0";
         parent:: add();
     }
 
     public function edit($id) {
         $row = $this->modeldata->getby_id($id);
         $this->buildcombobox('id_role', 'roleapps', $this->role->getAll(), 'edit', $row->id_role);
+        $this->buildcombobox('department_name', 'department_name', $this->dpt->getAll(), 'edit', $row->department_name);
+        $this->buildcombobox('namaKaryawan', 'namaKaryawan', $this->kyw->getAll(), 'edit', $row->namaKaryawan);
         parent::edit($id);
+    }
+
+     public function Preview($id) {
+        $rowpreview =  $this->modeldata->getby_id($id);
+        $this->data['preview'] = $rowpreview;
+        $this->data['url_index'] = site_url($this->controller);
+        $this->load->view($this->view . '/home_preview', $this->data);
+        
     }
 
     public function Userinfo() {
@@ -76,9 +97,13 @@ class Useraccess extends MY_Controller {
         $this->dj(array("valid" => $valid, "msg" => $message));
     }
 
-    public function postdata() {
+     public function postdata() {
         $param = $this->input->post();
         if ($param['actiondata'] !== 'delete') {
+             if (!isset($post['status_login'])) {
+                $post['status_login'] = "0";
+            }
+
             if (!empty($param['password']) && $param['password'] !== '-') {
                 $param['password'] = md5($param['password']);
                 $this->postdatabyparam($param);
@@ -90,7 +115,6 @@ class Useraccess extends MY_Controller {
             parent::postdata();
         }
     }
-    
     
 
 }

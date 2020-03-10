@@ -4,14 +4,14 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Sendmail {
-    private $email_host = 'smtp.gmail.com';
+    private $email_host = 'mail.msaldy.com';
     private $protocol = 'smtp';
     private $host_port = '465';
     private $crypto_type = 'ssl';
-    private $email_user = 'info.sh1apps@gmail.com';
-    private $password_user = 'Qwe!2345';
-    private $email_subtitle = 'WEB APPLICATION SH1';
-    private $email_reply = 'info.sh1apps@gmail.com';
+    private $email_user = 'info@msaldy.com';
+    private $password_user = '*moehamad';
+    private $email_subtitle = 'Info';
+    private $email_reply = 'info@msaldy.com';
 
     public function postmail($sendto = '', $subject = '', $message = '', $cc = "", $bcc = '') {
         error_reporting(0);

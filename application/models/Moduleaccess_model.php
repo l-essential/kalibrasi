@@ -18,7 +18,7 @@ class Moduleaccess_model extends MY_Model {
 
     function __construct() {
         parent::__construct();
-        $this->db = $this->load->database('ams', true);
+        $this->db = $this->load->database('am', true);
         $this->useraccess = 'useraccess';
         $this->maplikasi = 'maplikasi';
         $this->maplikasigroup = 'maplikasigroup';
@@ -144,7 +144,8 @@ class Moduleaccess_model extends MY_Model {
                 a.id_user,
                 b.id_maplikasi,
                 c.kode_aplikasi,
-                c.nama_aplikasi  
+                c.nama_aplikasi,
+                c.icon  
                FROM $this->maplikasigroupuser a
                INNER JOIN $this->maplikasigroup b on b.id_$this->maplikasigroup = a.id_$this->maplikasigroup     
                INNER JOIN $this->maplikasi c on c.id_$this->maplikasi = b.id_$this->maplikasi

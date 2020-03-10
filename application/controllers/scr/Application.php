@@ -171,7 +171,7 @@ class Application extends MY_Controller {
 
     public function build_menu($rows, $parent = 0) {
         error_reporting(0);
-        $result = "<ul>";
+        $result = "<ul style='padding-left: 25px;'>";
         $sub = 0;
         foreach ($rows as $row) {
             if ($row['id_parent'] == $parent) {
@@ -368,7 +368,7 @@ class Application extends MY_Controller {
         $this->data['title'] = "Create - Form Group User";
         $this->data['id'] = 0;
         $this->modeldata = $this->gu;
-        $this->buildcombobox('id_user', "fullname", $this->user->getAll());
+        $this->buildcombobox('id_user', "namaKaryawan", $this->user->getAll());
         $this->data['prefix_id'] = $this->id_maplikasigroupuser;
         $this->data['id_maplikasigroup'] = $id_maplikasigroup;
         $this->data['url_post'] = site_url($this->controller . '/postdatagroupuser');
@@ -380,7 +380,7 @@ class Application extends MY_Controller {
         $this->iddata = $id;
         $this->modeldata = $this->gu;
         $rowarray = $this->modeldata->getby_id_array($this->iddata);
-        $this->buildcombobox('id_user', "fullname", $this->user->getAll(), 'edit', $rowarray['id_user']);
+        $this->buildcombobox('id_user', "namaKaryawan", $this->user->getAll(), 'edit', $rowarray['id_user']);
         $id_maplikasigroup = $rowarray['id_maplikasigroup'];
         $this->data['title'] = "Update - Form Group User";
         $this->data['id'] = $this->iddata;
@@ -833,7 +833,6 @@ class Application extends MY_Controller {
         $this->modeldata = $this->mnu;
         $rowarray = $this->modeldata->getby_id_array($this->iddata);
         $id_maplikasi = $rowarray['id_maplikasi'];
-        //$this->buildcombobox('id_mmenu~id_parent', "nama_menu", $this->modeldata->getAllmenu($id_maplikasi), 'edit', $rowarray['id_parent']);
         $this->data['title'] = "Update - Form Menu Aplikasi";
         $this->data['id'] = $this->iddata;
         $this->data['prefix_id'] = $this->id_mmenu;

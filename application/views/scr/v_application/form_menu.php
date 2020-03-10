@@ -11,8 +11,8 @@
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
-            <input type="hidden" name="checkdata1" id="checkdata1" value="id_parent" />
-            <input type="hidden" name="checkdata2" id="checkdata2" value="nama_menu" />
+            <input type="hidden" name="checkdata1" id="checkdata1" value="nama_menu" />
+            <input type="hidden" name="checkdata2" id="checkdata2" value="" />
             <input type="hidden" name="checkdata3" id="checkdata3" value="" />
             <input type="hidden" name="checkdata4" id="checkdata4" value="" />
             <input type="hidden" name="dengangambar" id="dengangambar" value="N" />

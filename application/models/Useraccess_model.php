@@ -5,7 +5,7 @@ class Useraccess_model extends MY_Model {
     public $am_db;
     public function __construct() {
         parent::__construct();
-        $this->db = $this->load->database('ams', true);
+        $this->db = $this->load->database('am', true);
         $this->am_db = $this->db->database;
         $this->prefix_id='id_user';
     }

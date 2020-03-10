@@ -8,16 +8,22 @@ class Dashboard extends MY_Controller {
         parent::__construct();
         date_default_timezone_set("Asia/Jakarta");
         $this->curdatetime = date('Y-m-d H:i:s');
+        $this->load->model("Total_model", "dsh");
         $this->load->model("Moduleaccess_model", "ma");
         $this->load->model("mst/Notification_model", "notification");
     }
 
     public function index() {
+        $this->load->library('user_agent');
+        $this->data['os'] = $this->agent->platform();
+        $this->data['ip'] = $this->input->ip_address();
+        
+        $this->data['total_user'] = $this->dsh->total_user();
         $this->data['url_notification'] = site_url($this->controller . '/getnotification');
         $this->data['buildaccess'] = $this->buildaccess($this->session->userdata('ses_id_user'));
         parent::index();
     }
-
+    
     public function getnotification() {
         $valid = false;
         $message = "Data belum tersedia";
@@ -52,36 +58,56 @@ class Dashboard extends MY_Controller {
             
          
            
-            if ($resultmoduleaccess) {
-                if (count($resultmoduleaccess) == 1) {
-                    $return .= "<li>";
-                    $return .= "<a class='has-arrow' href='javascript:void(0)' aria-expanded='false'><span class='hide-menu'>"
-                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                            . "</span></a>";
-                    $return .= "</li>";
-                }
-            }
+            // if ($resultmoduleaccess) {
+            //     if (count($resultmoduleaccess) == 1) {
+            //         $return .= "<li>";
+            //         $return .= "<a class='has-arrow' href='javascript:void(0)' aria-expanded='false'><span class='hide-menu'>"
+            //                 . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            //                 . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            //                 . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+            //                 . "</span></a>";
+            //         $return .= "</li>";
+            //     }
+            // }
             
-           if ($roleapps == '1') {
-                $return .= "<li>";
-                $return .= "<a class='has-arrow' href='javascript:void(0)' aria-expanded='false'><i class='mdi mdi-book-open-variant'></i><span class='hide-menu'>Access Management</span></a>";
-                $return .= "<ul aria-expanded='false' class='collapse'>";
-                $return .= "<li><a href='javascript:void(0)' data-appsid='0' data-name='Useraccess' data-id='0' data-url='scr/Useraccess' onClick='ToUrl(this)' aria-expanded='false'>&nbsp;User</a></li>";
-                $return .= "<li><a href='javascript:void(0)' data-appsid='0' data-name='Application' data-id='0' data-url='scr/Application' onClick='ToUrl(this)' aria-expanded='false'>&nbsp;Application</a></li>";
-                $return .= "</ul>";
-                $return .= "</li>";
-            }
-
+            // if ($roleapps == '1') {
+            //     $return .= "<li class='nav-item has-treeview'>";
+            //     $return .= "<a href='#' class='nav-link'>";
+            //     $return .= "<i class='nav-icon fas fa-user-secret'></i>";
+            //     $return .= "<p>";
+            //     $return .= "Access Management";
+            //     $return .= "<i class='right fas fa-angle-left'></i>";
+            //     $return .= "</p>";
+            //     $return .= "</a>";
+            //     $return .= "<ul class='nav nav-treeview'>";
+            //     $return .= "<li class='nav-item'>";
+            //     $return .= "<a href='javascript:;' class='nav-link' data-url='scr/Useraccess' onClick='ToUrl(this)'>";
+            //     $return .= "<i class='far fa-circle nav-icon'></i>";
+            //     $return .= "<p>user's</p>";
+            //     $return .= "</a>";
+            //     $return .= "</li>";
+            //     $return .= "<li class='nav-item'>";
+            //     $return .= "<a href='javascript:;' class='nav-link' data-url='scr/Application' onClick='ToUrl(this)'>";
+            //     $return .= "<i class='far fa-circle nav-icon'></i>";
+            //     $return .= "<p>Role</p>";
+            //     $return .= "</a>";
+            //     $return .= "</li>";
+            //     $return .= "</ul>";
+            //     $return .= "</li>";
+                
+            // }
 
 
             foreach ($resultmoduleaccess as $rowmodule) {
                 $nama_aplikasi = $rowmodule['nama_aplikasi'];
                 $id_maplikasi = $rowmodule['id_maplikasi'];
-                $return .= "<li>";
-                $return .= "<a class='has-arrow' href='javascript:void(0)' aria-expanded='false'><i class='mdi mdi-book-open-variant'></i><span class='hide-menu'>$nama_aplikasi</span></a>";
-                $return .= "<ul aria-expanded='false' class='collapse'>";
+                $icon = $rowmodule['icon'];
+
+                $return .= "<li class='nav-item has-treeview'>";
+                $return .= "<a href='#' class='nav-link'><i class='nav-icon  $icon'></i><p>$nama_aplikasi";
+                $return .= "<i class='right fas fa-angle-left'></i>";
+                $return .= "</p></a>";
+                $return .= "<ul class='nav nav-treeview'>";
                 $return .= $this->createmenuaccess($id_maplikasi, $id_user);
                 $return .= "</ul>";
                 $return .= "</li>";
@@ -127,14 +153,23 @@ class Dashboard extends MY_Controller {
             if ($id_parent == $parent) {
                 $sub++;
                 if ($this->has_children($rows, $id_mmenu)) {
-                    $result .= "<li class=''>";
-                    $result .= "<a class='has-arrow' data-appsid='$id_maplikasi' data-name='$nama_menu' data-id='$id_mmenu' data-url='$url_menu' onClick='ToUrl(this)'  href='javascript:void(0)' aria-expanded='false'><i class='mdi mdi-archive'></i>&nbsp;$nama_menu</a>";
-                    $result .= "<ul aria-expanded='false' class='collapse' style='height: 0px;'>";
-                    $result .= $this->build_menu($rows, $id_mmenu);
-                    $result .= "</ul>";
-                    $result .= "</li>";
+                  
+                $result .= "<li class='nav-item has-treeview'>";
+                $result .= "<a href='#' class='nav-link'><i class='nav-icon  $icon'></i><p>$nama_menu";
+                $result .= "<i class='right fas fa-angle-left'></i>";
+                $result .= "</p></a>";
+                $result .= "<ul class='nav nav-treeview'>";
+                $result .=  $this->build_menu($rows, $id_mmenu);
+                $result .= "</ul>";
+                $result .= "</li>";
+
                 } else {
-                    $result .= "<li><a href='javascript:void(0)' data-appsid='$id_maplikasi' data-name='$nama_menu' data-id='$id_mmenu' data-url='$url_menu' onClick='ToUrl(this)' aria-expanded='false'><i class='$icon'></i>&nbsp;$nama_menu</a></li>";
+                    $result .= "<li  class='nav-item'>";
+                    $result .= "<a href='javascript:void(0)' class='nav-link' data-appsid='$id_maplikasi' data-name='$nama_menu' data-id='$id_mmenu' data-url='$url_menu' onClick='ToUrl(this)' aria-expanded='false'>";
+                    $result .= "<i class='far fa-circle nav-icon'></i>";
+                    $result .= "<p>$nama_menu</p>";
+                    $result .= "</a>";
+                    $result .= "</li>";
                 }
             }
         }

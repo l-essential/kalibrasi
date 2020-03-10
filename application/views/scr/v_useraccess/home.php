@@ -1,66 +1,148 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"><i class="fas fa-users"></i> <?php echo $title; ?></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><?php echo $title; ?></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
 
-<div class="col-md-12">
-    <div class="card card-outline-success">
-        <div class="card-header">
-            <h4 class="m-b-0 text-white"><i class="fas fa-list-alt"></i> <?php echo $title; ?>
-             <div style="float:right"><button class="btn btn-secondary btn-sm" onclick="refreshtemplate()"><i class="mdi mdi-refresh">&nbsp;Refresh</i></button></div>
-            </h4>
-        </div>
-        <div class="card-body">
+ <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <button type="button" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
+                      <i class="fas fa-file-signature"></i> Add Data</button>
+              <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" onclick="refreshtemplate()" data-toggle="tooltip" title="Reload">
+                      <i class="fas fa-redo-alt"></i></button>
+                  </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
             <div class="table-responsive">
-                <button type="button" id="btncreate" class="btn btn-info btn-circle" onclick="adddata()"><i class="fa fa-plus"></i> </button>
-                <table id="dataintable" class="table table-bordered color-table muted-table" width="100%">
+               <table id="dataintable" class="table  table-striped" width="100%">
                     <thead>
                         <tr>
-                            <th class="text-center" width="10px">Action</th>
+                            <th class="text-center" width="70px">Action_Data</th>
                             <th class="text-center">Ref ID</th>
-                            <th class="text-center">Role</th>
+                            <th class="text-center">Status User</th>
+                            <th class="text-center">Nama Karyawan</th>
+                            <th class="text-center">Department</th>
                             <th class="text-center">Username</th>
-                            <th class="text-center">Fullname</th>
+                            <th class="text-center">Role</th>
                             <th class="text-center">Email</th>
-                            <th class="text-center">No Handphone</th>
+                            <th class="text-center">Notifikasi</th>
                         </tr>
                     </thead>                 
                 </table>
             </div>
         </div>
-        <div class="card-footer">
-
         </div>
     </div>
 </div>
+</section>
+</div>
+
 <script type="text/javascript">
     url_grid = '<?php echo $url_grid; ?>';
     url_add = '<?php echo $url_add; ?>';
     url_edit = '<?php echo $url_edit; ?>';
     url_delete = '<?php echo $url_delete; ?>';
+    url_preview = '<?php echo $url_preview; ?>';
     prefix_id = '<?php echo $prefix_id; ?>';
-  
+    listbutton = '<?php echo $this->session->userdata('listbutton'); ?>';
+   
 
-    datacolumn = [
-        {
-            "data": "id", "width": "10px", "sClass": "text-center",
-            "bSortable": false,
-            "mRender": function (data, type, row) {
-                var btn = "";
-                var idtr = row["<?php echo $prefix_id; ?>"];
-                    btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
-                    btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='fas fa-trash'></i></a>";
-               
-                return btn;
-            }
-        },
-        {"data": "id_user",},
-        {"data": "roleapps",},
-        {"data": "username",},
-        {"data": "fullname",},
-        {"data": "email",},
-        {"data": "no_handphone",},
-    ];
-    setdatagrid();
+    accesscreate = checkaccess("add");
+    accessedit = checkaccess("edit");
+    accessdelete = checkaccess("delete");
 
+    if (accesscreate == true) {
+        $("#btncreate").show();
+    } else {
+        $("#btncreate").hide();
+    }
+$(document).ready(function () {
+        //initialize the javascript                
+        $("#dataintable").dataTable({
+            'order': [[1, 'desc']],
+            keys: true,
+           
+            lengthMenu: [
+                [10, 25, 50, 100,200,1000],
+                [10, 25, 50, 100,200,1000]
+            ],
+            responsive: true,
+            "ajax": {
+                "url": url_grid,
+                "type": 'POST',
+            },
+            "columns": [
+               {
+                    "data": "id", "width": "10%", "sClass": "text-center",
+                    "bSortable": false,
+                    "mRender": function (data, type, row) {
+                        var btn = "";
+                        var idtr = row["<?php echo $prefix_id; ?>"];
+                        btn = btn + "<a href='javascript:void(0)' onClick='preview(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-print'></i></a> &nbsp;";
+                        if (accessedit == true) {
+                            btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
+                          }
+                          if (accessdelete == true) {
+                            btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='far fa-trash-alt'></i></a>";
+                          }
+                        return btn;
+                    }
+                },
+                {"data": "id_user",},
+                {"data": "status_login", "sClass": "text-center",
+                      "mRender": function (data, type, row) {
+                              var status = "";
+                              if (row.status_login == '1'){
+                                  status = "<i class='fas fa-user-check' style='color:#20c997'></i>";
+                              }else {
+                                  status = "<i class='fas fa-user-times' style='color:red'></i>";
+                              }
+                              return status;
+                          }
+                },
+                {"data": "namaKaryawan"},
+                {"data": "department_name"},
+                {"data": "username"},
+                {"data": "roleapps"},
+                {"data": "email"},
+                {"data": "notif_email", "sClass": "text-center",
+                      "mRender": function (data, type, row) {
+                              var status = "";
+                              if (row.notif_email == '1'){
+                                  status = "<i class='far fa-check-circle' style='color:#20c997'></i>";
+                              }else {
+                                  status = "<i class='far fa-times-circle' style='color:red'></i>";
+                              }
+                              return status;
+                          }
+                },
+            ]
 
+        });
 
+    });
+
+    
     function process_delete() {
         $.ajax({
             url: url_delete,
@@ -83,6 +165,10 @@
         return false;
     }
 
+
+     function preview(id) {
+        ToContent(url_preview + '/' + id);
+    }
 
 
 </script>

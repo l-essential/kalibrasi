@@ -1,45 +1,75 @@
+<?php 
+      $templates = base_url() . 'allassets/';
+      $customes = base_url() . 'public/';
+      $basedata = base_url() . 'public/';
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <title>L'Essential | <?php echo $title; ?></title>
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Ciputra Assets Management System">
-        <meta name="author" content="ahmad riadi">
-        <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>public/images/favicon.png">
-        <title><?php echo judul_apps; ?></title>
-        <!-- Bootstrap Core CSS -->
-        <link href="<?php echo base_url(); ?>public/plugins/jquery-ui/css/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>public/template/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>public/css/bootstrap-chosen.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/DataTables-1.10.18/css/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <!--This page css - Morris CSS -->
-        <link href="<?php echo base_url(); ?>public/template/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="<?php echo base_url(); ?>public/template/assets/css/style.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="<?php echo $templates ?>plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="<?php echo $templates ?>dist/datepicker/css/datepicker.css">
+  <!-- Theme style -->
+  <link href="<?php echo base_url(); ?>public/plugins/jquery-ui/css/base/jquery.ui.all.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo base_url(); ?>public/css/bootstrap-chosen.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo base_url(); ?>public/template/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>public/template/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-        <link href="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet" type="text/css"/>
-        <!-- Datatable -->
-        <link href="<?php echo base_url(); ?>public/template/assets/plugins/datatables/media/css/dataTables.bootstrap4.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/select.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/dataTables.checkboxes.css" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url(); ?>public/template/assets/plugins/html5-editor/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css"/>
-        <!-- You can change the theme colors from here -->
-        <link href="<?php echo base_url(); ?>public/template/assets/css/colors/megna.css" id="theme" rel="stylesheet">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <link href="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet" type="text/css"/>
+   
+   <!-- custome -->
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link href="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet">
+  <link href="<?php echo $customes ?>jquery.gritter/css/jquery.gritter.css" rel="stylesheet">
+  <link href="<?php echo $customes ?>vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+  <link href="<?php echo $customes ?>vendor/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.css" rel="stylesheet" type="text/css"/>
+  <link href="<?php echo $customes ?>vendor/bootstrap-select-1.13.2/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="<?php echo $templates ?>dist/css/adminlte.min.css">
+   <style type="text/css">
+   @font-face {
+         font-family: "Font Digital";
+         src: url('<?php echo $templates ?>digital-7/digital-7 (italic).ttf');
+         }
+ 
+   .digital {
+         font-family: "Font Digital";
+         }
+   .pl35 {
+        padding-left: 35px;
+      }
+    .btn-like {
+        color: #fff;
+        background-color: #20c997;
+        border-color: #20c997;
+        box-shadow: none;
+      }
+    .card-like.card-outline {
+        border-top: 3px solid #20c997;
+     }
+    .bg-like {
+        background-color: #20c997!important;
+        color: #ffffff;
+     }
 
-
-        <style>
-            marquee {
+      a {
+            color: #6e777f;
+            text-decoration: none;
+            background-color: transparent;
+        }
+           marquee {
                 width: 100%;
                 background-color: #eef5f9;
             }
@@ -47,8 +77,8 @@
                 color: #a94442;
                 background-color: #f2dede;
                 border-color: #ebccd1;
-                padding: 15px;
-                margin-bottom: 20px;
+                padding: 3px;
+                margin-bottom: 0px;
                 border: 1px solid transparent;
                 border-radius: 4px;
             }
@@ -58,139 +88,21 @@
             .ui-menu-item a.ui-state-focus {
                 background: #ffff99;
             }
-
-            table tr:hover {
-                background-color: #ffff99;
-            }
-            table.dataTable td {
-                padding-top: 8px;
-            }
-
-            .selectedtr{
-                background-color: #ffff99;
-            }
-            .panel-success>.panel-heading {          
-                width: 100%;
-                font-size: 12px;
-                background: #18aa8d;
-                color: white;
-                line-height: 150%;
-                border-radius: 3px 3px 0 0;
-                box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
-            }
-
-            .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-                z-index: 3;
-                color: #fff;
-                cursor: default;
-                background-color: #18aa8d;
-                border-color: #18aa8d;
-            }
-
-            .card-outline-success .card-header {
-                background: #00897b;
-                border-color: #25c1d5;
-            }
-            .btn-success.disabled:hover, .btn-success:hover {
-                background: #158a64;
-                -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-                box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-                border: 1px solid #00897b;
-            }
-            .btn-success, .btn-success.disabled {
-                background: #5fad85;
-                border: 1px solid #b8dbc3;
-                -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
-                box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
-                -webkit-transition: 0.2s ease-in;
-                -o-transition: 0.2s ease-in;
-                transition: 0.2s ease-in;
-            }
             .color-table.muted-table thead th {
                 background-color: #bbc2c5;
                 color: #ffffff;
             }
-            .dt-buttons .dt-button {
-                padding: 5px 15px;
-                border-radius: 4px;
-                background: #0e9183;
-                color: #ffffff;
-                margin-right: 3px;
-            }
-            .btn-info.disabled:hover, .btn-info:hover {
-                background: #00897b;
-                border: 1px solid #1e88e5;
-                -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
-                box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
-            }
-            .btn-info, .btn-info.disabled {
-                background: #00897b;
-                border: 1px solid #f6fafd;
-                -webkit-box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
-                box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
-                -webkit-transition: 0.2s ease-in;
-                -o-transition: 0.2s ease-in;
-                transition: 0.2s ease-in;
-            }
             .page-item.active .page-link {
                 z-index: 1;
                 color: #fff;
-                background-color: #00897b;
-                border-color: #00897b;
+                background-color: #20c997;
+                border-color: #20c997;
             }
             .topbar .top-navbar .navbar-nav>.nav-item>.nav-link {
                 padding-left: .75rem;
                 padding-right: .75rem;
                 font-size: 9px;
                 line-height: 50px;
-            }
-            .sidebar-nav ul li a {
-                /* color: #607d8b; */
-                padding: 8px 13px;
-                display: block;
-                font-size: 12px;
-                white-space: nowrap;
-            }
-            body{
-                font-size: 12px;
-                color: #161617;
-            }
-            .page-titles .breadcrumb {
-                padding: 0px;
-                background: transparent;
-                font-size: 12px;
-            }
-            h4 {
-                line-height: 22px;
-                font-size: 12px;
-            }
-            h3 {
-                line-height: 30px;
-                font-size: 12px;
-            }
-            .form-control {
-                display: block;
-                width: 100%;
-                height: calc(1.5em + .75rem + 2px);
-                padding: .375rem .75rem;
-                font-size: 0.7rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: .25rem;
-                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            }
-            .btn {
-                padding: 7px 12px;
-                font-size: 12px;
-                cursor: pointer;
-            }
-            .color-table.muted-table thead th {
-                background-color: #00897b;
-                color: #ffffff;
             }
             input:hover {
                 background-color: #ffff99;
@@ -203,75 +115,163 @@
             }
             .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
                 color: #fff;
-                background-color: #00897b;
+                background-color: #33c595;
             }
-        </style>
+            .nav-pills .nav-link:not(.active):hover {
+                color: #20c997;
+            }
 
-        <!-- All Jquery -->
-        <!-- ============================================================== -->
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/jquery/jquery.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/jquery-migrate-3.0.1.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+            .card-green-me:not(.card-outline) .card-header {
+                background-color: #20c997;
+            }
+            .text-dark {
+                color: #757575!important;
+            }
+            .potong {
+                white-space: nowrap;
+                max-width: 149px;
+                background: white;
+                overflow: hidden;
+                text-overflow: ellipsis ;
+            }
+            .border-transparent {
+                border-color: #dee2e6!important;
+            }
+</style>
+ <style type="text/css">
+   @font-face {
+         font-family: "Font ELEPHNTI";
+         src: url('<?php echo $templates ?>digital-7/ELEPHNTI.TTF');
+         }
+ 
+   .logo {
+         font-family: "Font ELEPHNTI";
+         }
+</style>
 
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/popper/popper.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="<?php echo base_url(); ?>public/template/assets/js/jquery.slimscroll.js"></script>
-        <!--Wave Effects -->
-        <script src="<?php echo base_url(); ?>public/template/assets/js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="<?php echo base_url(); ?>public/template/assets/js/sidebarmenu.js"></script>
+</head>
+<script type="text/javascript">
+              var ROOT = {
+                  'site_url': '<?php echo site_url(); ?>',
+                  'base_url': '',
+                  'controller': null,
 
-        <!--stickey kit -->
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!--Custom JavaScript -->
-        <script src="<?php echo base_url(); ?>public/template/assets/js/custom.min.js"></script>        
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/js/jquery.toast.js" type="text/javascript"></script>
-        <!--Datatable-->
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/datatables/datatables.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/DataTables-1.10.18/js/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/AutoFill-2.3.3/js/dataTables.autoFill.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/Buttons-1.5.6/js/dataTables.buttons.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/Buttons-1.5.6/js/buttons.html5.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/fnReloadAjax.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/fnStandingRedraw.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/dataTables.select.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/plugins/datatable-1.10.18/dataTables.checkboxes.min.js" type="text/javascript"></script>
-        <!-- ============================================================== -->
-        <!-- This page plugins -->
-        <!-- ============================================================== -->
-        <script src="<?php echo base_url(); ?>public/template/assets/js/dashboard1.js"></script>
-        <!-- ============================================================== -->
-        <!-- Style switcher -->
-        <!-- ============================================================== -->
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-        <script src="<?php echo base_url(); ?>public/js/bootstrap-session-timeout.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/jquery.session.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/parsley.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/chosen.jquery.js" type="text/javascript"></script>
+              };
+       </script>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <?php $this->load->view('pages/top_menu'); ?>
+  </nav>
+  <!-- /.navbar -->
 
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/html5-editor/wysihtml5-0.3.0.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/template/assets/plugins/html5-editor/bootstrap-wysihtml5.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/jquery.hotkeys.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>public/js/jquery.mask.min.js" type="text/javascript"></script>
-
-
-
-
-        <script type="text/javascript">
-            var ROOT = {
-                'site_url': '<?php echo site_url(); ?>',
-                'base_url': '<?php echo base_url(); ?>',
-                'controller': null,
-
-            };
-        </script>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar elevation-4 sidebar-light-teal">
+    <?php $this->load->view('v_dashboard/sidebar_admin'); ?>
+    
+    <!-- /.sidebar -->
+  </aside>
 
 
-        <script type="text/javascript">
+
+<div id="contentdata">
+  <?php $this->load->view('pages/content'); ?>
+</div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.0.1
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="<?php echo $templates ?>plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo $templates ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo $templates ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?php echo $templates ?>dist/js/adminlte.js"></script>
+<script src="<?php echo $templates ?>dist/js/demo.js"></script>
+
+<script src="<?php echo $templates ?>plugins/jquery/jquery-migrate-3.1.0.js"></script>
+
+<script src="<?php echo $templates ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<script src="<?php echo $customes ?>jquery.gritter/js/jquery.gritter.js"></script>
+<script src="<?php echo $customes ?>jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script src="<?php echo $customes ?>js/jquery-populate.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>js/jquery.session.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>js/bootstrap-session-timeout.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>js/bootstrap3-typeahead.js"></script>
+<script src="<?php echo $customes ?>js/jquery.hotkeys.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>js/jquery.mask.min.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>js/parsley.min.js"></script>
+<script src="<?php echo base_url(); ?>public/js/chosen.jquery.js" type="text/javascript"></script>
+
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+
+<script src="<?php echo $templates ?>plugins/chart.js/Chart.min.js"></script>
+<script src="<?php echo $templates ?>plugins/sparklines/sparkline.js"></script>
+<script src="<?php echo $templates ?>plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?php echo $templates ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?php echo $templates ?>plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="<?php echo $templates ?>plugins/moment/moment.min.js"></script>
+
+<script src="<?php echo $customes ?>vendor/bootstrap-tagsinput-latest/src/bootstrap-tagsinput.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>vendor/noty-2.2.8/packaged/jquery.noty.packaged.min.js" type="text/javascript"></script>
+<script src="<?php echo $customes ?>vendor/bootstrap-select-1.13.2/dist/js/bootstrap-select.js" type="text/javascript"></script>
+<script src="<?php echo $templates ?>plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?php echo base_url(); ?>public/template/assets/plugins/toast-master/js/jquery.toast.js" type="text/javascript"></script>
+
+<!-- Datateble JavaScript -->
+<script src="<?php echo $customes ?>DataTables-1.10.11/media/js/jquery.dataTables.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/media/js/dataTables.bootstrap.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/media/api/fnReloadAjax.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/media/api/fnStandingRedraw.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/js/dataTables.buttons.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/js/buttons.flash.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/js/buttons.html5.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/js/buttons.print.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/Buttons/js/buttons.colVis.js"></script>
+<script src="<?php echo $customes ?>DataTables-1.10.11/extensions/ColReorderWithResize.js" type="text/javascript"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo base_url(); ?>public/template/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+<script src="<?php echo $customes ?>vendor/bootstrap-select-1.13.2/dist/js/bootstrap-select.js" type="text/javascript"></script>
+
+
+
+
+<!-- Bootstrap -->
+<!-- <script src="<?php echo $templates ?>dist/js/datetime.js"></script> -->
+
+<!-- overlayScrollbars -->
+<!-- <script src="<?php echo $templates ?>plugins/datatables/jquery.dataTables.js"></script> -->
+<script src="<?php echo $templates ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<!-- AdminLTE App -->
+<script src="<?php echo $templates ?>dist/js/pages/dashboard2.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+ <script type="text/javascript">
             var dlg_optserror = {show: false, keyboard: true, backdrop: 'static'};  // <-- HERE
             var dlg_opts = {show: false, keyboard: false, backdrop: 'static'};  // <-- HERE
 
@@ -316,20 +316,7 @@
                 submitform();
             });
 
-
-            function infoshorcuthome() {
-                $("#infomarquee").html("Keyboard shortcuts : F2 = Create New, F5 = Refresh, Click the list and then double click = Edit Data, Click the list and then shift+d = Delete Data");
-            }
-
-
-
-            function infoshorcutform() {
-                $("#infomarquee").html("Keyboard shortcuts : Shift + s = Save form data, F4 = Close form data");
-            }
-
-
-
-
+           
 
             function checkaccess(check) {
                 var patt = new RegExp(check);
@@ -342,12 +329,6 @@
             if ($.session.get("directurl") !== undefined) {
                 loadcontent($.session.get("directurl"), $.session.get("data-id"));
             }
-
-            //initialize the javascript         
-            //$.fn.dataTable.ext.errMode = 'none';
-            //$('#dataintable').on('error.dt', function (e, settings, techNote, message) {
-            //     console.log('An error has been reported by DataTables: ', message);
-            // });
 
             function ToUrl(me) {
                 id_mmenu = $(me).attr('data-id');
@@ -362,7 +343,7 @@
                     $.session.set("data-id", id_mmenu);
 					$.session.set("directurl", url);
                     loadcontent(url, id_mmenu);
-					window.location.reload();
+					// window.location.reload();
                     return false;
                 }
                 return false;
@@ -377,7 +358,7 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function () {
-                        $('#contentdata').html("<div class='text-center' align='center'><img  src='<?php echo base_url(); ?>public/images/loading5.gif' alt=''/><br/>Please wait ...</div>");
+                        $('#contentdata').html("<div class='text-center' align='center' style='padding-top:211px; padding-left:199px;'><img  src='<?php echo base_url(); ?>public/images/loading5.gif' alt=''/><br/>Please wait ...</div>");
                     },
                     xhr: function () {
                         var xhr = new XMLHttpRequest();
@@ -415,7 +396,7 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function () {
-                        $(contentdata).html("<div class='text-center' align='center'><img  src='<?php echo base_url(); ?>public/images/loading5.gif' alt=''/><br/>Please wait ...</div>");
+                        $(contentdata).html("<div class='text-center' align='center' style='padding-top: 155px;'><img  src='<?php echo base_url(); ?>public/images/loading5.gif' alt=''/><br/>Please wait ...</div>");
                     },
                     xhr: function () {
                         var xhr = new XMLHttpRequest();
@@ -516,7 +497,6 @@
 
 
             function postaction(url, param) {
-                //create by ahmad riadi
                 var theResponse = {valid: false, message: ''};
 
                 $.ajax({
@@ -577,7 +557,7 @@
 
             }
 
-            function LiveDate() {
+              function LiveDate() {
                 var D = new Date();
                 var day = D.getDay();
                 var tgl = D.getDate();
@@ -607,9 +587,9 @@
                 }
 
                 var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
-                var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                var montharray = new Array("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
 
-                var livedate = "&nbsp;" + dayarray[day] + ", " + montharray[bln] + " " + tgl + ", " + thn + "&nbsp;";
+                var livedate = "&nbsp;" + dayarray[day] + ", " +tgl + "-" +  montharray[bln] + "-" + thn + "&nbsp;";
                 var livetime = "&nbsp;" + jam + ":" + mnt + ":" + dtk + "&nbsp;";
                 $("#LiveDate").html(livedate);
                 $("#LiveTime").html(livetime);
@@ -618,25 +598,24 @@
 
             LiveDate();
 
-
             function _alert(msg, valid)
             {
                 if (valid == true) {
                     var coloralert = '#ff6849';
                     var iconalert = 'success';
                     var textalert = 'Success';
-                    var position = 'top-center';
+                    var position = 'top-right';
                 } else {
                     var coloralert = '#ff6849';
                     var iconalert = 'error';
                     var textalert = 'Error';
-                    var position = 'top-center';
+                    var position = 'top-right';
                 }
 
                 if (valid == 'warning') {
                     var iconalert = 'warning';
                     var textalert = 'Warning';
-                    var position = 'top-center';
+                    var position = 'top-right';
                 }
 
                 $.toast({
@@ -645,7 +624,7 @@
                     position: position,
                     loaderBg: coloralert,
                     icon: iconalert,
-                    hideAfter: 3000,
+                    hideAfter: 5000,
                     stack: 6
                 });
 
@@ -672,33 +651,23 @@
                             "url": url_grid,
                             "type": 'POST',
                         },
-                        dom: 'lfrtip',
-                        'order': [[0, 'desc']],
-                        scrollY: 380,
-                        scrollX: true,
-                        scrollCollapse: true,
-                        scroller: false,
-                        "bRetrieve": true,
-                        "bDestroy": true,
-                        lengthMenu: [
-                            [10, 25, 50, 100, 200, 500, 1000],
-                            [10, 25, 50, 100, 200, 500, 1000]
-                        ],
-                        /*
-                        buttons: [
-                            {
-                                extend: "copy",
-                                key: '2',
-                                className: "btn-sm glyphicon glyphicon-copy"
-                            },
-                            {
-                                extend: "csv",
-                                key: '3',
-                                className: "btn-sm glyphicon glyphicon-file "
-                            },
-
-                        ],
-                        */
+                      
+                         'order': [[1, 'asc']],
+                                keys: true,
+                                fixedHeader: true,
+                                deferRender: true,
+                                scrollY: true,
+                                scrollX: true,
+                                scrollCollapse: true,
+                                scroller: false,
+                                
+                                "bRetrieve": true,
+                                "bDestroy": true,
+                                lengthMenu: [
+                                    [5, 10, 25, 50, 100],
+                                    [5, 10, 25, 50, 100]
+                                ],
+                       
                         "columns": datacolumn,
                         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                             $(nRow).attr("id", aData[prefix_id]);
@@ -853,254 +822,6 @@
 
 
         </script>
-
-
-    </head>
-
-    <body class="fix-header fix-sidebar card-no-border logo-center">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
-            <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-        </div>
-        <!-- ============================================================== -->
-        <!-- Main wrapper - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <div id="main-wrapper">
-            <!-- ============================================================== -->
-            <!-- Topbar header - style you can find in pages.scss -->
-            <!-- ============================================================== -->
-            <header class="topbar">
-                <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="javascript:void(0)" onclick="toIndex()">
-                            <!-- Logo icon --><b>
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                                <!--<img src="<?php echo base_url(); ?>public/images/logo-icon.png" alt="homepage" class="dark-logo" /> -->
-                                <!-- Light Logo icon -->
-                                <!-- <img src="<?php echo base_url(); ?>public/images/logo-icon.png" alt="homepage" class="light-logo" /> -->                         
-                            </b>
-                            <!--End Logo icon -->
-                            <!-- Logo text --><span>
-                                <!-- dark Logo text -->
-                                <!--<img src="<?php echo base_url(); ?>public/images/logo.png" alt="homepage" class="dark-logo" /> -->
-                                <!-- Light Logo text -->    
-                                <!--<img src="<?php echo base_url(); ?>public/images/logo.png" class="light-logo" alt="homepage" />--> </span> </a>
-
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-collapse">
-                        <!-- ============================================================== -->
-                        <!-- toggle and nav items -->
-                        <!-- ============================================================== -->
-                        <ul class="navbar-nav mr-auto mt-md-0">
-                            <!-- This is  -->
-                            <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-
-                        </ul>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <ul class="navbar-nav my-lg-0">
-                            <!-- ============================================================== -->
-                            <!-- Comment -->
-                            <!-- ============================================================== -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-clock"><span id="LiveDate"></span><span id="LiveTime"></span></i></a>    
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
-                                    <div class="notify"> 
-                                        <!--buka jika ada pesan -->
-                                        <div id="alertnotification" style="display:none;"><span class="heartbit"></span> <span class="point" id="count">0</span></div>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
-                                    <ul>
-                                        <li>
-                                            <div class="drop-title">Notifications</div>
-                                        </li>
-                                        <li>
-                                            <div id="contentnofif"></div>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link text-center" href="javascript:void(0);" data-appsid="0" data-name="Notification" data-id="0" data-url="mst/Notification" onclick="ToUrl(this)"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>                         
-                            <!-- ============================================================== -->
-                            <!-- End Comment -->
-                            <!-- ============================================================== -->
-                            <!-- ============================================================== -->
-                            <!-- Profile -->
-                            <!-- ============================================================== -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>public/images/no_foto.jpg" alt="user" class="profile-pic" /></a>
-                                <div class="dropdown-menu dropdown-menu-right scale-up">
-                                    <ul class="dropdown-user">
-                                        <li>
-                                            <div class="dw-user-box">
-                                                <div class="u-img"><img src="<?php echo base_url(); ?>public/images/no_foto.jpg" alt="user"></div>
-                                                <div class="u-text">
-                                                    <h4><?php echo $this->session->userdata('ses_fullname'); ?></h4>
-                                                    <p class="text-muted"><?php echo $this->session->userdata('ses_email'); ?></p>
-                                                </div>
-                                        </li>
-                                        <li role="separator" class="divider"></li>
-                                        <!--<li><a href="#"><i class="ti-user"></i> My Profile</a></li> -->                                  
-                                        <li><a href="javascript:void(0)" onclick="changepassword()"><i class="fa fa-key"></i>&nbsp;Change Password</a></li>
-                                        <li><a href="javascript:void(0)" onclick="Logoutjs()"><i class="fa fa-power-off"></i> Logout</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <!-- ============================================================== -->
-            <!-- End Topbar header -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Left Sidebar - style you can find in sidebar.scss  -->
-            <!-- ============================================================== -->
-            <aside class="left-sidebar">
-                <!-- Sidebar scroll-->
-                <div class="scroll-sidebar">
-                    <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav">
-                            <?php echo $buildaccess; ?>
-                        </ul>
-                    </nav>
-                    <!-- End Sidebar navigation -->
-                </div>
-                <!-- End Sidebar scroll-->
-            </aside>
-            <!-- ============================================================== -->
-            <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Page wrapper  -->
-            <!-- ============================================================== -->
-            <div class="page-wrapper">
-                <!-- ============================================================== -->
-                <!-- Container fluid  -->
-                <!-- ============================================================== -->
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Bread crumb and right sidebar toggle -->
-                    <!-- ============================================================== -->
-                    <div class="row page-titles">
-                        <div class="col-md-5 col-8 align-self-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)" onclick="toIndex()">Home</a></li>
-                                <li class="breadcrumb-item active" id="breadcrumb_link"><span id="breadcrumb_name"></span></li>
-                            </ol>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <marquee direction='scroll'><span id="infomarquee"></span></marquee>
-                            <div id="contentdata">                                
-                                <div class="text-center" id="firstpage">                         
-                                    <h3><strong>Welcome <?php echo $this->session->userdata('ses_fullname'); ?></strong></h3>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- End Bread crumb and right sidebar toggle -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
-
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Right sidebar -->
-                    <!-- ============================================================== -->
-
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- footer -->
-                <!-- ============================================================== -->
-                <footer class="footer" id="footerdata">
-                    © <?php echo tahundibuat; ?>
-                </footer>
-                <!-- ============================================================== -->
-                <!-- End footer -->
-                <!-- ============================================================== -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Page wrapper  -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Wrapper -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-
-        <div class="modal fade " id="Modalloading" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered">                  
-                <div class="modal-body" align="center">
-                    <img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="200" height="200"/>
-                </div>                  
-            </div>
-        </div>
-        <div id="DialogConfirm" class="modal fade"  role="dialog" aria-labelledby="DialogConfirmLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header btn-danger">
-                        <input type ="hidden" name="id"/>
-                        <h4 class="modal-title"><font color="white">Confirm for Delete Data</font></h4>
-                    </div>
-                    <div class="modal-body">
-                        <font color="black">Are you sure delete this data ?</font>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" onclick="process_delete()" class="btn btn-danger" action="delete">Ok</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="DialogError" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="DialogErrorLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header btn-success">
-                        <h4 class="modal-title"><font color="white">Error Message</font></h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <span id="dialogerrormessage"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </body>
-</html>
 <script>
 
     getnotification();
@@ -1134,4 +855,46 @@
     }
 
 </script>
-
+ <div class="modal fade " id="Modalloading" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-dialog-centered">                  
+                <div class="modal-body" align="center">
+                    <img class=""  src="<?php echo base_url(); ?>public/images/loading.gif"  width="200" height="200"/>
+                </div>                  
+            </div>
+        </div>
+        <div id="DialogConfirm" class="modal fade"  role="dialog" aria-labelledby="DialogConfirmLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header btn-danger">
+                        <input type ="hidden" name="id"/>
+                        <h4 class="modal-title"><font color="white">Confirm for Delete Data</font></h4>
+                    </div>
+                    <div class="modal-body">
+                        <font color="black">Are you sure delete this data ?</font>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="process_delete()" class="btn btn-danger" action="delete">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="DialogError" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="DialogErrorLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header btn-success">
+                        <h4 class="modal-title"><font color="white">Error Message</font></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span id="dialogerrormessage"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>

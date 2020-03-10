@@ -1,15 +1,41 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark"><?php echo $title; ?></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><?php echo $title; ?></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
 
-<div class="col-md-12">
-    <div class="card card-outline-success">
-        <div class="card-header">
-            <h4 class="m-b-0 text-white"><i class="fas fa-list-alt"></i> <?php echo $title; ?>
-                <div style="float:right"><button class="btn btn-secondary btn-sm" onclick="refreshtemplate()"><i class="mdi mdi-refresh">&nbsp;Refresh</i></button></div>
-            </h4>
-        </div>
-        <div class="card-body">
+ <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <!-- <h3>Setting user Access</h3> -->
+              <!-- <button type="button" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
+                      <i class="fas fa-file-signature"></i> Add Data</button> -->
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" onclick="refreshtemplate()" data-toggle="tooltip" title="Reload">
+                      <i class="fas fa-redo-alt"></i></button>
+                  </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
             <div class="table-responsive">
-                <button type="button" id="btncreate" class="btn btn-info btn-circle" onclick="adddata()"><i class="fa fa-plus"></i> </button>
-                <table id="dataintable" class="table table-bordered color-table muted-table" width="100%">
+                <table id="dataintable" class="table table-striped" width="100%">
                     <thead>
                         <tr>
                             <th class="text-center" width="10px">Action</th>
@@ -21,10 +47,12 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer">
-
         </div>
     </div>
+</div>
+</div>
+</div>
+</section>
 </div>
 <script type="text/javascript">
     url_grid = '<?php echo $url_grid; ?>';
@@ -42,7 +70,7 @@
                 var btn = "";
                 var idtr = row["<?php echo $prefix_id; ?>"];
                 btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
-                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='fas fa-trash'></i></a>";
+                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='far fa-trash-alt'></i></a>";
 
                 return btn;
             }
