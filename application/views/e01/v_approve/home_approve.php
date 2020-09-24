@@ -82,6 +82,7 @@
                     status = "<a onClick='editdata_approve(" + row.id_approve + ")' class='btn btn-block btn-warning btn-sm'>Menunggu Status Approve <i class='fas fa-exclamation-circle'></i></a>";
                 }else if(row.status_approve == '1') {
                     status = "<button class='btn btn-block btn-like btn-sm' disabled>Success Approve <i class='far fa-check-circle'></i></button>";
+                
                 } else {
                     status = "<button class='btn btn-block btn-danger btn-sm' disabled>Cannot Approve <i class='far fa-window-close'></i></button>";
                 }

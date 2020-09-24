@@ -8,10 +8,13 @@ class Mkatagori_model extends MY_Model {
              $this->table="e01_ms_katagori";
              $this->prefix_id = "id_katagori";
     }
-     public function getAll() {
-        $this->db->where('statusdata','active');
-        $this->db->order_by('kode_katagori','asc');
-        return $this->db->get($this->table)->result_array();
+    public function getAll() {
+        $query = "
+                 SELECT 
+                        a.*
+                 FROM $this->table a  
+                 ";
+        return $this->db->query($query);
     }
 
 

@@ -25,5 +25,4 @@ class Location_model extends MY_Model {
                  ";
         return $this->db->query($query);
     }
-
 }

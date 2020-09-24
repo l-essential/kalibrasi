@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fas fa-paste"></i> <?php echo $title ?></h1>
+            <h1 class="m-0 text-dark"> <?php echo $title ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -50,7 +50,7 @@
                             <th>Status</th>
                             <th>Code Penyimpangan</th> 
                             <th>Judul</th> 
-                            <th>Katagori</th>
+                            <th>Kategori</th>
                             <th>Jenis</th>
                             <th>Ruang Lingkup</th>
                             <th>Tipe</th> 

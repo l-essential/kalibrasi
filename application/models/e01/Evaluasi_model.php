@@ -55,7 +55,7 @@ class Evaluasi_model extends MY_Model
     }
 
      public function getGridData() {
-        if ($this->session->userdata('ses_department_name') == 'QA') {
+        if ($this->session->userdata('ses_KodeSeksi') == 'QA') {
         $query = "
                  SELECT a.*,
                  a.improvement_code,

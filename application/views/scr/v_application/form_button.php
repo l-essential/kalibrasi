@@ -21,8 +21,8 @@
             <div class="main-content container-fluid">
             </div>
             <div class="form-group row">
-                <label for="btncode" class="col-sm-2 text-right control-label col-form-label">Kode Button<span style="color:red">*</span></label>
-                <div class="col-sm-3">
+                <label for="btncode" class="col-sm-2 text-right control-label col-form-label">Kode Button <span style="color:red">*</span></label>
+                <div class="col-sm-10">
                     <input name="btncode" id="btncode" type="text" required="" parsley-type="text" placeholder="Masukan kode button" class="form-control"
                                    value="<?php echo (isset($default['btncode'])) ? $default['btncode'] : ''; ?>"
                                    <?php echo (isset($default['readonly_btncode'])) ? $default['readonly_btncode'] : ''; ?>
@@ -30,8 +30,8 @@
                 </div>                        
             </div> 
             <div class="form-group row">
-                <label for="btnname" class="col-sm-2 text-right control-label col-form-label">Nama Button<span style="color:red">*</span></label>
-                <div class="col-sm-3">
+                <label for="btnname" class="col-sm-2 text-right control-label col-form-label">Nama Button <span style="color:red">*</span></label>
+                <div class="col-sm-10">
                      <input  name="btnname" id="btnname" type="text" required="" parsley-type="text" placeholder="Masukan nama button" class="form-control"
                                     value="<?php echo (isset($default['btnname'])) ? $default['btnname'] : ''; ?>"
                                     <?php echo (isset($default['readonly_btnname'])) ? $default['readonly_btnname'] : ''; ?>
@@ -39,17 +39,20 @@
                 </div>                        
             </div> 
             <div class="form-group row">
-                <label for="icon" class="col-sm-2 text-right control-label col-form-label">Icon button</label><span style="color:red">*</span>
-                <div class="col-sm-3">
+                <label for="icon" class="col-sm-2 text-right control-label col-form-label">Icon button <span style="color:red">*</span></label>
+                <div class="col-sm-10">
                     <input  name="icon" id="icon" type="text" required="" parsley-type="text" placeholder="Masukan icon untuk button" class="form-control"
                                     value="<?php echo (isset($default['icon'])) ? $default['icon'] : ''; ?>"
                                     <?php echo (isset($default['readonly_icon'])) ? $default['readonly_icon'] : ''; ?>
                                     >
                 </div>                        
             </div> 
-            <div class="text-center">
-                <button type="submit" id="btnsubmitform"  class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="reset" id="btncancelform"  class="btn btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
+
+            <div class="col-sm-12">
+                <p  class="text-right">
+                <button type="reset" id="btncancelform"  class="btn btn-sm btn-secondary"><li class='fas fa-timis'></li>&nbsp; Cancel</button>
+                <button type="submit" id="btnsubmitform"  class="btn btn-sm btn-success"><li class='fas fa-check'></li> &nbsp;Submit</button>
+                </p>
             </div>
     </div>
 </form>

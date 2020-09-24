@@ -19,9 +19,9 @@ class Analisis extends MY_Controller {
         $this->load->model($this->pathclass . '/Mresiko_model', 'resiko');
         $this->load->model($this->pathclass . '/Formulir_model', 'modeldatalog');
         $this->load->model($this->pathclass . '/Approve_model', 'appr');
-        $this->load->model('e/Department_model','dpt');
-        $this->setmodel($this->pathclass . '/Karyawan_model#kyw');
-        $this->setmodel("e/Statusallapps_model#sts");
+        $this->load->model('e_/Department_model','dpt');
+        $this->load->model('e_/Karyawan_model','kyw');
+        $this->setmodel("e_/Statusallapps_model#sts");
     }
 
      public function index() {
@@ -34,7 +34,7 @@ class Analisis extends MY_Controller {
         $this->data['url_getdata'] = site_url($this->controller . '/getdata');
         $this->data['url_homedetail'] = site_url($this->controller . '/home_detail');
         $this->data['url_homerca'] = site_url($this->controller . '/home_rca');
-        $this->data['url_homebankquota'] = site_url($this->controller . '/home_bankquota');
+        // $this->data['url_homebankquota'] = site_url($this->controller . '/home_bankquota');
         // $this->data['url_evaluasidetai'] = site_url($this->controller . '/evaluasi_detail');
         
     }
@@ -204,8 +204,6 @@ class Analisis extends MY_Controller {
             "ref_id" => $id_formulir,
         ));
     }
-
-    
 
     public function postdatadetail() {
         $param = $this->input->post();

@@ -36,7 +36,8 @@ class Totalpenyimpanagn_model extends MY_Model {
        $this->db->select("*");
               $div = $this->session->userdata('ses_department_name');
               $this->db->where('department_name', $div);
-               $this->db->where('status_approve = 1 ');
+              $this->db->where('status_approve = 1 ');
+              $this->db->where('statusdata','active ');
       $data = $this->db->get('e01_ts_depart_terkait');
       return $data->num_rows();
     }
@@ -82,7 +83,8 @@ class Totalpenyimpanagn_model extends MY_Model {
        $this->db->select("*");
               $div = $this->session->userdata('ses_department_name');
               $this->db->where('department_name like \'%' . $div . '%\'');
-               $this->db->where('status_approve = 0 ');
+              $this->db->where('status_approve = 0 ');
+              $this->db->where('statusdata','active ');
       $data = $this->db->get('e01_ts_depart_terkait');
       return $data->num_rows();
     }
@@ -104,7 +106,7 @@ class Totalpenyimpanagn_model extends MY_Model {
         }
     }
    
-     public function totalanalisis() {
+    public function totalanalisis() {
         $sql = " SELECT count(a.improvement_code) as total 
                   FROM e01_ts_formulir a
                   INNER JOIN $this->tbl_frmapp b on a.$this->prefix_id = b.$this->prefix_id

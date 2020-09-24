@@ -6,17 +6,13 @@
       $baseurlindex = base_url('public') . '/';
  ?>
 
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>PT. L`Essential | Log in</title>
+  <link rel="shortcut icon" href="<?php echo $templates ?>dist/img/icon.png">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -47,19 +43,29 @@
                 background-color: transparent;
                 color: #1d654e;
             }
+            .btn-like {
+              color: #fff;
+              background-color: #20c997;
+              border-color: #20c997;
+              box-shadow: none;
+            }
         </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>PT. L'Essential </b></a>
+    <a href="#" style="color:#268f5b;font-family: initial;">
+    <img src="<?php echo $templates ?>dist/img/Logo.png" alt="Logo" width="40" style="opacity: .9">
+        <b>PT. L'ESSENTIAL </b>
+    </a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+    <div class="card-body login-card-body" style="border-radius: 15px;">
+    <p class="login-box-msg">  Sign in to start your session</p>
 
-      <form action="<?php echo $templates ?>index3.html" method="post">
+      <form class="form" method="" action="#">
+      <!-- <input type="hidden" name="ip" id="ip" class="form-control" value="<?php echo $ip ?>"> -->
         <div class="input-group mb-3">
           <input type="text" name="username" id="username" class="form-control" placeholder="Username...">
           <div class="input-group-append">
@@ -79,37 +85,19 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <!-- <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label> -->
+             
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-              <a href="#" id="login-button" class="btn btn-sm btn-success btn-block">Submit</a>
+              <a href="#" id="login-button" class="btn btn-sm btn-like btn-block">Submit</a>
             <!-- <button type="submit" class="btn btn-primary btn-block">Sign In</button> -->
           </div>
           <!-- /.col -->
         </div>
       </form>
-
-      <!-- <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div> -->
-      <!-- /.social-auth-links -->
-
       <!-- <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="<?php echo site_url('Login/forgot_password') ?>">I forgot my password</a>
       </p> -->
     </div>
     <!-- /.login-card-body -->
@@ -193,7 +181,8 @@
                             dataType: "json", //data yang di kirim berupa json
                             data: {
                                 username: $("#username").val(), //username: adalah sebuah properties, $("#username") adalah sebuah object dari id input username
-                                password: $("#password").val() //password: adalah sebuah properties, $("#password") adalah sebuah object dari id input password
+                                password: $("#password").val(),
+                                ip: $("#ip").val() //password: adalah sebuah properties, $("#password") adalah sebuah object dari id input password
 
                             },
                             cache: false,
@@ -219,7 +208,6 @@
                 return false;
 
             }
-
 
         </script>  
 

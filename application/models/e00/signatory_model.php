@@ -1,6 +1,6 @@
 <?php
 
-class signatory_model extends MY_Model {
+class Signatory_model extends MY_Model {
     function __construct() {
         parent::__construct();
         $this->pathclass = basename(dirname(__FILE__));

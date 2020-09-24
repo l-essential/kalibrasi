@@ -23,10 +23,10 @@ class Maplikasigroup_model extends MY_Model {
         }
     }
     
-    public function getby_id_data($id) {
-        $this->db->where("id_maplikasigroup",$id);
-        $result = $this->db->get($this->table);
-        return $this->returndata($result,'array');
-    }
+    // public function getby_id_data($id) {
+    //     $this->db->where("periode_id",$id);
+    //     $result = $this->db->get($this->table);
+    //     return $this->returndata($result,'array');
+    // }
 
 }

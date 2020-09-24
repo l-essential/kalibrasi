@@ -8,9 +8,5 @@ class Mruanglingkup_model extends MY_Model {
             $this->prefix_id = "id_ruanglingkup";
     }
 
-    public function getAll() {
-        $this->db->where('statusdata','active');
-        $this->db->order_by('kode_ruanglingkup','asc');
-        return $this->db->get($this->table)->result_array();
-    }
+    
 }

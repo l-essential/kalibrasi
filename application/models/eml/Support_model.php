@@ -2,47 +2,86 @@
 
 class Support_model extends MY_Model {
 
-    function __construct() {
+    protected $table_role;
+
+    public function __construct() {
         parent::__construct();
-        $this->pathclass = basename(dirname(__FILE__));
         $this->db = $this->load->database('pu', true);
-        $this->table            = '_message';
-        $this->prefix_id        = 'id_message';
-        $this->table_detail     = 'e00_position';
-        $this->prefix_id_detail = 'id_position';
+        $this->table = "_support";
+        $this->prefix_id = "support_id";
     }
 
-     function insertdata_message($record) {
-        $param = $this->input->post();
-        $checkfiield = $this->checkfield("createby");
-        if ($checkfiield > 0) {
-            $record['createby'] = $this->session->userdata('ses_id_user');
-            $record['createtime'] = $this->datetimeserver;
-            $record['department_name'] =  json_encode(implode(",", $param['department_name']));
+    public function total_user() {
+      $this->db->where('statusdata','active');
+		$data = $this->db->get( $this->table);
+		return $data->num_rows();
+    }
+
+    
+    function getGridData() {
+        if ($this->session->userdata('ses_department_name') == 'IT') {
+            $query  = " SELECT 
+                        a.*                     
+                        FROM $this->table a
+                        WHERE a.statusdata = 'active' ";
+                        $result = $this->db->query($query);
+                            if ($result->num_rows() > 0) {
+                                return $result;
+                            } else {
+                                return null;
+                        }
+
+                     } else {
+
+            $checksession = $this->session->userdata('ses_department_name');
+            $query  = " SELECT 
+                        a.*                    
+                        FROM $this->table a
+                        WHERE a.department_name LIKE '%$checksession%' AND a.statusdata = 'active' ";
+                        $result = $this->db->query($query);
+                            if ($result->num_rows() > 0) {
+                                return $result;
+                            } else {
+                                return null;
+                        }
+                }
+    }
+
+    function getby_id($id) {
+        $this->db->where($this->prefix_id, $id);
+        $result = $this->db->get($this->table);
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return null;
         }
-        $this->db->insert($this->table, $record);
-        $insert_id = $this->db->insert_id($this->table);
-        return $insert_id;
     }
 
-     function insert_messageto($record2) {
-      
-        $this->db->insert_batch($this->tbl_depart_terkait, $record2);
-        
+    public function getmax($tanggal) {
+        $tahun = date('Y', strtotime($tanggal));
+        $this->db->select_max('support_code');
+        $this->db->where('year(support_date)', $tahun);
+        $this->db->like('support_code', $tahun);
+        $result = $this->db->get($this->table);
+        if ($result->num_rows() > 0) {
+            $row = $result->row();
+            if (!empty($row->support_code)) {
+                $tmp = explode("-", $row->support_code);
+                return intval($tmp[1]) + 1;
+            } else {
+                return 1;
+            }
+        } else {
+            return 1;
+        }
     }
 
-    function getGridDatadetail($idheader) {
-        $query = "
-                 SELECT 
-                    a.*,
-                    b.location_code
-                 FROM $this->table_detail a   
-                 LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id                  
-                 WHERE 
-                 a.$this->prefix_id='$idheader'
-                 and a.statusdata='active'    
-                 ";
-        return $this->db->query($query);
+    function onreads() {
+       $this->db->select("*");
+              $this->db->where('support_status = 0 ');
+              $this->db->where('statusdata','active ');
+      $data = $this->db->get($this->table);
+      return $data->num_rows();
     }
 
 }

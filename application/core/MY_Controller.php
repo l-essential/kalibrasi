@@ -1848,6 +1848,7 @@ class MY_Controller extends CI_Controller {
         echo 'SELECT ' . print_r($this->_select, TRUE) . "\n";
         echo 'WHERE ' . print_r($this->_where, TRUE) . "\n";
     }
+    
     public function cekdatalog() {
          $this->load->model('Formulir_model', 'frm');
                 $getruang = $this->input->post('getruang'); 

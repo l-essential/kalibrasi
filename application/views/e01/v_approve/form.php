@@ -16,360 +16,683 @@
       </div><!-- /.container-fluid -->
     </div>
 
- <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">    
-            <div class="card-header bg-like">
-                 <button type="button" class="btn bg-gradient-secondary btn-xs" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="ToController('e01/Approve');">
-                      <i class="fas fa-chevron-circle-left"></i> Back to Data Table</button>
-              <div class="card-tools">
-                  </div>
+    <section class="content page">
+      <div class="container-fluid ">
+        <div class="row ">
+          <div class="col-12 ">
+
+
+            <!-- Main content -->
+            <div class="invoice p-3 mb-3 ">
+              <!-- title row -->
+            
+                  <table nobr="true" class="col-sm-12">
+                        <tbody style="font-family: initial;font-size: 14px;">
+                        <tr>
+                              <td width="21%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
+                              <td width="52%" >&nbsp;</td>
+                              <td width="1%" align="left" style="padding-left: 10px;"> Halaman</td>
+                              <td width="14%" align="left"> : 1 dari 2</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" ></td>
+                              <td width="52%" align="center" ><b>FORMULIR PENANGANAN PENYIMPANGAN</b></td>
+                              <td width="1%"  align="left"align="left" style="padding-left: 10px;"> No. Formulir</td>
+                              <td width="14%"align="left"> : QASS-F-002</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" ></td>
+                              <td width="52%" align="center" ><b>BATCH DAN NON BATCH</b></td>
+                              <td width="12%"  align="left"align="left" style="padding-left: 10px;"> Revisi</td>
+                              <td width="14%"align="left"> : 05</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" style="border-bottom: 1px solid #797979;"></td>
+                              <td width="52%" align="center" style="border-bottom: 1px solid #797979;"><b></b></td>
+                              <td width="15%" align="left"align="left" style="padding-left: 10px;border-bottom: 1px solid #797979;"> Tanggal berlaku</td>
+                              <td width="25%" style="border-bottom: 1px solid #797979;"> : 26 Des 2018</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                 </br>
+                 </br>
+                  
+              <!-- info row -->
+              <table nobr="true" class="col-sm-12">
+                <tbody style="font-family: initial;font-size: 14px;">
+                <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> No Penyimpangan</td>
+                      <td width="25%" > : <?php echo $preview->improvement_code ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Tanggal</td>
+                      <td width="25%" > : <?php echo $preview->tanggal ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                      <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Nama</td>
+                      <td width="25%" > : <?php echo $preview->title_improvement ?></td>
+                      <td width="23%" > </td>
+                      </tr>
+                  <tr>
+                      <td width="15%" align="left"align="left" style="padding-left: 10px;">Tipe Penyimpangan</td>
+                      <td width="25%" > : <?php echo $preview->nama_tipe ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Kategori Penyimpangan</td>
+                      <td width="25%" > : <?php echo $preview->nama_katagori ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Ruang Lingkup</td>
+                      <td width="25%" > : <?php echo $preview->nama_ruanglingkup ?></td>
+                      <td width="20%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Jenis Penyimpangan</td>
+                      <td width="25%" > : <?php echo $preview->nama_jenis ?></td>
+                      <td width="20%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Nomor</td>
+                      <td width="25%" > : <?php echo $preview->number ?></td>
+                      <td width="20%" > </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive" style="padding-left: 17px;padding-right: 17px;">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th class="text-center">&emsp;&emsp;&emsp;RINCIAN PENYIMPANGAN YANG TERJADI&emsp;&emsp;&emsp;</th>
+                      <th class="text-center">RINCIAN TINDAKAN SEMENTARA YANG TELAH DIAMBIL</th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: initial;font-size: 14px;">
+                        <tr>
+                          <td style="height: 225px;"><?php echo $preview->rincian_penyimpangan ?> </td>
+                          <td style="height: 225px;"><?php echo $preview->rincian_tindakan ?> </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <table nobr="true" class="col-sm-12">
+                <tbody style="font-family: initial;font-size: 14px;">
+                <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Tingkat Resiko</td>
+                      <td width="25%" > : <?php if ($preview->id_resiko == 1 ){
+                                                      echo "Critical ( C )";
+                                                    } else if ($preview->id_resiko == 2){
+                                                      echo "Major ( M )";
+                                                    }else{
+                                                      echo "minor ( m )";
+                                                      
+                                                    }
+                                                    ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                  <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Dampak pada hal lain</td>
+                      <td width="25%" > : <?php  
+                                                    if ($preview->dampak == 1) {
+                                                      echo "ada";
+                                                    }else{
+                                                      echo "-";
+                                                    }
+                                                    echo $preview->uraian ?></td>
+                      <td width="23%" > </td>
+                  </tr>
+                  <!-- <tr>
+                      <td width="15%" align="left" style="padding-left: 10px;"> Department terkait</td>
+                      <td width="25%" > : 
+                                <?php
+                                      if ($dept) {
+                                        foreach ($dept as $rowdept) {
+                                          ?><span class='badge badge-secondary' style="background-color:#9a9a9a;"> <?php echo $rowdept['department_name'] ; ?></span>
+                                        <?php
+                                        }
+                                    }
+                                ?></td>
+                      <td width="23%" > </td>
+                  </tr> -->
+                </tbody>
+              </table>
+
+              <br>
+              <div class="col-12 table-responsive" style="padding-left: 9px;padding-right: 9px;">
+              <table class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th class="text-center" rowspan="2" style="padding:30px;">EVALUASI TERHADAP LAPORAN TINDAKAN DAN RESIKO</th>
+                      <th class="text-center" colspan="4" >TINGKAT RESIKO</th>
+                    </tr>
+                    <tr>
+                      <th class="text-center" style="width: 50px;">L</th>
+                      <th class="text-center" style="width: 50px;"> S</th>
+                      <th class="text-center" style="width: 50px;"> D</th>
+                      <th class="text-center" style="width: 50px;"> RPN</th>
+                    </tr>
+                  </thead>
+                  <tbody style="font-family: initial;font-size: 14px;">
+                    <tr>
+                      <td style="height: 225px;"><?php echo $preview->evaluasi_tindakan ?></td>
+                      <td class="text-center" style="height: 225px;"><?php echo $preview->L ?></td>
+                      <td class="text-center" style="height: 225px;"><?php echo $preview->S ?></td>
+                      <td class="text-center" style="height: 225px;"><?php echo $preview->D ?></td>
+                      <td class="text-center" style="height: 225px;"><?php echo $preview->RPN ?></td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              <!-- this row will not appear when printing -->
+              <div class="row">
+                <div class="table-responsive" style="padding-left: 17px;padding-right: 17px;">
+                  <table class="table table-bordered" width="100%">
+                    <thead>
+                    <tr>
+                      <th colspan= "2" class="text-center">Pelapor</th>
+                      <th colspan= "2" class="text-center">Kepala Department Pelapor</th>
+                    </tr>
+                    <tr>
+                      <th class="text-center">Nama</th>
+                      <th class="text-center">Tanggal dibuat</th>
+                      <th class="text-center">Nama</th>
+                      <th class="text-center">Tanggal diapprove</th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: initial;font-size: 14px;">
+                        <tr>
+                          <td style="height: 70px;"><?php echo $preview->namaKaryawan ?></td>
+                          <td style="height: 70px;"><?php echo $preview->time ?></td>
+                          <td style="height: 70px;"><?php echo $preview->approveby ?></td>
+                          <td style="height: 70px;"><?php echo $preview->time_a ?></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                </div>
+
             </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-
-        <form id="formdata" data-parsley-validate="" novalidate="">
-            <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
-            <input type="hidden" name="actiondata" id="actiondata" />
-            <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
-            <input type="hidden" name="checkdata1" id="checkdata1" value="improvement_code" />
-            <input type="hidden" name="checkdata2" id="checkdata2" value="" />
-            <input type="hidden" name="checkdata3" id="checkdata3" value="" />
-            <input type="hidden" name="checkdata4" id="checkdata4" value="" />
-            <input type="hidden" name="dengangambar" id="dengangambar" value="N" />
+            <!-- /.invoice -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 
 
-            <div class="main-content container-fluid">
-           <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Nomor Penyimpangan</label>
-                     <div class="col-sm-3">
-                       <input name="improvement_code" minlength="1" maxlength="30" id="improvement_code" type="text" required=""  parsley-type="text" placeholder="input kode penyimpangan" class="form-control"
-                        value="<?php echo (isset($default['improvement_code'])) ? $default['improvement_code'] : ''; ?>"
-                        <?php echo (isset($default['readonly_improvement_code'])) ? $default['readonly_improvement_code'] : ''; ?>
-                         readonly="readonly">
-                     </div>
-               
-                    <label class="col-sm-3 col-form-label" autocomplete="off" style="max-width: 19%;">Tanggal Penyimpangan</label>
-                     <div class="col-sm-3">
-                         <input name="tanggal" minlength="1" maxlength="30" id="tanggal" type="text" required=""  parsley-type="text" placeholder="input kode penyimpangan" class="form-control"
-                        value="<?php echo (isset($default['tanggal'])) ? $default['tanggal'] : ''; ?>"
-                        <?php echo (isset($default['readonly_tanggal'])) ? $default['readonly_tanggal'] : ''; ?>
-                         readonly="readonly">
-                         </div>
+
+
+
+
+
+    <section class="content page">
+      <div class="container-fluid ">
+        <div class="row ">
+          <div class="col-12 ">
+            <div class="invoice p-3 mb-3 ">
+            
+                  <table nobr="true" class="col-sm-12">
+                        <tbody style="font-family: initial;font-size: 14px;">
+                        <tr>
+                              <td width="21%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
+                              <td width="52%" >&nbsp;</td>
+                              <td width="1%" align="left" style="padding-left: 10px;"> Halaman</td>
+                              <td width="14%" align="left"> : 2 dari 2</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" ></td>
+                              <td width="52%" align="center" ><b>FORMULIR PENANGANAN PENYIMPANGAN</b></td>
+                              <td width="1%"  align="left"align="left" style="padding-left: 10px;"> No. Formulir</td>
+                              <td width="14%"align="left"> : QASS-F-002</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" ></td>
+                              <td width="52%" align="center" ><b>BATCH DAN NON BATCH</b></td>
+                              <td width="12%"  align="left"align="left" style="padding-left: 10px;"> Revisi</td>
+                              <td width="14%"align="left"> : 05</td>
+                              </tr>
+                              <tr>
+                              <td width="20%" style="border-bottom: 1px solid #797979;"></td>
+                              <td width="52%" align="center" style="border-bottom: 1px solid #797979;"><b></b></td>
+                              <td width="15%" align="left"align="left" style="padding-left: 10px;border-bottom: 1px solid #797979;"> Tanggal berlaku</td>
+                              <td width="25%" style="border-bottom: 1px solid #797979;"> : 26 Des 2018</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                 </br>
+                 </br>
+                  
+              <?php 
+                    
+                    if ($this->session->userdata('ses_KodeSeksi') == 'QA' || 'IT') {
+                      echo "<a href='#' onClick='analisis()' class='btn btn-sm bg-gradient-secondary float-right' style='margin-right: 5px;'><i class='fas fa-file-signature'></i> Add RCA</a>";
+                    } else {
+                      echo "";
+                    } 
+                    ?>
+              <div class="post clearfix" style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <h6>1. PERSONEL :</h6>
+                    <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['personel'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="post clearfix" style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <h6>2. MATERIAL :</h6>
+                  <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['material'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="post clearfix" style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <h6>3. ALAT / MESIN :</h6>
+                  <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['alat_mesin'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="post clearfix" style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <h6>4. METODE / PROSEDUR :</h6>
+                    <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['metode'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="post clearfix" style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <h6>5. SARANA PENUJANG KRITIS / LINGKUNGAN  :</h6>
+                    <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['sarana'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                </div>
+                <div style="padding-bottom: 10px;margin-left: 15px;margin-right: 15px;">
+                  <p style="margin-bottom: 0rem;">Kesimpulan dari akar permasalahan :</p>
+                  <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                  <?php
+                            if ($getid) {
+                            foreach ($getid as $rowgetid) {
+                                ?>
+                                <p class="text-muted well well-sm shadow-none" style="margin-top: 0px;margin-left: 17px;margin-bottom: 0rem;">
+                                <?php echo $rowgetid['department_name'] ?> : <?php echo $rowgetid['kesimpulan_akar'] ?>
+                                </p>
+                            <?php
+                            }
+                        }
+                    ?>
+                  </p><br>
+                  <div>
+                    <a href='#' onClick="add_correntive(<?php echo $idformula->id_formulir ?>)" class='btn btn-sm bg-gradient-secondary float-right' style='margin-right: 5px;'><i class='fas fa-file-signature'></i> Add CORRECTIVE</a>
+                  </div> <br>
+                </div>
+              <br>
+             
+              <div class="row">
+                <div class="col-12 table-responsive" style="padding-left: 17px;padding-right: 17px;">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th class="text-center">CORRECTIVE ACTION</th>
+                      <th class="text-center">Due Date</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">PIC</th>
+                      <th class="text-center">Attachment</th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: initial;font-size: 14px;">
+                        <?php
+                              if ($corrective) {
+                              foreach ($corrective as $rowcorrective) {
+                                  ?>
+                                   <tr>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowcorrective['correct_act'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowcorrective['correct_duedate'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowcorrective['correct_status'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowcorrective['correct_pic'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowcorrective['nama_gambar'] ?></td>
+                                  </tr>
+                              <?php
+                              }
+                          }
+                          ?>
+                    </tbody>
+                  </table>
+                </div>
+
+
+                <div class="col-12">
+                    <a href='#' onClick="add_preventive(<?php echo $idformula->id_formulir ?>)" class='btn btn-sm bg-gradient-secondary float-right' style='margin-right: 5px;'><i class='fas fa-file-signature'></i> Add CORRECTIVE</a>
                 </div> 
-           
-            <div class="form-group row">
-                <label  for="title_improvement" class="col-sm-3 col-form-label">Judul Penyimpangan <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                    <input name="title_improvement" minlength="1" maxlength="30" id="title_improvement" type="text" required=""  parsley-type="text" placeholder="input judul Penyimpangan" class="form-control"
-                        value="<?php echo (isset($default['title_improvement'])) ? $default['title_improvement'] : ''; ?>"
-                        <?php echo (isset($default['readonly_title_improvement'])) ? $default['readonly_title_improvement'] : ''; ?>
-                        readonly="readonly">
+                <br> <br>
+                <div class="col-12 table-responsive" style="padding-left: 17px;padding-right: 17px;">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th class="text-center">PREVENTIVE ACTION</th>
+                      <th class="text-center">Due Date</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">PIC</th>
+                      <th class="text-center">Attachment</th>
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: initial;font-size: 14px;">
+                          <?php
+                              if ($preventive) {
+                              foreach ($preventive as $rowpreventive) {
+                                  ?>
+                                <tr>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowpreventive['preventive_act'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowpreventive['preventive_duedate'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowpreventive['preventive_status'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowpreventive['preventive_pic'] ?></td>
+                                  <td class="text-muted well well-sm shadow-none"><?php echo $rowpreventive['nama_gambar'] ?></td></td>
+                                </tr>
+                              <?php
+                              }
+                          }
+                          ?>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
+
+              <div class="row">
+                <div class="table-responsive" style="padding-left:7px;padding-right:7px;">
+                <table class="table table-bordered" width="100%">
+                    <thead>
+                    <tr>
+                    <th colspan= "6" class="text-center">Dikaji oleh</th>
+                    </tr>
+                    <tr>
+                      <?php
+                            if ($dept) {
+                              foreach ($dept as $rowdept) {
+                                ?><th class="text-center">Nama, Tanggal</th>
+                                <?php
+                              }
+                          }
+                      ?>
+                    </tr>
+                    </thead>
+                    <tbody style="font-family: initial;font-size: 14px;">
+                        <tr>
+                        <?php
+                              if ($dept) {
+                                foreach ($dept as $rowdept) {
+                                  ?><td class="text-center"style="height: 70px;">
+                                      <?php echo $rowdept['department_name'] ; ?></br>
+                                      <?php echo $rowdept['nama_user'] ; ?></br>
+                                      <?php echo $rowdept['createtime'] ; ?>
+                                    </td>                                        
+                                    <?php
+                                }
+                            }
+                        ?>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+              </div>
+
+             
+
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div id="DialogConfirm-capa" class="modal fade"  role="dialog" aria-labelledby="DialogConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header btn-like">
+                <h4 class="modal-title"><font color="white">FORM ROOT CAUSE ANALYSIS : <?php echo $preview->improvement_code ?></font></h4>
             </div>
-
-            <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Tipe Penyimpangan <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="id_tipe" name="id_tipe" class="form-control" required="" readonly="readonly">
-                        <?php foreach ($default['id_tipe'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>   
-            </div>
-
-           <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Katagori Penyimpangan <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="id_katagori" name="id_katagori" class="form-control" required="" readonly="readonly">
-                        <?php foreach ($default['id_katagori'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
-
-          <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Ruang Lingkup <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="id_ruanglingkup" name="id_ruanglingkup" class="form-control" required="" readonly="readonly">
-                        <?php foreach ($default['id_ruanglingkup'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>  
-            </div>
-
-            <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Jenis Penyimpangan <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="id_jenis" name="id_jenis" class="form-control" required="" readonly="readonly">
-                        <?php foreach ($default['id_jenis'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Nomor Identitas <span style="color:red">*</span></label>
-            <div class="col-sm-9">
-                <input name="number" minlength="1" maxlength="30" id="number" type="text" required=""  parsley-type="text" placeholder="input nomor" class="form-control"
-                        value="<?php echo (isset($default['number'])) ? $default['number'] : ''; ?>"
-                        <?php echo (isset($default['readonly_number'])) ? $default['readonly_number'] : ''; ?>
-                        readonly="readonly">
-                </div>
-            </div>
-
-             <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Tingkat Resiko <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="id_resiko" name="id_resiko" class="form-control" required="" readonly="readonly">
-                        <?php foreach ($default['id_resiko'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-            </div>
-
-             <div class="form-group row">
-                    <label for="rincian_penyimpangan" class="col-sm-3 col-form-label">Rincian Penyimpangan Yang Terjadi <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
-                        <textarea name="rincian_penyimpangan" class="form-control" rows="3" required="" readonly="readonly"
-                        <?php echo (isset($default['readonly_rincian_penyimpangan'])) ? $default['readonly_rincian_penyimpangan'] : ''; ?> ><?php echo (isset($default['rincian_penyimpangan'])) ? $default['rincian_penyimpangan'] : ''; ?></textarea>
+            <div class="modal-body">
+            <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
+                <input type="hidden" name="actiondata" id="actiondata" />
+                <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
+                <input type="hidden" name="checkdata1" id="checkdata1" value="keterangan" />
+                <input type="hidden" name="checkdata2" id="checkdata2" value="" />
+                <input type="hidden" name="checkdata3" id="checkdata3" value="" />
+                <input type="hidden" name="checkdata4" id="checkdata4" value="" />
+                <input type="hidden" name="dengangambar" id="dengangambar" value="Y" />
+                <input type ="hidden" name="id" id="id"/>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="personel" id="personel" class="form-control" rows="2" placeholder="CORRECTIVE ACTION ..."></textarea>
                     </div>                        
-             </div>  
+                </div>
+                <div class="form-group" style="padding-left: 9px;" autocomplete="off">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                        <input type ="text" name="date" id="date" class="form-control"/>
+                    </div>                        
+                </div>
+                <div class="form-group row" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                    <div class="form-group row" style="padding-left: 25px;">
+                        <input type="radio" id="status" name="status" value="7">&ensp;
+                          <label for="CLOSED">CLOSED</label>&emsp;&emsp; 
+                        <input type="radio" id="status" name="status" value="5">&ensp;
+                          <label for="OPEN">OPEN</label>&ensp;
+                      </div>
+                    </div>                        
+                </div>
+                <div class="form-group">
+                  <select  name="status" id="status" class="form-control">
+                    <option value="1">Masuk</option>
+                    <option value="2">WFH</option>
+                    <option value="3">Libur</option>
+                    <option value="4">Lain Lain</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input type="file" name="file"> Max 10 MB, Tipe file yang diijinkan jpg,png,pdf,xls,xlsx,doc,docx,csv
+                      </div>
+                      <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-sm bg-gradient-secondary" action="create">Submit</button>
+                </form>
 
-             <div class="form-group row">
-                <label for="rincian_tindakan" class="col-sm-3 col-form-label">Rincian Tindakan Sementara Yang Telah Diambil <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                    <textarea name="rincian_tindakan" class="form-control" rows="3" required="" readonly="readonly"
-                    <?php echo (isset($default['readonly_rincian_tindakan'])) ? $default['readonly_rincian_tindakan'] : ''; ?> ><?php echo (isset($default['rincian_tindakan'])) ? $default['rincian_tindakan'] : ''; ?></textarea>
-                </div>                        
-             </div>
-
-            <!-- <div class="col-sm-12">
-                <p class="text-left">
-                    <button type="button" class="btn btn-sm btn-space bg-gradient-secondary" onclick='approvedata()'><i class='far fa-check-circle'> Persetujuan Penyimpangan</i></button>
-                </p>
-            </div> -->
-
-            <div class="form-group">
-                <div id="divapprove" style="display:none"></div>
-                <div id="divrca" style="display:none"></div>
-                
+                  </div>
+               
+            <div class="modal-footer" style="padding: 0rem;">
+               
             </div>
-
-                
-        
-        </form>
+        </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-</section>
 </div>
 
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            var form, formdata, url_index, url_post, id, actiondata;
-            url_post = '<?php echo $url_post; ?>';
-            url_index = '<?php echo $url_index; ?>';
-            id = $("#id").val();
-            actiondata = (id == 0) ? 'create' : 'update';
-            if (actiondata == 'update') {
-                var getdata = postaction('<?php echo $url_getdata; ?>', {'title_improvement': $("#title_improvement").val()});
-                homedetail(getdata);
-            }
+     id = '<?php echo $idformula->id_formulir ?>';
+     url_analisis = '<?php echo $url_analisis; ?>';
+     url_correntive = '<?php echo $url_correntive; ?>';
+     url_preventive = '<?php echo $url_preventive; ?>';
+     $(function(){
+		    $("#date").datepicker({
+			format:'yyyy/dd/mm'
+		    });
+                });
 
-
-
-            $("#formdata").on('submit', function (e) {
-                e.preventDefault();
-                form = $(this);
-                form.parsley().validate();
-                if (form.parsley().isValid()) {
-                    $("#actiondata").val(actiondata);
-                    formdata = $("#formdata").serialize();
-                    var resultdata = postaction(url_post, formdata);
-                    _alert(resultdata.msg, resultdata.valid);
-                    if (resultdata.valid == true && actiondata == 'create') {
-                        var getdata = postaction('<?php echo $url_getdata; ?>', {'title_improvement': resultdata.postdata.title_improvement});
-                        homedetail(getdata);
-                    }
-                }
-            });
-            $("#formdata").on('reset', function (e) {
-                e.preventDefault();
-                ToContent(url_index);
-            });
-        });
-
-    // function approvedata (id) {
-    //     $('#DialogConfirmApprove').modal('show');
-    //     $("#DialogConfirmApprove  input[name=id]").val(id);
-    // }
-
-    function approvedata (label, id) {
-        $("#id").val(id);
-        $('#DialogApprove').modal('show');
-        $("#label_approve").html(label);
+    function analisis() {
+        $('#DialogConfirm').modal('show');
+        $("#DialogConfirm  input[name=id]").val('<?php echo $idformula->id_formulir ?>');
+        $("#DialogConfirm  input[name=code]").val('<?php echo $preview->improvement_code ?>');
     }
 
-    url_postdataapprove ='<?php echo $url_postdataapprove; ?>';
-    function process_approve() {
+    function capa() {
+        $('#DialogConfirm-capa').modal('show');
+        $("#DialogConfirm-capa  input[name=id]").val('<?php echo $idformula->id_formulir ?>');
+        $("#DialogConfirm-capa  input[name=code]").val('<?php echo $preview->improvement_code ?>');
+    }
+
+    function insert_capa() {
         $.ajax({
-            url: url_postdataapprove,
+            url: url_analisis,
             type: "post",
             dataType: "json",
             cache: false,
             data: {
-                actiondataapprove: 'create',
-                '<?php echo $prefix_id; ?>': $("#DialogConfirmApprove input[name=id]").val(),
+                id: $("#DialogConfirm input[name=id]").val(),
+                personel: $("#DialogConfirm textarea[name=personel]").val(),
+                material: $("#DialogConfirm textarea[name=material]").val(),
+                alat_mesin: $("#DialogConfirm textarea[name=alat_mesin]").val(),
+                metode: $("#DialogConfirm textarea[name=metode]").val(),
+                sarana: $("#DialogConfirm textarea[name=sarana]").val(),
+                akar: $("#DialogConfirm textarea[name=akar]").val(),
+                //  --- approve ---
+                setuju: $("#DialogConfirm input[name=setuju]:checked").val(),
+                reason: $("#DialogConfirm input[name=reason]").val()
             },
             success: function (data) {
-                $('#DialogConfirmApprove').modal('hide');
-                if (data.valid == true) {
-                    $('#dataintablerca').dataTable().fnReloadAjax();
-                }
-                _alert(data.message, data.valid)
+                $('#DialogConfirm').modal('hide');
+                window.location.reload(true);
+                _alert(data.msg, data.valid);
 
             }
         });
         return false;
     }
 
-    function mail_send(nopn, nik) {
-            $(document).ajaxStart(function() {
-            $("#wait").css("display", "block");
-            });
-            $(document).ajaxComplete(function() {
-            $("#wait").css("display", "none");
-        });
-        var tDiv = [];
-        var to;
-        var url = b_url + 'pn/kirimemail';
+    function insert_analisis() {
         $.ajax({
-            url: url,
+            url: url_analisis,
             type: "post",
-            //data: data,
-            data: {
-                'nopn':nopn,
-                'nik':nik
-            },
             dataType: "json",
-            success: function(response) {
-                alert(response.msg);
+            cache: false,
+            data: {
+                id: $("#DialogConfirm input[name=id]").val(),
+                code: $("#DialogConfirm input[name=code]").val(),
+                personel: $("#DialogConfirm textarea[name=personel]").val(),
+                material: $("#DialogConfirm textarea[name=material]").val(),
+                alat_mesin: $("#DialogConfirm textarea[name=alat_mesin]").val(),
+                metode: $("#DialogConfirm textarea[name=metode]").val(),
+                sarana: $("#DialogConfirm textarea[name=sarana]").val(),
+                akar: $("#DialogConfirm textarea[name=akar]").val(),
+                //  --- approve ---
+                setuju: $("#DialogConfirm input[name=setuju]:checked").val(),
+                reason: $("#DialogConfirm input[name=reason]").val()
+            },
+            success: function (data) {
+                $('#DialogConfirm').modal('hide');
+                window.location.reload(true);
+                _alert(data.msg, data.valid);
+
             }
         });
+        return false;
+    }
 
-  }
 
-        function homedetail(param) {
-            var id_formulir = param.result.id_formulir;
-            $("#divrca").html("");
-            $("#divrca").show();
-            $("#divrca").load('<?php echo $url_homerca ?>' + '/' + id_formulir);
-            $("#divapprove").html("");
-            $("#divapprove").show();
-            $("#divapprove").load('<?php echo $url_homeapprove ?>' + '/' + id_formulir);
-            
-        }
+    function add_correntive(id) {
+        ToContent(url_correntive + '/' + id);
+    }
 
-        $("input:radio[name='status_approve']").change(function () {
-            checkstatus();
-        });
-
-        function checkstatus() {
-            var status = $("input[name='status_approve']:checked").val();
-            if (status == '0') {
-                $("#userdata").show();
-                $("#id_user").val('');
-            } else {
-                $("#userdata").hide();
-            }
-        }
-
+    function add_preventive(id) {
+        ToContent(url_preventive + '/' + id);
+    }
     </script>
 
 
-<input type="hidden" id="id" name="id" />
-<div id="DialogApprove"  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+<div id="DialogConfirm" class="modal fade"  role="dialog" aria-labelledby="DialogConfirmLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-like">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Pernyataan <span id="label_approve"></span></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <div class="modal-content">
+            <div class="modal-header btn-like">
+                <h4 class="modal-title"><font color="white">FORM ROOT CAUSE ANALYSIS : <?php echo $preview->improvement_code ?></font></h4>
             </div>
             <div class="modal-body">
-                <ul class="nav nav-tabs" id="contentapprove" style="display: none;">
-                    <li class=" nav-item" type="hidden"> <a href="#tab_groupuser" class="nav-link active" data-toggle="tab" aria-expanded="true"><span class='fas fa-home'></span>&nbsp;Group User</a> </li>
-                    <!-- <li class="nav-item"> <a href="#tab_menuuser" class="nav-link" data-toggle="tab" aria-expanded="false"><span class='fas fa-home'></span>&nbsp;Menu User</a> </li>
-                    <li class="nav-item"> <a href="#tab_buttonuser" class="nav-link" data-toggle="tab" aria-expanded="false"><span class='fas fa-home'></span>&nbsp;Button User</a> </li> -->
-                </ul>
-                <div class="tab-content">
-                    <div id="tab_groupuser" class="tab-pane active"> </div>
-                    <!-- <div id="tab_menuuser" class="tab-pane"> </div>
-                    <div id="tab_buttonuser" class="tab-pane"></div> -->
+                <input type ="hidden" name="id" id="id"/>
+                <input type ="hidden" name="code" id="code"/>
+                <div class="form-group row" style="padding-left: 25px;">
+                    <input type="radio" id="setuju" name="setuju" value="1">&ensp;
+                      <label for="male">Setuju</label>&emsp;&emsp; 
+                    <input type="radio" id="setuju" name="setuju" value="2">&ensp;
+                      <label for="female">Tidak Setuju</label>&ensp;
+                <input type="text" id="reason" name="reason" style="width: 70%;">
                 </div>
-                <script type="text/javascript">
-                    $('#contentapprove a').on('shown.bs.tab', function (e) {
-                        e.preventDefault()
-                        var me = $(this);
-                        var tabdata = me[0];
-                        var tab_id = tabdata.getAttribute("href");
-                        var url_tab = '';
-
-
-
-                        if (tab_id == "#tab_groupuser") {
-                            url_tab = '<?php echo $url_approve_bydeprt . '/ id_formulir' ; ?>' + $("#id").val();
-                        }
-                        // } else if (tab_id == "#tab_menuuser") {
-                        //     url_tab = '<?php echo $url_usermenu . '/'; ?>' + $("#id").val();
-
-                        // } else if (tab_id == "#tab_buttonuser") {
-                        //     url_tab = '<?php echo $url_usermenubutton . '/'; ?>' + $("#id").val();
-
-                        // }
-                        $(tab_id).html("<div class='text-center' align='center'><img  src='<?php echo base_url(); ?>public/images/loading5.gif' alt=''/><br/>Please wait ...</div>");
-                        $(tab_id).load(url_tab);
-
-
-                    });
-
-                    $(document).ready(function () {
-                        $("#DialogApprove").on("show.bs.modal", function () {
-                            $("#contentapprove").tabs().tabs('select', 0);
-                            $("#tab_groupuser").load('<?php echo $url_approve_bydeprt . '/'; ?>' + $("#id").val());
-                        });
-                    });
-
-                </script>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="personel" id="personel" class="form-control" rows="2" placeholder="1. PERSONEL ..."></textarea>
+                    </div>                        
+                </div>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="material" id="material" class="form-control" rows="2" placeholder="2. MATERIAL ..."></textarea>
+                    </div>                        
+                </div>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="alat_mesin" id="alat_mesin" class="form-control" rows="2" placeholder="3. ALAT / MESIN ..."></textarea>
+                    </div>                        
+                </div>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="metode" id="metode" class="form-control" rows="2" placeholder="4. METODE / PROSEDUR ..."></textarea>
+                    </div>                        
+                </div>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="sarana" id="sarana" class="form-control" rows="2" placeholder="5. SARANA PENUJANG KRITIS / LINGKUNGAN ..."></textarea>
+                    </div>                        
+                </div>
+                <div class="form-group" style="padding-left: 9px;">
+                    <div class="col-sm-12" style="padding-left: 0px;">
+                     <textarea name="akar" id="akar" class="form-control" rows="2" placeholder="Kesimpulan dari akar permasalahan : ..."></textarea>
+                    </div>                        
+                </div>
+                
+                  </div>
+               
+            <div class="modal-footer" style="padding: 0rem;">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" onclick="insert_analisis()" class="btn btn-sm bg-gradient-secondary" action="create">Submit</button>
             </div>
-
-            <div class="modal-footer"></div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>

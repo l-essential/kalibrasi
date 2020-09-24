@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fas fa-users"></i> <?php echo $title; ?></h1>
+            <h1 class="m-0 text-dark"> <?php echo $title; ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -33,12 +33,12 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-            <div class="table-responsive">
+            <div class="table-responsive" style="padding-top:5px;">
                <table id="dataintable" class="table  table-striped" width="100%">
                     <thead>
                         <tr>
                             <th class="text-center" width="70px">Action_Data</th>
-                            <th class="text-center">Ref ID</th>
+                            <th class="text-center">Kode_Regist</th>
                             <th class="text-center">Status User</th>
                             <th class="text-center">Nama Karyawan</th>
                             <th class="text-center">Department</th>
@@ -83,8 +83,8 @@ $(document).ready(function () {
             keys: true,
            
             lengthMenu: [
-                [10, 25, 50, 100,200,1000],
-                [10, 25, 50, 100,200,1000]
+                [5,10, 15, 25, 50,100],
+                [5,10, 15, 25, 50,100]
             ],
             responsive: true,
             "ajax": {
@@ -108,7 +108,7 @@ $(document).ready(function () {
                         return btn;
                     }
                 },
-                {"data": "id_user",},
+                {"data": "register_code"},
                 {"data": "status_login", "sClass": "text-center",
                       "mRender": function (data, type, row) {
                               var status = "";
@@ -121,7 +121,7 @@ $(document).ready(function () {
                           }
                 },
                 {"data": "namaKaryawan"},
-                {"data": "department_name"},
+                {"data": "KodeSeksi"},
                 {"data": "username"},
                 {"data": "roleapps"},
                 {"data": "email"},

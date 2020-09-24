@@ -19,12 +19,26 @@ class Maplikasi extends MY_Controller {
             $this->data['url_grid'] = site_url($this->controller . '/grid');
             $this->data['url_add'] = site_url($this->controller . '/add');
             $this->data['url_edit'] = site_url($this->controller . '/edit');
+            $this->data['url_setstatus'] = site_url($this->controller . "/setstatus");
             $this->data['url_delete'] = site_url($this->controller . '/postdata');
             $this->data['url_post'] = site_url($this->controller . '/postdata');
             $this->data['prefix_id'] = $this->prefix_id;
             $this->load->view($this->view . '/home', $this->data);
         } else {
         }
+    }
+
+    public function grid() {
+        $check = $this->ma->getGridData();
+        if (!is_null($check)) {
+            $result = $this->ma->getGridData()->result();
+        } else {
+            $result = '';
+        }
+
+        $this->dj(array(
+            "data" => $result
+        ));
     }
 
       public function add() {
@@ -38,7 +52,11 @@ class Maplikasi extends MY_Controller {
     }
      
      public function edit($id) {
-        $this->data['default']['readonly_kode_jenis'] = 'readonly';
+        $row = $this->modeldata->getby_id_array($id);
+        $this->buildcomboboxstatic(array("active#active", "nonactive#nonactive"), 'statusdata', 'edit', $row['statusdata']);
+        $this->data['default']['kode_aplikasi'] = $row['kode_aplikasi'];
+        $this->data['default']['nama_aplikasi'] = $row['nama_aplikasi'];
+        $this->data['default']['icon'] = $row['icon'];
         parent::edit($id);
     }
      

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fas fa-toolbox"></i> <?php echo $title; ?></h1>
+            <h1 class="m-0 text-dark"> <?php echo $title; ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -20,8 +20,8 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-              <button type="button" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
+             <div class="card-header border">
+              <button type="button" id="btncreate" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
                       <i class="fas fa-file-signature"></i> Add Data</button>
               <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -33,25 +33,23 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-                            <div class="table-responsive">
-                            <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
-                                <thead>
-                                     <tr>
-                                        <th>Actions</th>
-                                        <th>Kode Alat</th>
-                                        <th>Nama Alat</th>
-                                        <th>Merk</th>
-                                        <th>Model</th>
-                                        <th>No Sertifikat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                 <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
+                    <thead>
+                         <tr>
+                            <th>Actions</th>
+                            <th>Inisial</th>
+                            <th>Nama Alat</th>
+                            <th>Merk</th>
+                            <th>No. Seri / Model</th>
+                            <th>No. Sertifikat</th>
+                        </tr>
+                    </thead>                 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </section>
 </div>
@@ -62,7 +60,7 @@
     url_delete = '<?php echo $url_delete; ?>';
     prefix_id = '<?php echo $prefix_id; ?>';
     listbutton = '<?php echo $this->session->userdata('listbutton'); ?>';
-   
+
 
     accesscreate = checkaccess("add");
     accessedit = checkaccess("edit");
@@ -96,8 +94,8 @@
         {"data": "tools_code",},
         {"data": "tools_name",},
         {"data": "tools_merk",},
-        {"data": "tools_model",},
-        {"data": "tools_nosertifikat",},
+        {"data": "tools_noseri_model",},
+        {"data": "tools_no_sertifikat",},
     ];
     setdatagrid();
 

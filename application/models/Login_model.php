@@ -19,6 +19,14 @@ class Login_model extends MY_Model {
 
     function checkuserdata($userlogin, $password) {
         $this->db->where('status_login','1');
+        $this->db->where('status_online','0');
+        $this->db->where('statusdata','active');
+        $this->db->where('username', $userlogin);
+        $this->db->where("password", md5($password)); /* kondisi pengecekan dengan field password dan nilai parameternya */
+        return $this->db->get($this->table)->num_rows(); //* nilai sebuah number
+    }
+
+    function check_oldpassword($userlogin, $password) {
         $this->db->where('statusdata','active');
         $this->db->where('username', $userlogin);
         $this->db->where("password", md5($password)); /* kondisi pengecekan dengan field password dan nilai parameternya */
@@ -41,5 +49,41 @@ class Login_model extends MY_Model {
             return NULL;
         }
     }
+
+    function updatedata_statusonline($username) {
+        $record['status_online'] = 1;
+        $record['ipaddress'] = $this->getRealIpAddr();
+        $record['date_in'] = $this->datetimeserver;
+        $this->db->where('username', $username);
+        return $this->db->update($this->table, $record);
+    }
+
+    function updatedata_statusoffline($username) {
+        $record['status_online'] = 0;
+        $record['ipaddress'] = '';
+        $record['date_out'] = $this->datetimeserver;
+        $this->db->where('username', $username);
+        return $this->db->update($this->table, $record);
+    }
+
+    public function getRealIpAddr() {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {   //check ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {   //to check ip is pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
+    function get_ipaddress($username) {
+        $this->db->select(' a.*');
+        $this->db->from($this->table . ' a ');
+        $this->db->where('a.statusdata', 'active');
+        $this->db->where('username', $username);
+        return $this->db->get()->row();
+    }
+
 
 }

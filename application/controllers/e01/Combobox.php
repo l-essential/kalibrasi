@@ -1,16 +1,15 @@
 <?php
 
-class Combobox extends MY_Controller
-{
+class Combobox extends MY_Controller {
 
-    public function getdynamic_bankquota()
+     public function getdynamic_location()
     {
         $param = $_REQUEST;
-        $this->setmodel("pu/Bank_model#modeldata");
+        $this->setmodel("e00/Location_model#modeldata");
         $valid = false;
         $msg = "No data found";
         $data = "";
-        $result = $this->modeldata->getbankquota();
+        $result = $this->modeldata->getposition($param['id_position']);
         if ($result) {
             $valid = true;
             $msg = "Result data founds";
@@ -22,6 +21,8 @@ class Combobox extends MY_Controller
             'data' => $data,
         ));
     }
+
+   
     public function getdynamic_desa()
     {
         $param = $_REQUEST;

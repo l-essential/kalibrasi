@@ -31,7 +31,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-        <form id="formdatadetail" data-parsley-validate="" novalidate="">
+        <form id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondatadetail" id="actiondatadetail" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -52,7 +52,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label" autocomplete="off">Corrective Due Date <span style="color:red">*</span></label>
                      <div class="col-sm-9">
-                         <input name="correct_duedate" minlength="1" maxlength="30" id="correct_duedate" type="text" required=""  parsley-type="text" placeholder="input kode penyimpangan" class="form-control"
+                         <input name="correct_duedate" minlength="1" maxlength="30" id="correct_duedate" type="text" required=""  parsley-type="text" placeholder="input corrective due date" class="form-control"
                         value="<?php echo (isset($default['correct_duedate'])) ? $default['correct_duedate'] : ''; ?>"
                         <?php echo (isset($default['readonly_correct_duedate'])) ? $default['readonly_correct_duedate'] : ''; ?>
                          >
@@ -92,7 +92,7 @@
             
 
             <div class="form-group row">
-                <label for="preventive_act" class="col-sm-3 col-form-label">Preventive Status <span style="color:red">*</span></label>
+                <label for="preventive_act" class="col-sm-3 col-form-label">Preventive Action <span style="color:red">*</span></label>
                 <div class="col-sm-9">
                     <textarea name="preventive_act" class="form-control" rows="3" required="" 
                     <?php echo (isset($default['readonly_preventive_act'])) ? $default['readonly_preventive_act'] : ''; ?> ><?php echo (isset($default['preventive_act'])) ? $default['preventive_act'] : ''; ?></textarea>
@@ -102,7 +102,7 @@
              <div class="form-group row">
                     <label for="preventive_duedate" class="col-sm-3 col-form-label">Preventive Due Date <span style="color:red">*</span></label>
                     <div class="col-sm-9">
-                        <input name="preventive_duedate" minlength="1" maxlength="30" id="preventive_duedate" type="text" required=""  parsley-type="text" placeholder="input nomor" class="form-control"
+                        <input name="preventive_duedate" minlength="1" maxlength="30" id="preventive_duedate" type="text" required=""  parsley-type="text" placeholder="input preventive due date" class="form-control"
                         value="<?php echo (isset($default['preventive_duedate'])) ? $default['preventive_duedate'] : ''; ?>"
                         <?php echo (isset($default['readonly_preventive_duedate'])) ? $default['readonly_preventive_duedate'] : ''; ?>
                         >

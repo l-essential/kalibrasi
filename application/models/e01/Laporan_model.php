@@ -36,11 +36,14 @@ class Laporan_model extends MY_Model {
                                     // --- logno ---
                                         $this->logno = "_logno";
                                         $this->prefix_logno = 'id';
+    $this->table_detail = 'bankcabang';
+    $this->prefix_id_detail = 'id_bankcabang';
+    $this->tbl_bunga = 'bankbunga';
+    $this->prefix_bunga = 'id_bankbunga';
     }
 
-
-     function getdatareport($param) {
-        $nomor = $param['id_ruanglingkup'];
+    public function generatereport($param) {
+        $nomor = $param['kode_ruanglingkup'];
         $daritanggal = date('Y-m-d', strtotime($param['daritanggal']));
         $sampaitanggal = date('Y-m-d', strtotime($param['sampaitanggal']));
 
@@ -48,46 +51,14 @@ class Laporan_model extends MY_Model {
                     a.tanggal >='$daritanggal' and a.tanggal <='$sampaitanggal' ";
 
         if (!empty($nomor)) {
-            $where .= " AND a.id_ruanglingkup like '%$nomor%' ";
+            $where .= " AND r.kode_ruanglingkup like '%$nomor%' ";
         }
-        
         $query = "
-                            SELECT a.*,
-                            k.nama_katagori,
-                            j.nama_jenis,
-                            
-                            t.nama_tipe,
-                            rs.nama_resiko,
-                            rs.kode_resiko,
-                            ev.evaluasi_tindakan,
-                            ev.L,
-                            ev.S,
-                            ev.D,
-                            ev.RPN
-                            FROM $this->table a   
-                            LEFT JOIN $this->tbl_k   k on a.$this->prefix_katagori = k.$this->prefix_katagori
-                            LEFT JOIN $this->tbl_j   j on a.$this->prefix_jenis    = j.$this->prefix_jenis
-                            
-                            LEFT JOIN $this->tbl_t   t on a.$this->prefix_tipe     = t.$this->prefix_tipe
-                            LEFT JOIN $this->tbl_rs rs on a.$this->prefix_resiko   = rs.$this->prefix_resiko
-                            LEFT JOIN $this->tbl_ev ev on a.$this->prefix_ev       = ev.$this->prefix_ev
-                    $where
-                    ORDER BY  a.id_ruanglingkup,a.tanggal    
-                 ";
-        $result = $this->db->query($query);
-        if ($result->num_rows() > 0) {
-            return $result->result_array();
-        } else {
-            return null;
-        }
-    }
-
-    function getGridDatadetail($bk_kode) {
-       $query = "
                  SELECT a.*,
                  k.nama_katagori,
                  j.nama_jenis,
-                
+                 r.nama_ruanglingkup,
+                 r.kode_ruanglingkup,
                  t.nama_tipe,
                  rs.nama_resiko,
                  rs.kode_resiko,
@@ -99,15 +70,18 @@ class Laporan_model extends MY_Model {
                  FROM $this->table a   
                  LEFT JOIN $this->tbl_k   k on a.$this->prefix_katagori = k.$this->prefix_katagori
                  LEFT JOIN $this->tbl_j   j on a.$this->prefix_jenis    = j.$this->prefix_jenis
-               
+                 LEFT JOIN $this->tbl_r   r on a.$this->prefix_ruang    = r.$this->prefix_ruang
                  LEFT JOIN $this->tbl_t   t on a.$this->prefix_tipe     = t.$this->prefix_tipe
                  LEFT JOIN $this->tbl_rs rs on a.$this->prefix_resiko   = rs.$this->prefix_resiko
                  LEFT JOIN $this->tbl_ev ev on a.$this->prefix_ev       = ev.$this->prefix_ev
-               WHERE 
-                      a.id_ruanglingkup='$bk_kode'  
-                 ORDER BY a.id_ruanglingkup     
+                $where
                  ";
-        return $this->db->query($query);
+        $result = $this->db->query($query);
+        if ($result->num_rows() > 0) {
+            return $result->result_array();
+        } else {
+            return null;
+        }
     }
 
 }

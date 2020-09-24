@@ -82,7 +82,7 @@
             </div>
 
            <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Katagori Penyimpangan <span style="color:red">*</span></label>
+                <label for="katagori" class="col-sm-3 col-form-label">Kategori Penyimpangan <span style="color:red">*</span></label>
                 <div class="col-sm-9">
                    <select id="id_katagori" name="id_katagori" class="form-control" required="" readonly="readonly">
                         <?php foreach ($default['id_katagori'] as $row) { ?>

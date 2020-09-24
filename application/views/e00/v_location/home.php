@@ -41,7 +41,9 @@
                             <th>Kode Lokasi</th>   
                             <th>Nama Lokasi</th>   
                         </tr>
-                    </thead>                 
+                    </thead>
+                    <tbody>
+                    </tbody>                
                 </table>
             </div>
         </div>
@@ -88,8 +90,8 @@
                 return btn;
             }
         },
-        {"data": "location_code"},
-        {"data": "location_name"},
+        {"data": "location_code", "sClass": "text-center"},
+        {"data": "location_name", "sClass": "text-center"},
     ];
     setdatagrid();
 

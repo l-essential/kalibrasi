@@ -8,6 +8,8 @@ class Position_model extends MY_Model {
          $this->table = 'e00_position';
          $this->prefix_id = "id_position";
     }
+
+    
     public function getmax($tanggal) {
         $tahun = date('Y', strtotime($tanggal));
         $this->db->select_max('location_code');

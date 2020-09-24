@@ -9,8 +9,12 @@ class Mtipe_model extends MY_Model {
     }
 
     public function getAll() {
-        $this->db->where('statusdata','active');
-        $this->db->order_by('kode_tipe','asc');
-        return $this->db->get($this->table)->result_array();
+        $query = "
+                 SELECT 
+                        a.*
+                 FROM $this->table a  
+                 ";
+        return $this->db->query($query);
     }
+
 }

@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-       <form id="formdata" data-parsley-validate="" novalidate="">
+       <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
                 <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
                 <input type="hidden" name="actiondata" id="actiondata" />
                 <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -52,7 +52,6 @@
                         </div>                        
                     </div>  
 
-
                     <div class="form-group row">
                         <label for="location_name" class="col-3 col-lg-2 col-form-label text-left">Location Name <span style="color:red">*</span></label>
                         <div class="col-9 col-lg-10">
@@ -68,8 +67,8 @@
                 </div>
                 <div class="col-sm-12">
                     <p class="text-right">
-                        <button type="submit" class="btn btn-sm btn-like"><i class='fas fa-check'> Submit</i></button>
                         <button type="reset" class="btn btn-sm btn-secondary"><i class="fas fa-times"> Cancel</i></button>
+                        <button type="submit" class="btn btn-sm btn-like"><i class='fas fa-check'> Submit</i></button>
                       </p>
                 </div>
             </form>        
@@ -122,4 +121,5 @@
         $("#divdetail").show();
         $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + id_location);
     }
+    
 </script>

@@ -23,6 +23,7 @@
         /* Output directly to standard output. */
         //$this->barcode_generator->output_image($format, $symbology, $data, $options);
         $this->barcode_generator->output_image('png', 'code-39', 'test123','');
+        
         /* Create bitmap image. */
         //$image = $this->barcode_generator->render_image($symbology, $data, $options);
         $image = $this->barcode_generator->render_image('png', 'code-39', 'test123','');

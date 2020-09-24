@@ -7,10 +7,11 @@ class signatory extends MY_Controller {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
         $this->title = 'Signatory / Approval';
-        $this->load->model('e/Department_model', 'dpt');
-        $this->load->model('e01/Karyawan_model', 'kyw');
+        $this->load->model('e_/Department_model', 'dpt');
+        $this->load->model('e_/Karyawan_model', 'kyw');
     }
-     public function add() {
+    
+    public function add() {
         $this->buildcombobox('department_name', 'department_name', $this->dpt->getAll());
         $this->buildcombobox('namaKaryawan', 'namaKaryawan', $this->kyw->getAll());
         parent::add();

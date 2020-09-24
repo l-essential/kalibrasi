@@ -58,8 +58,8 @@
               <h3><p>Saya telah mengkaji form laporan penyimpangan dengan nomor :<b> <?php echo $code ?></b> Dengan ini saya ...</p></h3>
 
                 <div class="form-group row">
-               <label class="col-sm-3 col-form-label" for="">Persetujuan<span style="color:red">*</span></label>
-                <div class="col-sm-1">
+               <label class="col-sm-3 col-form-label" for=""><span style="color:red">*</span></label>
+                <div class="col-sm-2">
                     <label class="radio-inline">
                         <input type="radio" name="status_approve" value="1"> Setujui
                     </label>

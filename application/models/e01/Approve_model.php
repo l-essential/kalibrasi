@@ -53,11 +53,14 @@ class Approve_model extends MY_Model
         // --- logno ---
         $this->logno = "_logno";
         $this->prefix_logno = 'id';
+
+        $this->tbl_depart_terkait = "e01_ts_depart_terkait";
+        $this->prefix_approve = 'id_approve';
         
     }
 
-     public function getGridData() {
-         if ($this->session->userdata('ses_department_name') == 'admin') {
+        public function getGridData() {
+         if ($this->session->userdata('ses_department_name') == 'user') {
             $query = "
                  SELECT a.*,
                  a.improvement_code,
@@ -107,7 +110,7 @@ class Approve_model extends MY_Model
                  ";
 
                   $checkfiield = $this->session->userdata('ses_department_name');
-                    if ($checkfiield != 'admin' && $checkfiield != 'CFO' && $checkfiield != 'CEO' ){
+                    if ($checkfiield != 'user' && $checkfiield != 'CFO' && $checkfiield != 'CEO' ){
                         $query .= " WHERE dp.department_name = '$checkfiield' AND a.statusdata='active' AND b.status_formulir = '1'";
                     }
                         $result = $this->db->query($query);
@@ -234,6 +237,68 @@ class Approve_model extends MY_Model
             return null;
         }
     }
+    function getbyid_preview($id) {
+        $this->db->select(' a.*,
+                            user.namaKaryawan,
+                            a.createtime as time,
+                            k.nama_katagori,
+                            j.nama_jenis,
+                            r.nama_ruanglingkup,
+                            t.nama_tipe,
+                            rs.nama_resiko,
+                            ne.evaluasi_tindakan,
+                            ne.L,
+                            ne.S,
+                            ne.D,
+                            ne.RPN,
+                            rca.*,
+                            fr.createtime as time_a,
+                            fr.nama_gambar,
+                            uc.namaKaryawan as approveby');
+        $this->db->from($this->table . ' a ');
+        $this->db->join($this->tbl_k . ' k ', 'a.id_katagori = k.id_katagori', 'left');
+        $this->db->join($this->tbl_j . ' j ', 'a.id_jenis = j.id_jenis', 'left');
+        $this->db->join($this->tbl_r . ' r ', 'a.id_ruanglingkup = r.id_ruanglingkup', 'left');
+        $this->db->join($this->tbl_t . ' t ', 'a.id_tipe = t.id_tipe', 'left');
+        $this->db->join($this->tbl_rs . ' rs ', 'a.id_resiko = rs.id_resiko', 'left');
+        $this->db->join($this->tbl_evaluasiTindakan . ' ne ', 'a.id_formulir = ne.id_formulir', 'left');
+        $this->db->join($this->tbl_rca . ' rca ', 'a.id_formulir = rca.id_formulir', 'left');
+        $this->db->join($this->tbl_frmapp . ' fr ', 'a.id_formulir = fr.id_formulir', 'left');
+        $this->db->join('lessential_accessapps.useraccess' . ' user ', 'a.createby = user.id_user', 'left');
+        $this->db->join('lessential_accessapps.useraccess' . ' uc ', 'fr.createby = uc.id_user', 'left');
+        $this->db->where('a.statusdata', 'active');
+        $this->db->where('k.statusdata', 'active');
+        $this->db->where('j.statusdata', 'active');
+        $this->db->where('r.statusdata', 'active');
+        $this->db->where('k.statusdata', 'active');
+        $this->db->where('a.id_formulir', $id);
+        return $this->db->get()->row();
+    }
+
+    function getbyid_rca($id) {
+        $this->db->select('a.*');
+        $this->db->from($this->tbl_rca . ' a ');
+        $this->db->where('a.statusdata', 'active');
+        $this->db->where('a.id_formulir', $id);
+        return $this->db->get()->result_array();
+    }
+
+    function getbyid($id) {
+        $this->db->select('a.*');
+        $this->db->from($this->table . ' a ');
+        $this->db->where('a.statusdata', 'active');
+        $this->db->where('a.id_formulir', $id);
+        return $this->db->get()->row();
+    }
+
+    function getby_dept($id) {
+        $this->db->select('a.*');
+        $this->db->from($this->tbl_depart_terkait . ' a ');
+        $this->db->where('a.statusdata', 'active');
+        $this->db->where('a.id_formulir', $id);
+        return $this->db->get()->result_array();
+    }
+
     
     public function getby_id_rca($id_rootcause) {
         $this->db->where("$this->prefix_rca", $id_rootcause);
@@ -248,6 +313,29 @@ class Approve_model extends MY_Model
         $this->db->where("statusdata", 'active');
         $result = $this->db->get($this->depterkait);
         return $this->returndata($result, 'row');
+    }
+
+    function checkData_analisis($id) {
+        $this->db->where("$this->prefix_id", $id);
+        $result = $this->db->get($this->tbl_rca)->num_rows();
+        return $result;
+    }
+
+    function create_analisis($record) {
+        return $this->db->insert($this->tbl_rca, $record);
+    }
+
+    function update_analisis($id, $record) {
+        $this->db->where("$this->prefix_id", $id);
+        return $this->db->update($this->tbl_rca, $record);
+    }
+
+    function update_approve($id,$dept, $record_1) {
+        $record_1['createtime'] = $this->datetimeserver;
+        
+        $this->db->where("$this->prefix_id", $id);
+        $this->db->where("department_name", $dept);
+        return $this->db->update($this->depterkait, $record_1);
     }
 
     //  public function getdatabankquota($id_formulir) {

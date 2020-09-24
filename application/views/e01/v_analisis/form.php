@@ -29,7 +29,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-        <form id="formdata" data-parsley-validate="" novalidate="">
+        <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -87,7 +87,7 @@
             </div>
 
            <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Katagori Penyimpangan <span style="color:red">*</span></label>
+                <label for="katagori" class="col-sm-3 col-form-label">Kategori Penyimpangan <span style="color:red">*</span></label>
                 <div class="col-sm-9">
                    <select id="id_katagori" name="id_katagori" class="form-control" required="" readonly="readonly">
                         <?php foreach ($default['id_katagori'] as $row) { ?>
@@ -167,58 +167,10 @@
                 </div>                        
              </div> 
 
-                <div class="form-group">
-                    <div id="divrca" style="display:none"></div>
-
-
-                <div class="form-group row">
-                    <label for="kesimpulan_akar" class="col-sm-3 col-form-label">Kesimpulan dari akar permasalahan <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
-                        <textarea name="kesimpulan_akar" class="form-control" rows="3" required=""
-                        <?php echo (isset($default['readonly_kesimpulan_akar'])) ? $default['readonly_kesimpulan_akar'] : ''; ?> ><?php echo (isset($default['kesimpulan_akar'])) ? $default['kesimpulan_akar'] : ''; ?></textarea>
-                    </div>                        
-                </div>
-
-                    <div id="divdetail" style="display:none"></div><br/>
-
-                <div class="form-group row">
-                    <label for="kesimpulan_akhir" class="col-sm-3 col-form-label">Kesimpul Akhir <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
-                        <textarea name="kesimpulan_akhir" class="form-control" rows="3" required=""
-                        <?php echo (isset($default['readonly_kesimpulan_akhir'])) ? $default['readonly_kesimpulan_akhir'] : ''; ?> ><?php echo (isset($default['kesimpulan_akhir'])) ? $default['kesimpulan_akhir'] : ''; ?></textarea>
-                    </div>                        
-                 </div>
-
-                <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Status Penyimpangan <span style="color:red">*</span></label>
-                <div class="col-sm-9">
-                   <select id="status_penyimpangan" name="status_penyimpangan" class="form-control">
-                        <?php foreach ($default['status_penyimpangan'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
+            <div class="form-group">
+                <div id="divrca" style="display:none"></div><br/>
+                <div id="divdetail" style="display:none"></div><br/>
             </div>
-
-                 <p>Penyimpangan telah ditindaklajuti oleh... </p> 
-                        <div class="form-group row">
-                            <label for="katagori" class="col-sm-3 col-form-label">Department <span style="color:red">*</span></label>
-                            <div class="col-sm-9">
-                            <select id="tindaklajuti_oleh" name="tindaklajuti_oleh" class="form-control chosen-select">
-                                    <?php foreach ($default['department_name'] as $row) { ?>
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                <p>dan tindakan perbaikan dan tindakan pencegahan teleh selesai dilaksanakan ... </p> 
-                    
-                </div>
             </div>
 
             <div class="col-sm-12">

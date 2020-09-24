@@ -34,7 +34,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-        <form id="formdata" class="form-horizontal" data-parsley-validate="" novalidate="">
+        <form id="formdata" class="form-horizontal" data-parsley-validate="" novalidate="" autocomplete="off">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />

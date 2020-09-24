@@ -8,7 +8,7 @@
 
     </div>
     <div class="card card-body">
-        <form id="formdatagroupuser" class="form-horizontal" data-parsley-validate="" novalidate="">           
+        <form id="formdatagroupuser" class="form-horizontal" data-parsley-validate="" novalidate="" autocomplete="off">           
 
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
@@ -23,8 +23,8 @@
             <div class="main-content container-fluid">
             </div>
             <div class="form-group row">
-                <label for="id_user" class="col-sm-2 text-right control-label col-form-label">User<span style="color:red">*</span></label>
-                <div class="col-sm-8">
+                <label for="id_user" class="col-sm-2 text-right control-label col-form-label">User <span style="color:red">*</span></label>
+                <div class="col-sm-10">
                     <select id="id_user" name="id_user" class="form-control">
                         <?php foreach ($default['id_user'] as $row) { ?>
 
@@ -36,9 +36,11 @@
                 </div>                        
             </div> 
 
-            <div class="text-center">
-                <button type="submit" id="btnsubmitform"  class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="reset" id="btncancelform"  class="btn btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
+            <div class="col-sm-12">
+                <p  class="text-right">
+                <button type="reset" id="btncancelform"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
+                <button type="submit" id="btnsubmitform"  class="btn btn-sm btn-success"><li class='fas fa-check'></li> &nbsp;Submit</button>
+                </p>
             </div>
     </div>
 </form>

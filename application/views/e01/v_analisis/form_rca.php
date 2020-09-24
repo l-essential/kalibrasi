@@ -42,7 +42,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-        <form id="formdatabunga" data-parsley-validate="" novalidate="">
+        <form id="formdatabunga" data-parsley-validate="" novalidate="" autocomplete="off">
         <input type="hidden" name="<?php echo $prefix_id ?>" id="idrca" value="<?php echo $id; ?>" />
         <input type="hidden" name="actiondatarca" id="actiondatarca" />
         <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />

@@ -6,6 +6,8 @@ class Location extends MY_Controller {
     function __construct() {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
+        $this->prefix_id_detail = $this->modeldata->prefix_id_detail;
+        $this->idheader = $this->modeldata->prefix_id; 
         $this->title = 'Location';
     }
 
@@ -16,7 +18,6 @@ class Location extends MY_Controller {
 
       public function edit($id) {
         $row = $this->modeldata->getby_id_array($id);
-
         $this->extenddata();
         parent::edit($id);
     }

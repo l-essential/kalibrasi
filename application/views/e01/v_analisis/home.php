@@ -1,4 +1,4 @@
-<?php $templates = base_url() . 'allassets/'; ?>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fas fa-file-contract"></i> <?php echo $title ?></h1>
+            <h1 class="m-0 text-dark"> <?php echo $title ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="" onclick="ToController('pu/Formulir/')">Home</a></li>
+              <li class="breadcrumb-item"><a href="" onclick="ToController('e01/Formulir/')">Home</a></li>
               <li class="breadcrumb-item active"><?php echo $title ?></li>
             </ol>
             </ol>
@@ -48,10 +48,9 @@
                         <tr>
                             <th>Action</th>
                             <th>Status</th>
-                            <th>Status Penyimpangan</th>
                             <th>Code Penyimpangan</th> 
                             <th>Judul</th> 
-                            <th>Katagori</th>
+                            <th>Kategori</th>
                             <th>Jenis</th>
                             <th>Ruang Lingkup</th>
                             <th>Tipe</th> 
@@ -121,19 +120,6 @@
                     status = "<button class='btn btn-block btn-like btn-xs'>Setuju</button>";
                 }else {
                     status = "<button class='btn btn-block btn-danger btn-xs'>Tidak Setuju</button>";
-                }
-                return status;
-            }
-        },
-       
-        {"data": "status_penyimpangan", "sClass": "text-center",
-            "mRender": function (data, type, row) {
-                var status = "-";
-                if (row.status_penyimpangan == 'CLOSED') {
-                    status = "<i class='far fa-times-circle' style='color:red'> CLOSED</i>";
-                } else {
-                    status = "<i class='far fa-check-circle' style='color:green'> OPEN</i>";
-                
                 }
                 return status;
             }

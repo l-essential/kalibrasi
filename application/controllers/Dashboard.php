@@ -11,6 +11,8 @@ class Dashboard extends MY_Controller {
         $this->load->model("Total_model", "dsh");
         $this->load->model("Moduleaccess_model", "ma");
         $this->load->model("mst/Notification_model", "notification");
+        $this->load->model("eml/Support_model","read");
+        $this->load->model("setup/Background_model","bg");
     }
 
     public function index() {
@@ -19,10 +21,26 @@ class Dashboard extends MY_Controller {
         $this->data['ip'] = $this->input->ip_address();
         
         $this->data['total_user'] = $this->dsh->total_user();
+        $this->data['user_online'] = $this->dsh->user_online();
+
+        $useronline  = $this->dsh->user_aja();
+        $this->data['useronline'] = $useronline;
+
+        $background  = $this->bg->get_background();
+        $this->data['background'] = $background;
+
+        $this->data['read'] = $this->read->onreads();
+        
         $this->data['url_notification'] = site_url($this->controller . '/getnotification');
         $this->data['buildaccess'] = $this->buildaccess($this->session->userdata('ses_id_user'));
         parent::index();
     }
+
+    public function shortcut()
+	{
+		$this->load->view('pages/shortcuts');
+	}
+
     
     public function getnotification() {
         $valid = false;

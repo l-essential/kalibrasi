@@ -33,7 +33,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-               <table id="dataintable" class="table table-bordered" width="100%">
+               <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
                     <thead>
                         <tr>
                             <th>Action</th>

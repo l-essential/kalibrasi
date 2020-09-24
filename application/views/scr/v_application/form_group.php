@@ -6,7 +6,7 @@
 
     </div>
     <div class="card card-body">
-        <form id="formdatagroup" class="form-horizontal" data-parsley-validate="" novalidate="">
+        <form id="formdatagroup" class="form-horizontal" data-parsley-validate="" novalidate="" autocomplete="off">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="id_maplikasi" id="id_maplikasi" value="<?php echo $id_maplikasi; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
@@ -21,15 +21,15 @@
            
             
             <div class="form-group row">
-                <label for="kode_group" class="col-sm-2 text-right control-label col-form-label">Kode Group</label><span style="color:red">*</span>
-                <div class="col-sm-3">
+                <label for="kode_group" class="col-sm-1 text-right control-label col-form-label">Kode Group</label><span style="color:red">*</span>
+                <div class="col-sm-2">
                     <input name="kode_group" id="kode_group" type="text" required="" parsley-type="text" placeholder="Masukan kode group" class="form-control"
                            value="<?php echo (isset($default['kode_group'])) ? $default['kode_group'] : ''; ?>"
                            <?php echo (isset($default['readonly_kode_group'])) ? $default['readonly_kode_group'] : ''; ?>
                            >
                 </div> 
-                <label for="nama_group" class="col-sm-2 text-right control-label col-form-label">Nama Group</label><span style="color:red">*</span>
-                <div class="col-sm-3">
+                <label for="nama_group" class="col-sm-1 text-right control-label col-form-label">Nama Group</label><span style="color:red">*</span>
+                <div class="col-sm-5">
                     <input name="nama_group" id="nama_group" type="text" required="" parsley-type="text" placeholder="Masukan nama group" class="form-control"
                            value="<?php echo (isset($default['nama_group'])) ? $default['nama_group'] : ''; ?>"
                            <?php echo (isset($default['readonly_nama_group'])) ? $default['readonly_nama_group'] : ''; ?>
@@ -38,7 +38,7 @@
             </div> 
                 
             <div class="form-group row">
-                    <label for="" class="col-sm-2 text-right control-label col-form-label"></label>
+                    <label for="" class="col-sm-1 text-right control-label col-form-label"></label>
                     <div class="col-sm-3">
                         <div class="demo-checkbox">
                             <input type="checkbox" id="spesialgroup" name="spesialgroup" value="Y"/>
@@ -48,9 +48,11 @@
               </div> 
             
            
-            <div class="text-center">
-                <button type="submit" id="btnsubmitform"  class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="reset" id="btncancelform"  class="btn btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
+             <div class="col-sm-12">
+                <p  class="text-right">
+                <button type="reset" id="btncancelform"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
+                <button type="submit" id="btnsubmitform"  class="btn btn-sm btn-success"><li class='fas fa-check'></li> &nbsp;Submit</button>
+                </p>
             </div>
             </div>
     </div>

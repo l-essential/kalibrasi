@@ -7,7 +7,7 @@
 
     </div>
     <div class="card card-body">
-        <form id="formdatamenu" class="form-horizontal" data-parsley-validate="" novalidate="">           
+        <form id="formdatamenu" class="form-horizontal" data-parsley-validate="" novalidate="" autocomplete="off">           
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -22,13 +22,13 @@
             </div>
             <div class="form-group row">
                 <label for="id_parent" class="col-sm-2 text-right control-label col-form-label">Parent menu</label>
-                <div class="col-sm-6">
+                <div class="col-sm-10">
                     <?php echo $parentmenu; ?>
                 </div>                        
             </div> 
             <div class="form-group row">
                 <label for="nama_menu" class="col-sm-2 text-right control-label col-form-label">Nama menu<span style="color:red">*</span></label>
-                <div class="col-sm-7">
+                <div class="col-sm-10">
                     <input name="nama_menu" id="nama_menu" type="text" required="" parsley-type="text" placeholder="Masukan nama menu" class="form-control"
                            value="<?php echo (isset($default['nama_menu'])) ? $default['nama_menu'] : ''; ?>"
                            <?php echo (isset($default['readonly_nama_menu'])) ? $default['readonly_nama_menu'] : ''; ?>
@@ -37,7 +37,7 @@
             </div> 
             <div class="form-group row">
                 <label for="urutan" class="col-sm-2 text-right control-label col-form-label">Urutan menu</label>
-                <div class="col-sm-3">
+                <div class="col-sm-10">
                     <input  name="urutan" id="urutan" type="text" parsley-type="text" placeholder="Masukan urutan menu" class="form-control"
                             value="<?php echo (isset($default['urutan'])) ? $default['urutan'] : ''; ?>"
                             <?php echo (isset($default['readonly_urutan'])) ? $default['readonly_urutan'] : ''; ?>
@@ -46,7 +46,7 @@
             </div> 
             <div class="form-group row">
                 <label for="icon" class="col-sm-2 text-right control-label col-form-label">Icon menu</label>
-                <div class="col-sm-4">
+                <div class="col-sm-10">
                     <input  name="icon" id="icon" type="text"  parsley-type="text" placeholder="Masukan kode icon,kode icon menggunakan Font Awesome Icons" class="form-control"
                             value="<?php echo (isset($default['icon'])) ? $default['icon'] : ''; ?>"
                             <?php echo (isset($default['readonly_icon'])) ? $default['readonly_icon'] : ''; ?>
@@ -55,7 +55,7 @@
             </div> 
             <div class="form-group row">
                 <label for="url_menu" class="col-sm-2 text-right control-label col-form-label">Url module menu</label>
-                <div class="col-sm-7">
+                <div class="col-sm-10">
                     <input  name="url_menu" id="url_menu" type="text" parsley-type="text" placeholder="Fill url for menu, if url not standard, then with example 0#www.google#newtab , only replace www.google" class="form-control"
                             value="<?php echo (isset($default['url_menu'])) ? $default['url_menu'] : ''; ?>"
                             <?php echo (isset($default['readonly_url_menu'])) ? $default['readonly_url_menu'] : ''; ?>
@@ -63,9 +63,11 @@
                 </div>                        
             </div> 
 
-            <div class="text-center">
-                <button type="submit" id="btnsubmitform" class="btn btn-success"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="reset" id="btncancelform"  class="btn btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
+            <div class="col-sm-12">
+                <p class="text-right">
+                <button type="reset" id="btncancelform"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
+                <button type="submit" id="btnsubmitform" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>
+                </p>
             </div>
     </div>
 </form>

@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fas fa-user"></i> <?php echo $title; ?></h1>
+            <h1 class="m-0 text-dark"><i class="fas fa-users"></i> <?php echo $title; ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -34,10 +34,10 @@
             <div class="card-body">
 
             <div class="table-responsive">
-               <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
+               <table id="dataintable" class="table  table-striped" width="100%">
                     <thead>
                         <tr>
-                            <th class="text-center" width="10px">Action</th>
+                            <th class="text-center" width="70px">Action_Data</th>
                             <th class="text-center">Ref ID</th>
                             <th class="text-center">Status User</th>
                             <th class="text-center">Nama Karyawan</th>
@@ -45,7 +45,7 @@
                             <th class="text-center">Username</th>
                             <th class="text-center">Role</th>
                             <th class="text-center">Email</th>
-                            <th class="text-center">Notifikasi Email</th>
+                            <th class="text-center">Notifikasi</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -81,17 +81,10 @@ $(document).ready(function () {
         $("#dataintable").dataTable({
             'order': [[1, 'desc']],
             keys: true,
-            fixedHeader: true,
-            deferRender: true,
-            scrollY: 380,
-            scrollX: true,
-            scrollCollapse: true,
-            scroller: false,
-            "bRetrieve": true,
-            "bDestroy": true,
+           
             lengthMenu: [
-                [10, 25, 50, 100,200,1000],
-                [10, 25, 50, 100,200,1000]
+                [5,10, 15, 25, 50,100],
+                [5,10, 15, 25, 50,100]
             ],
             responsive: true,
             "ajax": {
@@ -100,11 +93,12 @@ $(document).ready(function () {
             },
             "columns": [
                {
-                    "data": "id", "width": "50px", "sClass": "text-center",
+                    "data": "id", "width": "10%", "sClass": "text-center",
                     "bSortable": false,
                     "mRender": function (data, type, row) {
                         var btn = "";
                         var idtr = row["<?php echo $prefix_id; ?>"];
+                        btn = btn + "<a href='javascript:void(0)' onClick='preview(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-print'></i></a> &nbsp;";
                         if (accessedit == true) {
                             btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
                           }
@@ -178,5 +172,3 @@ $(document).ready(function () {
 
 
 </script>
-
-

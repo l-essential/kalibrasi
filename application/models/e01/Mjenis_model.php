@@ -10,10 +10,14 @@ class Mjenis_model extends MY_Model {
     }
 
     public function getAll() {
-        $this->db->where('statusdata','active');
-        $this->db->order_by('kode_jenis','asc');
-        return $this->db->get($this->table)->result_array();
+        $query = "
+                 SELECT 
+                        a.*
+                 FROM $this->table a  
+                 ";
+        return $this->db->query($query);
     }
+
 
      function getJenis(){
         $this->db->select("*");

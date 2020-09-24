@@ -39,7 +39,8 @@
                         <th>Sort Data</th>                      
                         <th>Kode Aplikasi</th>
                         <th>Nama Aplikasi</th>                        
-                        <th>Icon</th>               
+                        <th>Icon</th>
+                        <th>Status</th>               
                     </tr>
                 </thead>                   
             </table>
@@ -53,7 +54,8 @@
 
 
 <script type="text/javascript">
-     url_grid = '<?php echo $url_grid; ?>';
+    url_setstatus = '<?php echo $url_setstatus; ?>';
+    url_grid = '<?php echo $url_grid; ?>';
     url_add = '<?php echo $url_add; ?>';
     url_edit = '<?php echo $url_edit; ?>';
     url_delete = '<?php echo $url_delete; ?>';
@@ -62,7 +64,7 @@
     $(document).ready(function () {
         //initialize the javascript                
         $("#dataintable").dataTable({
-            'order': [[1, 'asc']],
+            'order': [[1, 'dsc']],
             keys: true,
             fixedHeader: true,
             deferRender: true,
@@ -98,6 +100,18 @@
                 {"data": "kode_aplikasi"},
                 {"data": "nama_aplikasi"},
                 {"data": "icon"},
+                {"data": "statusdata", "sClass": "text-center",
+                 "bSortable": false,
+                 "mRender": function (data, type, row) {
+                        var status = "";
+                        if (row.statusdata == 'active'){
+                        status = "<td><span class='badge badge-success'>Active</span></td>";
+                        } else {
+                        status = "<td><span class='badge badge-danger'>Nonactive</span></td>";
+                        }
+                        return status;
+                    }
+                },
               
             ]
 
@@ -135,12 +149,6 @@
         });
         return false;
     }
-
-
-
-
-
-
 
 
 </script>

@@ -19,103 +19,170 @@
  <section class="content">
       <div class="row">
         <div class="col-12">
-          <div class="card">    
-            <div class="card-header">
-                <?php echo $title; ?>
-              <div class="card-tools">
+          <div class="card">
+            <div class="card-header border">
+              Assets
+                <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                       <i class="fas fa-minus"></i></button>
-                   
+                    <button type="button" class="btn btn-tool" onclick="refreshtemplate()" data-toggle="tooltip" title="Reload">
+                      <i class="fas fa-redo-alt"></i></button>
                   </div>
-            </div>
+              </div>
             <!-- /.card-header -->
             <div class="card-body">
-        <form id="formdata" class="form-horizontal" data-parsley-validate="" novalidate="">
+
+        <form id="formdata" data-parsley-validate="" novalidate="">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
-            <input type="hidden" name="checkdata1" id="checkdata1" value="assets_code" />
+            <input type="hidden" name="checkdata1" id="checkdata1" value="kode_bank" />
             <input type="hidden" name="checkdata2" id="checkdata2" value="" />
             <input type="hidden" name="checkdata3" id="checkdata3" value="" />
             <input type="hidden" name="checkdata4" id="checkdata4" value="" />
             <input type="hidden" name="dengangambar" id="dengangambar" value="N" />
 
             <div class="main-content container-fluid">
+
+            <div class="form-group row">
+                <label  for="assets_code" class="col-sm-3 col-form-label">Kode Assets <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                    <input name="assets_code" minlength="1" maxlength="30" id="assets_code" type="text" required=""  parsley-type="text" placeholder="kode assets" class="form-control"
+                        value="<?php echo (isset($default['assets_code'])) ? $default['assets_code'] : ''; ?>"
+                        <?php echo (isset($default['readonly_assets_code'])) ? $default['readonly_assets_code'] : ''; ?>
+                        Readonly >
+                </div>
             </div>
-            <div class="form-group row">
-                <label for="assets_code" class="col-sm-2 text-right control-label col-form-label">Assets Code <span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input name="assets_code" id="assets_code" type="text" required="" parsley-type="text" placeholder="Masukan assets_code" class="form-control"
-                           value="<?php echo (isset($default['assets_code'])) ? $default['assets_code'] : ''; ?>"
-                           <?php echo (isset($default['readonly_assets_code'])) ? $default['readonly_assets_code'] : ''; ?>
-                           >
-                </div>                        
-            </div> 
-            <div class="form-group row">
-                <label for="assets_name" class="col-sm-2 text-right control-label col-form-label">Assets Name <span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input name="assets_name" id="assets_name" type="text" minlength="5" maxlength="80" required="" parsley-type="text" placeholder="Masukan nama penandatangan" class="form-control"
-                           value="<?php echo (isset($default['assets_name'])) ? $default['assets_name'] : ''; ?>"
-                           <?php echo (isset($default['readonly_assets_name'])) ? $default['readonly_assets_name'] : ''; ?>
-                           >
-                </div>                        
-            </div>
-            <div class="form-group row">
-                <label for="assets_model" class="col-sm-2 text-right control-label col-form-label">Assets Model <span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input name="assets_model" id="assets_model" type="text" required="" parsley-type="text" placeholder="Masukan assets_model" class="form-control"
-                           value="<?php echo (isset($default['assets_model'])) ? $default['assets_model'] : ''; ?>"
-                           <?php echo (isset($default['readonly_assets_model'])) ? $default['readonly_assets_model'] : ''; ?>
-                           >
-                </div>                        
-            </div> 
-            <div class="form-group row">
-                <label for="assets_type" class="col-sm-2 text-right control-label col-form-label">Assets Type<span style="color:red">*</span></label>
-                <div class="col-sm-10"> 
-                    <input name="assets_type" id="assets_type" type="text" minlength="5" maxlength="80" required="" parsley-type="text" placeholder="Masukan nama penandatangan" class="form-control"
-                           value="<?php echo (isset($default['assets_type'])) ? $default['assets_type'] : ''; ?>"
-                           <?php echo (isset($default['readonly_assets_type'])) ? $default['readonly_assets_type'] : ''; ?>
-                           >
-                </div>                        
-            </div>
+
              <div class="form-group row">
-                <label for="assets_merk" class="col-sm-2 text-right control-label col-form-label">Assets Merk <span style="color:red">*</span></label>
-                <div class="col-sm-10">
-                    <input name="assets_merk" id="assets_merk" type="text" minlength="5" maxlength="80" required="" parsley-type="text" placeholder="Masukan nama penandatangan" class="form-control"
-                           value="<?php echo (isset($default['assets_merk'])) ? $default['assets_merk'] : ''; ?>"
-                           <?php echo (isset($default['readonly_assets_merk'])) ? $default['readonly_assets_merk'] : ''; ?>
-                           >
-                </div>                        
-            </div> 
+                <label  for="assets_type" class="col-sm-3 col-form-label">Type Assets <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                   <select id="assets_type" name="assets_type" class="form-control" required="">
+                        <?php foreach ($default['type_assets_id'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="katagori" class="col-sm-3 col-form-label">Lokasi Assets <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                   <select id="assets_location" name="assets_location" class="form-control" required="">
+                        <?php foreach ($default['location_id'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>   
+            </div>
+
+           <div class="form-group row">
+                <label for="katagori" class="col-sm-3 col-form-label">Posisi assets <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                   <select id="assets_position" name="assets_position" class="form-control" required="">
+                        <?php foreach ($default['position_id'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+
+          <div class="form-group row">
+                <label for="katagori" class="col-sm-3 col-form-label">Department <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                   <select id="assets_responsible" name="assets_responsible" class="form-control" required="">
+                        <?php foreach ($default['department_name'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>  
+            </div>
+
+            <div class="form-group row">
+                <label for="katagori" class="col-sm-3 col-form-label">Deskripsi Assets <span style="color:red">*</span></label>
+                <div class="col-sm-9">
+                        <textarea name="assets_descripsi" class="form-control" rows="3" <?php echo (isset($default['readonly_assets_descripsi'])) ? $default['readonly_assets_descripsi'] : ''; ?> ><?php echo (isset($default['assets_descripsi'])) ? $default['assets_descripsi'] : ''; ?></textarea>
+                    </div> 
+            </div>
+          
+                
+                <div class="form-group">
+                    <div id="divdetail" style="display:none"></div><br/>
+                </div>
+            </div>
 
             <div class="col-sm-12">
-             <p class="text-right">
-                <button type="button" id="btnsubmitform" onclick="submitform()" class="btn btn-sm btn-like"><li class='fa fa-save'></li> &nbsp;Submit</button>
-                <button type="button" id="btncancelform" onclick="closedata()" class="btn btn-sm btn-secondary"><li class='fa fa-reply'></li>&nbsp; Cancel</button>
-            </p>
+                <p class="text-right">
+                    <button type="reset" class="btn btn-sm btn-secondary"><i class='fa fa-times'> Cancel</i></button>
+                    <button type="submit" class="btn btn-sm btn-like"><i class='fa fa-check'> Submit</i></button>
+                </p>
             </div>
+              </div>
+        </form>
+        </div>
+        </div>
     </div>
-</form>
- </div>
-</div>
-</div>
 </div>
 </div>
 </section>
 </div>
-<script type="text/javascript">
-    url_post = '<?php echo $url_post; ?>';
-    url_index = '<?php echo $url_index; ?>';
-    id = $("#id").val();
-    $('#tanggal_tmt').datepicker({
-            dateFormat: 'dd-mm-yy',
-            changeMonth: true,
-            changeYear: true,
-           
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var form, formdata, url_index, url_post, id, actiondata;
+            url_post = '<?php echo $url_post; ?>';
+            url_index = '<?php echo $url_index; ?>';
+            id = $("#id").val();
+            actiondata = (id == 0) ? 'create' : 'update';
+            if (actiondata == 'update') {
+                var getdata = postaction('<?php echo $url_getdata; ?>', {'nama_bank': $("#nama_bank").val()});
+                homedetail(getdata);
+            }
+
+
+
+            $("#formdata").on('submit', function (e) {
+                e.preventDefault();
+                form = $(this);
+                form.parsley().validate();
+                if (form.parsley().isValid()) {
+                    $("#actiondata").val(actiondata);
+                    formdata = $("#formdata").serialize();
+                    var resultdata = postaction(url_post, formdata);
+                    _alert(resultdata.msg, resultdata.valid);
+                    if (resultdata.valid == true && actiondata == 'create') {
+                        var getdata = postaction('<?php echo $url_getdata; ?>', {'nama_bank': resultdata.postdata.nama_bank});
+                        homedetail(getdata);
+                    }
+                }
+            });
+            $("#formdata").on('reset', function (e) {
+                e.preventDefault();
+                ToContent(url_index);
+            });
         });
-    actiondata = (id == 0) ? 'create' : 'update';
-    
-</script>
 
-
-
+        function homedetail(param) {
+            var id_bank = param.result.id_bank;
+            $("#divdetail").html("");
+            $("#divdetail").show();
+            $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + id_bank);
+            $("#divbunga").html("");
+            $("#divbunga").show();
+            $("#divbunga").load('<?php echo $url_homebunga ?>' + '/' + id_bank);
+            $("#divbankquota").html("");
+            $("#divbankquota").show();
+            $("#divbankquota").load('<?php echo $url_homebankquota ?>' + '/' + id_bank);
+        }
+    </script>

@@ -12,7 +12,7 @@
             </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-xs-6 col-lg-3">
+                <div class="col-xs-6 col-lg-4">
                     <div class="card card-outline-success">
                         <div class="card-header">
                             <span><strong>Menu Preview</strong></span>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-9">
+                <div class="col-xs-12 col-sm-6 col-lg-8">
                     <div class="table-responsive">
                         <table id="dataintablemenu" class="table table-striped" width="100%">
                             <thead>
@@ -30,11 +30,11 @@
                                     <th class="text-center" width="10px">Actions</th>
                                     <!-- <th class="text-center" width="80px">ID Menu</th>    
                                     <th class="text-center" width="80px">ID Parent</th>  -->
-                                    <th class="text-center">Order</th>    
-                                    <th class="text-center">Parent Menu</th>    
-                                    <th class="text-center">Menu</th> 
-                                    <th class="text-center">Icon</th>    
-                                    <th class="text-center">Url Action</th>  
+                                    <th>Order</th>    
+                                    <th>Parent Menu</th>    
+                                    <th width="190px">Menu</th> 
+                                    <th>Icon</th>    
+                                    <th>Url Action</th>  
                                 </tr>
                             </thead>                 
                         </table>
@@ -96,8 +96,8 @@
             "bRetrieve": true,
             "bDestroy": true,
             lengthMenu: [
-                [10, 25, 50, 100, 200, 500, 1000],
-                [10, 25, 50, 100, 200, 500, 1000]
+                [50, 100, 200, 500, 1000],
+                [50, 100, 200, 500, 1000]
             ],
             "columns": datacolumn,
             "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
