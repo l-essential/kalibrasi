@@ -34,26 +34,26 @@
             <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
 
             <div class="form-group row">
-                <label class="col-2 col-sm-2 col-form-label" for="periode">Periode<span class="err_receive_date required" style="color:red">*</span>
+                <label class="col-sm-2 col-form-label" for="periode">Periode<span class="err_receive_date required" style="color:red">*</span>
                 </label>
-                <div class="col-4 col-sm-5">                            
-                    <input type="text" id="daritanggal"  name="daritanggal" class="form-control" placeholder="dari tanggal"
-                            value="<?php echo (isset($default['daritanggal'])) ? $default['daritanggal'] : ''; ?>"
-                            <?php echo (isset($default['readonly_daritanggal'])) ? $default['readonly_daritanggal'] : ''; ?>      
+                <div class="col-sm-4">                         
+                    <input type="text" id="periode_date_awal"  name="periode_date_awal" class="form-control" placeholder="dari tanggal"
+                            value="<?php echo (isset($default['periode_date_awal'])) ? $default['periode_date_awal'] : ''; ?>"
+                            <?php echo (isset($default['readonly_periode_date_awal'])) ? $default['readonly_periode_date_awal'] : ''; ?>      
                             />  
                 </div>
                 
-                <div class="col-4 col-sm-5">                            
-                    <input type="text" id="sampaitanggal"  name="sampaitanggal" class="form-control"  placeholder="sampai tanggal"
-                            value="<?php echo (isset($default['sampaitanggal'])) ? $default['sampaitanggal'] : ''; ?>"
-                            <?php echo (isset($default['readonly_sampaitanggal'])) ? $default['readonly_sampaitanggal'] : ''; ?>      
+                <div class="col-sm-4">          
+                    <input type="text" id="periode_date_akhir"  name="periode_date_akhir" class="form-control"  placeholder="sampai tanggal"
+                            value="<?php echo (isset($default['periode_date_akhir'])) ? $default['periode_date_akhir'] : ''; ?>"
+                            <?php echo (isset($default['readonly_periode_date_akhir'])) ? $default['readonly_periode_date_akhir'] : ''; ?>      
                             />  
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="katagori" class="col-sm-2 col-form-label">Ruang Lingkup </label>
-                <div class="col-sm-10">
+                <div class="col-sm-4">
                    <select id="scope_code" name="scope_code" class="form-control">
                         <?php foreach ($default['scope_code'] as $row) { ?>
 
@@ -66,10 +66,10 @@
             </div>
 
             <div class="form-group row">
-                <label for="katagori" class="col-sm-2 col-form-label">Lokasi </label>
-                <div class="col-sm-10">
-                   <select id="calibration_code" name="calibration_code" class="form-control chosen-select">
-                        <?php foreach ($default['department_name'] as $row) { ?>
+                <label for="katagori" class="col-sm-2 col-form-label">Departemen Name </label>
+                <div class="col-sm-4">
+                   <select id="location_name" name="location_name" class="form-control chosen-select">
+                        <?php foreach ($default['location_name'] as $row) { ?>
 
                             <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
                                     <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
@@ -93,9 +93,23 @@
                 </div>
             </div> -->
 
+            <!-- <div class="form-group row">
+                <label for="katagori" class="col-sm-2 col-form-label">Tipe Kalibrasi </label>
+                <div class="col-sm-4">
+                   <select id="calibration_type" name="calibration_type" class="form-control chosen-select">
+                        <?php foreach ($default['calibration_type'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>  
+            </div> -->
+
             <div class="form-group row">
-                <label for="calibration_type" class="col-sm-2 control-label">Kalibrasi</label>
-                <div class="col-sm-10">
+                <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
+                <div class="col-sm-4">
                     <select name="calibration_type" id="calibration_type" class="form-control">
                         <option value="">- Please Select -</option>
                         <option  value="Internal">Internal</option>
@@ -131,7 +145,7 @@
 
 <script type="text/javascript">
 
-    $('#daritanggal,#sampaitanggal').datepicker({
+    $('#periode_date_awal,#periode_date_akhir').datepicker({
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd-mm-yy',

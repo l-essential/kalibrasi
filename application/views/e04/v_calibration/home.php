@@ -41,9 +41,9 @@
                                 <th>Kode Kalibrasi</th>
                                 <th>Alat</th>
                                 <th>Lokasi</th>
-                                <th>tanggal kalibrasi</th>
-                                <th>Vendor</th>
-                                <th>No Sertifikat</th>
+                                <!-- <th>tanggal kalibrasi Awal</th> -->
+                                <th>tanggal kalibrasi Akhir</th>
+                                <!-- <th>No Sertifikat</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -115,6 +115,17 @@
         {"data": "calibration_code"},
         {"data": "tools_code"},
         {"data": "locpos"},
+        // {"data": "id_satuan", "width": "100px", "sClass": "text-center",
+        //     "bSortable": false,
+        //     "mRender": function (data, type, row) {
+        //         var btn = "";
+        //         var idtr = row["<?php echo $prefix_id; ?>"];
+
+        //             btn = btn + row.startcalibration_date +" </a> &nbsp;";
+                
+        //         return btn;
+        //     }
+        // },
         {"data": "id_satuan", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {
@@ -126,13 +137,10 @@
                 return btn;
             }
         },
-        {"data": "vendor_id"},
-        {"data": "no_sertifikat"},
+        // {"data": "tools_no_sertifikat"},
         
     ];
     setdatagrid();
-
-
 
     function process_delete() {
         $.ajax({

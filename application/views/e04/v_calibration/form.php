@@ -1,4 +1,3 @@
-
 <style>
  
 #show8{
@@ -45,6 +44,7 @@
             <input type="hidden" name="actiondata" id="actiondata" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
             <input type="hidden" name="checkdata1" id="checkdata1" value="calibration_code" />
+            <input type="hidden" name="checkdata1" id="checkdata1" value="tools_no_sertifikat"/>
             <input type="hidden" name="checkdata2" id="checkdata2" value="" />
             <input type="hidden" name="checkdata3" id="checkdata3" value="" />
             <input type="hidden" name="checkdata4" id="checkdata4" value="" />
@@ -62,8 +62,8 @@
             <div class="main-content container-fluid">
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">ID Alat</label>
-                  <div class="col-sm-9">
+                <label class="col-sm-2 col-form-label">ID Alat</label>
+                  <div class="col-sm-4">
                     <input name="calibration_code" minlength="1" maxlength="30" id="calibration_code" type="text" parsley-type="text" placeholder="Auto" class="form-control"
                     value="<?php echo (isset($default['calibration_code'])) ? $default['calibration_code'] : ''; ?>"
                     <?php echo (isset($default['readonly_calibration_code'])) ? $default['readonly_calibration_code'] : ''; ?>
@@ -72,9 +72,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="tools_name" class="col-3 col-lg-3 col-form-label">Nama Alat</label>
-                <div class="col-lg-9">
-                    <input name="tools_name" id="tools_name" type="text" required="" parsley-type="text" placeholder="ketik minimal 2 kata untuk mencari nama alat" class="form-control"
+                <label for="tools_name" class="col-sm-2 col-form-label">Nama Alat</label>
+                <div class="col-lg-4">
+                    <input name="tools_name" id="tools_name" type="text" required="" parsley-type="text" placeholder="ketik minimal 2 huruf untuk mencari nama alat" class="form-control"
                             value="<?php echo (isset($default['readonly_tools_name'])) ? $default['readonly_tools_name'] : ''; ?>"
                                    <?php echo (isset($default['readonly_tools_name'])) ? $default['readonly_tools_name'] : ''; ?>
                             />
@@ -87,8 +87,8 @@
             </div>
 
             <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Ruang Lingkup <span style="color:red">*</span></label>
-                <div class="col-sm-9">
+                <label for="katagori" class="col-sm-2 col-form-label">Ruang Lingkup <span style="color:red">*</span></label>
+                <div class="col-sm-4">
                    <select id="scope_code" name="scope_code" class="form-control" required="">
                         <?php foreach ($default['scope_code'] as $row) { ?>
 
@@ -101,8 +101,8 @@
             </div>
 
            <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Lokasi <span style="color:red">*</span></label>
-                <div class="col-sm-9">
+                <label for="katagori" class="col-sm-2 col-form-label">Pilih Departemen <span style="color:red">*</span></label>
+                <div class="col-sm-4">
                    <select id="location_name" name="location_name" class="form-control chosen-select" required="">
                         <?php foreach ($default['location_name'] as $row) { ?>
 
@@ -115,8 +115,8 @@
             </div>
 
              <div class="form-group row">
-                <label for="katagori" class="col-sm-3 col-form-label">Posisi <span style="color:red">*</span></label>
-                <div class="col-sm-9">
+                <label for="katagori" class="col-sm-2 col-form-label">Posisi <span style="color:red">*</span></label>
+                <div class="col-sm-4">
                    <select id="position_name" name="position_name" class="form-control chosen-select" required="">
                         <?php foreach ($default['position_name'] as $row) { ?>
 
@@ -129,8 +129,8 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label" autocomplete="off">Tanggal Awal <span style="color:red">*</span></label>
-                  <div class="col-sm-9">
+                <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Kalibrasi Akhir <span style="color:red">*</span></label>
+                  <div class="col-sm-4">
                       <input name="startcalibration_date" minlength="1" maxlength="30" id="startcalibration_date" type="text" required=""  parsley-type="text" placeholder="input tanggal awal" class="form-control"
                     value="<?php echo (isset($default['startcalibration_date'])) ? $default['startcalibration_date'] : ''; ?>"
                     <?php echo (isset($default['readonly_startcalibration_date'])) ? $default['readonly_startcalibration_date'] : ''; ?>
@@ -138,8 +138,28 @@
                       </div>
             </div> 
 
+            <!-- <div class="form-group row">
+                <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Kalibrasi Akhir</label>
+                  <div class="col-sm-4">
+                      <input name="startcalibration_date" minlength="1" maxlength="30" id="startcalibration_date" type="text" parsley-type="text" placeholder="input tanggal akhir" class="form-control"
+                    value="<?php echo (isset($default['startcalibration_date'])) ? $default['startcalibration_date'] : ''; ?>"
+                    <?php echo (isset($default['readonly_startcalibration_date'])) ? $default['readonly_startcalibration_date'] : ''; ?>
+                      >
+                      </div>
+            </div>  -->
+
+            <!-- <div class="form-group row">
+                    <label for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat</label>
+                    <div class="col-sm-4">
+                        <input name="tools_no_sertifikat" minlength="1" maxlength="30" id="tools_no_sertifikat" type="text" parsley-type="text" placeholder="input no sertifikat" class="form-control"
+                            value="<?php echo (isset($default['tools_no_sertifikat'])) ? $default['tools_no_sertifikat'] : ''; ?>"
+                            <?php echo (isset($default['readonly_tools_no_sertifikat'])) ? $default['readonly_tools_no_sertifikat'] : ''; ?>
+                            >
+                    </div>  
+                </div>  -->
+
             <div class="form-group row">
-                <label for="" class="col-sm-3 control-label col-form-label"></label>
+                <label for="" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-3">
                     <div class="demo-checkbox">
                         <input type="checkbox" id="calibration_status" name="calibration_status" value="1"/>
@@ -155,7 +175,7 @@
 
                
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <p class="text-right">
                     <button type="reset" class="btn btn-sm btn-space btn-secondary"><i class='fas fa-times'> Cancel</i></button>
                     <button type="submit" class="btn btn-sm btn-space btn-like"><i class='fas fa-check'> Submit</i></button>
@@ -178,6 +198,7 @@
             changeMonth: true,
             changeYear: true
         });
+
 
         
 

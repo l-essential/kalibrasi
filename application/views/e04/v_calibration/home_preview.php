@@ -68,13 +68,17 @@
                   <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
                     <thead>
                     <tr>
-                      <th>Tanggal</th>
+                      <th>Tanggal Kalibrasi Awal</th>
+                      <th>Tanggal Kalibrasi Akhir</th>
+                      <th>Status Kalibrsi</th>
+                      <th>No Sertifikat</th>
                       <th>Vendor</th>
-                      <!-- <th>Qty Order/ Unit</th> -->
+                      <th>Qty Unit</th>
                       <th>Unit Price</th>
                       <th>Disc %</th>
+                      <th>Disc Rupiah</th>
                       <th>Total</th>
-                      <!-- <th>Ppn 10%</th> -->
+                      <th>Ppn 10%</th>
                       <th>Total + PPN 10%</th>
                       <th>Keterangan</th>
                     </tr>
@@ -110,8 +114,13 @@
 <script type="text/javascript">
     url_setstatus = '<?php echo $url_setstatus; ?>';
     url_grid = '<?php echo $url_grid; ?>';
+    url_setcomplete = '<?php echo $url_setcomplete; ?>';
+    status_id = '<?php echo $status_po; ?>';
+    id_position = '<?php echo $id_position; ?>';
 
     prefix_id = '<?php echo $prefix_id; ?>';
+
+    accessdelete = checkaccess("update");
 
    $(document).ready(function () {
         //initialize the javascript                
@@ -137,22 +146,37 @@
                 "type": 'POST',
             },
             "columns": [
-                {"data": "status_calibration", "sClass": "text-center",
-                 "mRender": function (data, type, row) {
-                      var status = "";
-                          status = status + "<td>"+ row.periode_year + "-"+ row.periode_date +" </td>";
-                      return status;
+                {"data": "periode_date_awal"},
+                {"data": "periode_date_akhir"},
+                {"data": "status_po", "sClass": "text-center",
+              "mRender": function (data, type, row) {
+                      var status = row["<?php echo $status_po; ?>"];
+                      var id = row["<?php echo $id_position; ?>"];
+                      // var status = row.status_po;
+                      // var id = row.id_position;
+                      if (row.status_po == 'Draft') {
+                          status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
+                      }if (row.status_po == 'Proses di Vendor') {
+                          status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
+                      }if (row.status_po == 'Barang di terima') {
+                          status = "<a href='javascript:void(0)' onClick='process_confirm(" + status + "," + id + ")'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                          // status = "<a href='javascript:void(0)' onClick=\'process_confirm('" + status + "','" + id + "\')'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                      }if (row.status_po == 'Complete') {
+                          status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
+                      } return status;
                   }
-                },
+              },
+                {"data": "tools_no_sertifikat"},
                 {"data": "vendor_name"},
-                // {"data": "calibration_qty"},
+                {"data": 'calibration_qty'},
                 {"data": 'calibration_price',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
                 // {"data": "calibration_price"},
                 {"data": "calibration_disc"},
+                {"data": "calibration_disc_rp","render": $.fn.dataTable.render.number( ',', '.', 2, )},
                 {"data": "total_harga"},
-                // {"data": "ppn"},
+                {"data": "ppn"},
                 {"data": 'disc_ppn',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
-                {"data": "periode_information"},
+                {"data": "keterangan"},
                 // {"data": "calibration_price" ,render: $.fn.dataTable.render.number( ',', '.', 2, 'Rp ' )}, 
               
             ]
@@ -211,4 +235,35 @@ function postaction(url, param) {
     return false;
 
 }
+
+  function process_confirm(status, id) 
+  {
+    // console.log('isi dari: ' + status);
+    // console.log('isi dari: ' + id);
+
+    var tanya = confirm('Apakah anda akan merubah status menjadi "Complete" ?');
+     if (tanya == true) 
+     {
+        $.ajax({
+            url: url_setcomplete,
+            type: "post",
+            dataType: "json",
+            cache: false,
+            data: {
+              status: status,
+              id: id,  
+            },
+            success: function (data) {
+                $('#DialogConfirm').modal('hide');
+                if (data.valid == true) {
+                    $('#dataintable').dataTable().fnReloadAjax();
+                }
+                _alert(data.msg, data.valid);
+
+            }
+        });
+        return false;
+    }
+  }
+
 </script>

@@ -9,14 +9,18 @@ class Report extends MY_Controller {
         $this->load->model($this->pathclass . '/internal_model','type');
         $this->load->model('e00/Scope_model', 'scope');
          $this->load->model('e_/Department_model', 'dpt');
+         $this->load->model('e04/Calibration_model', 'eks');
+         $this->load->model('e04/Calibration_model', 'eks');
+         $this->load->model('e00/Location_model', 'location');
+         $this->load->model('e00/Position_model', 'position');
     }
 
      public function home_laporan() {
         error_reporting(0);
         $this->data['title'] = 'Report Kalibrasi';
         $this->buildcombobox('scope_code', 'scope_name', $this->scope->getAll());
-        $this->buildcombobox('department_name', 'department_name', $this->dpt->getAll());
-        $this->buildcombobox('calibration_type', 'calibration_type', $this->type->getAll());
+        $this->buildcombobox('location_name', 'location_name', $this->location->getAll());
+        $this->buildcombobox('calibration_type', 'calibration_type', $this->eks->getAll());
         $this->data['url_index'] = site_url($this->controller . '/home_laporan');
         $this->data['url_generatereport'] = site_url($this->controller . '/generatereport');
         $this->data['url_excel'] = site_url($this->controller . '/exceldata');

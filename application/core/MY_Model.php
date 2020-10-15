@@ -630,6 +630,7 @@ class MY_Model extends CI_Model {
         } else {
             $this->delete($id);
         }
+        // delete/update hanya ditabel kalibrasi di tabel tools blom
     }
 
     function deletedata_detail($id, $record = array()) {

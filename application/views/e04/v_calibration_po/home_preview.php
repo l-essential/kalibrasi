@@ -75,6 +75,7 @@
                       <th>Nama Alat</th>
                       <th>Lokasi</th>
                       <th>Vendor</th>
+                      <th>Status Kalibrasi</th>
                       <th>Tgl Kalibrasi</th>
                     </tr>
                     </thead>
@@ -158,10 +159,28 @@
             },
             "columns": [
                         {"data": "calibration_code"},
-                        {"data": "tools_code"},
+                        {"data": "id_satuan",
+                          "bSortable": false,
+                          "mRender": function (data, type, row) {
+                                  var btn = "";
+                                      btn = btn + "<td>"+ row.tools_code +", "+ row.tools_name +", "+ row.tools_merk +"</td>";
+                                  return btn;
+                              }
+                          },
                         {"data": "location_name"},
                         {"data": "vendor_name"},
-                        {"data": "periode_date"}
+                        {"data": "status_po"},
+                        {"data": "id_satuan", "width": "100px", "sClass": "text-center",
+            "bSortable": false,
+            "mRender": function (data, type, row) {
+                var btn = "";
+                var idtr = row["<?php echo $prefix_id; ?>"];
+
+                    btn = btn + "<a href='javascript:void(0)'  class='text-inverse' style='color:#20c997'>"+ row.startcalibration_date +" <i class='fas fa-calendar-check'></i></a> &nbsp;";
+                
+                return btn;
+            }
+        },
                        ]
 
         });

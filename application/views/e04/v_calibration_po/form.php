@@ -45,8 +45,8 @@
 
                 <div class="main-content container-fluid">
                  <div class="form-group row">
-                        <label for="calibrationpo_code" class="col-3 col-lg-2 col-form-label text-left">NO PK  <span style="color:red">*</span></label>
-                        <div class="col-9 col-lg-10">
+                        <label for="calibrationpo_code" class="col-sm-2 col-form-label">NO PK  <span style="color:red">*</span></label>
+                        <div class="col-sm-4">
                             <input name="calibrationpo_code" minlength="2" maxlength="50" id="calibrationpo_code" type="text"  parsley-type="text" placeholder="Auto no pk" class="form-control"
                                    value="<?php echo (isset($default['calibrationpo_code'])) ? $default['calibrationpo_code'] : ''; ?>"
                                    <?php echo (isset($default['readonly_calibrationpo_code'])) ? $default['readonly_calibrationpo_code'] : ''; ?>
@@ -55,19 +55,47 @@
                     </div>  
 
                     <div class="form-group row">
-                        <label for="date_po" class="col-3 col-lg-2 col-form-label text-left">Tanggal PK <span style="color:red">*</span></label>
-                        <div class="col-9 col-lg-10">
+                        <label for="date_po" class="col-sm-2 col-form-label">Tanggal PK <span style="color:red">*</span></label>
+                        <div class="col-sm-4">
                             <input name="date_po" minlength="2" maxlength="50" id="date_po" type="text" required=""  parsley-type="text" placeholder="input Tanggal PK" class="form-control"
                                    value="<?php echo (isset($default['date_po'])) ? $default['date_po'] : ''; ?>"
                                    <?php echo (isset($default['readonly_date_po'])) ? $default['readonly_date_po'] : ''; ?>
                                    >
                         </div>                        
                     </div>  
+
+                    <!-- <div class="form-group row">
+                        <label for="status_po" class="col-sm-2 col-form-label">Status Kalibrasi <span style="color:red">*</span></label>
+                        <div class="col-sm-4">
+                            <div class="demo-checkbox">
+                                <input type="checkbox" id="status_po" name="status_po" value="0"/>
+                                <label for="calibration_status">Draft</label><br>
+                                <input type="checkbox" id="status_po" name="status_po" value="1"/>
+                                <label for="calibration_status">Proses Vendor</label><br>
+                                <input type="checkbox" id="status_po" name="status_po" value="2"/>
+                                <label for="calibration_status">Barang diterima</label><br>
+                                <input type="checkbox" id="status_po" name="status_po" value="3"/>
+                                <label for="calibration_status">Proses Kalibrasi Selesai</label>
+                            </div>                        
+                        </div>                        
+                    </div>  -->
+
+                    <div class="form-group row">
+                        <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
+                        <div class="col-sm-4">
+                            <select name="calibration_type" id="calibration_type" class="form-control">
+                                <option value="">- Please Select -</option>
+                                <option  value="Internal">Internal</option>
+                                <option  value="Eksternal">Eksternal</option>
+                            </select>
+                        </div>
+                    </div>
+
                      <div class="form-group">
                         <div id="divdetail" style="display:none"></div><br/>
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <p class="text-right">
                         <button type="reset" class="btn btn-sm btn-secondary"><i class="fas fa-times"> Cancel</i></button>
                         <button type="submit" class="btn btn-sm btn-like"><i class='fas fa-check'> Submit</i></button>
@@ -131,4 +159,9 @@
         $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + c_pohedaer_id);
     }
     
+    
+    $("#calibration_type").trigger("chosen:updated");
+    $("#calibration_type").chosen();
+
+
 </script>

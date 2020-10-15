@@ -44,7 +44,7 @@
            
                 <div class="form-group row">
                         <label  for="tools_code" class="col-sm-2 col-form-label">Inisial <span style="color:red">*</span></label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                             <input name="tools_code" minlength="1" maxlength="30" id="tools_code" type="text" required=""  parsley-type="text" placeholder="input kode alat" class="form-control"
                                 value="<?php echo (isset($default['tools_code'])) ? $default['tools_code'] : ''; ?>"
                                 <?php echo (isset($default['readonly_tools_code'])) ? $default['readonly_tools_code'] : ''; ?>
@@ -54,7 +54,7 @@
 
                 <div class="form-group row">
                     <label  for="tools_name" class="col-sm-2 col-form-label">Nama Alat <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="tools_name" minlength="1" maxlength="30" id="tools_name" type="text" required=""  parsley-type="text" placeholder="input nama alat" class="form-control"
                             value="<?php echo (isset($default['tools_name'])) ? $default['tools_name'] : ''; ?>"
                             <?php echo (isset($default['readonly_tools_name'])) ? $default['readonly_tools_name'] : ''; ?>
@@ -64,7 +64,7 @@
 
                 <div class="form-group row">
                     <label  for="tools_merk" class="col-sm-2 col-form-label">Merk <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="tools_merk" minlength="1" maxlength="30" id="tools_merk" type="text" required=""  parsley-type="text" placeholder="input merk" class="form-control"
                             value="<?php echo (isset($default['tools_merk'])) ? $default['tools_merk'] : ''; ?>"
                             <?php echo (isset($default['readonly_tools_merk'])) ? $default['readonly_tools_merk'] : ''; ?>
@@ -74,7 +74,7 @@
 
                 <div class="form-group row">
                     <label  for="tools_noseri_model" class="col-sm-2 col-form-label">No Seri / Model <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="tools_noseri_model" minlength="1" maxlength="30" id="tools_noseri_model" type="text" required=""  parsley-type="text" placeholder="input no seri / model" class="form-control"
                             value="<?php echo (isset($default['tools_noseri_model'])) ? $default['tools_noseri_model'] : ''; ?>"
                             <?php echo (isset($default['readonly_tools_noseri_model'])) ? $default['readonly_tools_noseri_model'] : ''; ?>
@@ -83,20 +83,18 @@
                 </div>
 
                 <div class="form-group row">
-                    <label  for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
-                        <input name="tools_no_sertifikat" minlength="1" maxlength="30" id="tools_no_sertifikat" type="text"  parsley-type="text" placeholder="input no sertifikat" class="form-control"
-                            value="<?php echo (isset($default['tools_no_sertifikat'])) ? $default['tools_no_sertifikat'] : ''; ?>"
-                            <?php echo (isset($default['readonly_tools_no_sertifikat'])) ? $default['readonly_tools_no_sertifikat'] : ''; ?>
-                            >
-                    </div>
-                </div>
+                    <label  for="tools_information" class="col-sm-2 col-form-label">Keterangan <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
+                        <textarea name="tools_information" class="form-control" rows="2" <?php echo (isset($default['readonly_tools_information'])) ? $default['readonly_tools_information'] : ''; ?> ><?php echo (isset($default['tools_information'])) ? $default['tools_information'] : ''; ?></textarea>
+                    </div>  
+                </div> 
+
 
                  <div class="form-group">
                         <div id="divdetail" style="display:none"></div><br/>
                     </div>
 
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <p class="text-right" id="contentbutton">
                     <button type="reset" id="btnclose" class="btn btn-sm btn-space btn-secondary"><i class='fas fa-times'>&nbsp;Cancel</i></button>
                     <button type="submit" id="btnsimpan" class="btn btn-sm btn-space btn-like"><i class='fas fa-check'>&nbsp;Submit</i></button>
@@ -153,7 +151,7 @@
         var tools_id = param.result.tools_id;
         $("#divdetail").html("");
         $("#divdetail").show();
-        $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + tools_id);
+        // $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + tools_id);
     }
     
 </script>

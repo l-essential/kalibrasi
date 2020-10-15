@@ -68,15 +68,18 @@
                   <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
                     <thead>
                     <tr>
-                      <th>Tanggal</th>
+                    <th>Tanggal Kalibrasi Awal</th>
+                      <th>Tanggal Kalibrasi Akhir</th>
+                      <th>No Sertifikat</th>
                       <th>Vendor</th>
-                      <!-- <th>Qty Order/ Unit</th> -->
+                      <th>Qty Unit</th>
                       <th>Unit Price</th>
                       <th>Disc %</th>
+                      <th>Disc Rupiah</th>
                       <th>Total</th>
-                      <!-- <th>Ppn 10%</th> -->
+                      <th>Ppn 10%</th>
                       <th>Total + PPN 10%</th>
-                      <th>Keterangan</th>
+                  <!--    <th>Keterangan</th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -137,22 +140,19 @@
                 "type": 'POST',
             },
             "columns": [
-                {"data": "status_calibration", "sClass": "text-center",
-                 "mRender": function (data, type, row) {
-                      var status = "";
-                          status = status + "<td>"+ row.periode_year + "-"+ row.periode_date +" </td>";
-                      return status;
-                  }
-                },
+              {"data": "periode_date_awal"},
+                {"data": "periode_date_akhir"},
+                {"data": "tools_no_sertifikat"},
                 {"data": "vendor_name"},
-                // {"data": "calibration_qty"},
+                {"data": 'calibration_qty'},
                 {"data": 'calibration_price',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
                 // {"data": "calibration_price"},
                 {"data": "calibration_disc"},
+                {"data": "calibration_disc_rp","render": $.fn.dataTable.render.number( ',', '.', 2, )},
                 {"data": "total_harga"},
-                // {"data": "ppn"},
+                {"data": "ppn"},
                 {"data": 'disc_ppn',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
-                {"data": "periode_information"},
+              //  {"data": "periode_information"},
                 // {"data": "calibration_price" ,render: $.fn.dataTable.render.number( ',', '.', 2, 'Rp ' )}, 
               
             ]

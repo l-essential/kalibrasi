@@ -19,6 +19,7 @@ class Calibration extends MY_Controller {
                                 $this->load->model('e00/Position_model', 'position');
                                     $this->load->model('e01/Formulir_model', 'modeldatalog');
                                 $this->load->model('e04/Calibration_model', 'eks');
+                                $this->load->model('Calibration_po_model', 'modeldata');
    
     }
 
@@ -31,6 +32,7 @@ class Calibration extends MY_Controller {
 
      public function home_detail($id_header) {
         $this->data['url_setstatus'] = site_url($this->controller . '/setstatus');
+        $this->data['url_complete'] = site_url($this->controller . '/setcomplete');
         parent::home_detail($id_header);
     }
 
@@ -42,6 +44,7 @@ class Calibration extends MY_Controller {
         $this->data['default']['tools_code'] = '';
         $this->data['default']['calibration_position'] = 'Internal';
         $this->data['default']['startcalibration_date'] = '';
+        // $this->data['default']['tools_no_sertifikat'] = '';
         $this->data['default']['calibration_status'] = '1';
         $this->extenddata();
         parent::add();
@@ -56,7 +59,7 @@ class Calibration extends MY_Controller {
         $this->buildcombobox('scope_code', 'scope_name', $this->scope->getAll(), 'edit', $row['scope_code']);
         $this->data['default']['startcalibration_date'] = date("d-m-Y", strtotime($row['startcalibration_date']));
         $rowtools = $this->tools->getby_id_array($row['tools_id']);
-        $this->data["default"]['readonly_tools_name'] = $rowtools['tools_name'];
+        $this->data['default']['readonly_tools_name'] = $rowtools['tools_name'];
         $this->extenddata();
         parent::edit($id);
     }
@@ -126,10 +129,10 @@ class Calibration extends MY_Controller {
                  $record = array(
                         
                         "startcalibration_date"        => $param ['startcalibration_date'],
-                        "scope_code"           => $param ['scope_code'],
-                        "location_name"        => $param ['location_name'],
-                        "position_name"        => $param ['position_name'],
-                        "calibration_status"   => $param ['calibration_status'],
+                        "scope_code"                   => $param ['scope_code'],
+                        "location_name"                => $param ['location_name'],
+                        "position_name"                => $param ['position_name'],
+                        "calibration_status"           => $param ['calibration_status'],
                        
                     );
                 // var_dump($record);
@@ -213,6 +216,7 @@ class Calibration extends MY_Controller {
         $this->data['url_index'] = site_url($this->controller);
         $this->data['url_grid'] = site_url($this->controller . "/grid_detail_kalibrasi/$id");
         $this->data['url_setstatus'] = site_url($this->controller . "/setstatuspreview");
+        $this->data['url_setcomplete'] = site_url($this->controller . "/setcompletepreview");
         $this->data['prefix_id'] = $this->prefix_id;
         $this->load->view($this->view . '/home_preview', $this->data);
          
@@ -230,7 +234,7 @@ class Calibration extends MY_Controller {
         ));
     }
 
-    // public function adddetail($id) {
+    /// public function adddetail($id) {
     //     $row = $this->modeldata->getby_id_array($id);
     //     $this->data['preview'] = $rowpreview;
     //     $this->data['modeldata'] = $this->modeldata;
@@ -282,6 +286,16 @@ class Calibration extends MY_Controller {
             }
         $jsonmsg = array("valid" => true, "msg" => "status berhasil diupdate");
         echo json_encode($jsonmsg);
+    }
+
+    function setcompletepreview() {
+        $param = $this->input->post();
+        $query = $this->load->model('Calibration_Model');
+        $query = $this->Calibration_Model->setconfirm($id);
+        
+        var_dump($param);
+        die();
+        
     }
 
     function create_kalibrasi($id) {

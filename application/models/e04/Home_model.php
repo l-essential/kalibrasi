@@ -19,6 +19,8 @@ class Home_model extends MY_Model {
                     $this->prefix_id_cdetail = 'calibrationdetail_id';
                 $this->tbl_tools = 'e04_ms_tools';
                 $this->tools = 'tools_id';
+                $this->tbl_dtools = 'e04_ms_tools_detail';
+            $this->prefix_id_dtools = 'toolsdetail_id';
     }
     
      public function getAll() {
@@ -69,13 +71,12 @@ class Home_model extends MY_Model {
     }
     
     function preview_getbyid($id) {
-        $this->db->select(' a.*, (b.calibration_qty * b.calibration_price) as tes,c.*,d.*');
+        $this->db->select(' a.*, b.*,c.*');
         $this->db->from($this->table . ' a ');
         $this->db->join($this->table_detail . ' b ', 'a.calibration_id = b.calibration_id');
         $this->db->join($this->tbl_tools . ' c ', 'a.tools_id = c.tools_id');
         $this->db->join($this->table_location . ' d ', 'a.location_name = d.location_name');
         $this->db->join($this->table_position . ' e ', 'a.position_name = e.position_name');
-        $this->db->join($this->table_vendor . ' f ', 'b.vendor_id = d.vendor_id');
         $this->db->where('a.statusdata', 'active');
         $this->db->where('b.statusdata', 'active');
         $this->db->where('a.calibration_id', $id);

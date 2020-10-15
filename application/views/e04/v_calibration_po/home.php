@@ -41,6 +41,8 @@
                             <th>Kode PK</th>   
                             <th>Tanggal PK</th>
                             <th>User PK</th>   
+                            <th>Tipe Kalibrasi</th>
+                            <!-- <th>Status Kalibrasi</th> -->
                         </tr>
                     </thead>                 
                 </table>
@@ -95,6 +97,8 @@
         {"data": "calibrationpo_code"},
         {"data": "date_po"},
         {"data": "user_pk"},
+        {"data": "calibration_type"},
+        // {"data": "status_po"},
     ];
     setdatagrid();
 
