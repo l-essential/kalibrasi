@@ -120,7 +120,7 @@
 
     prefix_id = '<?php echo $prefix_id; ?>';
 
-    accessdelete = checkaccess("update");
+    
 
    $(document).ready(function () {
         //initialize the javascript                

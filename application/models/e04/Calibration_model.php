@@ -215,9 +215,20 @@ class Calibration_model extends MY_Model {
     }
 
     function setconfirm(){
-        $this->db->set('status_po', 'Complete');
-        $this->db->where('id_position', $param['id_position']);
-        return $this->db->update($this->table_podetail);
+        $param->$this->input->post();
+
+        $data = array(
+            'status_po' => 'Complete'
+        );
+        
+        $this->db->replace('e04_ts_calibration_podetail', $data);
+
+
+
+
+        // $this->db->set('status_po', 'Complete');
+        // $this->db->where('id_position', $param['id_position']);
+        // return $this->db->update($this->table_podetail);
     }
 
      function getby_id($id) {

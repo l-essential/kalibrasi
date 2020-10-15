@@ -289,12 +289,12 @@ class Calibration extends MY_Controller {
     }
 
     function setcompletepreview() {
-        $param = $this->input->post();
+        // $param = $this->input->post();
         $query = $this->load->model('Calibration_Model');
         $query = $this->Calibration_Model->setconfirm($id);
         
-        var_dump($param);
-        die();
+        // var_dump($param);
+        // die();
         
     }
 
