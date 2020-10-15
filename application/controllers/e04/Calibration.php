@@ -216,10 +216,19 @@ class Calibration extends MY_Controller {
         $this->data['url_index'] = site_url($this->controller);
         $this->data['url_grid'] = site_url($this->controller . "/grid_detail_kalibrasi/$id");
         $this->data['url_setstatus'] = site_url($this->controller . "/setstatuspreview");
-        $this->data['url_setcomplete'] = site_url($this->controller . "/setcompletepreview");
+        $this->data['url_setcomplete'] = site_url($this->controller . "/tes");
         $this->data['prefix_id'] = $this->prefix_id;
         $this->load->view($this->view . '/home_preview', $this->data);
          
+    }
+    public function tes()
+    {
+        $id = $this->input->post('id');
+        // var_dump($id);
+        // exit();
+        $query = $this->db->set('status_po', 'Complete');
+        $query = $this->db->where('id_position', $id);
+        $query = $this->db->update($this->table_podetail);
     }
 
     public function grid_detail_kalibrasi($id) {
@@ -289,9 +298,9 @@ class Calibration extends MY_Controller {
     }
 
     function setcompletepreview() {
-        // $param = $this->input->post();
+        $param = $this->input->post();
         $query = $this->load->model('Calibration_Model');
-        $query = $this->Calibration_Model->setconfirm($id);
+        $query = $this->Calibration_Model->setconfirm();
         
         // var_dump($param);
         // die();

@@ -179,7 +179,6 @@ class Calibration_model extends MY_Model {
         // $this->db->where('a.calibration_id', $id);
         // return $this->db->get()->row();
 
-
     }
 
     function getdetail_tools($id) {
@@ -214,21 +213,26 @@ class Calibration_model extends MY_Model {
         return $this->db->update($this->table_detail, $record);
     }
 
-    function setconfirm(){
-        $param->$this->input->post();
+    function setconfirm($status, $id){
+        $this->db->where($this->prefix_id_podetail, $id);
+        $query = $this->db->set('status_po', 'Complete');
+        return $this->db->update($this->table_podetail, $record);
+        // $param->$this->input->post();
 
-        $data = array(
-            'status_po' => 'Complete'
-        );
-        
-        $this->db->replace('e04_ts_calibration_podetail', $data);
-
-
-
-
-        // $this->db->set('status_po', 'Complete');
-        // $this->db->where('id_position', $param['id_position']);
+        // // $data=array(
+        // //     'status_po'=>  $this->input->post('Complete')
+        // //              );
+        // $query = $this->db->set('status_po', 'Complete');
+        // $query = $this->db->where('id_position', $param['id_position']);
         // return $this->db->update($this->table_podetail);
+        
+        //              var_dump($param);
+        //              die();
+
+
+        // $this->db->insert('e04_ts_calibration_podetail',$data);
+
+
     }
 
      function getby_id($id) {

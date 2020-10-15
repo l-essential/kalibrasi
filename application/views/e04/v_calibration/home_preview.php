@@ -120,7 +120,7 @@
 
     prefix_id = '<?php echo $prefix_id; ?>';
 
-    
+    accessdelete = checkaccess("update");
 
    $(document).ready(function () {
         //initialize the javascript                
@@ -150,16 +150,16 @@
                 {"data": "periode_date_akhir"},
                 {"data": "status_po", "sClass": "text-center",
               "mRender": function (data, type, row) {
-                      var status = row["<?php echo $status_po; ?>"];
-                      var id = row["<?php echo $id_position; ?>"];
+                      // var status = row["<?php echo $status_po; ?>"];
+                      // var id = row["<?php echo $id_position; ?>"];
                       // var status = row.status_po;
-                      // var id = row.id_position;
+                      var id = row.id_position;
                       if (row.status_po == 'Draft') {
                           status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
                       }if (row.status_po == 'Proses di Vendor') {
                           status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
                       }if (row.status_po == 'Barang di terima') {
-                          status = "<a href='javascript:void(0)' onClick='process_confirm(" + status + "," + id + ")'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                          status = "<a href='javascript:void(0)' onClick='process_confirm("+ id +")'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
                           // status = "<a href='javascript:void(0)' onClick=\'process_confirm('" + status + "','" + id + "\')'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
                       }if (row.status_po == 'Complete') {
                           status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
@@ -205,7 +205,6 @@
 
 <script type="text/javascript">
 
-
 function postaction(url, param) {
     var theResponse = {valid: false, message: ''};
     $.ajax({
@@ -236,10 +235,9 @@ function postaction(url, param) {
 
 }
 
-  function process_confirm(status, id) 
+  function process_confirm(id) 
   {
     // console.log('isi dari: ' + status);
-    // console.log('isi dari: ' + id);
 
     var tanya = confirm('Apakah anda akan merubah status menjadi "Complete" ?');
      if (tanya == true) 
@@ -250,7 +248,7 @@ function postaction(url, param) {
             dataType: "json",
             cache: false,
             data: {
-              status: status,
+              // status: status,
               id: id,  
             },
             success: function (data) {
