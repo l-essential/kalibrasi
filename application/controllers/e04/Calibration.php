@@ -224,8 +224,8 @@ class Calibration extends MY_Controller {
     public function tes()
     {
         $id = $this->input->post('id');
-        // var_dump($id);
-        // exit();
+        var_dump($id);
+        exit();
         $data=array('status_po' => ('Complete'));
         $this->db->set('status_po', 'Complete');
         $this->db->where('id_position', $id);
