@@ -226,9 +226,10 @@ class Calibration extends MY_Controller {
         $id = $this->input->post('id');
         // var_dump($id);
         // exit();
-        $query = $this->db->set('status_po', 'Complete');
-        $query = $this->db->where('id_position', $id);
-        $query = $this->db->update($this->table_podetail);
+        $data=array('status_po' => ('Complete'));
+        $this->db->set('status_po', 'Complete');
+        $this->db->where('id_position', $id);
+        $this->db->update($this->table_podetail, $data);
     }
 
     public function grid_detail_kalibrasi($id) {
