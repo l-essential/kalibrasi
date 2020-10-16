@@ -168,19 +168,17 @@ class Calibration_po extends MY_Controller {
             unset($param['id_header']);
             $param["$this->prefix_id_detail"] = $param["$this->prefix_id"];
         }
+        
+        $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'calibration_code');
 
-        
-        
-        $this->db_pu->set('status_po', 'Draft');
-        $this->db_pu->where('c_pohedaer_id', $param['c_pohedaer_id']);
-        $this->db_pu->update('e04_ts_calibration_podetail');
+        // $this->db_pu->set('status_po', 'Draft');
+        // $this->db_pu->where('id_position', $param['id_position']);
+        // $this->db_pu->update('e04_ts_calibration_podetail');
         
         $this->db_pu->set('status_po', 'Barang di terima');
         $this->db_pu->where('id_position', $param['id_position']);
         $this->db_pu->update('e04_ts_calibration_podetail');
         
-        $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'calibration_code');
-
     }
 
      public function Preview($id) {

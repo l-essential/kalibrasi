@@ -253,7 +253,7 @@ function postaction(url, param) {
             },
             success: function (data) {
                 $('#DialogConfirm').modal('hide');
-                if (data.valid == true) {
+                if (data.success  == true) {
                     $('#dataintable').dataTable().fnReloadAjax();
                 }
                 _alert(data.msg, data.valid);

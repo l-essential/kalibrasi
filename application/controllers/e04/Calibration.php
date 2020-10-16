@@ -1,7 +1,7 @@
 <?php
 
 class Calibration extends MY_Controller {
-
+    public $db_pu;
     function __construct() {
         $this->pathclass = basename(dirname(__FILE__));
         parent::__construct();
@@ -10,6 +10,7 @@ class Calibration extends MY_Controller {
         $this->fieldnotgenerate = array("calibration_executor");
         $this->prefix_id_detail = $this->modeldata->prefix_id_detail;
         $this->idheader = $this->modeldata->prefix_id; 
+        $this->db_pu = $this->load->database('pu', true); // load db from controller
 
         $this->load->model('e00/Scope_model', 'scope');
             $this->load->model('e04/Tools_model', 'tools');
@@ -226,9 +227,9 @@ class Calibration extends MY_Controller {
         $id = $this->input->post('id');
         // var_dump($id);
         // exit();
-        $query = $this->db->set('status_po', 'Complete');
-        $query = $this->db->where('id_position', $id);
-        $query = $this->db->update($this->table_podetail);
+        $this->db_pu->set('status_po', 'Complete');
+        $this->db_pu->where('id_position', $id);
+        $this->db_pu->update('e04_ts_calibration_podetail');
     }
 
     public function grid_detail_kalibrasi($id) {

@@ -125,6 +125,10 @@
                 </div>
                 </div>
 
+                
+                    <input name="status_po" id="status_po" type="hidden"  parsley-type="text" placeholder="Auto Status Kalibrasi" class="form-control" value="Draft">
+                    
+
                 <div class="form-group row">
                     <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <span style="color:red">*</span></label>
                     <div class="col-sm-4">
