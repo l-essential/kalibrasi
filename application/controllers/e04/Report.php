@@ -29,6 +29,8 @@ class Report extends MY_Controller {
 
      public function generatereport() {
         $param = $this->input->post();
+        // var_dump($param);
+        // exit;
         $this->data['result'] = $this->modeldata->generatereport($param);
         $this->data['url_excel'] = site_url($this->controller . '/exceldata');
         $html = $this->load->view($this->view . '/report', $this->data, true);

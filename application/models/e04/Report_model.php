@@ -15,8 +15,6 @@ class Report_model extends MY_Model {
             $this->table = "e04_ts_calibration";
             $this->prefix_periode = "periode_id";
             $this->tbl_periode = "e04_ts_calibration_periode";
-            $this->table_detail     = 'e04_ts_calibration_podetail';
-            $this->prefix_id_detail = 'id_position';
             $this->tbl_tools = 'e04_ms_tools';
             $this->prefix_tools = 'tools_id';
             $this->tbl_scope = 'e00_scope';
@@ -28,21 +26,21 @@ class Report_model extends MY_Model {
 
     public function generatereport($param) {
         $scope = $param['scope_code'];
-        $location = $param['calibration_code'];
+        $location = $param['location_name'];
         $type = $param['calibration_type'];
         $daritahun = date('Y', strtotime($param['daritanggal']));
         $sampaitahun = date('Y', strtotime($param['sampaitanggal']));
 
         $where = " WHERE a.statusdata='active' AND
-                    a.periode_date_awal >='$daritahun' and
-                    a.periode_date_akhir <='$sampaitahun' and 
+                    a.periode_year >='$daritahun' and
+                    a.periode_year <='$sampaitahun' and 
                     b.statusdata = 'active' ";
 
         if (!empty($type)) {
             $where .= " AND b.calibration_type like '%$type' ";
         }
          if (!empty($location)) {
-            $where .= " AND b.calibration_code like '%$location%' ";
+            $where .= " AND b.location_name like '%$location%' ";
         }
         if (!empty($scope)) {
             $where .= " AND b.scope_code like '%$scope%' ";
@@ -50,8 +48,8 @@ class Report_model extends MY_Model {
         
         
         $query = " SELECT a.*, b.*, c.*
-                FROM $this->table_detail a   
-                LEFT JOIN $this->table  b on a.calibration_code = b.calibration_code
+                FROM $this->tbl_periode a   
+                LEFT JOIN $this->table  b on a.calibration_id = b.calibration_id
                 LEFT JOIN $this->tbl_tools  c on b.tools_id = c.tools_id
                 $where ";
 

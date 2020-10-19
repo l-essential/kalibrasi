@@ -18,7 +18,7 @@ $templates = base_url() . 'allassets/';
                     <i class="fas fa-globe"></i> PT. L`ESSENTIAL
                     
                   </h5>
-                  <p align="center"><strong> LAPORAN KALIBRASI </strong></p>
+                  <p align="center"><strong> LAPORAN PERMINTAAN KALIBRASI </strong></p>
                    <br>
                     <div class="col-sm-4 invoice-col">
                       From

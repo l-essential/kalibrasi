@@ -34,19 +34,19 @@
             <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="periode">Periode<span class="err_receive_date required" style="color:red">*</span>
+                <label class="col-sm-2 col-form-label" for="periode">Periode Permintaan Kalibrasi<span class="err_receive_date required" style="color:red">*</span>
                 </label>
-                <div class="col-sm-4">                         
-                    <input type="text" id="periode_date_awal"  name="periode_date_awal" class="form-control" placeholder="dari tanggal"
-                            value="<?php echo (isset($default['periode_date_awal'])) ? $default['periode_date_awal'] : ''; ?>"
-                            <?php echo (isset($default['readonly_periode_date_awal'])) ? $default['readonly_periode_date_awal'] : ''; ?>      
+                <div class="col-sm-4">                        
+                    <input type="text" id="daritanggal"  name="daritanggal" class="form-control" placeholder="dari tanggal"
+                            value="<?php echo (isset($default['daritanggal'])) ? $default['daritanggal'] : ''; ?>"
+                            <?php echo (isset($default['readonly_daritanggal'])) ? $default['readonly_daritanggal'] : ''; ?>      
                             />  
                 </div>
                 
-                <div class="col-sm-4">          
-                    <input type="text" id="periode_date_akhir"  name="periode_date_akhir" class="form-control"  placeholder="sampai tanggal"
-                            value="<?php echo (isset($default['periode_date_akhir'])) ? $default['periode_date_akhir'] : ''; ?>"
-                            <?php echo (isset($default['readonly_periode_date_akhir'])) ? $default['readonly_periode_date_akhir'] : ''; ?>      
+                <div class="col-sm-4">                         
+                    <input type="text" id="sampaitanggal"  name="sampaitanggal" class="form-control"  placeholder="sampai tanggal"
+                            value="<?php echo (isset($default['sampaitanggal'])) ? $default['sampaitanggal'] : ''; ?>"
+                            <?php echo (isset($default['readonly_sampaitanggal'])) ? $default['readonly_sampaitanggal'] : ''; ?>      
                             />  
                 </div>
             </div>
@@ -107,7 +107,7 @@
                 </div>  
             </div> -->
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
                 <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
                 <div class="col-sm-4">
                     <select name="calibration_type" id="calibration_type" class="form-control">
@@ -116,7 +116,7 @@
                         <option  value="Eksternal">Eksternal</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
 
         
         <div class="row no-print">
@@ -145,7 +145,7 @@
 
 <script type="text/javascript">
 
-    $('#periode_date_awal,#periode_date_akhir').datepicker({
+    $('#daritanggal,#sampaitanggal').datepicker({
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd-mm-yy',
@@ -168,7 +168,7 @@
                     'daritanggal': $("#daritanggal").val(),
                     'sampaitanggal': $("#sampaitanggal").val(),
                     'scope_code': $("#scope_code").val(),
-                    'calibration_code': $("#calibration_code").val(),
+                    'location_name': $("#location_name").val(),
                     'calibration_type': $("#calibration_type").val(),
 
                 };
@@ -235,8 +235,8 @@
 
     $("#scope_code").trigger("chosen:updated");
     $("#scope_code").chosen();
-    $("#calibration_code").trigger("chosen:updated");
-    $("#calibration_code").chosen();
+    $("#location_name").trigger("chosen:updated");
+    $("#location_name").chosen();
     $("#calibration_type").trigger("chosen:updated");
     $("#calibration_type").chosen();
 
