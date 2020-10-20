@@ -68,7 +68,7 @@ $templates = base_url() . 'allassets/';
                             $html .= "<td>" . $row['calibration_code'] . "</td>";
                             $html .= "<td width='90'>" . $row['location_name'] . "</td>";
                             // $html .= "<td width='130'>" . $tanggal . "</td>";
-                            $html .= "<td width='130'>" . $row['periode_year'] . "-" . $row['periode_date'] . "</td>";
+                            $html .= "<td width='130'>" . $row['periode_year'] . "-" . $row['date_po'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 

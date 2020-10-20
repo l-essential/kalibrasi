@@ -84,6 +84,14 @@
                     </div>  
                 </div> -->
 
+                <?php 
+                  if( !isset($default['status_po']) OR ( isset($default['status_po']) && $default['status_po'] == 'Draft' ) ){
+                    $default['readonly_tools_no_sertifikat'] = 'readonly="readonly"';
+                    $default['readonly_periode_date_awal'] = 'readonly="readonly"';
+                    $default['readonly_periode_date_akhir'] = 'readonly="readonly"';
+                  }
+                ?>
+
                 <div class="form-group row">
                     <label for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat</label>
                     <div class="col-sm-4">
@@ -93,6 +101,20 @@
                             >
                     </div>  
                 </div> 
+
+                <?php
+                
+
+                // if ( is_null($row->periode_date_awal))
+                //   {
+                //     $param = strtotime($row->periode_date_awal));
+                //     if ($param > 0)
+                //     {
+                //           echo date('d-m-Y', $param);
+                //     }
+                //   }
+
+                ?>
 
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Periode Awal</label>
@@ -116,13 +138,13 @@
 
                 
                 <div class="form-group row">
-                <label for="calibration_qty" class="col-sm-2 col-form-label">Qty Unit <span style="color:red">*</span></label>
-                <div class="col-sm-4">
-                  <input name="calibration_qty" id="calibration_qty" type="text" required=""  parsley-type="text" placeholder="input jumlah unit" class="form-control"
-                              value="<?php echo (isset($default['calibration_qty'])) ? $default['calibration_qty'] : ''; ?>"
-                              <?php echo (isset($default['readonly_calibration_qty'])) ? $default['readonly_calibration_qty'] : ''; ?>
-                              >
-                </div>
+                  <label for="calibration_qty" class="col-sm-2 col-form-label">Qty Unit <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
+                      <input name="calibration_qty" id="calibration_qty" type="text" required=""  parsley-type="text" placeholder="input jumlah unit" class="form-control"
+                                  value="<?php echo (isset($default['calibration_qty'])) ? $default['calibration_qty'] : ''; ?>"
+                                  <?php echo (isset($default['readonly_calibration_qty'])) ? $default['readonly_calibration_qty'] : ''; ?>
+                                  >
+                    </div>
                 </div>
 
                 
@@ -158,17 +180,30 @@
 </div>
 <script type="text/javascript">
 
-$('#periode_date_awal').attr("autocomplete", "off").datepicker({ 
+$('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepicker({ 
             dateFormat: 'dd-mm-yy',
             changeMonth: true,
             changeYear: true
         });
 
-        $('#periode_date_akhir').attr("autocomplete", "off").datepicker({ 
-            dateFormat: 'dd-mm-yy',
-            changeMonth: true,
-            changeYear: true
-        });
+        // $("#periode_date_awal,#periode_date_akhir").datepicker({
+        //       onSelect: function(dateText, inst) {
+        //           if($("#periode_date_awal,#periode_date_akhir").val() != '' ){
+        //               var date_val = $("#periode_date_awal,#periode_date_akhir").val();
+        //               $.ajax({
+        //                   data: 'date='+date_val,
+        //                   url:'',
+        //                   success:function(data){
+        //                       if(data==""){
+        //                         $("#periode_date_awal,#periode_date_akhir").val('');
+        //                       }else{
+
+        //                       }
+        //                   }
+        //               });
+        //           }
+        //       }
+        //   });
 
         $("#formdata").on('submit', function (e) {
             e.preventDefault();
