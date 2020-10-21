@@ -25,7 +25,6 @@
                             <th>Tanggal Kalibrasi Akhir</th>
                             <th>ID alat Kalibrasi</th>
                             <th>Nama Alat</th>
-                            <!-- <th>Nama Komponent</th> -->
                             <th>No PO</th>
                             <th>Vendor</th>
                             <th>No Sertifikat</th>
@@ -104,8 +103,24 @@
                 return status;
             }
         },
-        {"data": "periode_date_awal"},
-        {"data": "periode_date_akhir"},
+        {"data": "periode_date_awal",
+         "mRender": function (data, type, row) {
+                if( row.periode_date_awal == '1970-01-01' ){
+                    return "";
+                }else{
+                    return row.periode_date_awal;
+                }
+            }
+        },
+        {"data": "periode_date_akhir",
+        "mRender": function (data, type, row) {
+            if( row.periode_date_akhir == '1970-01-01' ) {
+                return "";
+            }else {
+                return row.periode_date_akhir;
+            }
+        }
+        },
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,

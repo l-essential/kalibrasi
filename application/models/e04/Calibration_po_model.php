@@ -21,6 +21,8 @@ class Calibration_po_model extends MY_Model {
         $this->prefix_id_component = 'id_component';
         $this->table_podetail_detail = 'e04_ts_calibration_podetail_detail';
         $this->prfix_id_podetail_detail = 'id_podetail_detail';
+        $this->table_type_calibration = 'e04_ms_type_calibration';
+        $this->prefix_id_type = 'id_type';
     }
 
     // public function getGridData() {
@@ -56,7 +58,6 @@ class Calibration_po_model extends MY_Model {
                 a.no_po,
                 a.keterangan,
                 a.status_po,
-                -- g.c_poheader_id,
 
                 FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
 
@@ -72,7 +73,6 @@ class Calibration_po_model extends MY_Model {
                 LEFT JOIN $this->tbl_tools d on c.tools_id = d.tools_id
                 LEFT JOIN $this->table_periode e on c.calibration_id = e.calibration_id 
                 LEFT JOIN $this->table_vendor f on a.vendor_id = f.vendor_id
-                -- LEFt JOIN $this->table_podetail_detail g a.c_poheader_id = g.c_poheader_id
 
                 WHERE
                     a.$this->prefix_id='$idheader' and a.statusdata='active'";

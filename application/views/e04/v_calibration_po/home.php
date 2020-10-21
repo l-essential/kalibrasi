@@ -97,7 +97,7 @@
         {"data": "calibrationpo_code"},
         {"data": "date_po"},
         {"data": "user_pk"},
-        {"data": "calibration_type"},
+        {"data": "nama_type"},
         // {"data": "status_po"},
     ];
     setdatagrid();
