@@ -752,6 +752,8 @@ class MY_Controller extends CI_Controller {
         $check = $this->modeldata->getGridData();
         if (!is_null($check)) {
             $result = $this->modeldata->getGridData()->result();
+            // var_dump($result);
+            // exit;
         } else {
             $result = '';
         }
