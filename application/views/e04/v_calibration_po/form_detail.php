@@ -95,42 +95,30 @@
                 <div class="form-group row">
                     <label for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat</label>
                     <div class="col-sm-4">
-                        <input name="tools_no_sertifikat" minlength="1" maxlength="30" id="tools_no_sertifikat" type="text" parsley-type="text" placeholder="input no sertifikat" class="form-control"
+                        <input name="tools_no_sertifikat" id="tools_no_sertifikat" type="text" parsley-type="text" placeholder="input no sertifikat" class="form-control"
                             value="<?php echo (isset($default['tools_no_sertifikat'])) ? $default['tools_no_sertifikat'] : ''; ?>"
                             <?php echo (isset($default['readonly_tools_no_sertifikat'])) ? $default['readonly_tools_no_sertifikat'] : ''; ?>
                             >
                     </div>  
                 </div> 
 
-                <?php
-                
-
-                // if ( is_null($row->periode_date_awal))
-                //   {
-                //     $param = strtotime($row->periode_date_awal));
-                //     if ($param > 0)
-                //     {
-                //           echo date('d-m-Y', $param);
-                //     }
-                //   }
-
-                ?>
-
+                  <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Periode Awal</label>
                     <div class="col-sm-4">
                         <input name="periode_date_awal" id="periode_date_awal" type="text" parsley-type="text" placeholder="input tanggal awal" class="form-control"
-                      value="<?php echo (isset($default['periode_date_awal'])) ? $default['periode_date_awal'] : ''; ?>"
+                      value="<?php echo ($default['periode_date_awal'] != '1970-01-01') ? $default['periode_date_awal'] : ''; ?>"
                       <?php echo (isset($default['readonly_periode_date_awal'])) ? $default['readonly_periode_date_awal'] : ''; ?>
                         >
                       </div>
                 </div>
 
+                  <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Periode Akhir</label>
                     <div class="col-sm-4">
                         <input name="periode_date_akhir" id="periode_date_akhir" type="text" parsley-type="text" placeholder="input tanggal akhir" class="form-control"
-                      value="<?php echo (isset($default['periode_date_akhir'])) ? $default['periode_date_akhir'] : ''; ?>"
+                      value="<?php echo ($default['periode_date_akhir'] != '1970-01-01' ) ? $default['periode_date_akhir'] : ''; ?>"
                       <?php echo (isset($default['readonly_periode_date_akhir'])) ? $default['readonly_periode_date_akhir'] : ''; ?>
                         >
                       </div>
@@ -188,7 +176,7 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
 
         // $("#periode_date_awal,#periode_date_akhir").datepicker({
         //       onSelect: function(dateText, inst) {
-        //           if($("#periode_date_awal,#periode_date_akhir").val() != '' ){
+        //           if($("#periode_date_awal,#periode_date_akhir").val() =!= '' ){
         //               var date_val = $("#periode_date_awal,#periode_date_akhir").val();
         //               $.ajax({
         //                   data: 'date='+date_val,
