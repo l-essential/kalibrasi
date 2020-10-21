@@ -81,12 +81,11 @@
                     </div>  -->
 
                     <div class="form-group row">
-                        <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
+                        <label for="nama_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
                         <div class="col-sm-4">
-                            <select name="calibration_type" id="calibration_type" class="form-control">
-                                <option value="">- Please Select -</option>
-                                <option  value="Internal">Internal</option>
-                                <option  value="Eksternal">Eksternal</option>
+                            <select name="nama_type" id="nama_type" class="form-control">
+                                <option value="External" <?php echo ($default['nama_type'] == 'External') ? 'selected' : ''; ?>>External</option>
+                                <option value="Internal" <?php echo ($default['nama_type'] == 'Internal') ? 'selected' : ''; ?>>Internal</option>
                             </select>
                         </div>
                     </div>
