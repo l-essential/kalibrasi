@@ -43,6 +43,28 @@ class Calibration_po_model extends MY_Model {
     //     }
     // }
 
+    public function getGridData() {
+        $query = "
+                 SELECT a.*                        
+                 FROM $this->table a                 
+                 ";
+        $checkfiield = $this->checkfield("statusdata");
+        if ($checkfiield > 0) {
+            $query .= " WHERE a.statusdata='active' ";
+        }
+
+        if( $this->session->userdata('ses_id_role') != 2){
+            $query .= " AND a.department_pk = '". $this->session->userdata('ses_department_name') ."'";
+        }
+
+        $result = $this->db->query($query);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
     function getGridDatadetail($idheader) {
         // return $this->db->from($this->table_detail)
         $query = "SELECT 

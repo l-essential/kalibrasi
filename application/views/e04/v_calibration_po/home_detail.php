@@ -93,10 +93,10 @@
                 var idtr = row["<?php echo $prefix_id; ?>"];
                 if (row.status_po == 'Draft') {
                     status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
-                }if (row.status_po == 'Proses di Vendor') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
-                }if (row.status_po == 'Barang di terima') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                }if (row.status_po == 'Proses kalibrasi') {
+                    status = "<span class='btn btn-block btn-warning btn-xs'>Proses kalibrasi</span>";
+                }if (row.status_po == 'Sertifikat di terima') {
+                    status = "<span class='btn btn-block btn-warning btn-xs'>Sertifikat di terima</span>";
                 }if (row.status_po == 'Complete') {
                             status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
                 }
