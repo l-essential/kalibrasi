@@ -30,12 +30,13 @@ class Report_model extends MY_Model {
         $scope = $param['scope_code'];
         $location = $param['location_name'];
         $type = $param['calibration_type'];
-        $daritahun = date('Y', strtotime($param['daritanggal']));
-        $sampaitahun = date('Y', strtotime($param['sampaitanggal']));
-
+        $daritahun = date('dd-mm-yy', strtotime($param['daritanggal']));
+        $sampaitahun = date('dd-mm-yy', strtotime($param['sampaitanggal']));
+        var_dump($param);
+        exit;
         $where = " WHERE a.statusdata='active' AND
-                    d.date_po >='$daritahun' and
-                    d.date_po <='$sampaitahun' and 
+                    a.periode_date_awal >='$daritahun' and
+                    a.periode_date_akhir	 <='$sampaitahun' and 
                     b.statusdata = 'active' ";
 
         if (!empty($type)) {
@@ -49,13 +50,12 @@ class Report_model extends MY_Model {
         }
         
         
-        $query = " SELECT a.*, b.*, c.*, d.*
-                FROM $this->tbl_periode a   
-                LEFT JOIN $this->table  b on a.calibration_id = b.calibration_id
+        $query = " SELECT a.*, b.*, c.*
+                FROM $this->table_detail a   
+                LEFT JOIN $this->table  b on a.calibration_code = b.calibration_code
                 LEFT JOIN $this->tbl_tools  c on b.tools_id = c.tools_id
-                LEFT JOIN $this->table_detail d on a.periode_id = d.id_position
+                
                 $where ";
-
                 $result = $this->db->query($query);
                 if ($result->num_rows() > 0) {
                     return $result->result_array();

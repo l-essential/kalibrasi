@@ -18,7 +18,7 @@ $templates = base_url() . 'allassets/';
                     <i class="fas fa-globe"></i> PT. L`ESSENTIAL
                     
                   </h5>
-                  <p align="center"><strong> LAPORAN PERMINTAAN KALIBRASI </strong></p>
+                  <p align="center"><strong> LAPORAN KALIBRASI </strong></p>
                    <br>
                     <div class="col-sm-4 invoice-col">
                       From
@@ -68,7 +68,7 @@ $templates = base_url() . 'allassets/';
                             $html .= "<td>" . $row['calibration_code'] . "</td>";
                             $html .= "<td width='90'>" . $row['location_name'] . "</td>";
                             // $html .= "<td width='130'>" . $tanggal . "</td>";
-                            $html .= "<td width='130'>" . $row['periode_year'] . "-" . $row['date_po'] . "</td>";
+                            $html .= "<td width='130'>" . $row['periode_date_awal'] . "-" . $row['periode_date_akhir'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 
@@ -116,12 +116,12 @@ $templates = base_url() . 'allassets/';
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-sm btn-default float-right" id='btnprint' onclick="fn_print()"><i class="fas fa-print"></i> Print</button>
-                  <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
+                  <!-- <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate Excel
                   </button>
                   <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
-                  </button>
+                  </button> -->
                 </div>
               </div>
             </div>
