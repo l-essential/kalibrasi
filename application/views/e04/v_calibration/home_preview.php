@@ -68,8 +68,8 @@
                   <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
                     <thead>
                     <tr>
-                      <th>Tanggal Kalibrasi Awal</th>
-                      <th>Tanggal Kalibrasi Akhir</th>
+                      <th>Tanggal Awal Kalibrasi</th>
+                      <th>Tanggal Kalibrasi Berikutnya</th>
                       <th>Status Kalibrsi</th>
                       <th>No Sertifikat</th>
                       <th>Vendor</th>
@@ -158,8 +158,8 @@
                           status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
                       }if (row.status_po == 'Proses di Vendor') {
                           status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
-                      }if (row.status_po == 'Barang di terima') {
-                          status = "<a href='javascript:void(0)' onClick='process_confirm("+ id +")'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                      }if (row.status_po == 'Sertifikat di terima') {
+                          status = "<a href='javascript:void(0)' onClick='process_confirm("+ id +")'  <span class='btn btn-block btn-warning btn-xs'>Sertifikat di terima</span>";
                           // status = "<a href='javascript:void(0)' onClick=\'process_confirm('" + status + "','" + id + "\')'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
                       }if (row.status_po == 'Complete') {
                           status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";

@@ -31,7 +31,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-        <form id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off">
+        <form id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off" enctype="multipart/form-data">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondatadetail" id="actiondatadetail" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -47,42 +47,15 @@
                 <div class="form-group row">
                 <label for="kategori" class="col-sm-2 col-form-label">ID / Alat <span style="color:red">*</span></label>
                 <div class="col-sm-4">
-                   <select id="calibration_code" name="calibration_code" class="form-control" required="" tabindex="1">
+                   <select id="calibration_code" name="calibration_code" class="form-control chosen-select" required="">
                         <?php foreach ( $default['calibration_code'] as $row) { ?>
-
                             <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
                                     <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
                                 <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
                         <?php } ?>
                     </select>
                 </div>   
-                </div>  
-
-                <!-- <div class="form-group row">
-                  <label for="kategori" class="col-sm-2 col-form-label">Nama Komponen</label>
-                    <div class="col-sm-4">
-                      <input type="checkbox" name="nama_component" value="Temperatur">Temperatur <br>
-                      <input type="checkbox" name="nama_component" value="Suhu">Suhu <br>
-                      <input type="checkbox" name="nama_component" value="Temperatur">Kecepatan <br>
-                      <input type="checkbox" name="nama_component" value="Suhu">Kelembaban <br>
-                    </div>
-                </div> -->
-
-                
-
-                <!-- <div class="form-group row">
-                    <label for="kategori" class="col-sm-2 col-form-label">Nama Komponen</label>
-                    <div class="col-sm-6">
-                      <?php $komp = $this->db_pu->from('e04_ms_component')->get()->result();
-                      foreach ($komp as $key => $value):
-                      ?>
-                      <div class="col-sm-4">
-                      <input type="checkbox" name="nama_component" value="<?php echo (isset($default['nama_component'])) ? $default['nama_component'] : ''; ?>" <?php echo (isset($default['readonly_nama_component'])) ? $default['readonly_nama_component'] : ''; ?>>
-                      <?= $value->nama_component;?>
-                      </div>
-                      <?php endforeach;?>
-                    </div>  
-                </div> -->
+                </div>
 
                 <?php 
                   if( !isset($default['status_po']) OR ( isset($default['status_po']) && $default['status_po'] == 'Draft' ) ){
@@ -102,9 +75,16 @@
                     </div>  
                 </div> 
 
+                <div class="form-group row">
+                    <label for="foto_sertifikat" class="col-sm-2 col-form-label">Foto Sertifikat</label>
+                    <div class="col-sm-4">
+                        <input name="foto_sertifikat" id="foto_sertifikat" type="file">
+                    </div>  
+                </div> 
+
                   <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Periode Awal</label>
+                  <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Awal Kalibrasi</label>
                     <div class="col-sm-4">
                         <input name="periode_date_awal" id="periode_date_awal" type="text" parsley-type="text" placeholder="input tanggal awal" class="form-control"
                       value="<?php echo ($default['periode_date_awal'] != '1970-01-01') ? $default['periode_date_awal'] : ''; ?>"
@@ -115,7 +95,7 @@
 
                   <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Periode Akhir</label>
+                  <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Kalibrasi Berikutnya</label>
                     <div class="col-sm-4">
                         <input name="periode_date_akhir" id="periode_date_akhir" type="text" parsley-type="text" placeholder="input tanggal akhir" class="form-control"
                       value="<?php echo ($default['periode_date_akhir'] != '1970-01-01' ) ? $default['periode_date_akhir'] : ''; ?>"
@@ -228,10 +208,30 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
                     postdata(url_post, formdatadetail, url_index);
                 }
             });
+            
             $("#btncanceldetail").click(function () {
                 ToContent(url_index);
             });
+
+            
         });
+
+        $('#formdatadetail').submit(function(e){
+          e.preventDefault(); 
+          $.ajax({
+            url:'<?php echo $url_post; ?>',
+            type:"post",
+            data:new FormData(this),
+            processData:false,
+            contentType:false,
+            cache:false,
+            async:false,
+              success:function(data)  
+                {  
+                  $('#uploaded_image').html(data);  
+                }
+            });
+          });  
 
         var btn = document.getElementById("submit");
 
@@ -246,7 +246,7 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
               document.getElementById("nama_component").innerText = nama_component.replace(/,\s*$/, "");
           }
 
-        $("#calibration_code").trigger("calibration_code:updated");
+        $("#calibration_code").trigger("chosen:updated");
         $("#calibration_code").chosen();
         $("#vendor_id").trigger("chosen:updated");
         $("#vendor_id").chosen();

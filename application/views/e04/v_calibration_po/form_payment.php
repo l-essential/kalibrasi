@@ -64,6 +64,13 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="form-group row">
+                <label for="" class="col-sm-2 col-form-label">Estimasi Kalibrasi <span style="color:red">*</span></label>
+                <div class="col-sm-4">
+                <textarea name="estimasi_calibration" placeholder="input keterangan estimasi kalibrasi" class="form-control" rows="2" <?php echo (isset($default['readonly_estimasi_calibration'])) ? $default['estimasi_calibration'] : ''; ?> ><?php echo (isset($default['estimasi_calibration'])) ? $default['estimasi_calibration'] : ''; ?></textarea>
+                    </div>
+                </div>
                 
             <div class="form-group row">
                 <label for="calibration_price" class="col-sm-2 col-form-label">Harga Kalibrasi <span style="color:red">*</span></label>

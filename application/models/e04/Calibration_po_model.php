@@ -80,6 +80,7 @@ class Calibration_po_model extends MY_Model {
                 a.no_po,
                 a.keterangan,
                 a.status_po,
+                a.estimasi_calibration,
 
                 FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
 

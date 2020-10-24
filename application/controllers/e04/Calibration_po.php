@@ -15,51 +15,9 @@ class Calibration_po extends MY_Controller {
     }
     public function index() {
 
-        // $arr = [
-        //     9,
-        //     8,
-        //     7,
-        //     6,
-        //     5
-        // ];
-
-        // echo $arr[2];
-
-        // $a = 51; // NILAI
-        // $a = '1AAaaaaaaaaaa';
-        // ECHO $a;  
-        // if( $a > 90 ){
-        //     echo "A";
-        // }else if($a > 70 ){
-        //     echo "B";
-        // }else if($a > 50 ){
-        //     echo "D";
-        // }
-
         $this->data['url_preview'] = site_url($this->controller . '/Preview');
         parent::index();
     }
-
-    // public function grid() {
-    //     $check = $this->modeldata->getGridData();
-
-    //     if (!is_null($check)) 
-    //     {
-    //         if( $this->session->userdata('ses_id_role') == 2){
-    //             $result = $this->modeldata->getGridData()->result();
-    //         }else{
-    //             $result = $this->modeldata->getGridData()
-    //                             ->where('department_pk', $this->session->userdata('ses_department_name'))
-    //                             ->result();
-    //         }
-    //     } else {
-    //         $result = '';
-    //     }
-
-    //     $this->dj(array(
-    //         "data" => $result
-    //     ));
-    // }
 
      public function add() {
         $this->extenddata();
@@ -212,9 +170,29 @@ class Calibration_po extends MY_Controller {
         }
         $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'calibration_code');
 
-        // $this->db_pu->set('periode_date_awal', '2022-10-10');
-        // $this->db_pu->where('id_position', $param['id_position']);
-        // $this->db_pu->update('e04_ts_calibration_podetail');
+        $foto_sertifikat = $_FILES['foto_sertifikat'];
+        if($foto_sertifikat=''){}else  
+           {  
+                $config['upload_path'] = './allassets/foto';  
+                $config['allowed_types'] = 'jpg|jpeg|png|gif';  
+                $this->load->library('upload', $config);  
+                if(!$this->upload->do_upload('foto_sertifikat'))  
+                {  
+                     echo $this->upload->display_errors();  
+                }  
+                else  
+                {  
+
+                    
+                     $foto = $this->upload->data('file_name');
+                }  
+           }  
+
+           $data = array(
+               'foto_sertifikat' => $foto_sertifikat
+           );
+
+           
         
         $this->db_pu->set('status_po', 'Sertifikat di terima');
         $this->db_pu->where('id_position', $param['id_position']);

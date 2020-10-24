@@ -272,7 +272,7 @@
     
     </div>
     <!-- ./wrapper -->
-    <ul class="playlist list-group list-group-flush" style="display:none">
+    <!-- <ul class="playlist list-group list-group-flush" style="display:none">
         <li audio_url="playlist/In The End (Official Video) - Linkin Park.mp3"
         img_url="icon.png"
         class="active list-group-item playlist-item">
@@ -285,8 +285,8 @@
         class="list-group-item playlist-item"
         img_url="images/icon.png">
         Numb</li>
-    </ul>
-    <audio id="audio-player" class="d-none" src="" type="audio/mp3" controls="controls"></audio>
+    </ul> -->
+    <!-- <audio id="audio-player" class="d-none" src="" type="audio/mp3" controls="controls"></audio> -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="<?php echo $templates ?>plugins/jquery/jquery.min.js"></script>

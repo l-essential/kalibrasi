@@ -21,8 +21,10 @@
                         <tr>
                             <th class="text-center" width="10px">Action</th>
                             <th>Status Kalibrasi</th>
-                            <th>Tanggal Kalibrasi Awal</th>
-                            <th>Tanggal Kalibrasi Akhir</th>
+                            <th>Estimasi Kalibrasi</th>
+                            <th>Tanggal Awal Kalibrasi</th>
+                            <th>Tanggal Kalibrasi Berikutnya</th>
+                            <th>Foto Sertifikat</th>
                             <th>ID alat Kalibrasi</th>
                             <th>Nama Alat</th>
                             <th>No PO</th>
@@ -103,6 +105,7 @@
                 return status;
             }
         },
+        {"data": "estimasi_calibration"},
         {"data": "periode_date_awal",
          "mRender": function (data, type, row) {
                 if( row.periode_date_awal == '1970-01-01' ){
@@ -121,6 +124,7 @@
             }
         }
         },
+        {"data": "foto_sertifikat"},
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,

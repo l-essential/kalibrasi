@@ -62,13 +62,13 @@
          
 
             <div class="card" style="background-color: #ffffff99;">
-              <div class="card-header border-transparent">
+              <!-- <div class="card-header border-transparent">
                 <h3 class="card-title">User online</h3>
                 <a href="http://192.168.0.241:8080/penyimpangan/chatme/" class="float-right" target="_blank">
                   <i class="far fa-comments"></i>
                   <span class="badge badge-danger navbar-badge"><?php echo $message ?></span>
                 </a>
-              </div>
+              </div> -->
             <div class="card-body" style="padding:0rem;padding-top:0px;border-left: 0px solid #dcdcdc;">
             <!-- Conversations are loaded here -->
             <div class="direct-chat-messages example" style="height: 150px;">
