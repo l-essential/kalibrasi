@@ -31,7 +31,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-        <form id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off" enctype="multipart/form-data">
+        <form class="form-horizontal" id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondatadetail" id="actiondatadetail" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -45,7 +45,7 @@
             <?php if ($this->session->userdata('ses_department_name') != 'Procurement' ) { ?>
 
                 <div class="form-group row">
-                <label for="kategori" class="col-sm-2 col-form-label">ID / Alat <span style="color:red">*</span></label>
+                <label for="calibration_code" class="col-sm-2 col-form-label">ID / Alat <span style="color:red">*</span></label>
                 <div class="col-sm-4">
                    <select id="calibration_code" name="calibration_code" class="form-control chosen-select" required="">
                         <?php foreach ( $default['calibration_code'] as $row) { ?>
@@ -78,7 +78,8 @@
                 <div class="form-group row">
                     <label for="foto_sertifikat" class="col-sm-2 col-form-label">Foto Sertifikat</label>
                     <div class="col-sm-4">
-                        <input name="foto_sertifikat" id="foto_sertifikat" type="file">
+                        <input name="foto_sertifikat" type="file">
+                      
                     </div>  
                 </div> 
 
@@ -154,25 +155,6 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
             changeYear: true
         });
 
-        // $("#periode_date_awal,#periode_date_akhir").datepicker({
-        //       onSelect: function(dateText, inst) {
-        //           if($("#periode_date_awal,#periode_date_akhir").val() =!= '' ){
-        //               var date_val = $("#periode_date_awal,#periode_date_akhir").val();
-        //               $.ajax({
-        //                   data: 'date='+date_val,
-        //                   url:'',
-        //                   success:function(data){
-        //                       if(data==""){
-        //                         $("#periode_date_awal,#periode_date_akhir").val('');
-        //                       }else{
-
-        //                       }
-        //                   }
-        //               });
-        //           }
-        //       }
-        //   });
-
         $("#formdata").on('submit', function (e) {
             e.preventDefault();
             form = $(this);
@@ -213,42 +195,10 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
                 ToContent(url_index);
             });
 
-            
         });
 
-        $('#formdatadetail').submit(function(e){
-          e.preventDefault(); 
-          $.ajax({
-            url:'<?php echo $url_post; ?>',
-            type:"post",
-            data:new FormData(this),
-            processData:false,
-            contentType:false,
-            cache:false,
-            async:false,
-              success:function(data)  
-                {  
-                  $('#uploaded_image').html(data);  
-                }
-            });
-          });  
-
-        var btn = document.getElementById("submit");
-
-          btn.onclick = function() {
-              var checkbox = document.getElementsByTagName("input");
-              var nama_component = "";
-              for(var i = 0; i < checkbox.length; i++){
-                  if(checkbox[i].checked){
-                      nama_component = nama_component + checkbox[i].value +", ";
-                  }
-              }
-              document.getElementById("nama_component").innerText = nama_component.replace(/,\s*$/, "");
-          }
-
-        $("#calibration_code").trigger("chosen:updated");
+        $("#calibration_code").trigger("calibration_code:updated");
         $("#calibration_code").chosen();
-        $("#vendor_id").trigger("chosen:updated");
         $("#vendor_id").chosen();
 
     </script>

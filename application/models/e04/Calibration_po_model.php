@@ -164,6 +164,15 @@ class Calibration_po_model extends MY_Model {
         return $this->db->get()->row();
     }
 
+    // function simpan_upload($foto_sertifikat){
+    //     $data = array(
+                
+    //             'foto_sertifikat' => $foto_sertifikat
+    //         );  
+    //     $result= $this->db->insert('e04_ts_calibration_podetail',$data);
+    //     return $result;
+    // }
+
     function getby_calibration_po($id) {
         $query = " SELECT 
                         a.*
