@@ -164,28 +164,31 @@ class Calibration_po extends MY_Controller {
         }
         $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'calibration_code');
 
-        // if ($foto_sertifikat=''){}else{
-        //     $config['upload_path']="./allassets/foto";
-        //     $config['allowed_types']='gif|jpg|png';
-            
-        //     $this->load->library('upload',$config);
-        //     if($this->upload->postdatadetail("foto_sertifikat")){
-        //         echo "upload foto sertifikat gagal"; die();
-        //     }else{
-
-        //         $foto_sertifikat= $data['foto_sertifikat']['file_name'];
-
-        //     }
-        // }
+        $this->db_pu->set('status_po', 'Sertifikat di terima');
+        $this->db_pu->where('id_position', $param['id_position']);
+        $this->db_pu->update('e04_ts_calibration_podetail');
 
         // var_dump($param);
         // exit;
            
-        
-        $this->db_pu->set('status_po', 'Sertifikat di terima');
-        $this->db_pu->where('id_position', $param['id_position']);
-        $this->db_pu->update('e04_ts_calibration_podetail');
-        
+    }
+
+    public function upload_foto()
+    {
+        $foto_sertifikat = $_FILES['foto_sertifikat'];
+        if ($foto_sertifikat=''){}else{
+            $config['upload_path']="./allassets/foto";
+            $config['allowed_types']='gif|jpg|png';
+            
+            $this->load->library('upload',$config);
+            if($this->upload->postdatadetail("foto_sertifikat")){
+                echo "upload foto sertifikat gagal"; die();
+            }else{
+
+                $foto_sertifikat= $data['foto_sertifikat']['file_name'];
+
+            }
+        }
     }
     
      public function Preview($id) {

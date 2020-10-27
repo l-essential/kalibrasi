@@ -75,6 +75,7 @@
                       <th>Nama Alat</th>
                       <th>Lokasi</th>
                       <th>Vendor</th>
+                      <th>Estimasi Kalibrasi</th>
                       <th>Status Kalibrasi</th>
                       <th>Tgl Kalibrasi</th>
                     </tr>
@@ -169,6 +170,7 @@
                           },
                         {"data": "location_name"},
                         {"data": "vendor_name"},
+                        {"data": "estimasi_calibration"},
                         {"data": "status_po"},
                         {"data": "id_satuan", "width": "100px", "sClass": "text-center",
             "bSortable": false,

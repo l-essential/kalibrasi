@@ -31,7 +31,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-        <form class="form-horizontal" id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off">
+        <form class="form-horizontal" id="formdatadetail" data-parsley-validate="" novalidate="" autocomplete="off" enctype="multipart/form-data" method="post">
             <input type="hidden" name="<?php echo $prefix_id ?>" id="id" value="<?php echo $id; ?>" />
             <input type="hidden" name="actiondatadetail" id="actiondatadetail" />
             <input type="hidden" name="dynamicpost" id="dynamicpost" value="Y" />
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                 <label for="calibration_code" class="col-sm-2 col-form-label">ID / Alat <span style="color:red">*</span></label>
                 <div class="col-sm-4">
-                   <select id="calibration_code" name="calibration_code" class="form-control chosen-select" required="">
+                   <select id="calibration_code" name="calibration_code" class="form-control chosen-select" required="" enctype="multipart/form-data">
                         <?php foreach ( $default['calibration_code'] as $row) { ?>
                             <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
                                     <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
@@ -74,15 +74,14 @@
                             >
                     </div>  
                 </div> 
-
+                
                 <div class="form-group row">
                     <label for="foto_sertifikat" class="col-sm-2 col-form-label">Foto Sertifikat</label>
                     <div class="col-sm-4">
                         <input name="foto_sertifikat" type="file">
-                      
                     </div>  
-                </div> 
-
+                </div>
+                
                   <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Awal Kalibrasi</label>
@@ -117,7 +116,7 @@
                 </div>
 
                 
-                    <input name="status_po" id="status_po" type="hidden"  parsley-type="text" placeholder="Auto Status Kalibrasi" class="form-control" value="Draft">
+                <input name="status_po" id="status_po" type="hidden"  parsley-type="text" placeholder="Auto Status Kalibrasi" class="form-control" value="Draft">
                     
 
                 <div class="form-group row">
@@ -157,6 +156,9 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
 
         $("#formdata").on('submit', function (e) {
             e.preventDefault();
+            // var file_data = $('#foto_sertifikat').prop('files')[0];
+            // var form_data = new FormData();
+            // form_data.append('file', file_data);
             form = $(this);
             form.parsley().validate();
             if (form.parsley().isValid()) {
@@ -171,12 +173,32 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
                             });
                     homedetail(getdata);    
                 }
-
             }
+
+              // $.ajax({
+                  //     url: '<?php echo $url_post; ?>',
+                  //     dataType: 'json',
+                  //     cache: false,
+                  //     contentType: false,
+                  //     processData: false,
+                  //     data: form_data,
+                  //     type: 'post',
+                  //     success: function(data,status){
+                  //         if (data.status!='error') {
+                  //             $('#foto_sertifikat').val('');
+                  //             alert(data.msg);
+                  //         }else{
+                  //             alert(data.msg);
+                  //         }
+                  //     }
+                  // });
         });
 
         $(document).ready(function () {
             var form, formdatadetail, url_index, url_post, id, actiondata;
+            // var file_data = $('#foto_sertifikat').prop('files')[0];
+            // var form_data = new FormData();
+            // form_data.append('file', file_data);
             url_post = '<?php echo $url_post; ?>';
             url_index = '<?php echo $url_index; ?>';
             id = $("#id").val();
@@ -184,19 +206,74 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
             $("#btnsavedetail").click(function () {
                 form = $("#formdatadetail");
                 form.parsley().validate();
+                  // $.ajax({
+                  //     url: '<?php echo $url_post; ?>',
+                  //     dataType: 'json',
+                  //     cache: false,
+                  //     contentType: false,
+                  //     processData: false,
+                  //     data: form_data,
+                  //     type: 'post',
+                  //     success: function(data,status){
+                  //         if (data.status!='error') {
+                  //             $('#foto_sertifikat').val('');
+                  //             alert(data.msg);
+                  //         }else{
+                  //             alert(data.msg);
+                  //         }
+                  //     }
+                  // });
                 if (form.parsley().isValid()) {
                     $("#actiondatadetail").val(actiondata);
                     formdatadetail = form.serialize();
                     postdata(url_post, formdatadetail, url_index);
                 }
             });
+
+            // $.ajax({
+            //         url: '<?php echo $url_post; ?>',
+            //         dataType: 'json',
+            //         cache: false,
+            //         contentType: false,
+            //         processData: false,
+            //         data: form_data,
+            //         type: 'post',
+            //         success: function(data,status){
+            //             if (data.status!='error') {
+            //                 $('#foto_sertifikat').val('');
+            //                 alert(data.msg);
+            //             }else{
+            //                 alert(data.msg);
+            //             }
+            //         }
+            //     });
             
             $("#btncanceldetail").click(function () {
                 ToContent(url_index);
             });
-
         });
 
+        $(document).ready(function (e){
+          $("#formdatadetail").on('submit',(function(e){
+            e.preventDefault();
+
+              $.ajax({
+                url: '<?=base_url('e04/calibration_po/upload_foto');?>',
+                type: "POST",
+                data:  new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data){
+                
+                },
+                error: function(){}
+                });
+
+            }));
+          });
+
+    
         $("#calibration_code").trigger("calibration_code:updated");
         $("#calibration_code").chosen();
         $("#vendor_id").chosen();
