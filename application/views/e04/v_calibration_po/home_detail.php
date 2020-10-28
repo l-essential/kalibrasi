@@ -24,7 +24,7 @@
                             <th>Estimasi Kalibrasi</th>
                             <th>Tanggal Awal Kalibrasi</th>
                             <th>Tanggal Kalibrasi Berikutnya</th>
-                            <th>Foto Sertifikat</th>
+                            <!-- <th>Foto Sertifikat</th> -->
                             <th>ID alat Kalibrasi</th>
                             <th>Nama Alat</th>
                             <th>No PO</th>
@@ -124,7 +124,7 @@
             }
         }
         },
-        {"data": "foto_sertifikat"},
+        // {"data": "foto_sertifikat"},
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,

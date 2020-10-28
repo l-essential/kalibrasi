@@ -86,6 +86,7 @@ class Calibration_po extends MY_Controller {
 
         $this->buildcombobox('vendor_id', 'vendor_name', $this->vendor->getAll(), 'edit', $row->vendor_id);
         $this->data['url_post']  = site_url($this->controller . '/postdatadetails');
+        $this->data['url_upload_foto'] = site_url($this->controller . '/upload_foto');
         $this->data['url_index'] = site_url($this->controller . "/edit/$id_header");
 
         $this->load->view($this->view . '/form_payment', $this->data);
@@ -167,28 +168,6 @@ class Calibration_po extends MY_Controller {
         $this->db_pu->set('status_po', 'Sertifikat di terima');
         $this->db_pu->where('id_position', $param['id_position']);
         $this->db_pu->update('e04_ts_calibration_podetail');
-
-        // var_dump($param);
-        // exit;
-           
-    }
-
-    public function upload_foto()
-    {
-        $foto_sertifikat = $_FILES['foto_sertifikat'];
-        if ($foto_sertifikat=''){}else{
-            $config['upload_path']="./allassets/foto";
-            $config['allowed_types']='gif|jpg|png';
-            
-            $this->load->library('upload',$config);
-            if($this->upload->postdatadetail("foto_sertifikat")){
-                echo "upload foto sertifikat gagal"; die();
-            }else{
-
-                $foto_sertifikat= $data['foto_sertifikat']['file_name'];
-
-            }
-        }
     }
     
      public function Preview($id) {
