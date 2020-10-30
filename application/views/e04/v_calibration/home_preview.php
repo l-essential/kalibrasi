@@ -146,8 +146,24 @@
                 "type": 'POST',
             },
             "columns": [
-                {"data": "periode_date_awal"},
-                {"data": "periode_date_akhir"},
+                {"data": "periode_date_awal",
+                "mRender": function (data, type, row) {
+                        if( row.periode_date_awal == '1970-01-01' ){
+                            return "";
+                        }else{
+                            return row.periode_date_awal;
+                        }
+                    }
+                },
+                {"data": "periode_date_akhir",
+                "mRender": function (data, type, row) {
+                    if( row.periode_date_akhir == '1970-01-01' ) {
+                        return "";
+                    }else {
+                        return row.periode_date_akhir;
+                    }
+                }
+                },
                 {"data": "status_po", "sClass": "text-center",
               "mRender": function (data, type, row) {
                       // var status = row["<?php echo $status_po; ?>"];
