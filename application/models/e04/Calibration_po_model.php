@@ -1,6 +1,6 @@
 <?php
 class Calibration_po_model extends MY_Model {
-
+    public $db_pu;
    function __construct() {
         parent::__construct();
         $this->pathclass = basename(dirname(__FILE__));
@@ -23,6 +23,7 @@ class Calibration_po_model extends MY_Model {
         $this->prfix_id_podetail_detail = 'id_podetail_detail';
         $this->table_type_calibration = 'e04_ms_type_calibration';
         $this->prefix_id_type = 'id_type';
+        $this->db_pu = $this->load->database('pu', true); // load db from controller
     }
 
     // public function getGridData() {
@@ -81,6 +82,7 @@ class Calibration_po_model extends MY_Model {
                 a.keterangan,
                 a.status_po,
                 a.estimasi_calibration,
+                a.foto_sertifikat,
 
                 FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
 
@@ -164,14 +166,19 @@ class Calibration_po_model extends MY_Model {
         return $this->db->get()->row();
     }
 
-    // function simpan_upload($foto_sertifikat){
-    //     $data = array(
+    function uploadfoto($judul,$image){
+        $data = array(
                 
-    //             'foto_sertifikat' => $foto_sertifikat
-    //         );  
-    //     $result= $this->db->insert('e04_ts_calibration_podetail',$data);
-    //     return $result;
-    // }
+                'foto_sertifikat' => $image
+            );  
+
+            // $this->db->set($data);
+            // $this->db->where('id_position', $data['id_position']);
+            // $this->db->update('e04_ts_calibration_podetail', $data);
+
+        $result= $this->db->insert('e04_ts_calibration_podetail',$data);
+        return $result;
+    }
 
     function getby_calibration_po($id) {
         $query = " SELECT 

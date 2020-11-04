@@ -123,8 +123,14 @@
                 return row.periode_date_akhir;
             }
         }
+        
         },
-        {"data": "foto_sertifikat"},
+        {
+        "data": "foto_sertifikat", "aTargets": [0],
+        "render": function (data) {
+                return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
+            }
+        },
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,
@@ -134,17 +140,6 @@
                 return btn;
             }
         },
-        // {"data": "nama_component",
-        // "bSortable": false,
-        //     "mRender": function (data, type, row) {
-        //         var btn = "";
-        //         var idtr = row["<?php echo $prefix_id; ?>"];
-
-        //             btn = btn + "<a href='javascript:void(0)'  class='text-inverse' style='' title=''><i class=''>lihat komponen</i></a> &nbsp;";
-                
-        //         return btn;
-        //     }
-        // },
         {"data": "no_po"},
         {"data": "vendor_name"},
         {"data": "tools_no_sertifikat"},

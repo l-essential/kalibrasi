@@ -78,7 +78,8 @@
                 <div class="form-group row">
                     <label for="foto_sertifikat" class="col-sm-2 col-form-label">Foto Sertifikat</label>
                     <div class="col-sm-4">
-                        <input name="foto_sertifikat" type="file">
+                        <input name="foto_sertifikat" type="file" id="foto_sertifikat"><br>
+                        <small><span style="color:red">*</span>maksimal size 125kb</small>
                     </div>  
                 </div>
                 
@@ -120,7 +121,7 @@
                     
 
                 <div class="form-group row">
-                    <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <span style="color:red">*</span></label>
+                    <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-4">
                         <textarea name="keterangan" placeholder="input keterangan komponen kalibrasi" class="form-control" rows="2" <?php echo (isset($default['readonly_keterangan'])) ? $default['readonly_keterangan'] : ''; ?> ><?php echo (isset($default['keterangan'])) ? $default['keterangan'] : ''; ?></textarea>
                     </div>  
@@ -133,8 +134,9 @@
                 <div class="col-sm-6">
                     <p class="text-right">
                     <button type="button" id="btncanceldetail"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
-                    <button type="button" id="btnsavedetail" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>
-                    <div id="nama_component"></div>
+                    <button type="submit" id="btnsavedetail" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>
+                    <div id="nama_component">
+                    <!-- <button type="submit">Save</button></div> -->
                     </p>
                 </div>
             </div>
@@ -156,9 +158,6 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
 
         $("#formdata").on('submit', function (e) {
             e.preventDefault();
-            // var file_data = $('#foto_sertifikat').prop('files')[0];
-            // var form_data = new FormData();
-            // form_data.append('file', file_data);
             form = $(this);
             form.parsley().validate();
             if (form.parsley().isValid()) {
@@ -174,31 +173,31 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
                     homedetail(getdata);    
                 }
             }
-
-              // $.ajax({
-                  //     url: '<?php echo $url_post; ?>',
-                  //     dataType: 'json',
-                  //     cache: false,
-                  //     contentType: false,
-                  //     processData: false,
-                  //     data: form_data,
-                  //     type: 'post',
-                  //     success: function(data,status){
-                  //         if (data.status!='error') {
-                  //             $('#foto_sertifikat').val('');
-                  //             alert(data.msg);
-                  //         }else{
-                  //             alert(data.msg);
-                  //         }
-                  //     }
-                  // });
         });
 
+        $(document).ready(function(){
+ 
+            $('#formdatadetail').submit(function(e){
+                e.preventDefault(); 
+                      $.ajax({
+                          url:'<?php echo base_url();?>e04/calibration_po/postdatadetail',
+                          type:"post",
+                          data:new FormData(this),
+                          processData:false,
+                          contentType:false,
+                          cache:false,
+                          async:false,
+                          success: function(data){
+                              
+                        }
+                      });
+                });
+              
+
+            });
+
         $(document).ready(function () {
-            var form, formdatadetail, url_index, url_post, id, actiondata;
-            // var file_data = $('#foto_sertifikat').prop('files')[0];
-            // var form_data = new FormData();
-            // form_data.append('file', file_data);
+            var form, formdatadetail, url_index, url_post, id, actiondata, form_data = new FormData();
             url_post = '<?php echo $url_post; ?>';
             url_index = '<?php echo $url_index; ?>';
             id = $("#id").val();
@@ -206,73 +205,29 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
             $("#btnsavedetail").click(function () {
                 form = $("#formdatadetail");
                 form.parsley().validate();
-                  // $.ajax({
-                  //     url: '<?php echo $url_post; ?>',
-                  //     dataType: 'json',
-                  //     cache: false,
-                  //     contentType: false,
-                  //     processData: false,
-                  //     data: form_data,
-                  //     type: 'post',
-                  //     success: function(data,status){
-                  //         if (data.status!='error') {
-                  //             $('#foto_sertifikat').val('');
-                  //             alert(data.msg);
-                  //         }else{
-                  //             alert(data.msg);
-                  //         }
-                  //     }
-                  // });
                 if (form.parsley().isValid()) {
                     $("#actiondatadetail").val(actiondata);
                     formdatadetail = form.serialize();
                     postdata(url_post, formdatadetail, url_index);
                 }
+                // $.ajax({
+                //      url:'<?php echo base_url();?>/calibration_po/postdatadetail',
+                //      type:"post",
+                //      data:new FormData(this),
+                //      processData:false,
+                //      contentType:false,
+                //      cache:false,
+                //      async:false,
+                //       success: function(data){
+                //           alert("Upload Image Berhasil.");
+                //    }
+                //  });
             });
-
-            // $.ajax({
-            //         url: '<?php echo $url_post; ?>',
-            //         dataType: 'json',
-            //         cache: false,
-            //         contentType: false,
-            //         processData: false,
-            //         data: form_data,
-            //         type: 'post',
-            //         success: function(data,status){
-            //             if (data.status!='error') {
-            //                 $('#foto_sertifikat').val('');
-            //                 alert(data.msg);
-            //             }else{
-            //                 alert(data.msg);
-            //             }
-            //         }
-            //     });
             
             $("#btncanceldetail").click(function () {
                 ToContent(url_index);
             });
         });
-
-        $(document).ready(function (e){
-          $("#formdatadetail").on('submit',(function(e){
-            e.preventDefault();
-
-              $.ajax({
-                url: '<?=base_url('e04/calibration_po/upload_foto');?>',
-                type: "POST",
-                data:  new FormData(this),
-                contentType: false,
-                cache: false,
-                processData:false,
-                success: function(data){
-                
-                },
-                error: function(){}
-                });
-
-            }));
-          });
-
     
         $("#calibration_code").trigger("calibration_code:updated");
         $("#calibration_code").chosen();

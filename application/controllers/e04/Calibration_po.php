@@ -86,6 +86,7 @@ class Calibration_po extends MY_Controller {
 
         $this->buildcombobox('vendor_id', 'vendor_name', $this->vendor->getAll(), 'edit', $row->vendor_id);
         $this->data['url_post']  = site_url($this->controller . '/postdatadetails');
+        $this->data['url_upload_foto'] = site_url($this->controller . '/upload_foto');
         $this->data['url_index'] = site_url($this->controller . "/edit/$id_header");
 
         $this->load->view($this->view . '/form_payment', $this->data);
@@ -154,6 +155,27 @@ class Calibration_po extends MY_Controller {
     }
         // function untuk add data
     public function postdatadetail() {
+         // upload Sertifikat
+        if (!empty($_FILES['foto_sertifikat']['name'])) {
+            $foto_sertifikat="srt_".$_FILES['foto_sertifikat']['name']; // ini untuk save ke tabel
+            $config['file_name']="srt_".$_FILES['foto_sertifikat']['name'];
+            $config['upload_path']          = './allassets/foto/';
+            $config['allowed_types']        = 'gif|jpg|png|pdf';
+            $config['overwrite']            = true;
+            $config['max_size']             = 125; // 125kb
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('foto_sertifikat')) {
+                // $data = array('upload_data' => $this->upload->data());
+ 
+                // $foto_sertifikat= $this->input->post('foto_sertifikat');
+                // $image= $data['upload_data']['file_name']; 
+                
+                // $result= $this->modeldata->uploadfoto($judul,$image);
+                // echo json_decode($result);
+                
+            }
+        }
         $param = $this->input->post();
         $param['periode_date_awal'] = date("Y-m-d", strtotime($param['periode_date_awal']));
         $param['periode_date_akhir'] = date("Y-m-d", strtotime($param['periode_date_akhir']));
@@ -163,32 +185,17 @@ class Calibration_po extends MY_Controller {
             $param["$this->prefix_id_detail"] = $param["$this->prefix_id"];
         }
         $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'calibration_code');
-
-        $this->db_pu->set('status_po', 'Sertifikat di terima');
+        $data = array(
+            'status_po' => 'Sertifikat di terima',
+            'foto_sertifikat' => $foto_sertifikat
+        );
+        $this->db_pu->set($data);
         $this->db_pu->where('id_position', $param['id_position']);
         $this->db_pu->update('e04_ts_calibration_podetail');
-
-        // var_dump($param);
-        // exit;
-           
-    }
-
-    public function upload_foto()
-    {
-        $foto_sertifikat = $_FILES['foto_sertifikat'];
-        if ($foto_sertifikat=''){}else{
-            $config['upload_path']="./allassets/foto";
-            $config['allowed_types']='gif|jpg|png';
-            
-            $this->load->library('upload',$config);
-            if($this->upload->postdatadetail("foto_sertifikat")){
-                echo "upload foto sertifikat gagal"; die();
-            }else{
-
-                $foto_sertifikat= $data['foto_sertifikat']['file_name'];
-
-            }
-        }
+       
+        
+       
+        
     }
     
      public function Preview($id) {

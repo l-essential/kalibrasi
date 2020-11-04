@@ -41,7 +41,7 @@
                                 <th>Kode Kalibrasi</th>
                                 <th>Alat</th>
                                 <th>Lokasi</th>
-                                <!-- <th>tanggal kalibrasi Awal</th> -->
+                                <th>Reminder</th>
                                 <th>tanggal kalibrasi Akhir</th>
                                 <!-- <th>No Sertifikat</th> -->
                             </tr>
@@ -115,18 +115,24 @@
         {"data": "calibration_code"},
         {"data": "tools_code"},
         {"data": "locpos"},
-        // {"data": "id_satuan", "width": "100px", "sClass": "text-center",
-        //     "bSortable": false,
-        //     "mRender": function (data, type, row) {
-        //         var btn = "";
-        //         var idtr = row["<?php echo $prefix_id; ?>"];
-
-        //             btn = btn + row.startcalibration_date +" </a> &nbsp;";
+        {"data": "reminder", "sClass": "text-center",
+         "mRender": function (data, type, row) {
+                var status = "-";
+                var idtr = row["<?php echo $prefix_id; ?>"];
                 
-        //         return btn;
-        //     }
-        // },
-        {"data": "id_satuan", "width": "100px", "sClass": "text-center",
+                if (row.reminder == '0') {
+                    status = "<span class='btn btn-block btn-like btn-xs'>Masih Dalam Jangka Waktu</span>";
+                }
+                if (row.reminder == '1') {
+                    status = "<span class='btn btn-block btn-warning btn-xs'>Expired 1 Bulan Lagi</span>";
+                }
+                if (row.reminder == '2') {
+                    status = "<span class='btn btn-block btn-danger btn-xs'>Expired</span>";
+                }
+                return status;
+            }
+        },
+        {"data": "startcalibration_date", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {
                 var btn = "";
@@ -137,7 +143,6 @@
                 return btn;
             }
         },
-        // {"data": "tools_no_sertifikat"},
         
     ];
     setdatagrid();

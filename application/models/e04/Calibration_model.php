@@ -33,7 +33,6 @@ class Calibration_model extends MY_Model {
 
      public function getGridData() {
 
-        // $checkfiield = $this->session->userdata('ses_department_name');
         $query = "  SELECT  a.*,
                            CONCAT(a.location_name, ' - ',a.position_name) as locpos,
                            CONCAT(b.tools_code, ' - ',b.tools_name, ' - ',b.tools_noseri_model) as tools_code
@@ -41,12 +40,7 @@ class Calibration_model extends MY_Model {
                     LEFT JOIN $this->tbl_tools b on a.tools_id = b.tools_id 
                     LEFT JOIN $this->table_detail c on a.calibration_id = c.calibration_id 
                     WHERE a.statusdata='active'";
-                    //cek calibration_code by user session
-        // $checkfiield = $this->session->userdata('ses_department_name');
-        //  if ($checkfiield != 'QA' && $checkfiield == 'PROCUREMENT' && $checkfiield != 'DHA' && $checkfiield != 'CEO' && $checkfiield != 'CFO' && $checkfiield != 'IT'){
-        //       $query .= " AND a.calibration_code LIKE '$checkfiield%' ORDER BY c.periode_year DESC ";
-        // }
-
+        
         $result = $this->db->query($query);
         if ($result->num_rows() > 0) {
             return $result;
@@ -54,28 +48,11 @@ class Calibration_model extends MY_Model {
             return null;
         }
 
-        // $checkfiield = $this->session->userdata('ses_department_name');
-        // $query = "  SELECT  a.*,
-        //                    CONCAT(a.location_name, ' - ',a.position_name) as locpos,
-        //                    CONCAT(b.tools_code, ' - ',b.tools_name, ' - ',b.tools_noseri_model) as tools_code,
-        //                    d.tools_no_sertifikat
-        //             FROM $this->table a
-        //             LEFT JOIN $this->tbl_tools b on a.tools_id = b.tools_id 
-        //             LEFT JOIN $this->table_detail c on a.calibration_id = c.calibration_id
-        //             LEFT JOIN $this->table_podetail d on a.calibration_code = d.calibration_code
-        //             WHERE a.statusdata='active'";
-        //             //cek calibration_code by user session
-        // // $checkfiield = $this->session->userdata('ses_department_name');
-        //  if ($checkfiield != 'QA' or $checkfiield != 'DHA' or $checkfiield != 'CEO' or $checkfiield != 'CFO' or $checkfiield != 'IT'){
-        //      // $query .= " WHERE a.calibration_code LIKE '$checkfiield%' ORDER BY c.periode_year DESC ";
-        // }
-
-        // $result = $this->db->query($query);
-        // if ($result->num_rows() > 0) {
-        //     return $result;
-        // } else {
-        //     return null;
-        // }
+        // $tgl_sekarang=date("Y-m-d");//tanggal sekarang
+        // $tgl_mulai="2010-10-10";// tanggal kalibrasi awal
+        // $jangka_waktu = strtotime('+4 days', strtotime($tgl_mulai));// jangka waktu + 365 hari
+        // $remainder=date("Y-m-d",$jangka_waktu);//tanggal expired
+        
     }
 
     function getGridDatadetail($idheader) {

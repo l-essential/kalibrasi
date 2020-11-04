@@ -146,26 +146,42 @@
                 "type": 'POST',
             },
             "columns": [
-                {"data": "periode_date_awal"},
-                {"data": "periode_date_akhir"},
+                {"data": "periode_date_awal",
+                "mRender": function (data, type, row) {
+                        if( row.periode_date_awal == '1970-01-01' ){
+                            return "";
+                        }else{
+                            return row.periode_date_awal;
+                        }
+                    }
+                },
+                {"data": "periode_date_akhir",
+                "mRender": function (data, type, row) {
+                    if( row.periode_date_akhir == '1970-01-01' ) {
+                        return "";
+                    }else {
+                        return row.periode_date_akhir;
+                    }
+                }
+                },
                 {"data": "status_po", "sClass": "text-center",
-              "mRender": function (data, type, row) {
-                      // var status = row["<?php echo $status_po; ?>"];
-                      // var id = row["<?php echo $id_position; ?>"];
-                      // var status = row.status_po;
-                      var id = row.id_position;
-                      if (row.status_po == 'Draft') {
-                          status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
-                      }if (row.status_po == 'Proses di Vendor') {
-                          status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
-                      }if (row.status_po == 'Sertifikat di terima') {
-                          status = "<a href='javascript:void(0)' onClick='process_confirm("+ id +")'  <span class='btn btn-block btn-warning btn-xs'>Sertifikat di terima</span>";
-                          // status = "<a href='javascript:void(0)' onClick=\'process_confirm('" + status + "','" + id + "\')'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
-                      }if (row.status_po == 'Complete') {
-                          status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
-                      } return status;
-                  }
-              },
+                "mRender": function (data, type, row) {
+                        // var status = row["<?php echo $status_po; ?>"];
+                        // var id = row["<?php echo $id_position; ?>"];
+                        // var status = row.status_po;
+                        var id = row.id_position;
+                        if (row.status_po == 'Draft') {
+                            status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
+                        }if (row.status_po == 'Proses di Vendor') {
+                            status = "<span class='btn btn-block btn-warning btn-xs'>Proses di Vendor</span>";
+                        }if (row.status_po == 'Sertifikat di terima') {
+                            status = "<a href='javascript:void(0)' onClick='process_confirm("+ id +")'  <span class='btn btn-block btn-warning btn-xs'>Sertifikat di terima</span>";
+                            // status = "<a href='javascript:void(0)' onClick=\'process_confirm('" + status + "','" + id + "\')'  <span class='btn btn-block btn-warning btn-xs'>Barang di terima</span>";
+                        }if (row.status_po == 'Complete') {
+                            status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
+                        } return status;
+                    }
+                },
                 {"data": "tools_no_sertifikat"},
                 {"data": "vendor_name"},
                 {"data": 'calibration_qty'},

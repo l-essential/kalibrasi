@@ -145,10 +145,9 @@ $db['mst'] = array (
 // -- hris local
 $db['hris'] = array (
     'dsn'	       => '',
-    'hostname'     => '(local)',
-    'port'         => '1433',
-    'username'     => '',
-    'password'     => '',
+    'hostname'     => '192.168.200.2',
+    'username'     => 'sa',
+    'password'     => 'admin_esn',
     'database'     => 'EZ-TNA',
     'dbdriver'     => 'sqlsrv',
     'dbprefix'     => '',
