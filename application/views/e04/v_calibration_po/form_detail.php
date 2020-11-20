@@ -75,13 +75,17 @@
                     </div>  
                 </div> 
                 
-                <div class="form-group row">
+                <!-- <div class="form-group row">
                     <label for="foto_sertifikat" class="col-sm-2 col-form-label">Foto Sertifikat</label>
                     <div class="col-sm-4">
                         <input name="foto_sertifikat" type="file" id="foto_sertifikat"><br>
+<<<<<<< HEAD
                         <small><span style="color:red">*</span>maksimal size 125kb</small>
+=======
+                        <small><span style="color:red">*</span>maksimal size 100kb</small>
+>>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
                     </div>  
-                </div>
+                </div> -->
                 
                   <!-- Form input ini menggunakan Ternary operator -->
                 <div class="form-group row">
@@ -134,7 +138,11 @@
                 <div class="col-sm-6">
                     <p class="text-right">
                     <button type="button" id="btncanceldetail"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
+<<<<<<< HEAD
                     <button type="submit" id="btnsavedetail" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>
+=======
+                    <button type="button" id="btnsavedetail" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>
+>>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
                     <div id="nama_component">
                     <!-- <button type="submit">Save</button></div> -->
                     </p>
@@ -197,8 +205,13 @@ $('#periode_date_awal,#periode_date_akhir').attr("autocomplete", "off").datepick
             });
 
         $(document).ready(function () {
+<<<<<<< HEAD
             var form, formdatadetail, url_index, url_post, id, actiondata, form_data = new FormData();
+=======
+            var form, formdatadetail, url_index, url_post, url_upload_foto, id, actiondata, file_data, form_data;
+>>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
             url_post = '<?php echo $url_post; ?>';
+            url_upload_foto = '<?php echo $url_upload_foto; ?>';
             url_index = '<?php echo $url_index; ?>';
             id = $("#id").val();
             actiondata = (id == 0) ? 'create' : 'update';
