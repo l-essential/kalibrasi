@@ -87,6 +87,7 @@ class Calibration extends MY_Controller {
                         "calibration_status"    => $param ['calibration_status'],
                         "tools_id"              => $param ['tools_id'],
                         "tools_code"            => $param ['tools_code'],
+                        "keterangan"            => $param ['keterangan'],
                       
                     );
                     // var_dump($record);
@@ -99,7 +100,6 @@ class Calibration extends MY_Controller {
                         "lastno"               => $param ['h_no'],
                     );
 
-                   
                     $h_kt   = $param ['h_kt'];
                     $h_th   = $param ['h_th'];
                     $h_bln  = $param ['h_bln'];
@@ -134,6 +134,7 @@ class Calibration extends MY_Controller {
                         "location_name"                => $param ['location_name'],
                         "position_name"                => $param ['position_name'],
                         "calibration_status"           => $param ['calibration_status'],
+                        "keterangan"                   => $param ['keterangan'],
                        
                     );
                 // var_dump($record);

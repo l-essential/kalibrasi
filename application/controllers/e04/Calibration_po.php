@@ -9,6 +9,7 @@ class Calibration_po extends MY_Controller {
         $this->prefix_id_detail = $this->modeldata->prefix_id_detail;
         $this->idheader = $this->modeldata->prefix_id; 
         $this->title = 'Permintaan Kalibrasi';
+        $this->load->model('MY_Model', 'mymodel');
         $this->load->model('Calibration_po_model', 'modeldata');
         $this->setmodel($this->pathclass . '/Vendor_model#vendor');
         $this->db_pu = $this->load->database('pu', true); // load db from controller
@@ -113,7 +114,6 @@ class Calibration_po extends MY_Controller {
 
      public function postdata() {
         $param = $this->input->post();
-        
         $param['date_po'] = date("Y-m-d", strtotime($param['date_po']));
         if ($param['actiondata'] !== 'delete') {
 
@@ -123,7 +123,6 @@ class Calibration_po extends MY_Controller {
                 $nomor = substr($temp, -3);
                 $calibrationpo_code = 'PK/'. date('Y', strtotime($param['date_po'])). "/". date('m'). "/" .$nomor;
                 $param['calibrationpo_code'] = $calibrationpo_code;
-                
             }
 
             if (isset($param['dataintable_length'])) {

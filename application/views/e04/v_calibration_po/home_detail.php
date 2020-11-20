@@ -131,6 +131,15 @@
                 return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
             }
         },
+        // {
+        // "data": "foto_sertifikat",
+        // "render": function (data, row) {
+        //     if(row.foto_sertifikat == ''){
+        //         return "";
+        //     }else{
+        //         return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
+        //     }
+        // },
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,
@@ -177,7 +186,7 @@
             type: "post",
             dataType: "json",
             cache: false,
-            data: {
+            data: { alasan: $("#inputAlasan").val(),
                 actiondatadetail: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val(),
             },

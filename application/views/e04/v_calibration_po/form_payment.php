@@ -102,7 +102,6 @@
                 </div>                        
             </div>
 
-                      
             <div class="col-sm-6">
                 <p class="text-right">
                 <button type="button" id="btncanceldetail"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>

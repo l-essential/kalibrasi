@@ -77,6 +77,7 @@
                       <th>Vendor</th>
                       <th>Status Kalibrasi</th>
                       <th>Estimasi Kalibrasi</th>
+                      <th>Keterangan</th>
                       <th>Tgl Kalibrasi</th>
                     </tr>
                     </thead>
@@ -172,6 +173,7 @@
                         {"data": "vendor_name"},
                         {"data": "status_po"},
                         {"data": "estimasi_calibration"},
+                        {"data": 'keterangan'},
                         {"data": "id_satuan", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {

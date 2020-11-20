@@ -32,13 +32,20 @@ class Calibration_model extends MY_Model {
     }
 
      public function getGridData() {
-
+        
         $query = "  SELECT  a.*,
-                           CONCAT(a.location_name, ' - ',a.position_name) as locpos,
-                           CONCAT(b.tools_code, ' - ',b.tools_name, ' - ',b.tools_noseri_model) as tools_code
+                            -- d.startcalibration_date,
+
+                    DATE_ADD(startcalibration_date, INTERVAL 360 DAY) as jatuh_tempo, 
+                    DATEDIFF(DATE_ADD(startcalibration_date, INTERVAL 360 DAY), CURDATE()) as reminder,
+                    
+
+                    CONCAT(a.location_name, ' - ',a.position_name) as locpos,
+                    CONCAT(b.tools_code, ' - ',b.tools_name, ' - ',b.tools_noseri_model) as tools_code
                     FROM $this->table a
                     LEFT JOIN $this->tbl_tools b on a.tools_id = b.tools_id 
                     LEFT JOIN $this->table_detail c on a.calibration_id = c.calibration_id 
+                    -- LEFT JOIN $this->table_podetail d on a.calibration_id = d.calibration_id
                     WHERE a.statusdata='active'";
         
         $result = $this->db->query($query);
@@ -47,11 +54,6 @@ class Calibration_model extends MY_Model {
         } else {
             return null;
         }
-
-        // $tgl_sekarang=date("Y-m-d");//tanggal sekarang
-        // $tgl_mulai="2010-10-10";// tanggal kalibrasi awal
-        // $jangka_waktu = strtotime('+4 days', strtotime($tgl_mulai));// jangka waktu + 365 hari
-        // $remainder=date("Y-m-d",$jangka_waktu);//tanggal expired
         
     }
 
@@ -101,23 +103,6 @@ class Calibration_model extends MY_Model {
                     WHERE 
                     b.$this->prefix_id='$id' AND a.statusdata='active' ORDER BY c.date_po DESC ";
             return $this->db->query($query);
-
-     //   $query = " SELECT 
-      //              a.*,
-      //              CONCAT(a.periode_year, '-',a.periode_date) as date_calibration,
-     //               b.*,
-      //              c.tools_name,
-      //              FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
-      //              FORMAT( (a.calibration_qty * a.calibration_price - a.calibration_qty * a.calibration_price * a.calibration_disc/100) * a.calibration_ppn/100,2) as ppn,
-      //              (a.calibration_qty * a.calibration_price) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 + (a.calibration_qty * a.calibration_price - a.calibration_qty * a.calibration_price * a.calibration_disc/100) * a.calibration_ppn/100  as disc_ppn,
-       //             d.vendor_name
-       //          FROM $this->table_detail a   
-       //          LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id
-       //          LEFT JOIN $this->tbl_tools c on a.$this->prefix_id_tools = c.$this->prefix_id_tools
-       //          LEFT JOIN $this->table_vendor d on a.vendor_id = d.vendor_id
-       //          WHERE 
-       //          a.$this->prefix_id='$id' AND a.statusdata='active' ORDER BY a.periode_year DESC ";
-       // return $this->db->query($query);
     }
 
      function GridDataCalibration($idheader)
@@ -146,15 +131,6 @@ class Calibration_model extends MY_Model {
         $this->db->where('a.statusdata', 'active');
         $this->db->where('a.calibration_id', $id);
         return $this->db->get()->row();
-
-        // $this->db->select(' a.*, (b.calibration_qty * b.calibration_price) as tes,c.*,d.*');
-        // $this->db->from($this->table . ' a ');
-        // $this->db->join($this->table_detail . ' b ', 'a.calibration_id = b.calibration_id', 'left');
-        // $this->db->join($this->tbl_tools . ' c ', 'a.tools_id = c.tools_id', 'left');
-        // $this->db->join($this->table_vendor . ' d ', 'b.vendor_id = d.vendor_id', 'left');
-        // $this->db->where('a.statusdata', 'active');
-        // $this->db->where('a.calibration_id', $id);
-        // return $this->db->get()->row();
 
     }
 
@@ -194,22 +170,6 @@ class Calibration_model extends MY_Model {
         $this->db->where($this->prefix_id_podetail, $id);
         $query = $this->db->set('status_po', 'Complete');
         return $this->db->update($this->table_podetail, $record);
-        // $param->$this->input->post();
-
-        // // $data=array(
-        // //     'status_po'=>  $this->input->post('Complete')
-        // //              );
-        // $query = $this->db->set('status_po', 'Complete');
-        // $query = $this->db->where('id_position', $param['id_position']);
-        // return $this->db->update($this->table_podetail);
-        
-        //              var_dump($param);
-        //              die();
-
-
-        // $this->db->insert('e04_ts_calibration_podetail',$data);
-
-
     }
 
      function getby_id($id) {

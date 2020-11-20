@@ -3,6 +3,7 @@
 class MY_Model extends CI_Model {
     public $table;
     public $table_detail;
+    public $table_podetail;
     public $prefix_id;
     public $prefix_id_detail;
     public $dateserver;
@@ -619,12 +620,13 @@ class MY_Model extends CI_Model {
     }
 
     function deletedata($id, $record = array()) {
+        $deletenote	 = $this->input->post('alasan');
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
             $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
-
+            $record['deletenote'] = $deletenote;
             $this->db->where($this->prefix_id, $id);
             return $this->db->update($this->table, $record);
         } else {
@@ -634,11 +636,13 @@ class MY_Model extends CI_Model {
     }
 
     function deletedata_detail($id, $record = array()) {
+        $deletenote	 = $this->input->post('alasan');
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
             $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
+            $record['deletenote'] = $deletenote;
             $this->db->where($this->prefix_id_detail, $id);
             return $this->db->update($this->table_detail, $record);
         } else {
@@ -647,12 +651,13 @@ class MY_Model extends CI_Model {
     }
 
     function deletedata_detail_fromheader($id_header, $record = array()) {
-       
+        $deletenote	 = $this->input->post('alasan');
         $checkfiield = $this->checkfield("deleteby");
         if ($checkfiield > 0) {
             $record['deleteby'] = $this->session->userdata('ses_id_user');
             $record['deletetime'] = $this->datetimeserver;
             $record['statusdata'] = 'nonactive';
+            $record['deletenote'] = $deletenote;
             $this->db->where('statusdata', 'active');
         }
         $this->db->where($this->prefix_id, $id_header);  

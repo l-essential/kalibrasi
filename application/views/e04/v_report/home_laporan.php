@@ -51,34 +51,31 @@
                 </div>
             </div>
 
+
+            <div class="form-group row">
+                <label for="katagori" class="col-sm-2 col-form-label">Department </label>
+                <div class="col-sm-4">
+                   <select id="department_name" name="department_name" class="form-control">
+                        <?php foreach ($default['department_name'] as $row) { ?>
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>">
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>  
+            </div>
+                            
             <div class="form-group row">
                 <label for="katagori" class="col-sm-2 col-form-label">Ruang Lingkup </label>
                 <div class="col-sm-4">
                    <select id="scope_code" name="scope_code" class="form-control">
                         <?php foreach ($default['scope_code'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>">
                                 <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
                         <?php } ?>
                     </select>
                 </div>  
             </div>
-
-            <div class="form-group row">
-                <label for="katagori" class="col-sm-2 col-form-label">Departemen Name </label>
-                <div class="col-sm-4">
-                   <select id="location_name" name="location_name" class="form-control chosen-select">
-                        <?php foreach ($default['location_name'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>  
-            </div>
-
+            
              <!-- <div class="form-group row" id="approve">
                <label class="col-sm-2 col-form-label" for="">Kalibrasi</label>
                 <div class="col-sm-1">
@@ -94,18 +91,14 @@
             </div> -->
 
             <!-- <div class="form-group row">
-                <label for="katagori" class="col-sm-2 col-form-label">Tipe Kalibrasi </label>
-                <div class="col-sm-4">
-                   <select id="calibration_type" name="calibration_type" class="form-control chosen-select">
-                        <?php foreach ($default['calibration_type'] as $row) { ?>
-
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>  
-            </div> -->
+                        <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
+                        <div class="col-sm-4">
+                            <select name="calibration_type" id="calibration_type" class="form-control">
+                                <option value="External" <?php echo ($default['nama_type'] == 'External') ? 'selected' : ''; ?>>External</option>
+                                <option value="Internal" <?php echo ($default['nama_type'] == 'Internal') ? 'selected' : ''; ?>>Internal</option>
+                            </select>
+                        </div>
+                    </div> -->
 
             <!-- <div class="form-group row">
                 <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
@@ -121,7 +114,7 @@
         
         <div class="row no-print">
                 <div class="col-12">
-                    <button type="button" class="btn btn-sm btn-secondary" onclick="ToController('e04/Home')"><i class='fas fa-chevron-circle-left'> Back to home</i></button>
+                    <!-- <button type="button" class="btn btn-sm btn-secondary" onclick="ToController('e04/Home')"><i class='fas fa-chevron-circle-left'> Back to home</i></button> -->
                     <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button>
                     <button type="button" id="btnpreview" name="btnpreview" class="btn btn-sm btn-like  float-right" style="margin-right: 5px;"><i class='fas fa-file-contract'> Preview</i></button>
                 </div>
@@ -168,8 +161,8 @@
                     'daritanggal': $("#daritanggal").val(),
                     'sampaitanggal': $("#sampaitanggal").val(),
                     'scope_code': $("#scope_code").val(),
-                    'location_name': $("#location_name").val(),
-                    'calibration_type': $("#calibration_type").val(),
+                    'department_name': $("#department_name").val(),
+                    // 'calibration_type': $("#calibration_type").val(),
 
                 };
 
@@ -184,7 +177,6 @@
             }
 
         }
-
          $("input[type=radio][name='calibration_type']").change(function () {
             checkstatus();
         });
@@ -199,11 +191,6 @@
         }
         
         }
-        
-
-
-
-
     });
 
     function injectHTML(html_string) {
@@ -235,8 +222,8 @@
 
     $("#scope_code").trigger("chosen:updated");
     $("#scope_code").chosen();
-    $("#location_name").trigger("chosen:updated");
-    $("#location_name").chosen();
+    $("#department_name").trigger("chosen:updated");
+    $("#department_name").chosen();
     $("#calibration_type").trigger("chosen:updated");
     $("#calibration_type").chosen();
 

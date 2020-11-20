@@ -39,12 +39,16 @@ $templates = base_url() . 'allassets/';
                     <thead>
                     <tr style='font-size: 0.9rem;'>
                         <th>No</th>
-                        <th>Alat / Instrumen</th>
-                        <th>Merek</th>
-                        <th>No. Seri / Model</th>
-                        <th >No. ID Alat</th>
-                        <th width="20">Lokasi</th>
-                        <th>Periode Kalibrasi</th>
+                        <th>Tanggal PK</th>
+                        <th>Tanggal Kalibrasi Awal</th>
+                        <th>Tanggal Kalibrasi Berikutnya</th>
+                        <th>ID Alat Kalibrasi</th>
+                        <th>Nama Alat</th>
+                        <th>Lokasi</th>
+                        <th>Vendor</th>
+                        <th>Harga</th>
+                        <!-- <th>Total</th> -->
+                        <!-- <th>Keterangan</th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -55,30 +59,45 @@ $templates = base_url() . 'allassets/';
                         $total = 0;
                         foreach ($result as $row) {
                             $no++;
-                            $tanggal = date('d-m-Y', strtotime($row['startcalibration_date']));
+                            // $tanggal = date('d-m-Y', strtotime($row['date_po']));
                             // $periode_year = date('Y', strtotime($row['periode_year']));
                             // $periode_date = date('m-d', strtotime($row['periode_date']));
 
                             $html = "<tr style='font-size: 0.9rem;'>";
                             //------- start td -------
                             $html .= "<td>" . $no . "</td>";
-                            $html .= "<td width='175'>" . $row['tools_name'] . "</td>";
-                            $html .= "<td width='130'>" . $row['tools_merk'] . "</td>";
-                            $html .= "<td>" . $row['tools_noseri_model'] . "</td>";
+                            // $html .= "<td width='175'>" . $row['tools_name'] . "</td>";
+                            // $html .= "<td width='130'>" . $row['tools_merk'] . "</td>";
+                            $html .= "<td width='130'>" . $row['date_po'] ."</td>";
+                            $html .= "<td width='130'>" . $row['periode_date_awal'] ."</td>";
+                            $html .= "<td width='130'>" . $row['periode_date_akhir'] ."</td>";
                             $html .= "<td>" . $row['calibration_code'] . "</td>";
+                            $html .= "<td>" . $row['tools_code'] . "-" . $row['tools_name'] . "-" . $row['tools_merk'] . "</td>";
                             $html .= "<td width='90'>" . $row['location_name'] . "</td>";
+                            $html .= "<td width='90'>" . $row['vendor_name'] . "</td>";
+                            $html .= "<td width='90'>" . number_format($row['disc_ppn'], 0, ',', '.') . "</td>";
+                            // $html .= "<td width='90'>" . $row['total'] . "</td>";
                             // $html .= "<td width='130'>" . $tanggal . "</td>";
-                            $html .= "<td width='130'>" . $row['periode_date_awal'] . "-" . $row['periode_date_akhir'] . "</td>";
+                            // $html .= "<td width='90'>" . $row['keterangan'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 
                             echo $html;
-                            $total += $row['calibration_price'];
+                            $total += $row['total'];
                         }
                     }
                     ?>
                     
                     </tbody>
+                    <tfoot>
+                    <?php
+                      $html = "<tr'>";
+                      $html =" <th colspan=8>Total Harga</th>";
+                         $html .= "<th>"  . number_format($total,0,',','.') . "</th>"; 
+                         $html .= "</tr>";
+                         echo $html;
+                      ?>
+                    </tfoot>
                   </table>
                 </div>
                 <!-- /.col -->
@@ -116,10 +135,10 @@ $templates = base_url() . 'allassets/';
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-sm btn-default float-right" id='btnprint' onclick="fn_print()"><i class="fas fa-print"></i> Print</button>
-                  <!-- <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
+                  <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate Excel
                   </button>
-                  <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
+                  <!-- <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
                   </button> -->
                 </div>
@@ -195,5 +214,10 @@ $('#cmd').click(function () {
     });
     doc.save('sample-file.pdf');
 });
+
+$("#exceldata").click(function(){
+             var url_excel = '<?php echo $url_excel; ?>';
+             window.open(url_excel + '?daritanggal=' +  $("#daritanggal").val() + '&sampaitanggal=' + $("#sampaitanggal").val());
+         });
 
 </script>

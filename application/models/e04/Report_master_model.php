@@ -21,7 +21,8 @@ class Report_master_model extends MY_Model {
             $this->prefix_scope = 'scope_id';
             $this->tbl_vendor = 'e04_ms_vendor';
             $this->prefix_vendor = 'vendor_id';
-                
+            $this->tbl_podetail = 'e04_ts_calibration_podetail';
+            $this->prefix_podetail = 'id_position';
     }
 
     public function generatereport($param) {

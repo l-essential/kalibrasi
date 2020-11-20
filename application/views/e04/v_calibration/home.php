@@ -42,8 +42,8 @@
                                 <th>Alat</th>
                                 <th>Lokasi</th>
                                 <th>Reminder</th>
-                                <th>tanggal kalibrasi Akhir</th>
-                                <!-- <th>No Sertifikat</th> -->
+                                <th>Tanggal Kalibrasi</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,23 +115,16 @@
         {"data": "calibration_code"},
         {"data": "tools_code"},
         {"data": "locpos"},
-        {"data": "reminder", "sClass": "text-center",
-         "mRender": function (data, type, row) {
-                var status = "-";
-                var idtr = row["<?php echo $prefix_id; ?>"];
-                
-                if (row.reminder == '0') {
-                    status = "<span class='btn btn-block btn-like btn-xs'>Masih Dalam Jangka Waktu</span>";
-                }
-                if (row.reminder == '1') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Expired 1 Bulan Lagi</span>";
-                }
-                if (row.reminder == '2') {
-                    status = "<span class='btn btn-block btn-danger btn-xs'>Expired</span>";
-                }
-                return status;
-            }
+        {"data": "reminder", "aTargets": [0],
+        "render": function (data, row) {
+            if(data >= (row.jatuh_tempo == row.startcalibration_date) ) {
+                return "<span class='btn btn-block btn-warning btn-xs'>Expired "+ data +" Hari Lagi </span>";
+            }else{
+                return "<span class='btn btn-block btn-danger btn-xs'>Expired</span>";
+            } 
+        }
         },
+
         {"data": "startcalibration_date", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {
@@ -143,6 +136,7 @@
                 return btn;
             }
         },
+        {"data": "keterangan"},
         
     ];
     setdatagrid();

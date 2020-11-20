@@ -58,16 +58,15 @@
             <input type="hidden" id="h_bln" name="h_bln">
             <input type="hidden" id="h_no" name="h_no">
 
-
             <div class="main-content container-fluid">
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">ID Alat</label>
                   <div class="col-sm-4">
-                    <input name="calibration_code" minlength="1" maxlength="30" id="calibration_code" type="text" parsley-type="text" placeholder="Auto" class="form-control"
+                    <input name="calibration_code" minlength="1" maxlength="30" id="calibration_code" type="text" parsley-type="text" placeholder="Masukan ID Alat" class="form-control"
                     value="<?php echo (isset($default['calibration_code'])) ? $default['calibration_code'] : ''; ?>"
                     <?php echo (isset($default['readonly_calibration_code'])) ? $default['readonly_calibration_code'] : ''; ?>
-                      readonly="readonly"/>
+                      />
                   </div>
             </div>
 
@@ -138,25 +137,12 @@
                       </div>
             </div> 
 
-            <!-- <div class="form-group row">
-                <label class="col-sm-2 col-form-label" autocomplete="off">Tanggal Kalibrasi Akhir</label>
-                  <div class="col-sm-4">
-                      <input name="startcalibration_date" minlength="1" maxlength="30" id="startcalibration_date" type="text" parsley-type="text" placeholder="input tanggal akhir" class="form-control"
-                    value="<?php echo (isset($default['startcalibration_date'])) ? $default['startcalibration_date'] : ''; ?>"
-                    <?php echo (isset($default['readonly_startcalibration_date'])) ? $default['readonly_startcalibration_date'] : ''; ?>
-                      >
-                      </div>
-            </div>  -->
-
-            <!-- <div class="form-group row">
-                    <label for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat</label>
+            <div class="form-group row">
+                    <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                     <div class="col-sm-4">
-                        <input name="tools_no_sertifikat" minlength="1" maxlength="30" id="tools_no_sertifikat" type="text" parsley-type="text" placeholder="input no sertifikat" class="form-control"
-                            value="<?php echo (isset($default['tools_no_sertifikat'])) ? $default['tools_no_sertifikat'] : ''; ?>"
-                            <?php echo (isset($default['readonly_tools_no_sertifikat'])) ? $default['readonly_tools_no_sertifikat'] : ''; ?>
-                            >
+                        <textarea name="keterangan" placeholder="input keterangan komponen kalibrasi" class="form-control" rows="2" <?php echo (isset($default['readonly_keterangan'])) ? $default['readonly_keterangan'] : ''; ?> ><?php echo (isset($default['keterangan'])) ? $default['keterangan'] : ''; ?></textarea>
                     </div>  
-                </div>  -->
+                </div>
 
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label"></label>

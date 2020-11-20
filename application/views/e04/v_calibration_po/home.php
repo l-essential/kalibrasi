@@ -103,14 +103,13 @@
     setdatagrid();
 
 
-
-    function process_delete() {
+function process_delete() {
         $.ajax({
             url: url_delete,
             type: "post",
             dataType: "json",
             cache: false,
-            data: {
+            data: { alasan: $("#inputAlasan").val(),
                 actiondata: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val()
             },
@@ -120,7 +119,6 @@
                     $('#dataintable').dataTable().fnReloadAjax();
                 }
                 _alert(data.msg, data.valid);
-
             }
         });
         return false;
@@ -129,7 +127,5 @@
      function preview(id) {
         ToContent(url_preview + '/' + id);
     }
-
-
 
 </script>
