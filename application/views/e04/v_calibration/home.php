@@ -147,7 +147,7 @@
             type: "post",
             dataType: "json",
             cache: false,
-            data: {
+            data: {alasan: $("#inputAlasan").val(),
                 actiondata: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val()
             },

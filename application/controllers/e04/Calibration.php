@@ -131,6 +131,8 @@ class Calibration extends MY_Controller {
                         
                         "startcalibration_date"        => $param ['startcalibration_date'],
                         "scope_code"                   => $param ['scope_code'],
+                        "tools_id"                     => $param ['tools_id'],
+                        "tools_code"                   => $param ['tools_code'],
                         "location_name"                => $param ['location_name'],
                         "position_name"                => $param ['position_name'],
                         "calibration_status"           => $param ['calibration_status'],

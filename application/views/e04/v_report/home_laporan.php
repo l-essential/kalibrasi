@@ -16,7 +16,6 @@
       </div><!-- /.container-fluid -->
     </div>
 
-
  <section class="content">
       <div class="row">
         <div class="col-12" id='divformdata'>
@@ -51,7 +50,6 @@
                 </div>
             </div>
 
-
             <div class="form-group row">
                 <label for="katagori" class="col-sm-2 col-form-label">Department </label>
                 <div class="col-sm-4">
@@ -75,46 +73,9 @@
                     </select>
                 </div>  
             </div>
-            
-             <!-- <div class="form-group row" id="approve">
-               <label class="col-sm-2 col-form-label" for="">Kalibrasi</label>
-                <div class="col-sm-1">
-                    <label class="radio-inline">
-                        <input name="calibration_type" id="calibration_type" type="radio" value="Internal" > Internal
-                    </label>
-                </div>
-                <div class="col-sm-2">
-                    <label class="radio-inline">
-                        <input type="radio" name="calibration_type" id="calibration_type" value="External" > External
-                    </label>
-                </div>
-            </div> -->
-
-            <!-- <div class="form-group row">
-                        <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
-                        <div class="col-sm-4">
-                            <select name="calibration_type" id="calibration_type" class="form-control">
-                                <option value="External" <?php echo ($default['nama_type'] == 'External') ? 'selected' : ''; ?>>External</option>
-                                <option value="Internal" <?php echo ($default['nama_type'] == 'Internal') ? 'selected' : ''; ?>>Internal</option>
-                            </select>
-                        </div>
-                    </div> -->
-
-            <!-- <div class="form-group row">
-                <label for="calibration_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
-                <div class="col-sm-4">
-                    <select name="calibration_type" id="calibration_type" class="form-control">
-                        <option value="">- Please Select -</option>
-                        <option  value="Internal">Internal</option>
-                        <option  value="Eksternal">Eksternal</option>
-                    </select>
-                </div>
-            </div> -->
-
         
         <div class="row no-print">
                 <div class="col-12">
-                    <!-- <button type="button" class="btn btn-sm btn-secondary" onclick="ToController('e04/Home')"><i class='fas fa-chevron-circle-left'> Back to home</i></button> -->
                     <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button>
                     <button type="button" id="btnpreview" name="btnpreview" class="btn btn-sm btn-like  float-right" style="margin-right: 5px;"><i class='fas fa-file-contract'> Preview</i></button>
                 </div>

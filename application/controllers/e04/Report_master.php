@@ -36,6 +36,8 @@ class Report_master extends MY_Controller {
 
    public function exceldata() {
         $post = $_REQUEST;
+        // var_dump($post);
+        // exit;
         $this->data['result'] = $this->modeldata->generatereport($post['daritanggal'], $post['sampaitanggal']);
         $this->data['periode'] = $post['daritanggal'] . ' s/d ' . $post['sampaitanggal'];
         $this->data['daritangal'] = $post['daritanggal'];

@@ -191,13 +191,10 @@ class Calibration_po extends MY_Controller {
         $this->db_pu->set($data);
         $this->db_pu->where('id_position', $param['id_position']);
         $this->db_pu->update('e04_ts_calibration_podetail');
-<<<<<<< HEAD
        
         
        
         
-=======
->>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
     }
     
      public function Preview($id) {

@@ -31,13 +31,15 @@ class Report_model extends MY_Model {
     public function generatereport($param) {
         $scope = $param['scope_code'];
         $department_name = $param['department_name'];
-        $daritanggal = date('d-m-y', strtotime($param['daritanggal']));
-        $sampaitanggal = date('d-m-y', strtotime($param['sampaitanggal']));
+        $daritanggal = date('y-m-d', strtotime($param['daritanggal']));
+        $sampaitanggal = date('y-m-d', strtotime($param['sampaitanggal']));
+        // var_dump($sampaitanggal);
+        // exit;
 
         $where = " WHERE a.statusdata='active' AND
                     b.date_po >='$daritanggal' and
                     b.date_po <='$sampaitanggal' and 
-                    b.statusdata = 'active'";
+                    a.statusdata = 'active'";
                     
                     if (!empty($scope)) {
                         $where .= " AND c.scope_code = '$scope' ";
@@ -66,10 +68,7 @@ class Report_model extends MY_Model {
 
                 ((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 ) + (((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - ( a.calibration_qty * a.calibration_price * a.calibration_disc/100)) * 10/100 ) as disc_ppn,
 
-                SUM((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 ) + (((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - ( a.calibration_qty * a.calibration_price * a.calibration_disc/100)) * 10/100 ) as total,
-
-                DATE_FORMAT(c.startcalibration_date, '%d-%m-%Y') AS startcalibration_date,
-                DATE_FORMAT(a.periode_date_akhir, '%d-%m-%Y') AS periode_date_akhir
+                SUM((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 ) + (((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - ( a.calibration_qty * a.calibration_price * a.calibration_disc/100)) * 10/100 ) as total
                 FROM $this->table_detail a
                 LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id
                 LEFT JOIN $this->table_calibration c on a.calibration_code = c.calibration_code
@@ -84,5 +83,5 @@ class Report_model extends MY_Model {
                 } else {
                     return null;
                 }
-            }
     }
+}

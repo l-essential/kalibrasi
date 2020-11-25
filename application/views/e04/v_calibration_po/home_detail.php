@@ -24,7 +24,7 @@
                             <th>Estimasi Kalibrasi</th>
                             <th>Tanggal Awal Kalibrasi</th>
                             <th>Tanggal Kalibrasi Berikutnya</th>
-                            <!-- <th>Foto Sertifikat</th> -->
+                            <th>Foto Sertifikat</th>
                             <th>ID alat Kalibrasi</th>
                             <th>Nama Alat</th>
                             <th>No PO</th>
@@ -125,7 +125,6 @@
         }
         
         },
-<<<<<<< HEAD
         {
         "data": "foto_sertifikat", "aTargets": [0],
         "render": function (data) {
@@ -141,9 +140,6 @@
         //         return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
         //     }
         // },
-=======
-        // {"data": "foto_sertifikat"},
->>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,

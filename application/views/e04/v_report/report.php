@@ -18,7 +18,7 @@ $templates = base_url() . 'allassets/';
                     <i class="fas fa-globe"></i> PT. L`ESSENTIAL
                     
                   </h5>
-                  <p align="center"><strong> LAPORAN KALIBRASI </strong></p>
+                  <p align="center"><strong> LAPORAN PERMINTAAN KALIBRASI </strong></p>
                    <br>
                     <div class="col-sm-4 invoice-col">
                       From
@@ -53,21 +53,23 @@ $templates = base_url() . 'allassets/';
                     </thead>
                     <tbody>
                      <?php
+
+                    // if ($row['periode_date_awal'] == '1970-01-01') {
+                    //   return "";
+                    // }else{
+                    //   return $row['periode_date_awal'];
+                    // }
+
                     if ($result) {
                         $no = 0;
-
+                        
                         $total = 0;
                         foreach ($result as $row) {
                             $no++;
-                            // $tanggal = date('d-m-Y', strtotime($row['date_po']));
-                            // $periode_year = date('Y', strtotime($row['periode_year']));
-                            // $periode_date = date('m-d', strtotime($row['periode_date']));
 
                             $html = "<tr style='font-size: 0.9rem;'>";
                             //------- start td -------
                             $html .= "<td>" . $no . "</td>";
-                            // $html .= "<td width='175'>" . $row['tools_name'] . "</td>";
-                            // $html .= "<td width='130'>" . $row['tools_merk'] . "</td>";
                             $html .= "<td width='130'>" . $row['date_po'] ."</td>";
                             $html .= "<td width='130'>" . $row['periode_date_awal'] ."</td>";
                             $html .= "<td width='130'>" . $row['periode_date_akhir'] ."</td>";
@@ -76,9 +78,6 @@ $templates = base_url() . 'allassets/';
                             $html .= "<td width='90'>" . $row['location_name'] . "</td>";
                             $html .= "<td width='90'>" . $row['vendor_name'] . "</td>";
                             $html .= "<td width='90'>" . number_format($row['disc_ppn'], 0, ',', '.') . "</td>";
-                            // $html .= "<td width='90'>" . $row['total'] . "</td>";
-                            // $html .= "<td width='130'>" . $tanggal . "</td>";
-                            // $html .= "<td width='90'>" . $row['keterangan'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 
@@ -91,7 +90,7 @@ $templates = base_url() . 'allassets/';
                     </tbody>
                     <tfoot>
                     <?php
-                      $html = "<tr'>";
+                      $html = "<tr>";
                       $html =" <th colspan=8>Total Harga</th>";
                          $html .= "<th>"  . number_format($total,0,',','.') . "</th>"; 
                          $html .= "</tr>";
@@ -187,7 +186,7 @@ $templates = base_url() . 'allassets/';
 </html>
 <script type="text/javascript">
     function downloadexceldata(){
-         var url_excel = '<?php echo $url_excel; ?>';
+        var url_excel = '<?php echo $url_excel; ?>';
         var daritanggal = '<?php echo $daritanggal; ?>';
         var sampaitanggal = '<?php echo $sampaitanggal; ?>';
         window.open(url_excel + '?daritanggal=' + daritanggal + '&sampaitanggal=' + sampaitanggal);
