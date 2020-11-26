@@ -15,7 +15,7 @@ $templates = base_url() . 'allassets/';
               <div class="row">
                 <div class="col-12">
                   <h5>
-                    <i class="fas fa-globe"></i> PT. L`ESSENTIAL
+                  <img src="<?php echo base_url(); ?>allassets/dist/img/Logo.png" alt="Logo" style="opacity: .8;width: 27px;"> PT. L`ESSENTIAL
                     
                   </h5>
                   <p align="center"><strong> LAPORAN PERMINTAAN KALIBRASI </strong></p>
@@ -137,9 +137,9 @@ $templates = base_url() . 'allassets/';
                   <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate Excel
                   </button>
-                  <!-- <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
+                  <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
-                  </button> -->
+                  </button>
                 </div>
               </div>
             </div>
@@ -199,19 +199,19 @@ $templates = base_url() . 'allassets/';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script>
     
-var doc = new jsPDF();
+var doc = new jsPDF('landscape');
 var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
     }
 };
 
-$('#cmd').click(function () {   
+$('#cmd').click(function () {
     doc.fromHTML($('#content').html(), 15, 15, {
         'width': 170,
             'elementHandlers': specialElementHandlers
     });
-    doc.save('sample-file.pdf');
+    doc.save('Laporan Permintaan Kalibrasi.pdf');
 });
 
 $("#exceldata").click(function(){

@@ -188,7 +188,4 @@
     $("#calibration_type").trigger("chosen:updated");
     $("#calibration_type").chosen();
 
-
-
-
 </script>

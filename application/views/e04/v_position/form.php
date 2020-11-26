@@ -53,13 +53,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label  for="position_name" class="col-sm-2 col-form-label">Posisi Alat <span style="color:red">*</span></label>
+                    <label for="position_name" class="col-sm-2 col-form-label">Posisi Alat</label>
                     <div class="col-sm-4">
-                        <input name="position_name" minlength="1" maxlength="30" id="position_name" type="text" required=""  parsley-type="text" placeholder="input nama alat" class="form-control"
-                            value="<?php echo (isset($default['position_name'])) ? $default['position_name'] : ''; ?>"
-                            <?php echo (isset($default['readonly_position_name'])) ? $default['readonly_position_name'] : ''; ?>
-                            >
-                    </div>
+                        <textarea name="position_name" placeholder="input keterangan komponen kalibrasi" class="form-control" rows="2" <?php echo (isset($default['readonly_position_name'])) ? $default['readonly_position_name'] : ''; ?> ><?php echo (isset($default['position_name'])) ? $default['position_name'] : ''; ?></textarea>
+                    </div>  
                 </div>
 
                  <div class="form-group">
