@@ -59,6 +59,8 @@ class Formula_1 extends MY_Controller {
 
      public function postdata() {
         $param = $this->input->post();
+        var_dump($param);
+        exit;
         if ($param['actiondata'] !== 'delete') {
             $param['tgl_berlaku'] = date("Y-m-d", strtotime($param['tgl_berlaku']));
 
@@ -90,12 +92,14 @@ class Formula_1 extends MY_Controller {
 
        public function postdatadetail() {
         $param = $this->input->post();
+        // var_dump($param);
+        // exit;
         if (isset($param['id_header'])) {
             $param["$this->prefix_id"] = $param['id_header'];
             unset($param['id_header']);
             $param["$this->prefix_id_detail"] = $param["$this->prefix_id"];
         }
-        $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'no_formula');
+        $this->postdatadetail_byparam_with_check($param, $this->prefix_id, 'formula_id_D');
     }
 
      //             Prosedur Pemakaian

@@ -134,9 +134,9 @@ $templates = base_url() . 'allassets/';
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-sm btn-default float-right" id='btnprint' onclick="fn_print()"><i class="fas fa-print"></i> Print</button>
-                  <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
+                  <!-- <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate Excel
-                  </button>
+                  </button> -->
                   <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
                   </button>

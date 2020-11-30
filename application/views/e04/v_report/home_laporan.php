@@ -76,7 +76,7 @@
         
         <div class="row no-print">
                 <div class="col-12">
-                    <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button>
+                    <!-- <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button> -->
                     <button type="button" id="btnpreview" name="btnpreview" class="btn btn-sm btn-like  float-right" style="margin-right: 5px;"><i class='fas fa-file-contract'> Preview</i></button>
                 </div>
             </div>

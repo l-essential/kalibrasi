@@ -27,16 +27,26 @@ class Report extends MY_Controller {
     }
 
      public function generatereport() {
+
         $param = $this->input->post();
-        $this->data['result'] = $this->modeldata->generatereport($param);
-        $this->data['url_excel'] = site_url($this->controller . '/exceldata');
-        $html = $this->load->view($this->view . '/report', $this->data, true);
-        $jsonmsg = array(
-            "msg" => 'Proses laporan finish',
-            "htmldata" => $html,
-            "valid" => true,
-        );
-        echo json_encode($jsonmsg);
+
+        // $data['tb_siswa'] = $this->db->get('tb_siswa')->result();
+
+        $this->load->library('pdf');
+
+        $this->pdf->setPaper('A4', 'landscape');
+        $this->pdf->filename = "laporan-petanikode.pdf";
+        $this->pdf->load_view('v_export', $param);
+        
+        // $this->data['result'] = $this->modeldata->generatereport($param);
+        // $this->data['url_excel'] = site_url($this->controller . '/exceldata');
+        // $html = $this->load->view($this->view . '/report', $this->data, true);
+        // $jsonmsg = array(
+        //     "msg" => 'Proses laporan finish',
+        //     "htmldata" => $html,
+        //     "valid" => true,
+        // );
+        // echo json_encode($jsonmsg);
     }
 
    public function exceldata() {

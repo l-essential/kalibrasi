@@ -45,7 +45,7 @@
                   <table nobr="true">
                     <tbody style="font-family: initial;">
                     <tr>
-                          <td width="20%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8"> <b>PT. L 'ESSENTIAL</b> </td>
+                          <td width="20%"><img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8"> <b>PT. L 'ESSENTIAL</b> </td>
                           <td width="54%" >&nbsp;</td>
                           <td width="12%" align="left" style="padding-left: 10px;"> Halaman</td>
                           <td width="14%" align="left"> : 1 dari 2</td>
