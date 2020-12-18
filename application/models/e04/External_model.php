@@ -6,12 +6,9 @@ class External_model extends MY_Model {
         $this->pathclass = basename(dirname(__FILE__));
         $this->db = $this->load->database('pu', true);
         $this->table = 'e04_ts_calibration';
-        $this->table_po = 'e04_ts_calibration_poheader';
         $this->prefix_id = 'calibration_id';
             $this->table_detail = 'e04_ts_calibration_periode';
             $this->prefix_id_detail = 'periode_id';
-            $this->table_podetail     = 'e04_ts_calibration_podetail';
-        $this->prefix_id_podetail = 'id_position';
                 $this->table_location = 'e00_location';
                 $this->prefix_id_location = 'id_location';
                     $this->table_position = 'e00_position';
@@ -75,25 +72,20 @@ class External_model extends MY_Model {
     function GridData_kalibrasi($id) {
         $query = " SELECT 
                     a.*,
-                    
-                    FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
-
-                    FORMAT( ((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc/100)) * 10/100,2) as ppn,
-        
-                    ((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 ) + (((a.calibration_qty * a.calibration_price) - (a.calibration_disc_rp) - ( a.calibration_qty * a.calibration_price * a.calibration_disc/100)) * 10/100 ) as disc_ppn,
-                    
-                    a.calibration_price as clb_price,
-                    b.startcalibration_date,
-                    c.date_po,
-                    e.vendor_name
-                    FROM $this->table_podetail a
-                    LEFT JOIN $this->table b on a.calibration_code = b.calibration_code
-                    LEFT JOIN $this->table_po c on a.c_pohedaer_id = c.c_pohedaer_id
-                    LEFT JOIN $this->tbl_tools d on b.tools_id = d.tools_id
-                    LEFT JOIN $this->table_vendor e on a.vendor_id = e.vendor_id
-                    WHERE 
-                    b.$this->prefix_id='$id' AND a.statusdata='active' ORDER BY c.date_po DESC ";
-            return $this->db->query($query);
+                    CONCAT(a.periode_year, '-',a.periode_date) as date_calibration,
+                    b.*,
+                    c.tools_name,
+                    FORMAT( (a.calibration_qty * a.calibration_price) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100,2) as total_harga,
+                    FORMAT( (a.calibration_qty * a.calibration_price - a.calibration_qty * a.calibration_price * a.calibration_disc/100) * a.calibration_ppn/100,2) as ppn,
+                    (a.calibration_qty * a.calibration_price) - (a.calibration_qty * a.calibration_price * a.calibration_disc)/100 + (a.calibration_qty * a.calibration_price - a.calibration_qty * a.calibration_price * a.calibration_disc/100) * a.calibration_ppn/100  as disc_ppn,
+                    d.vendor_name
+                 FROM $this->table_detail a   
+                 LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id
+                 LEFT JOIN $this->tbl_tools c on a.$this->prefix_id_tools = c.$this->prefix_id_tools
+                 LEFT JOIN $this->table_vendor d on a.$this->prefix_id_vendor = d.$this->prefix_id_vendor       
+                 WHERE 
+                 a.$this->prefix_id='$id' AND a.statusdata='active' ORDER BY a.periode_year DESC ";
+        return $this->db->query($query);
     }
 
      function GridDataCalibration($idheader)
@@ -116,9 +108,9 @@ class External_model extends MY_Model {
     function preview_getbyid($id) {
         $this->db->select(' a.*, (b.calibration_qty * b.calibration_price) as tes,c.*,d.*');
         $this->db->from($this->table . ' a ');
-        $this->db->join($this->table_podetail . ' b ', 'a.calibration_code = b.calibration_code', 'left');
-        $this->db->join($this->tbl_tools . ' c ', 'a.tools_id = c.tools_id', 'left');
-        $this->db->join($this->table_vendor . ' d ', 'b.vendor_id = d.vendor_id', 'left');
+        $this->db->join($this->table_detail . ' b ', 'a.calibration_id = b.calibration_id');
+        $this->db->join($this->tbl_tools . ' c ', 'a.tools_id = c.tools_id');
+        $this->db->join($this->table_vendor . ' d ', 'b.vendor_id = d.vendor_id');
         $this->db->where('a.statusdata', 'active');
         $this->db->where('a.calibration_id', $id);
         return $this->db->get()->row();

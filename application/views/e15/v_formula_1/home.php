@@ -38,8 +38,13 @@
                             <tr>
                                 <th>Action</th>
                                 <th>No Formula</th>
+                                <th>Formula Khusus</th>
+                                <th>Persamaan Produk</th>
                                 <th>Merek</th>   
-                                <th>Nama Produk</th> 
+                                <th>Nama Produk</th>
+                                <th>Bentuk Sediaan</th>
+                                <th>Warna Sediaan</th>
+                                <th>Tanggal Berlaku</th>
                                 <th>Disetujui</th>
                                 <th>Diterima</th>
                                 <th>Diketahui</th>
@@ -105,18 +110,20 @@
         },
 
         {"data": "no_formula"},
+        {"data": "formula_khusus"},
+        {"data": "persamaan_produk"},
         {"data": "merek"},
         {"data": "nama_produk"},
-
-       
-
+        {"data": "bentuk_sediaan"},
+        {"data": "warna_sediaan"},
+        {"data": "tgl_berlaku"},
         {"data": "id_satuan", "width": "10px",
          "bSortable": false,
          "mRender": function (data, type, row) {
             var btn = "";
             var idtr = row["<?php echo $prefix_id; ?>"];
             if (row.disetujui_oleh == null) {
-                btn = btn + "<a href='javascript:void(0)' id='bntditerima' onClick='disetujui(" + idtr + ")' class='text-inverse'><small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu </small></a>";
+                btn = btn + "<small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu </small>";
             } else {
                 btn = btn + "<small class='badge badge-success'><i class='fas fa-check'></i> "+ row.disetujui_oleh +"</small>";
             }
@@ -129,7 +136,7 @@
             var btn = "";
             var idtr = row["<?php echo $prefix_id; ?>"];
             if (row.diterima_oleh == null) {
-                btn = btn + "<a href='javascript:void(0)' id='btn' onClick='diterima(" + idtr + ")' class='text-inverse'><small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu</small></a>";
+                btn = btn + "<small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu</small>";
             } else {
                 btn = btn + "<small class='badge badge-success'><i class='fas fa-check'></i> "+ row.diterima_oleh +"</small>";
             }
@@ -142,7 +149,7 @@
             var btn = "";
             var idtr = row["<?php echo $prefix_id; ?>"];
             if (row.diketahui_oleh == null) {
-                btn = btn + "<a href='javascript:void(0)' onClick='diketahui(" + idtr + ")' class='text-inverse'><small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu </small></a>";
+                btn = btn + "<small class='badge badge-warning'><i class='fas fa-times'></i> Menunggu </small>";
             } else {
                 btn = btn + "<small class='badge badge-success'><i class='fas fa-check'></i> "+ row.diketahui_oleh +"</small>";
             }
@@ -172,9 +179,6 @@
         $('#Diketahui').modal('show');
         $("#Diketahui  input[name=id]").val(id);
     }
-
-
-
 
     function process_delete() {
         $.ajax({
@@ -270,7 +274,7 @@
         <div class="modal-content">
             <div class="modal-header btn-like">
                 <h4 class="modal-title"><font color="white">
-                <img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
+                <img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
                 Formuala Notifikasi Produk </font></h4>
             </div>
             <div class="modal-body">
@@ -290,7 +294,7 @@
         <div class="modal-content">
             <div class="modal-header btn-like">
                 <h4 class="modal-title"><font color="white">
-                <img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
+                <img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
                 Formuala Notifikasi Produk </font></h4>
             </div>
             <div class="modal-body">
@@ -310,7 +314,7 @@
         <div class="modal-content">
             <div class="modal-header btn-like">
                 <h4 class="modal-title"><font color="white">
-                <img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
+                <img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="AdminLTE Logo" style="opacity: .8" width="35" height="35">
                 Formuala Notifikasi Produk </font></h4>
             </div>
             <div class="modal-body">

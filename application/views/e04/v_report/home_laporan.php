@@ -16,6 +16,7 @@
       </div><!-- /.container-fluid -->
     </div>
 
+
  <section class="content">
       <div class="row">
         <div class="col-12" id='divformdata'>
@@ -33,16 +34,16 @@
             <form id="formdata" data-parsley-validate="" novalidate="" autocomplete="off">
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="periode">Periode Permintaan Kalibrasi<span class="err_receive_date required" style="color:red">*</span>
+                <label class="col-sm-2 col-form-label" for="periode">Periode<span class="err_receive_date required" style="color:red">*</span>
                 </label>
-                <div class="col-sm-4">                        
+                <div class="col-sm-4">                         
                     <input type="text" id="daritanggal"  name="daritanggal" class="form-control" placeholder="dari tanggal"
                             value="<?php echo (isset($default['daritanggal'])) ? $default['daritanggal'] : ''; ?>"
                             <?php echo (isset($default['readonly_daritanggal'])) ? $default['readonly_daritanggal'] : ''; ?>      
                             />  
                 </div>
                 
-                <div class="col-sm-4">                         
+                <div class="col-sm-4">          
                     <input type="text" id="sampaitanggal"  name="sampaitanggal" class="form-control"  placeholder="sampai tanggal"
                             value="<?php echo (isset($default['sampaitanggal'])) ? $default['sampaitanggal'] : ''; ?>"
                             <?php echo (isset($default['readonly_sampaitanggal'])) ? $default['readonly_sampaitanggal'] : ''; ?>      
@@ -51,32 +52,63 @@
             </div>
 
             <div class="form-group row">
-                <label for="katagori" class="col-sm-2 col-form-label">Department </label>
-                <div class="col-sm-4">
-                   <select id="department_name" name="department_name" class="form-control">
-                        <?php foreach ($default['department_name'] as $row) { ?>
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>">
-                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>  
-            </div>
-                            
-            <div class="form-group row">
                 <label for="katagori" class="col-sm-2 col-form-label">Ruang Lingkup </label>
                 <div class="col-sm-4">
                    <select id="scope_code" name="scope_code" class="form-control">
                         <?php foreach ($default['scope_code'] as $row) { ?>
-                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>">
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
                                 <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
                         <?php } ?>
                     </select>
                 </div>  
             </div>
+
+            <div class="form-group row">
+                <label for="katagori" class="col-sm-2 col-form-label">Lokasi </label>
+                <div class="col-sm-4">
+                   <select id="calibration_code" name="calibration_code" class="form-control chosen-select">
+                        <?php foreach ($default['department_name'] as $row) { ?>
+
+                            <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                    <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                                <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>  
+            </div>
+
+             <!-- <div class="form-group row" id="approve">
+               <label class="col-sm-2 col-form-label" for="">Kalibrasi</label>
+                <div class="col-sm-1">
+                    <label class="radio-inline">
+                        <input name="calibration_type" id="calibration_type" type="radio" value="Internal" > Internal
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline">
+                        <input type="radio" name="calibration_type" id="calibration_type" value="External" > External
+                    </label>
+                </div>
+            </div> -->
+
+            <div class="form-group row">
+                <label for="calibration_type" class="col-sm-2 col-form-label">Kalibrasi</label>
+                <div class="col-sm-4">
+                    <select name="calibration_type" id="calibration_type" class="form-control">
+                        <option value="">- Please Select -</option>
+                        <option  value="Internal">Internal</option>
+                        <option  value="Eksternal">Eksternal</option>
+                    </select>
+                </div>
+            </div>
+
         
         <div class="row no-print">
                 <div class="col-12">
-                    <!-- <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button> -->
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="ToController('e04/Home')"><i class='fas fa-chevron-circle-left'> Back to home</i></button>
+                    <button type="button" id="exceldata" name="btnpreview" class="btn btn-sm btn-info  float-right"><i class='far fa-file-excel'> Downloads</i></button>
                     <button type="button" id="btnpreview" name="btnpreview" class="btn btn-sm btn-like  float-right" style="margin-right: 5px;"><i class='fas fa-file-contract'> Preview</i></button>
                 </div>
             </div>
@@ -122,8 +154,8 @@
                     'daritanggal': $("#daritanggal").val(),
                     'sampaitanggal': $("#sampaitanggal").val(),
                     'scope_code': $("#scope_code").val(),
-                    'department_name': $("#department_name").val(),
-                    // 'calibration_type': $("#calibration_type").val(),
+                    'calibration_code': $("#calibration_code").val(),
+                    'calibration_type': $("#calibration_type").val(),
 
                 };
 
@@ -138,6 +170,7 @@
             }
 
         }
+
          $("input[type=radio][name='calibration_type']").change(function () {
             checkstatus();
         });
@@ -152,6 +185,11 @@
         }
         
         }
+        
+
+
+
+
     });
 
     function injectHTML(html_string) {
@@ -183,9 +221,12 @@
 
     $("#scope_code").trigger("chosen:updated");
     $("#scope_code").chosen();
-    $("#department_name").trigger("chosen:updated");
-    $("#department_name").chosen();
+    $("#calibration_code").trigger("chosen:updated");
+    $("#calibration_code").chosen();
     $("#calibration_type").trigger("chosen:updated");
     $("#calibration_type").chosen();
+
+
+
 
 </script>

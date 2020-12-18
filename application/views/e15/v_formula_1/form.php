@@ -114,7 +114,7 @@
                   <div class="form-group row">
                         <label for="kemasan_primer" class="col-3 col-sm-4 col-form-label text-left">Kemasan Primer <span style="color:red">*</span></label>
                         <div class="col-9 col-sm-7">
-                            <input name="kemasan_primer" minlength="2" maxlength="50" id="kemasan_primer" type="text" required=""  parsley-type="text" placeholder="input kemasan primer" class="form-control"
+                            <input name="kemasan_primer" minlength="" maxlength="50" id="kemasan_primer" type="text" required=""  parsley-type="text" placeholder="input kemasan primer" class="form-control"
                                    value="<?php echo (isset($default['kemasan_primer'])) ? $default['kemasan_primer'] : ''; ?>"
                                    <?php echo (isset($default['readonly_kemasan_primer'])) ? $default['readonly_kemasan_primer'] : ''; ?>
                                    >
@@ -123,7 +123,7 @@
                   <div class="form-group row">
                         <label for="kemasan_sekunder" class="col-3 col-sm-4 col-form-label text-left">Kemasan Sekunder <span style="color:red">*</span></label>
                         <div class="col-9 col-sm-7">
-                            <input name="kemasan_sekunder" minlength="2" maxlength="50" id="kemasan_sekunder" type="text" required=""  parsley-type="text" placeholder="input kemasan sekunder" class="form-control"
+                            <input name="kemasan_sekunder" minlength="" maxlength="50" id="kemasan_sekunder" type="text" required=""  parsley-type="text" placeholder="input kemasan sekunder" class="form-control"
                                    value="<?php echo (isset($default['kemasan_sekunder'])) ? $default['kemasan_sekunder'] : ''; ?>"
                                    <?php echo (isset($default['readonly_kemasan_sekunder'])) ? $default['readonly_kemasan_sekunder'] : ''; ?>
                                    >
@@ -171,7 +171,7 @@
                   <div class="form-group row">
                         <label for="formula_khusus" class="col-3 col-sm-4 col-form-label text-left">Formula Khusus <span style="color:red">*</span></label>
                         <div class="col-9 col-sm-7">
-                            <input name="formula_khusus" minlength="2" maxlength="50" id="formula_khusus" type="text" required=""  parsley-type="text" placeholder="input formula khusus" class="form-control"
+                            <input name="formula_khusus" minlength="" maxlength="50" id="formula_khusus" type="text" required=""  parsley-type="text" placeholder="input formula khusus" class="form-control"
                                    value="<?php echo (isset($default['formula_khusus'])) ? $default['formula_khusus'] : ''; ?>"
                                    <?php echo (isset($default['readonly_formula_khusus'])) ? $default['readonly_formula_khusus'] : ''; ?>
                                    >
@@ -202,7 +202,7 @@
                   <table nobr="true">
                   <tbody style="font-family: initial;">
                     <tr>
-                          <td width="20%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8"> <b>PT. L 'ESSENTIAL</b> </td>
+                          <td width="20%"><img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8"> <b>PT. L 'ESSENTIAL</b> </td>
                           <td width="54%" >&nbsp;</td>
                           <td width="12%" align="left" style="padding-left: 10px;"> Halaman</td>
                           <td width="14%" align="left"> : 2 dari 2</td>

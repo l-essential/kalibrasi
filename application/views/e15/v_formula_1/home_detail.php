@@ -3,6 +3,7 @@
         <div class="col-12">
           <div class="card">
              <div class="card-header border">
+                <h3>1. Input Data Komposisi</h3>
                     <button type="button" id="btncreate" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata();">
                       <i class="fas fa-file-signature"></i> Add Data Komposisi</button>
                     <button type="button" class="btn bg-gradient-info btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onClick="importdata_prosedur()">
@@ -29,19 +30,23 @@
                             <th>No Cas</th>
                             <th>Konsentrasi %</th>
                         </tr>
-                    </thead>                 
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>Total Konsentrasi</th>
+                      <td><?php echo $total ; ?>%</td>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
 
-    <div class="callout callout-success" style="font-size: 19px;background-color: #dedede;padding: 0rem;">
-        <p class="text-center"> Total :
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span id="total"></span>
-        </P>
-    </div>
-   
-    
 </div>
 </div>
 </section>
@@ -89,8 +94,9 @@
                 "type": 'POST',
             },
            "initComplete":function( settings, json){
-            $("#total").html(json.total.total);
-            // call your function here
+            // $("#total").html(json.total.total);
+            var total = document.getElementById("input"); 
+                
             },
             "columns": [
                         {
@@ -250,7 +256,7 @@
         <div class="modal-content">
             <div class="modal-header btn-like">
                 <h4 class="modal-title"><font color="white">
-                <img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8">
+                <img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8">
                 Upload template for import data Komposisi</font></h4>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

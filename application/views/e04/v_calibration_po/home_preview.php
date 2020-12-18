@@ -75,12 +75,6 @@
                       <th>Nama Alat</th>
                       <th>Lokasi</th>
                       <th>Vendor</th>
-                      <th>Status Kalibrasi</th>
-                      <th>Estimasi Kalibrasi</th>
-<<<<<<< HEAD
-                      <th>Keterangan</th>
-=======
->>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
                       <th>Tgl Kalibrasi</th>
                     </tr>
                     </thead>
@@ -164,22 +158,9 @@
             },
             "columns": [
                         {"data": "calibration_code"},
-                        {"data": "id_satuan",
-                          "bSortable": false,
-                          "mRender": function (data, type, row) {
-                                  var btn = "";
-                                      btn = btn + "<td>"+ row.tools_code +", "+ row.tools_name +", "+ row.tools_merk +"</td>";
-                                  return btn;
-                              }
-                          },
+                        {"data": "tools_code"},
                         {"data": "location_name"},
                         {"data": "vendor_name"},
-                        {"data": "status_po"},
-                        {"data": "estimasi_calibration"},
-<<<<<<< HEAD
-                        {"data": 'keterangan'},
-=======
->>>>>>> a664502e1790e3ae212b44f8ea74513f78c040dd
                         {"data": "id_satuan", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {

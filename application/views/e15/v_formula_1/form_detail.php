@@ -44,7 +44,7 @@
 
                 <div class="form-group row">
                     <label for="nama_dagang" class="col-sm-2 control-label col-form-label">Nama Dagang <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="nama_dagang" id="nama_dagang" type="text"  parsley-type="text" placeholder="Masukan nama dagang" class="form-control"
                                value="<?php echo (isset($default['nama_dagang'])) ? $default['nama_dagang'] : ''; ?>"
                                <?php echo (isset($default['readonly_nama_dagang'])) ? $default['readonly_nama_dagang'] : ''; ?>
@@ -53,7 +53,7 @@
                 </div>
                  <div class="form-group row">
                     <label for="inci_name" class="col-sm-2 control-label col-form-label">INCI Name <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="inci_name" id="inci_name" type="text"  parsley-type="text" placeholder="Masukan inci name" class="form-control"
                                value="<?php echo (isset($default['inci_name'])) ? $default['inci_name'] : ''; ?>"
                                <?php echo (isset($default['readonly_inci_name'])) ? $default['readonly_inci_name'] : ''; ?>
@@ -62,7 +62,7 @@
                 </div> 
                 <div class="form-group row">
                     <label for="fungsi" class="col-sm-2 control-label col-form-label">Fungsi <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="fungsi" id="fungsi" type="text"  parsley-type="text" placeholder="Masukan fungsi" class="form-control"
                                value="<?php echo (isset($default['fungsi'])) ? $default['fungsi'] : ''; ?>"
                                <?php echo (isset($default['readonly_fungsi'])) ? $default['readonly_fungsi'] : ''; ?>
@@ -71,7 +71,7 @@
                 </div> 
                 <div class="form-group row">
                     <label for="no_cas" class="col-sm-2 control-label col-form-label">No Cas <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input name="no_cas" id="no_cas" type="text"  parsley-type="text" placeholder="Masukan no cas" class="form-control"
                                value="<?php echo (isset($default['no_cas'])) ? $default['no_cas'] : ''; ?>"
                                <?php echo (isset($default['readonly_no_cas'])) ? $default['readonly_no_cas'] : ''; ?>
@@ -80,15 +80,15 @@
                 </div> 
                 <div class="form-group row">
                     <label for="konsentrasi" class="col-sm-2 control-label col-form-label">Konsentrasi <span style="color:red">*</span></label>
-                    <div class="col-sm-10">
-                        <input name="konsentrasi" id="konsentrasi" type="text"  parsley-type="text" placeholder="Masukan nomor rekening" class="form-control"
+                    <div class="col-sm-4">
+                        <input name="konsentrasi" id="konsentrasi" type="text"  parsley-type="text" placeholder="Masukan nilai konsentrasi" class="form-control"
                                value="<?php echo (isset($default['konsentrasi'])) ? $default['konsentrasi'] : ''; ?>"
                                <?php echo (isset($default['readonly_konsentrasi'])) ? $default['readonly_konsentrasi'] : ''; ?>
                                >
                     </div>                        
                 </div> 
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <p class="text-right">
                     <button type="button" id="btncanceldetail"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
                     <button type="button" id="btnsavedetail" class="btn btn-sm btn-like"><li class='fas fa-check'></li> &nbsp;Submit</button>

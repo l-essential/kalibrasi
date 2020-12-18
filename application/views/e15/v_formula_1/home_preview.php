@@ -36,7 +36,7 @@
                   <table nobr="true" class="col-sm-12">
                         <tbody style="font-family: initial;">
                         <tr>
-                              <td width="21%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
+                              <td width="21%"><img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
                               <td width="52%" >&nbsp;</td>
                               <td width="1%" align="left" style="padding-left: 10px;"> Halaman</td>
                               <td width="14%" align="left"> : 1 dari 2</td>
@@ -130,58 +130,17 @@
                       <td width="15%" align="left" style="padding-left: 10px;"></td>
                       <td width="25%" > </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                       <td width="15%" align="left" style="padding-left: 10px;"> Sub Kategori*</td>
                       <td width="25%" > : <?php echo $preview->sub_kategori ?></td>
                       <td width="20%" > </td>
                       <td width="15%" align="left" style="padding-left: 10px;"></td>
                       <td width="25%" > </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
               <br>
 
-
-              </h6><p>1. Komposisi</p></h6>
-              <!-- Table row -->
-              <div class="row">
-                <div class="col-12 table-responsive" style="padding-left: 25px;padding-right: 25px;">
-                  <table class="table table-striped">
-                    <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Dagang</th>
-                      <th>INCI Name</th>
-                      <th>Fungsi</th>
-                      <th>No. CAS</th>
-                      <th>Konsentrasi (%)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                      if ($getdetail) {
-                        foreach ($getdetail as $rowgetdetail) {
-                          ?>
-                        <tr>
-                          <td><?php echo $rowgetdetail['no'] ; ?> </td>
-                          <td><?php echo $rowgetdetail['nama_dagang'] ; ?> </td>
-                          <td><?php echo $rowgetdetail['inci_name'] ; ?> </td>
-                          <td><?php echo $rowgetdetail['fungsi'] ; ?> </td>
-                          <td><?php echo $rowgetdetail['no_cas'] ; ?> </td>
-                          <td><?php echo $rowgetdetail['konsentrasi'] ; ?> </td>
-                        </tr>
-
-                      <?php
-                      }
-                    }
-                    ?>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              <br>
               <table class="table table-bordered">
                   <thead>                  
                     <tr>
@@ -211,6 +170,57 @@
                     </tr>
                   </tbody>
                 </table>
+
+                
+              </h6><p>1. Komposisi</p></h6>
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive" style="padding-left: 25px;padding-right: 25px;">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Nama Dagang</th>
+                      <th>INCI Name</th>
+                      <th>Fungsi</th>
+                      <th>No. CAS</th>
+                      <th>Konsentrasi (%)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                      if ($getdetail) {
+                        $total = 0;
+                        foreach ($getdetail as $rowgetdetail) {
+                        $total += $rowgetdetail['konsentrasi'];
+                        ?>
+                        <tr>
+                          <td><?php echo $rowgetdetail['no'] ; ?> </td>
+                          <td><?php echo $rowgetdetail['nama_dagang'] ; ?> </td>
+                          <td><?php echo $rowgetdetail['inci_name'] ; ?> </td>
+                          <td><?php echo $rowgetdetail['fungsi'] ; ?> </td>
+                          <td><?php echo $rowgetdetail['no_cas'] ; ?> </td>
+                          <td><?php echo $rowgetdetail['konsentrasi'] ; ?> </td>
+                        </tr>
+                      <?php
+                      }
+                    }
+                    ?>
+                    </tbody>
+                    <tfoot>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                      <th>Total Konsentrasi</th>
+                      <td><?php echo $total ; ?>%</td>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+              <br>
               <!-- this row will not appear when printing -->
             </div>
             <!-- /.invoice -->
@@ -231,7 +241,7 @@
               <table nobr="true" class="col-sm-12">
                     <tbody style="font-family: initial;">
                     <tr>
-                          <td width="21%"><img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
+                          <td width="21%"><img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="20" style="opacity: .8"> <b> PT. L 'ESSENTIAL</b> </td>
                           <td width="52%" >&nbsp;</td>
                           <td width="1%" align="left" style="padding-left: 10px;"> Halaman</td>
                           <td width="14%" align="left"> : 2 dari 2</td>
@@ -335,8 +345,8 @@
                     if($this->session->userdata('ses_department_name') == 2){
                       echo "";
                     } else if ($this->session->userdata('ses_department_name') == 'IT'){
-                      echo "<a href='#' onClick='diterima()' class='btn btn-sm btn-warning float-right' style='margin-right: 5px;'><i class='fas fa-check'></i> Diterima</a>";
-                      echo "<a href='#'  onClick='diketahui()' class='btn btn-sm btn-success float-right' style='margin-right: 5px;'><i class='fas fa-check'></i> Diketahui</a>";
+                      echo "<a href='#' onClick='diketahui()' class='btn btn-sm btn-warning float-right' style='margin-right: 5px;'><i class='fas fa-check'></i> Diketahui</a>";
+                      echo "<a href='#'  onClick='diterima()' class='btn btn-sm btn-success float-right' style='margin-right: 5px;'><i class='fas fa-check'></i> Diterima</a>";
                     } else if ($this->session->userdata('ses_department_name') == 'IT') {
                       echo "<a href='#'  onClick='diketahui()' class='btn btn-sm btn-success float-right' style='margin-right: 5px;'><i class='fas fa-check'></i> Diketahui</a>";
                     } else
@@ -457,9 +467,9 @@
                 <div class="form-group">
                   <input type ="text" required="" class="form-control" id="kategori" name="kategori" placeholder="Katagori"/>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <input type ="text" required="" class="form-control" id="sub_kategori" name="sub_kategori" placeholder="sub katagori"/>
-                </div>
+                </div> -->
                
             <div class="modal-footer" style="padding: 0rem;">
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>

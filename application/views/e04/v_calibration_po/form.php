@@ -63,33 +63,6 @@
                                    >
                         </div>                        
                     </div>  
-
-                    <!-- <div class="form-group row">
-                        <label for="status_po" class="col-sm-2 col-form-label">Status Kalibrasi <span style="color:red">*</span></label>
-                        <div class="col-sm-4">
-                            <div class="demo-checkbox">
-                                <input type="checkbox" id="status_po" name="status_po" value="0"/>
-                                <label for="calibration_status">Draft</label><br>
-                                <input type="checkbox" id="status_po" name="status_po" value="1"/>
-                                <label for="calibration_status">Proses Vendor</label><br>
-                                <input type="checkbox" id="status_po" name="status_po" value="2"/>
-                                <label for="calibration_status">Barang diterima</label><br>
-                                <input type="checkbox" id="status_po" name="status_po" value="3"/>
-                                <label for="calibration_status">Proses Kalibrasi Selesai</label>
-                            </div>                        
-                        </div>                        
-                    </div>  -->
-
-                    <div class="form-group row">
-                        <label for="nama_type" class="col-sm-2 col-form-label">Tipe Kalibrasi</label>
-                        <div class="col-sm-4">
-                            <select name="nama_type" id="nama_type" class="form-control">
-                                <option value="External" <?php echo ($default['nama_type'] == 'External') ? 'selected' : ''; ?>>External</option>
-                                <option value="Internal" <?php echo ($default['nama_type'] == 'Internal') ? 'selected' : ''; ?>>Internal</option>
-                            </select>
-                        </div>
-                    </div>
-
                      <div class="form-group">
                         <div id="divdetail" style="display:none"></div><br/>
                     </div>
@@ -158,9 +131,4 @@
         $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + c_pohedaer_id);
     }
     
-    
-    $("#calibration_type").trigger("chosen:updated");
-    $("#calibration_type").chosen();
-
-
 </script>

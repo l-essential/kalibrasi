@@ -3,6 +3,7 @@
         <div class="col-12">
           <div class="card">
              <div class="card-header border">
+                <h3>2. Input Data Prosedur Pembuatan</h3>
                 <button type="button" class="btn bg-gradient-secondary btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onclick="adddata_prosedur();">
                       <i class="fas fa-file-signature"></i> Add Data</button>
                 <button type="button" class="btn bg-gradient-info btn-sm" data-card-widget="add" data-toggle="tooltip" title="add data" onClick="importdata()">
@@ -201,7 +202,7 @@
         <div class="modal-content">
             <div class="modal-header btn-like">
                 <h4 class="modal-title"><font color="white">
-                <img src="http://localhost:8080/penyimpangan/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8">
+                <img src="http://localhost:8080/fnotifikasiproduk/allassets/dist/img/Logo.png" alt="Logo" class="brand-image" width="35" style="opacity: .8">
                 Upload template for import data Prosedur Pembuatan</font></h4>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

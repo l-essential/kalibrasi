@@ -38,70 +38,33 @@
         <input type="hidden" name="checkdata1" id="checkdata1" value="harga" />
         <input type="hidden" name="checkdata2" id="checkdata2" value="" />
         <input type="hidden" name="dengangambar" id="dengangambar" value="N" />
+        <input type="hidden" name="status_bayar" id="status_bayar" value="1" />
             
         <div class="main-content container-fluid">
-
             <div class="form-group row">
-                        <label for="no_po" class="col-sm-2 col-form-label">No Po <span style="color:red">*</span></label>
-                        <div class="col-sm-4">
-                            <input name="no_po" minlength="1" maxlength="30" id="no_po" type="text" parsley-type="text" placeholder="input no po" class="form-control" required=""
-                                value="<?php echo (isset($default['no_po'])) ? $default['no_po'] : ''; ?>"
-                                <?php echo (isset($default['readonly_tools_no_po'])) ? $default['readonly_tools_no_po'] : ''; ?>
-                                >
-                        </div>  
-                    </div> 
-
-            <div class="form-group row">
-                <label for="vendor_id" class="col-sm-2 col-form-label">Vendor Name <span style="color:red">*</span></label>
+                <label for="harga" class="col-sm-2 col-form-label">Harga Kalibrasi <span style="color:red">*</span></label>
                 <div class="col-sm-4">
-                    <select id="vendor_id" name="vendor_id" class="form-control chosen-select" required="">
-                            <?php foreach ($default['vendor_id'] as $row) { ?>
-
-                                <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
-                                        <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
-                                    <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                <label for="" class="col-sm-2 col-form-label">Estimasi Kalibrasi <span style="color:red">*</span></label>
-                <div class="col-sm-4">
-                <textarea name="estimasi_calibration" placeholder="input keterangan estimasi kalibrasi" class="form-control" rows="2" <?php echo (isset($default['readonly_estimasi_calibration'])) ? $default['estimasi_calibration'] : ''; ?> ><?php echo (isset($default['estimasi_calibration'])) ? $default['estimasi_calibration'] : ''; ?></textarea>
-                    </div>
-                </div>
-                
-            <div class="form-group row">
-                <label for="calibration_price" class="col-sm-2 col-form-label">Harga Kalibrasi <span style="color:red">*</span></label>
-                <div class="col-sm-4">
-                    <input name="calibration_price" minlength="2" maxlength="50" id="calibration_price" type="text" required=""  parsley-type="text" placeholder="input harga" class="form-control"
-                            value="<?php echo (isset($default['calibration_price'])) ? $default['calibration_price'] : ''; ?>"
-                            <?php echo (isset($default['readonly_calibration_price'])) ? $default['readonly_calibration_price'] : ''; ?>
-                            >
-                </div>                        
-            </div>
-
-            <div class="form-group row">
-                <label for="calibration_disc" class="col-sm-2 col-form-label">Diskon Harga %</label>
-                <div class="col-sm-4">
-                    <input name="calibration_disc" id="calibration_disc" type="text" parsley-type="text" placeholder="input diskon harga %" class="form-control"
-                            value="<?php echo (isset($default['calibration_disc'])) ? $default['calibration_disc'] : ''; ?>"
-                            <?php echo (isset($default['readonly_calibration_disc'])) ? $default['readonly_calibration_disc'] : ''; ?>
+                    <input name="harga" minlength="2" maxlength="50" id="harga" type="text" required=""  parsley-type="text" placeholder="input harga" class="form-control"
+                            value="<?php echo (isset($default['harga'])) ? $default['harga'] : ''; ?>"
+                            <?php echo (isset($default['readonly_harga'])) ? $default['readonly_harga'] : ''; ?>
                             >
                 </div>                        
             </div>  
 
             <div class="form-group row">
-                <label for="calibration_disc_rp" class="col-sm-2 col-form-label">Diskon Harga Rupiah</label>
-                <div class="col-sm-4">
-                    <input name="calibration_disc_rp" id="calibration_disc_rp" type="text" parsley-type="text" placeholder="input diskon harga rupiah" class="form-control"
-                            value="<?php echo (isset($default['calibration_disc_rp'])) ? $default['calibration_disc_rp'] : ''; ?>"
-                            <?php echo (isset($default['readonly_calibration_disc_rp'])) ? $default['readonly_calibration_disc_rp'] : ''; ?>
-                            >
-                </div>                        
-            </div>
+            <label for="status" class="col-sm-2 col-form-label">Vendor <span style="color:red">*</span></label>
+            <div class="col-sm-4">
+                <select id="vendor_id" name="vendor_id" class="form-control" required="" tabindex="1">
+                    <?php foreach ( $default['vendor_id'] as $row) { ?>
 
+                        <option value="<?php echo (isset($row['value'])) ? $row['value'] : ''; ?>" 
+                                <?php echo (isset($row['selected'])) ? $row['selected'] : ''; ?> >
+                            <?php echo (isset($row['display'])) ? $row['display'] : ''; ?></option>
+                    <?php } ?>
+                </select>
+            </div>   
+            </div>
+                      
             <div class="col-sm-6">
                 <p class="text-right">
                 <button type="button" id="btncanceldetail"  class="btn btn-sm btn-secondary"><li class='fas fa-times'></li>&nbsp; Cancel</button>
@@ -139,7 +102,8 @@
             });
         });
 
-        $("#vendor_id").trigger("chosen:updated");
+        $("#vendor_name").trigger("vendor_name:updated");
+        $("#vendor_name").chosen();
         $("#vendor_id").chosen();
 
     </script>

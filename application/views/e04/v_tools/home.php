@@ -42,7 +42,7 @@
                             <th>Nama Alat</th>
                             <th>Merk</th>
                             <th>No. Seri / Model</th>
-                            <!-- <th>Keterangan</th> -->
+                            <th>Keterangan</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -95,7 +95,7 @@
         {"data": "tools_name",},
         {"data": "tools_merk",},
         {"data": "tools_noseri_model",},
-        // {"data": "tools_information",},
+        {"data": "tools_information",},
     ];
     setdatagrid();
 

@@ -54,7 +54,7 @@
             <div class="main-content container-fluid">
                 <div class="form-group row">
                     <label for="prosedur_pembuatan" class="col-sm-3 col-form-label" >No<span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-4">
                     <input name="no" maxlength="50" id="no" type="text" required=""  parsley-type="text" placeholder="input ukuran kemasan" class="form-control"
                           value="<?php echo (isset($default['no'])) ? $default['no'] : ''; ?>"
                           <?php echo (isset($default['readonly_no'])) ? $default['readonly_no'] : ''; ?>
@@ -64,13 +64,13 @@
 
                 <div class="form-group row">
                     <label for="prosedur_pembuatan" class="col-sm-3 col-form-label" >Prosedur Pembuatan <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-4">
                        <textarea name="prosedur_pembuatan" class="form-control" rows="3" placeholder="input prosedur_pembuatan"
                        <?php echo (isset($default['readonly_prosedur_pembuatan'])) ? $default['readonly_prosedur_pembuatan'] : ''; ?> ><?php echo (isset($default['prosedur_pembuatan'])) ? $default['prosedur_pembuatan'] : ''; ?></textarea>
                     </div>                        
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-sm-7">
                   <p class="text-right">
                     <button type="button" id="btncancel" class="btn btn-sm btn-secondary"><i class='fas fa-times'></i> Cancel</button>
                     <button type="button" id="btnsave"  class="btn btn-sm btn-like"><i class='fas fa-check'></i> Submit</button>

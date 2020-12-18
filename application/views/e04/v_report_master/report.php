@@ -43,7 +43,6 @@ $templates = base_url() . 'allassets/';
                         <th>Alat / Instrumen</th>
                         <th>Merek</th>
                         <th>No. Seri / Model</th>
-                        <!-- <th>Vendor</th> -->
                         <th width="20">Lokasi</th>
                         <th>Periode Kalibrasi</th>
                     </tr>
@@ -64,10 +63,9 @@ $templates = base_url() . 'allassets/';
                             $html .= "<td width='250'>" . $row['tools_name'] . "</td>";
                             $html .= "<td width='175'>" . $row['tools_merk'] . "</td>";
                             $html .= "<td width='50'>" . $row['tools_noseri_model'] . "</td>";
-                            // $html .= "<td width='50'>" . $row['vendor_name'] . "</td>";
                             $html .= "<td width='150'>" . $row['location_name'] . "</td>";
                             // $html .= "<td width='130'>" . $tanggal . "</td>";
-                            $html .= "<td width='130'>" . $row['startcalibration_date'] . "</td>";
+                            $html .= "<td width='130'>" . $row['periode_year'] . "-" . $row['periode_date'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 

@@ -21,15 +21,18 @@ class Formula_1_model extends MY_Model {
 
     function getGridDatadetail($idheader) {
         $query = "
-                 SELECT 
+                SELECT 
                     a.*,
                     b.*
-                 FROM $this->table_detail a   
-                 LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id                  
-                 WHERE 
-                 a.$this->prefix_id='$idheader'
-                 and a.statusdata='active'    
-                 ";
+
+                FROM $this->table_detail a   
+                LEFT JOIN $this->table b on a.$this->prefix_id = b.$this->prefix_id                  
+                WHERE 
+                a.$this->prefix_id='$idheader'
+                and a.statusdata='active'    
+                $where ";
+
+
         return $this->db->query($query);
     }
 
@@ -117,6 +120,7 @@ class Formula_1_model extends MY_Model {
         $this->db->where('a.statusdata', 'active');
         $this->db->where('a.formula_id_H', $id);
         return $this->db->get()->row();
+
     }
 
     function Get_detail($id) {
@@ -127,6 +131,7 @@ class Formula_1_model extends MY_Model {
         $this->db->where('a.formula_id_H', $id);
         return $this->db->get()->result_array();
     }
+
     function Get_prosedur($id) {
         $this->db->select(' a.*');
         $this->db->from($this->table_prosedur. ' a ');
@@ -156,8 +161,6 @@ class Formula_1_model extends MY_Model {
         return $this->db->update($this->table, $record);
     }
 
-
-
     public function getmax($tanggal) {
         $tahun = date('Y', strtotime($tanggal));
         $this->db->select_max('no_document');
@@ -176,7 +179,6 @@ class Formula_1_model extends MY_Model {
             return 1;
         }
     }
-
 
     public function insertdata_batch_komposisi($record) {
         $this->db->insert_batch($this->table_detail, $record);
@@ -249,8 +251,4 @@ class Formula_1_model extends MY_Model {
     public function truncate_tmp() {
         $this->db->truncate($this->tmp_upload);
     }
-
-
-
-
 }

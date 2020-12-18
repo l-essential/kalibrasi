@@ -82,12 +82,12 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-group row">
+                <div class="form-group row">
                     <label  for="tools_information" class="col-sm-2 col-form-label">Keterangan <span style="color:red">*</span></label>
                     <div class="col-sm-4">
                         <textarea name="tools_information" class="form-control" rows="2" <?php echo (isset($default['readonly_tools_information'])) ? $default['readonly_tools_information'] : ''; ?> ><?php echo (isset($default['tools_information'])) ? $default['tools_information'] : ''; ?></textarea>
                     </div>  
-                </div>  -->
+                </div> 
 
 
                  <div class="form-group">
@@ -151,7 +151,7 @@
         var tools_id = param.result.tools_id;
         $("#divdetail").html("");
         $("#divdetail").show();
-        // $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + tools_id);
+        $("#divdetail").load('<?php echo $url_homedetail ?>' + '/' + tools_id);
     }
     
 </script>

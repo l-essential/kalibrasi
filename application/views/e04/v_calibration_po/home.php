@@ -40,9 +40,9 @@
                             <th class="text-center" width="10px">Action</th>
                             <th>Kode PK</th>   
                             <th>Tanggal PK</th>
+                            <!-- <th>Nama Alat</th>
+                            <th>No Seri</th> -->
                             <th>User PK</th>   
-                            <th>Tipe Kalibrasi</th>
-                            <!-- <th>Status Kalibrasi</th> -->
                         </tr>
                     </thead>                 
                 </table>
@@ -97,19 +97,18 @@
         {"data": "calibrationpo_code"},
         {"data": "date_po"},
         {"data": "user_pk"},
-        {"data": "nama_type"},
-        // {"data": "status_po"},
     ];
     setdatagrid();
 
 
-function process_delete() {
+
+    function process_delete() {
         $.ajax({
             url: url_delete,
             type: "post",
             dataType: "json",
             cache: false,
-            data: { alasan: $("#inputAlasan").val(),
+            data: {
                 actiondata: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val()
             },
@@ -119,6 +118,7 @@ function process_delete() {
                     $('#dataintable').dataTable().fnReloadAjax();
                 }
                 _alert(data.msg, data.valid);
+
             }
         });
         return false;
@@ -127,5 +127,7 @@ function process_delete() {
      function preview(id) {
         ToContent(url_preview + '/' + id);
     }
+
+
 
 </script>

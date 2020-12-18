@@ -15,10 +15,10 @@ $templates = base_url() . 'allassets/';
               <div class="row">
                 <div class="col-12">
                   <h5>
-                  <img src="<?php echo base_url(); ?>allassets/dist/img/Logo.png" alt="Logo" style="opacity: .8;width: 27px;"> PT. L`ESSENTIAL
+                    <i class="fas fa-globe"></i> PT. L`ESSENTIAL
                     
                   </h5>
-                  <p align="center"><strong> LAPORAN PERMINTAAN KALIBRASI </strong></p>
+                  <p align="center"><strong> LAPORAN KALIBRASI </strong></p>
                    <br>
                     <div class="col-sm-4 invoice-col">
                       From
@@ -39,64 +39,46 @@ $templates = base_url() . 'allassets/';
                     <thead>
                     <tr style='font-size: 0.9rem;'>
                         <th>No</th>
-                        <th>Tanggal PK</th>
-                        <th>Tanggal Kalibrasi Awal</th>
-                        <th>Tanggal Kalibrasi Berikutnya</th>
-                        <th>ID Alat Kalibrasi</th>
-                        <th>Nama Alat</th>
-                        <th>Lokasi</th>
-                        <th>Vendor</th>
-                        <th>Harga</th>
-                        <!-- <th>Total</th> -->
-                        <!-- <th>Keterangan</th> -->
+                        <th>Alat / Instrumen</th>
+                        <th>Merek</th>
+                        <th>No. Seri / Model</th>
+                        <th >No. ID Alat</th>
+                        <th width="20">Lokasi</th>
+                        <th>Periode Kalibrasi</th>
                     </tr>
                     </thead>
                     <tbody>
                      <?php
-
-                    // if ($row['periode_date_awal'] == '1970-01-01') {
-                    //   return "";
-                    // }else{
-                    //   return $row['periode_date_awal'];
-                    // }
-
                     if ($result) {
                         $no = 0;
-                        
+
                         $total = 0;
                         foreach ($result as $row) {
                             $no++;
+                            $tanggal = date('d-m-Y', strtotime($row['startcalibration_date']));
+                            // $periode_year = date('Y', strtotime($row['periode_year']));
+                            // $periode_date = date('m-d', strtotime($row['periode_date']));
 
                             $html = "<tr style='font-size: 0.9rem;'>";
                             //------- start td -------
                             $html .= "<td>" . $no . "</td>";
-                            $html .= "<td width='130'>" . $row['date_po'] ."</td>";
-                            $html .= "<td width='130'>" . $row['periode_date_awal'] ."</td>";
-                            $html .= "<td width='130'>" . $row['periode_date_akhir'] ."</td>";
+                            $html .= "<td width='175'>" . $row['tools_name'] . "</td>";
+                            $html .= "<td width='130'>" . $row['tools_merk'] . "</td>";
+                            $html .= "<td>" . $row['tools_noseri_model'] . "</td>";
                             $html .= "<td>" . $row['calibration_code'] . "</td>";
-                            $html .= "<td>" . $row['tools_code'] . "-" . $row['tools_name'] . "-" . $row['tools_merk'] . "</td>";
                             $html .= "<td width='90'>" . $row['location_name'] . "</td>";
-                            $html .= "<td width='90'>" . $row['vendor_name'] . "</td>";
-                            $html .= "<td width='90'>" . number_format($row['disc_ppn'], 0, ',', '.') . "</td>";
+                            // $html .= "<td width='130'>" . $tanggal . "</td>";
+                            $html .= "<td width='130'>" . $row['periode_year'] . "-" . $row['periode_date'] . "</td>";
                            //------- end td -------
                             $html .= "</tr>";
 
                             echo $html;
-                            $total += $row['total'];
+                            $total += $row['calibration_price'];
                         }
                     }
                     ?>
                     
                     </tbody>
-                    <tfoot>
-                    <?php
-                      $html = "<tr>";
-                      $html =" <th colspan=8>Total Harga</th>";
-                         $html .= "<th>"  . number_format($total,0,',','.') . "</th>"; 
-                         $html .= "</tr>";
-                         echo $html;
-                      ?>
-                    </tfoot>
                   </table>
                 </div>
                 <!-- /.col -->
@@ -134,9 +116,9 @@ $templates = base_url() . 'allassets/';
               <div class="row no-print">
                 <div class="col-12">
                   <button type="button" class="btn btn-sm btn-default float-right" id='btnprint' onclick="fn_print()"><i class="fas fa-print"></i> Print</button>
-                  <!-- <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
+                  <button type="button" class="btn btn-sm btn-success float-right" onclick="downloadexceldata()" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate Excel
-                  </button> -->
+                  </button>
                   <button type="button" class="btn btn-sm btn-primary float-right" id="cmd" style="margin-right: 5px;">
                     <i class="fas fa-download"></i> Generate PDF
                   </button>
@@ -186,7 +168,7 @@ $templates = base_url() . 'allassets/';
 </html>
 <script type="text/javascript">
     function downloadexceldata(){
-        var url_excel = '<?php echo $url_excel; ?>';
+         var url_excel = '<?php echo $url_excel; ?>';
         var daritanggal = '<?php echo $daritanggal; ?>';
         var sampaitanggal = '<?php echo $sampaitanggal; ?>';
         window.open(url_excel + '?daritanggal=' + daritanggal + '&sampaitanggal=' + sampaitanggal);
@@ -199,24 +181,19 @@ $templates = base_url() . 'allassets/';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script>
     
-var doc = new jsPDF('landscape');
+var doc = new jsPDF();
 var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
     }
 };
 
-$('#cmd').click(function () {
+$('#cmd').click(function () {   
     doc.fromHTML($('#content').html(), 15, 15, {
         'width': 170,
             'elementHandlers': specialElementHandlers
     });
-    doc.save('Laporan Permintaan Kalibrasi.pdf');
+    doc.save('sample-file.pdf');
 });
-
-$("#exceldata").click(function(){
-             var url_excel = '<?php echo $url_excel; ?>';
-             window.open(url_excel + '?daritanggal=' +  $("#daritanggal").val() + '&sampaitanggal=' + $("#sampaitanggal").val());
-         });
 
 </script>

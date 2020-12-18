@@ -41,9 +41,7 @@
                                 <th>Kode Kalibrasi</th>
                                 <th>Alat</th>
                                 <th>Lokasi</th>
-                                <th>Reminder</th>
-                                <th>Tanggal Kalibrasi</th>
-                                <th>Keterangan</th>
+                                <th>tanggal kalibrasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,17 +113,7 @@
         {"data": "calibration_code"},
         {"data": "tools_code"},
         {"data": "locpos"},
-        {"data": "reminder", "aTargets": [0],
-        "render": function (data, row) {
-            if(data >= (row.jatuh_tempo == row.startcalibration_date) ) {
-                return "<span class='btn btn-block btn-warning btn-xs'>Expired "+ data +" Hari Lagi </span>";
-            }else{
-                return "<span class='btn btn-block btn-danger btn-xs'>Expired</span>";
-            } 
-        }
-        },
-
-        {"data": "startcalibration_date", "width": "100px", "sClass": "text-center",
+        {"data": "id_satuan", "width": "100px", "sClass": "text-center",
             "bSortable": false,
             "mRender": function (data, type, row) {
                 var btn = "";
@@ -136,10 +124,11 @@
                 return btn;
             }
         },
-        {"data": "keterangan"},
         
     ];
     setdatagrid();
+
+
 
     function process_delete() {
         $.ajax({
@@ -147,7 +136,7 @@
             type: "post",
             dataType: "json",
             cache: false,
-            data: {alasan: $("#inputAlasan").val(),
+            data: {
                 actiondata: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val()
             },

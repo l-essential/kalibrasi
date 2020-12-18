@@ -77,6 +77,7 @@ class Home_model extends MY_Model {
         $this->db->join($this->tbl_tools . ' c ', 'a.tools_id = c.tools_id');
         $this->db->join($this->table_location . ' d ', 'a.location_name = d.location_name');
         $this->db->join($this->table_position . ' e ', 'a.position_name = e.position_name');
+        //$this->db->join($this->table_vendor . ' f ', 'a.vendor_id = f.vendor.id');
         $this->db->where('a.statusdata', 'active');
         $this->db->where('b.statusdata', 'active');
         $this->db->where('a.calibration_id', $id);

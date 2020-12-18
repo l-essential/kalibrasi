@@ -115,16 +115,6 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="tools_no_sertifikat" class="col-sm-2 col-form-label">No Sertifikat <span style="color:red">*</span></label>
-                    <div class="col-sm-4">
-                        <input name="tools_no_sertifikat" minlength="1" maxlength="30" id="tools_no_sertifikat" type="text" required=""  parsley-type="text" placeholder="input no sertifikat" class="form-control"
-                            value="<?php echo (isset($default['tools_no_sertifikat'])) ? $default['tools_no_sertifikat'] : ''; ?>"
-                            <?php echo (isset($default['readonly_tools_no_sertifikat'])) ? $default['readonly_tools_no_sertifikat'] : ''; ?>
-                            >
-                    </div>  
-                </div> 
-
-                <div class="form-group row">
                     <label for="periode_information" class="col-sm-2 col-form-label">Keterangan <span style="color:red">*</span></label>
                     <div class="col-sm-4">
                         <textarea name="periode_information" class="form-control" rows="2" <?php echo (isset($default['readonly_periode_information'])) ? $default['readonly_periode_information'] : ''; ?> ><?php echo (isset($default['periode_information'])) ? $default['periode_information'] : ''; ?></textarea>

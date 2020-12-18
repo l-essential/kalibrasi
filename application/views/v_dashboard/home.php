@@ -285,8 +285,8 @@
         class="list-group-item playlist-item"
         img_url="images/icon.png">
         Numb</li>
-    </ul> -->
-    <!-- <audio id="audio-player" class="d-none" src="" type="audio/mp3" controls="controls"></audio> -->
+    </ul>
+    <audio id="audio-player" class="d-none" src="" type="audio/mp3" controls="controls"></audio> -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
     <script src="<?php echo $templates ?>plugins/jquery/jquery.min.js"></script>
@@ -778,21 +778,15 @@
                 <div class="modal-content">
                     <div class="modal-header btn-danger">
                         <input type ="hidden" name="id"/>
-                        <h4 class="modal-title"><font color="white">Konfirmasi Hapus Data</font></h4>
+                        <h4 class="modal-title"><font color="white">Confirm for Delete Data</font></h4>
                     </div>
                     <div class="modal-body">
-                        <form id="deletenote" data-parsley-validate="" novalidate="" autocomplete="off" role="form" >
-                            <div class="form-group">
-                            <label for="inputAlasan">Apakah anda yakin ingin menghapus data ini ? Jika iya isikan alasan !</label>
-                            <input name="inputAlasan" id="inputAlasan" type="text" parsley-type="text" placeholder="tulis alasan" class="form-control" required=""  parsley-type="text"
-                                >
-                            </div>
-                        </form>
+                        <font color="black">Are you sure delete this data ?</font>
                     </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="button" onclick="process_delete()" class="btn btn-danger" action="delete" id="submit">Ok</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" onclick="process_delete()" class="btn btn-danger" action="delete">Ok</button>
+                    </div>
                 </div>
             </div>
         </div>

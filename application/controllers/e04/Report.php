@@ -8,18 +8,15 @@ class Report extends MY_Controller {
         $this->load->model($this->pathclass . '/Report_model','lpr');
         $this->load->model($this->pathclass . '/internal_model','type');
         $this->load->model('e00/Scope_model', 'scope');
-         $this->load->model('hris/Department_model', 'dpt');
-         $this->load->model('e04/Calibration_model', 'eks');
-         $this->load->model('e00/Location_model', 'location');
-         $this->load->model('e00/Position_model', 'position');
+         $this->load->model('e_/Department_model', 'dpt');
     }
 
      public function home_laporan() {
         error_reporting(0);
-        $this->data['title'] = 'Report Permintaan Kalibrasi';
+        $this->data['title'] = 'Report Kalibrasi';
         $this->buildcombobox('scope_code', 'scope_name', $this->scope->getAll());
         $this->buildcombobox('department_name', 'department_name', $this->dpt->getAll());
-        $this->buildcombobox('calibration_type', 'calibration_type', $this->eks->getAll());
+        $this->buildcombobox('calibration_type', 'calibration_type', $this->type->getAll());
         $this->data['url_index'] = site_url($this->controller . '/home_laporan');
         $this->data['url_generatereport'] = site_url($this->controller . '/generatereport');
         $this->data['url_excel'] = site_url($this->controller . '/exceldata');
@@ -27,26 +24,16 @@ class Report extends MY_Controller {
     }
 
      public function generatereport() {
-
         $param = $this->input->post();
-
-        // $data['tb_siswa'] = $this->db->get('tb_siswa')->result();
-
-        $this->load->library('pdf');
-
-        $this->pdf->setPaper('A4', 'landscape');
-        $this->pdf->filename = "laporan-petanikode.pdf";
-        $this->pdf->load_view('v_export', $param);
-        
-        // $this->data['result'] = $this->modeldata->generatereport($param);
-        // $this->data['url_excel'] = site_url($this->controller . '/exceldata');
-        // $html = $this->load->view($this->view . '/report', $this->data, true);
-        // $jsonmsg = array(
-        //     "msg" => 'Proses laporan finish',
-        //     "htmldata" => $html,
-        //     "valid" => true,
-        // );
-        // echo json_encode($jsonmsg);
+        $this->data['result'] = $this->modeldata->generatereport($param);
+        $this->data['url_excel'] = site_url($this->controller . '/exceldata');
+        $html = $this->load->view($this->view . '/report', $this->data, true);
+        $jsonmsg = array(
+            "msg" => 'Proses laporan finish',
+            "htmldata" => $html,
+            "valid" => true,
+        );
+        echo json_encode($jsonmsg);
     }
 
    public function exceldata() {
@@ -59,7 +46,7 @@ class Report extends MY_Controller {
 
         $html = $this->load->view($this->view . '/report', $this->data, true);
         header("Content-type: application/vnd-ms-excel");
-        header("Content-Disposition: attachment; filename=Laporan Permintaan Kalibrasi.xls");
+        header("Content-Disposition: attachment; filename=Laporan Kalibrasi.xls");
         echo $html;
         exit;
     }

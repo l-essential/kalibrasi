@@ -20,24 +20,9 @@
                     <thead>
                         <tr>
                             <th class="text-center" width="10px">Action</th>
-                            <th>Status Kalibrasi</th>
-                            <th>Estimasi Kalibrasi</th>
-                            <th>Tanggal Awal Kalibrasi</th>
-                            <th>Tanggal Kalibrasi Berikutnya</th>
-                            <th>Foto Sertifikat</th>
                             <th>ID alat Kalibrasi</th>
                             <th>Nama Alat</th>
-                            <th>No PO</th>
                             <th>Vendor</th>
-                            <th>No Sertifikat</th>
-                            <th>Qty Unit</th>
-                            <th>Unit Price</th>
-                            <th>Disc %</th>
-                            <th>Disc Rupiah</th>
-                            <th>Total</th>
-                            <th>Ppn 10%</th>
-                            <th>Total + PPN 10%</th>
-                            <th>Keterangan</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -69,6 +54,8 @@
         $("#btncreate").hide();
     }
 
+
+
  datacolumn = [
         {"data": "id_satuan", "width": "70px", "sClass": "text-center",
          "bSortable": false,
@@ -77,69 +64,18 @@
             var idtr = row["<?php echo $prefix_id; ?>"];
 
             if (payment == true) {
-                btn = btn + "<a href='javascript:void(0)' onClick='addpayment(" + row.id_position + ")' class='text-inverse' title='edit harga & vendor' data-toggle='tooltip' data-original-title='Edit'><i class='far fa-money-bill-alt'></i></a> &nbsp;";
+                btn = btn + "<a href='javascript:void(0)' onClick='addpayment(" + row.id_position + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='far fa-money-bill-alt'></i></a> &nbsp;";
             }
             if (accessedit == true) {
-                btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='edit alat' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
+                btn = btn + "<a href='javascript:void(0)' onClick='editdata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Edit'><i class='fas fa-edit'></i></a> &nbsp;";
             }
             if (accessdelete == true) {
-                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='hapus' data-toggle='tooltip' data-original-title='Delete'><i class='far fa-trash-alt'></i></a>";
+                btn = btn + "<a href='javascript:void(0)' onClick='deletedata(" + idtr + ")' class='text-inverse' title='' data-toggle='tooltip' data-original-title='Delete'><i class='far fa-trash-alt'></i></a>";
             }
 
             return btn;
           }
         },
-        {"data": "status_po", "sClass": "text-center",
-         "mRender": function (data, type, row) {
-                var status = "";
-                var idtr = row["<?php echo $prefix_id; ?>"];
-                if (row.status_po == 'Draft') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Draft</span>";
-                }if (row.status_po == 'Proses kalibrasi') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Proses kalibrasi</span>";
-                }if (row.status_po == 'Sertifikat di terima') {
-                    status = "<span class='btn btn-block btn-warning btn-xs'>Sertifikat di terima</span>";
-                }if (row.status_po == 'Complete') {
-                            status = "<span class='btn btn-block btn-like btn-xs'>Complete</span>";
-                }
-                return status;
-            }
-        },
-        {"data": "estimasi_calibration"},
-        {"data": "periode_date_awal",
-         "mRender": function (data, type, row) {
-                if( row.periode_date_awal == '1970-01-01' ){
-                    return "";
-                }else{
-                    return row.periode_date_awal;
-                }
-            }
-        },
-        {"data": "periode_date_akhir",
-        "mRender": function (data, type, row) {
-            if( row.periode_date_akhir == '1970-01-01' ) {
-                return "";
-            }else {
-                return row.periode_date_akhir;
-            }
-        }
-        
-        },
-        {
-        "data": "foto_sertifikat", "aTargets": [0],
-        "render": function (data) {
-                return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
-            }
-        },
-        // {
-        // "data": "foto_sertifikat",
-        // "render": function (data, row) {
-        //     if(row.foto_sertifikat == ''){
-        //         return "";
-        //     }else{
-        //         return '<img src="<?php echo base_url(); ?>allassets/foto/'+ data +'" style="height:80px;width:60px;"/>';
-        //     }
-        // },
         {"data": "calibration_code"},
         {"data": "id_satuan",
          "bSortable": false,
@@ -149,23 +85,13 @@
                 return btn;
             }
         },
-        {"data": "no_po"},
-        {"data": "vendor_name"},
-        {"data": "tools_no_sertifikat"},
-        {"data": 'qty_cal'},
-        {"data": 'calibration_price',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
-        {"data": "calibration_disc"},
-        {"data": "calibration_disc_rp","render": $.fn.dataTable.render.number( ',', '.', 2, )},
-        {"data": 'total_harga'},
-        {"data": 'ppn'},
-        {"data": 'disc_ppn',"render": $.fn.dataTable.render.number( ',', '.', 2, )},
-        {"data": 'keterangan'},
+        {"data": "vendor_name", "width": "10px"},
     ];
     setdatagrid();
 
     
     function adddata() {
-        ToContent(url_add+ '/' + id);
+        ToContent(url_add);
     }
 
     function editdata(id) {
@@ -186,7 +112,7 @@
             type: "post",
             dataType: "json",
             cache: false,
-            data: { alasan: $("#inputAlasan").val(),
+            data: {
                 actiondatadetail: 'delete',
                 '<?php echo $prefix_id; ?>': $("#DialogConfirm input[name=id]").val(),
             },
@@ -201,6 +127,6 @@
         });
         return false;
     }
-    
+
 
 </script>

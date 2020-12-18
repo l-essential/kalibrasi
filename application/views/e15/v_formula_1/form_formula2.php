@@ -53,39 +53,39 @@
         
             <div class="main-content container-fluid">
                 <div class="form-group row">
-                    <label for="klaim_produk" class="col-sm-3 col-form-label" >Klaim Produk <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <label for="klaim_produk" class="col-sm-2 col-form-label" >Klaim Produk <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
                        <textarea name="klaim_produk" class="form-control" rows="3" placeholder="input klaim_produk"
                        <?php echo (isset($default['readonly_klaim_produk'])) ? $default['readonly_klaim_produk'] : ''; ?> ><?php echo (isset($default['klaim_produk'])) ? $default['klaim_produk'] : ''; ?></textarea>
                     </div>                        
                 </div>
 
                 <div class="form-group row">
-                    <label for="cara_pakai" class="col-sm-3 col-form-label" >Cara Pakai <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <label for="cara_pakai" class="col-sm-2 col-form-label" >Cara Pakai <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
                        <textarea name="cara_pakai" class="form-control" rows="3" placeholder="input alat / mesin"
                        <?php echo (isset($default['readonly_cara_pakai'])) ? $default['readonly_cara_pakai'] : ''; ?> ><?php echo (isset($default['cara_pakai'])) ? $default['cara_pakai'] : ''; ?></textarea>
                     </div>                        
                 </div>
 
                 <div class="form-group row">
-                    <label for="perhatian" class="col-sm-3 col-form-label">perhatian <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <label for="perhatian" class="col-sm-2 col-form-label">perhatian <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
                        <textarea name="perhatian" class="form-control" rows="3" placeholder="input perhatian / prosedur"
                        <?php echo (isset($default['readonly_perhatian'])) ? $default['readonly_perhatian'] : ''; ?> ><?php echo (isset($default['perhatian'])) ? $default['perhatian'] : ''; ?></textarea>
                     </div>                        
                 </div>
 
                 <div class="form-group row">
-                    <label for="catataan" class="col-sm-3 col-form-label" >catataan  <span style="color:red">*</span></label>
-                    <div class="col-sm-9">
+                    <label for="catataan" class="col-sm-2 col-form-label" >catataan  <span style="color:red">*</span></label>
+                    <div class="col-sm-4">
                        <textarea name="catataan" class="form-control" rows="3" placeholder="input catataan penunjang"
                        <?php echo (isset($default['readonly_catataan'])) ? $default['readonly_catataan'] : ''; ?> ><?php echo (isset($default['catataan'])) ? $default['catataan'] : ''; ?></textarea>
                     </div>                        
                 </div>
                 
 
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                   <p class="text-right">
                     <button type="button" id="btncancelbunga" class="btn btn-sm btn-secondary"><i class='fas fa-times'></i> Cancel</button>
                     <button type="button" id="btnsavebunga"  class="btn btn-sm btn-like"><i class='fas fa-check'></i> Submit</button>

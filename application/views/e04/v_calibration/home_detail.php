@@ -1,4 +1,3 @@
-<!--
  <section class="content">
       <div class="row">
         <div class="col-12">
@@ -14,7 +13,7 @@
                   </div>
             </div>
             <!-- /.card-header -->
-     <!--       <div class="card-body">
+            <div class="card-body">
 
             <div class="table-responsive">
                  <table id="dataintable" class="table table-head-fixed table-striped" width="100%">
@@ -24,7 +23,6 @@
                             <th>#</th>
                             <th>Tanggal</th>
                             <th>Vendor</th>
-                            <th>No Sertifikat</th>
                             <!-- <th>Item Description</th>  -->
                             <!-- <th>Qty Order/ Unit</th> -->
                             <!-- <th>Unit Price</th>
@@ -32,7 +30,7 @@
                             <th>Total</th> -->
                             <!-- <th>Ppn 10%</th> -->
                             <!-- <th>Total + PPN 10%</th> -->
-           <!--                 <th>Keterangan</th>
+                            <th>Keterangan</th>
                         </tr>
                     </thead>                 
                 </table>
@@ -96,7 +94,6 @@
         },
         {"data": "date_calibration", "width": "70px"},
         {"data": "vendor_name"},
-        {"data": "tools_no_sertifikat"},
         // {"data": "tools_name"},
         // {"data": "calibration_qty"},
         // {"data": 'calibration_price',"render": $.fn.dataTable.render.number( ',', '.', 2, )},

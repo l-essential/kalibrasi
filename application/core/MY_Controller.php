@@ -761,58 +761,17 @@ class MY_Controller extends CI_Controller {
         ));
     }
 
-    // function test()
-    // {
-    //     var a = 7;
-
-    //     if( a > 1 ){
-    //         echo "H";
-    //     }else if(a > 5 ){
-    //         echo "Z";
-    //     }else if(a > 5 ){
-    //         echo "Z";
-    //     }
-    // }
-
-    // public function grid() {
-    //     $check = $this->modeldata->getGridData();
-    //     var_dump($this->session->userdata('ses_id_role'));exit;
-    //     // var_dump();
-    //     // exit;
-        
+    // public function grid_detail($idheader) {
+    //     $check = $this->modeldata->getGridDatadetail($idheader);
     //     if (!is_null($check)) {
-            
-    //         if( $this->session->userdata('ses_username') == '' || $this->session->userdata('ses_id_role') == 'QA' ){
-    //             $result = $this->modeldata->getGridData()->result();
-    //         }
-
-	//         if( $this->session->userdata('ses_id_role') == 'IT' || $this->session->userdata('ses_id_role') == 'PROC' ){
-    //             $result = $this->modeldata->getGridData()->result();
-	    
-    //     }else {
-    //             $result = $this->modeldata->getGridData()->where('id_role', 'id')->result();
-    //         }
-            
-    //     }else {
+    //         $result = $this->modeldata->getGridDatadetail($idheader)->result();
+    //     } else {
     //         $result = '';
     //     }
-
     //     $this->dj(array(
     //         "data" => $result
     //     ));
     // }
-
-    public function grid_detail($idheader) {
-        $check = $this->modeldata->getGridDatadetail($idheader);
-        if (!is_null($check)) {
-            $result = $this->modeldata->getGridDatadetail($idheader)->result();
-        } else {
-            $result = '';
-        }
-        $this->dj(array(
-            "data" => $result
-        ));
-    }
 
     public function access_grid() {
         $this->dj(array(

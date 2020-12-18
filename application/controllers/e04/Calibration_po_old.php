@@ -67,13 +67,9 @@ class Calibration_po extends MY_Controller {
         $this->data['id'] = $id;
         $this->data['default']['harga'] = $row->harga;
         $this->data['prefix_id'] = $this->modeldata->prefix_id_detail;
-
-        // var_dump($row);exit;
-
-        $this->buildcombobox('vendor_id', 'vendor_name', $this->vendor->getAll(), 'edit', $row->vendor_id);
+        $this->buildcombobox('vendor_id', 'vendor_name', $this->vendor->getAll(), 'edit', $row['vendor_id']);
         $this->data['url_post']  = site_url($this->controller . '/postdatadetail');
         $this->data['url_index'] = site_url($this->controller . "/edit/$id_header");
-
         $this->load->view($this->view . '/form_payment', $this->data);
     }
 

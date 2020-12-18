@@ -101,7 +101,7 @@ class Calibration_po_model extends MY_Model {
                 LEFT JOIN $this->table_calibration c on a.calibration_code = c.calibration_code
                 LEFT JOIN $this->tbl_tools d on c.tools_id = d.tools_id
                 LEFT JOIN $this->table_periode e on c.calibration_id = e.calibration_id 
-                LEFT JOIN $this->table_vendor f on e.vendor_id = f.vendor_id
+                LEFT JOIN $this->table_vendor f on f.vendor_id = f.vendor_id
                 WHERE 
                 a.$this->prefix_id='$id' AND e.status_calibration = 0 AND  a.statusdata='active' ";
         return $this->db->query($query);
